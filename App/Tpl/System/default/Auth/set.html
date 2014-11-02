@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加授权绑定</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun"> <a href="<{:U('Index/index')}>">首页</a> <a href="<{:U('Auth/index')}>" class="b">授权认证管理</a> <a href="<{:U('Daili/index')}>">代理商管理</a> <a href="<{:U('Kehu/index')}>">用户管理</a> <a href="<{:U('Account/index')}>">扣除记录</a> <a href="<{:U('Payrecord/index')}>">充值记录</a> <a href="<{:U('Alipay_config/index')}>">支付配置</a> </div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('Index/edit')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div class="content1">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">添加授权绑定</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginadminName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">添加授权绑定<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+    <form class="form" method="post" target="_top" enctype="multipart/form-data" >
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right">序列号：</td>
+            <td width="84%"><{$serialnum}>
+              <input type="hidden" id="serialnum" name="serialnum"  value="<{$serialnum}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">客户姓名：</td>
+            <td width="84%"><input type="text" id="uname" name="uname"  value="<{$Authadmin.uname}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">网站域名：</td>
+            <td width="84%"><input type="text" id="domain" name="domain"  value="<{$Authadmin.domain}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">网站IP：</td>
+            <td width="84%"><input type="text" id="ip" name="ip"  value="<{$Authadmin.ip}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">开始时间：</td>
+            <td width="84%"><input type="text" id="starttime" name="starttime"  value="<if condition="$Authadmin['starttime'] neq ''"><{$Authadmin.starttime|date="Y-m-d",###}></if>" onClick="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">到期时间：</td>
+            <td width="84%"><input type="text" id="endtime" name="endtime"  value="<if condition="$Authadmin['endtime'] neq ''"><{$Authadmin.endtime|date="Y-m-d",###}></if>" onClick="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">客户手机：</td>
+            <td width="84%"><input type="text" id="phone" name="phone"  value="<{$Authadmin.phone}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">电子邮箱：</td>
+            <td width="84%"><input type="text" id="email" name="email"  value="<{$Authadmin.email}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">联系地址：</td>
+            <td width="84%"><input type="text" id="addres" name="addres"  value="<{$Authadmin.addres}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">联系地址：</td>
+            <td width="84%"><input type="radio" class="px" value="1" name="verification" 
+              <if condition='$Authadmin.verification eq 1'>checked</if>
+              />&nbsp;单域名&nbsp; &nbsp;<input type="radio" class="px" value="2" name="verification" 
+              <if condition='$Authadmin.verification eq 2'>checked</if>
+              />&nbsp;单IP&nbsp; &nbsp;<input type="radio" class="px" value="0" name="verification" 
+              <if condition='$Authadmin.verification eq 0'>checked</if>
+              />&nbsp;不验证&nbsp; &nbsp;<input type="radio" class="px" value="3" name="verification" 
+              <if condition='$Authadmin.verification eq 3'>checked</if>
+              />&nbsp;都验证&nbsp; &nbsp;</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+              <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

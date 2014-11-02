@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/reset.css" >
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/common2.css">
+<title>我的爱车</title>
+<script type="text/javascript" src="__PUBLIC__/car/jquery.js"></script>
+
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta name="Keywords" content="">
+        <meta name="Description" content="">
+      
+        <style>
+            img{ width:100%!important;}
+        </style>
+    <link href="__PUBLIC__/car/mobiscroll.css" rel="stylesheet" type="text/css"><link href="__PUBLIC__/car/mobiscroll.css" rel="stylesheet" type="text/css"><link href="__PUBLIC__/car/mobiscroll.css" rel="stylesheet" type="text/css"></head>
+ <body onselectstart="return true;" ondragstart="return false;">
+        
+			<ul class="">
+						<li>
+							<img alt="" src="<{$xx['pic']}>" style="width:100%;max-height:480px;">
+						</li>
+					</ul>
+		<div id="bookBody" class="body">
+			<section>
+				<form id="form1" action="<{:U('Car/chezhued',array('id'=>$list['id'], 'issue'=>3,'token'=>$token,'wecha_id'=>$wecha_id))}>" method="post">
+				<input value="<{$che.wid}>" name="wid" type="hidden">
+				<input value="<{$che.wxid}>" name="wxid" id="" type="hidden">
+				<input value="<{$list['id']}>" name="id" id="" type="hidden">					
+				<div class="pb_5 pl_10 pr_10 pt_10">
+						<dl class="list_book">
+							<dt><label>添加车型</label></dt>
+							<dd>
+								<div>
+								<select name="pid" id="pid">
+								<if condition="$s['id'] eq ''">
+								<option value="">--请选择--</option>
+								<volist name="pin" id="che">
+								<option value="<{$che.id}>"><{$che.name}></option>
+								</volist>
+								<else/>
+								<option value="<{$s.id}>"><{$s.name}></option>
+								<volist name="pin" id="che">
+								<option value="<{$che.id}>"><{$che.name}></option>
+								</volist>
+								</if>
+					           </select>
+								
+								</div>
+								</dd>
+							   <dd>
+							<div>
+							   <select name="xid" id="xid">
+							   <if condition="$x['id'] eq ''">
+								<option value="">--请选择--</option>
+								<volist name="chexi" id="che">
+								<option value="<{$che.id}>"><{$che.name}></option>
+								</volist>
+								<else/>
+								<option value="<{$x.id}>"><{$x.name}></option>
+								<volist name="chexi" id="che">
+								<option value="<{$che.id}>"><{$che.name}></option>
+								</volist>
+								</if>
+								</select>
+								</div></dd><dd><div>
+								
+							   <select  name="xxid" id="xxid">
+							   <if condition="$xx['id'] eq ''">
+								<option value="">--请选择--</option>
+								<volist name="chexing" id="chexing">
+								<option value="<{$chexing.id}>"><{$chexing.name}></option>
+								</volist>
+								<else/>
+								<option value="<{$xx.id}>"><{$xx.name}></option>
+								<volist name="chexing" id="chexing">
+								<option value="<{$chexing.id}>"><{$chexing.name}></option>
+								</volist>
+								</if>
+								</select>
+								
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<div class="pb_5 pl_10 pr_10 pt_10">
+						<dl class="list_book">
+							<dt><label>维护项目</label></dt>
+							<dd>
+								<div>
+								<select name="type" id="cpp">
+										<if condition="$list['id'] eq ''">
+										<option value="">--请选择--</option>
+										<option value="1">外观维护</option>
+										<option value="2">机油三滤保养</option>
+										<option value="3">故障保养</option>
+										<else/>
+										<option><if condition="$list['type'] eq 1">外观维护<elseif  condition="$list['type'] eq 2"/>机油三滤保养<else/>故障保养</if></option>
+										<option value="1">外观维护</option>
+										<option value="2">机油三滤保养</option>
+										<option value="3">故障保养</option>
+										</if>
+								</select>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<!---------->
+					<div class="pb_5 pl_10 pr_10">
+						<dl class="list_book">
+							<dt><label>基本信息</label></dt>
+							<dd class="tbox">
+								<div><label>车牌号码</label></div>
+								<div><input name="num" id="num" placeholder="如：京Q88888" maxlength="30" type="text" style="width:94%;" value="<{$list['num']}>"/></div>
+							</dd>
+							<dd class="tbox">
+								<div><label>行驶里程</label></div>
+								<div><input name="mileage" id="mileage" maxlength="30" type="text" style="width:94%;" value="<{$list['mileage']}>"/></div>
+							</dd>
+							<dd class="tbox">
+								<div><label>购买年代</label></div>
+								<div><input readonly="year" id="year" placeholder="" maxlength="30"   onClick="WdatePicker()"  name="year" mdate="date"   type="text" style="width:94%;" value="<{$list['year']}>"/></div>
+							</dd>
+							<dd class="tbox">
+								<div><label>预计到店</label></div>
+								<div><input readonly="ytime" id="ytime" placeholder="" maxlength="30"   onClick="WdatePicker()"  name="ytime" mdate="date"   type="text" style="width:94%;" value="<{$list['ytime']}>"/></div>
+							</dd>
+							<dd class="tbox">
+								<div><label>预计取车</label></div>
+								<div><input readonly="qtime" id="qtime" placeholder="" maxlength="30"   onClick="WdatePicker()"  name="qtime" mdate="date"   type="text" style="width:94%;" value="<{$list['qtime']}>"></div>
+							</dd>
+						</dl>
+					</div>
+					<!---------->
+					<div class="pb_5 pl_10 pr_10">
+						<dl class="list_book">
+							<dt><label>车主信息</label></dt>
+							<dd class="tbox">
+								<div><label>姓名</label></div>
+								<div><input name="name" id="name" placeholder="如：王百万" maxlength="30" type="text" style="width:94%;" value="<{$list['name']}>"/></div>
+							</dd>
+							<dd class="tbox">
+								<div><label>电话</label></div>
+								<div><input name="tel" id="tel" placeholder="如:13146951143" maxlength="30" type="text" style="width:94%;" value="<{$list['tel']}>"/></div>
+							</dd>
+							<dd class="tbox">
+								<div><label>邮箱</label></div>
+								<div><input name="email" id="email" placeholder="如:111111@qq.com" maxlength="30" type="text" style="width:94%;" value="<{$list['email']}>"/></div>
+							</dd>
+							<dd class="tbox">
+								<div><label>描述</label></div>
+								<div><textarea name="description" maxlength="30" type="text" style="width:94%;"><{$list['description']}></textarea></div>
+							</dd>
+					</div>
+					<!---------->
+					<div id="txt"></div>
+					<div id="slip"  style="text-align: center;" ></div>
+					<div style="margin:10px;text-align: center;">
+						<input value="确定" class="btn_submit" type="submit">
+						<a href="<{:U('Car/index',array('id'=>$uid))}>" style="margin:10px;text-align: center;" class="btn_submit">返回首页</a>
+					</div>
+					
+				</form>
+			</section>
+			
+		</div>
+<!--<script type="text/javascript">
+ $(function (){
+     $.post(<{:U('Car/chezhuxq',array('token'=>$_GET['token'],'weicha_id'=>$_GET['weicha_id']))}>,
+	   {     
+		    pid:"pid",
+            xid:"xid",
+			xxid:"xxid",
+            num:"num",
+	        mileage:"mileage",
+            year:"year",
+			type:"type",
+            ytime:"ytime", 
+			qtime:"qtime",
+            name:"name",
+			tel:"tel",
+            email:"email",
+            description:"description",
+	    }
+	 
+	 function(data,status){
+        if(data.vo==1){
+	     $('#txt').text('提交成功'); 
+	     $('#slip').slideDown();
+    					setTimeout(function(){
+    						location.href = "<{:U('Car/chezhuxq',array('token'=>$_GET['token'],'weicha_id'=>$_GET['weicha_id']))}>";  						
+    					},888);
+	      }else{
+	        $('#txt').text('请勿重复提交');
+    		$('#slip').slideDown();
+	  
+	  
+	     }
+	   setTimeout(function(){
+    					$('#slip').slideUp();
+    				},1000);
+   
+        }
+	  error:function(){
+				alert("连接服务器错误");
+			 }
+    });
+
+ });
+	 
+	</script>-->	
+</body></html>

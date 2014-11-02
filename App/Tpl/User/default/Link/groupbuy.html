@@ -1,0 +1,26 @@
+<div class="cLineD">
+    <form method="get" action="<{:U('Link/groupbuy')}>" id="searchForm">
+        <input type="text" id="msgSearchInput" class="px" placeholder="输入关键词搜索" name="searchkey" value="<{$searchkey}>">
+        <button type="submit" name="appidsubmit" value="true" class="btnGreen vm"><strong>搜索</strong></button>
+        <span id="msg"></span>
+    </form>
+</div>
+
+<table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <thead>
+    <tr>
+      <th>团购名称</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+<if condition="infos">
+<foreach name="infos" item="r" key="n">
+<tr><td><{$r.name}></td><td><a data="Groupbuy/index/id/<{$r.id}>">选择</a></td></tr>
+</foreach>
+<else/>
+<tr><td colspan="2">没有内容</td></tr>
+</if>
+  </tbody>
+</table>
+<div class="pagelistbox"><{$page}></div>

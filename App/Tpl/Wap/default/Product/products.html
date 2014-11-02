@@ -1,0 +1,26 @@
+<include file="Product:header"/>
+<link href="__PUBLIC__/wap/drugs/css/slick.css" rel="stylesheet" type="text/css" />
+<!--主体-->
+
+<section class="c_list">
+   <h1 style="font-size:15px;">
+    <if condition="$parentid neq 0"><{$thisCat.name}></if>
+    全部分类：</h1>
+  <volist name="cats" id="hostlist">
+    <dl>
+      <dt> <a style="font-size: 15px;" href="<if condition="$hostlist['parentid'] eq 0"><{:U('Product/index',array('token'=>$_GET['token'],'catid'=>$hostlist['id'],'wecha_id'=>$wecha_id))}><else/><{:U('Product/index',array('token'=>$_GET['token'],'catid'=>$hostlist['id'],'wecha_id'=>$wecha_id))}></if>">
+        <{$hostlist.name}> <i></i> </a> </dt>
+    </dl>
+  </volist>
+</section>
+<!--头部-->
+<header id="bottomNav" class="ts1"> 
+<a class="u_back fl" href="javascript:history.go(-1)"></a>
+   <ul class="topbar fr">
+    <li> <a class="icon_user" href="<{:U('Product/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'shop'=>2))}>"> <i></i> 我的 </a> </li>
+    <li> <a class="icon_shopping" href="<{:U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <i></i> 购物车 </a> </li>
+    <li> <a class="icon_class" href="<{:U('Product/products',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <i></i> 分类 </a> </li>
+    <li> <a class="icon_index" href="<{:U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <i></i> 主页 </a> </li>
+  </ul>
+</header>
+</body></html>

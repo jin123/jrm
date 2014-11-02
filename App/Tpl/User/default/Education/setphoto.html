@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改微相册_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+KindEditor.ready(function(K) {
+				var editor = K.editor({
+					allowFileManager : true
+				});
+				K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#picurl').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								K('#picurl').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+	});					
+</script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"><a href="<{:U('Education/index')}>">教育机构</a></span><span class="wap_span_2">微相册</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">修改微相册<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+    <form method="post" action="">
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>相册名称：</td>
+            <td width="84%"><input type="text" name="name" value="<{$list['name']}>" class="input login_input_1" style="width:570px;" id="name"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>相册封面图：</td>
+            <td width="84%"><input type="text" name="pic" id="picurl" value="<{$list['pic']}>" class="input login_input_1" style="width:570px;">
+              <strong class="input_ts_y"> <a href="javascript:void(0)" onclick="upyunPicUpload('picurl',700,420)" >选择图片</a> <a href="###" onclick="viewImg('picurl')">预览</a> </strong></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">相册介绍：</td>
+            <td width="84%"><textarea name="jianjie" class="input login_input_1" style="width:570px;height:60px;" maxlength="100"><{$list['jianjie']}></textarea></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+              <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

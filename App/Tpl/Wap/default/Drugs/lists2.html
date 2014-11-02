@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>药品分类</title>
+<link href="__PUBLIC__/wap/drugs/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="box">
+<div class="table">
+<!-- <div class="search">
+<form action="" method="post">
+       <p><input type="text" class="search_1" name='searchkey' value="" /></p>
+       <b> <button type="submit" class="search_2" ></button></b>
+      </form>
+    </div> -->
+	<div class="yp_a">
+   	  <div class="yp_center">
+      	<div class="yp_c_left">
+        	<ul>
+            	<volist name="data['rows']" id="vo"><li><a href="<{:U('Drugs/chanpin',array('Flag'=>4,'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'sortid'=>$vo['unid'],'title'=>$vo['title']))}>"><{$vo.title}></a></li></volist>
+    
+            </ul>
+        </div>
+        <div class="yp_c_right">
+        	<ul>
+        	<volist name="two_info" id="list">
+            	<li><a <?php if($list['unid']==$id){echo 'style="color: #005aa0;"';} ?> href="<{:U('Drugs/lists2',array('Flag'=>3,'sencendid'=>$sencendid,'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'sortid'=>$list['unid'],'title'=>$list['title']))}>"><{$list.title}></a></li>
+               
+           </volist>
+            </ul>
+        	
+           
+        </div>
+      </div>
+    </div>
+<div class="abc"></div>
+<include file="footer" />
+</div>
+</div>
+</body>
+</html>

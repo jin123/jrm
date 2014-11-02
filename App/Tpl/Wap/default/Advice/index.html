@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>意见反馈</title>
+	<meta content="" name="Keywords">
+	<meta content="" name="Description">
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/liuyan/msg.css" media="all"/>
+	<script type="text/javascript" src="__PUBLIC__/js/j.js"></script>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+	<meta content="eric.wu" name="author">
+	<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+	<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+	<meta content="no-cache" http-equiv="pragma">
+	<meta content="0" http-equiv="expires">
+	<meta content="telephone=no, address=no" name="format-detection">
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	<script type="text/javascript">
+
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call('hideToolbar');
+});
+        </script>
+	<script type="text/javascript"> 
+		$(document).ready(function () { 
+			$("#showcard1").click(function () { 
+				var btn = $(this);
+				var wxname = $("#wxname1").val();
+				if (wxname  == '') {
+					alert("请输入昵称");
+					return;
+				} 
+				var tel = $("#tel").val();
+					if (tel  == '') {
+					alert("请输入手机号码");
+					return;
+				} 
+				if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(tel))){ 
+					alert("手机号码格式不正确");
+					return;
+				}
+				
+				//if(!(/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/.test(email))){ 
+					//alert("邮箱格式不正确");
+					//return;
+				//}
+
+				var email = $("#email").val();
+					if (email  == '') {
+					alert("请输入邮箱");
+					return;
+				} 
+				var info = $("#info1").val();
+					if (info == '') {
+					alert("请输入内容");
+					return;
+				}
+				
+				$.post('<{:U('Advice/add',array('wecha_id'=>$openid))}>',{tel:tel,email:email,msg:info,pid:'<{$pid}>',name:wxname},
+		
+					function(data) {
+						alert('我们会尽快给您回复，请注意查看！');
+						setTimeout('window.location.href=location.href',1000);
+						return;
+
+				});
+			}); 
+			//
+			$("#showcard2").click(function () { 
+				var btn = $(this);
+				var wxname = $("#wxname2").val();
+					if (wxname  == '') {
+					alert("请输入昵称");
+					return;
+				} 
+				
+				var info = $("#info2").val();
+					if (info == '') {
+					alert("请输入内容");
+					return;
+				}
+				$.post('<{:U('Advice/add',array('wecha_id'=>$openid))}>',{msg:info,name:wxname,pid:'<{$pid}>'},
+					function(data) {
+						alert('意见审核通过后才会显示！');
+						setTimeout('window.location.href=location.href',1000);
+						return;
+
+				});
+			});  
+			//
+			$(".hhsubmit").click(function () { 
+				var objid = $(this).attr("date");
+				var info = $(".hly"+objid).val();
+					if (info == '') {
+					alert("请输入内容");
+					return;
+				}
+				var submitData = {
+					nc:'{h $nc}',
+					pid:objid,
+					msg: info
+				};
+				$.post('lyadd.html', submitData,
+						function(data) {
+							if (data == 'ok') {
+								alert('意见审核通过后才会显示！');
+								setTimeout('window.location.href=location.href',1000);
+							return;
+						} else {}
+				});
+			});  
+			//
+			$(".hfinfo").click(function () { 
+				var objid = $(this).attr("date");
+				$(".hhly"+objid).slideToggle();
+			}); 
+			//
+			$(".hhbt").click(function () { 
+				var objid = $(this).attr("date");
+				$(".hhly"+objid).slideToggle();
+			});
+			//
+			$("#windowclosebutton").click(function () { 
+				$("#windowcenter").slideUp(500);
+			});
+			//
+			$("#alertclose").click(function () { 
+				$("#windowcenter").slideUp(500);
+			});
+		}); 
+		//
+		function alert(title){ 
+			window.scrollTo(0, -1);
+			$("#windowcenter").slideToggle("slow"); 
+			$("#txt").html(title);
+			setTimeout(function(){ $("#windowcenter").slideUp(500);},4000);
+		}
+		//
+		$(document).ready(function(){
+			//$(".first1").click(function(){
+				$(".ly1").slideToggle();
+			//});
+			//$(".first2").click(function(){
+				$(".ly2").slideToggle();
+			//});
+		});
+	</script>
+	</head>
+	<body id="message" onselectstart="return true;" ondragstart="return false;">
+<div class="container">
+      <div class="qiandaobanner"> <a href="javascript:history.go(-1);"> <img src="<{$ly_data['headpic']}>" style="width:100%;height:100px;" /> </a> </div>
+	  <div style="width:95%;margin-left:6px;margin-top:10px;border:1px solid #FFCC99;margin-right;5px;padding-left:5px; background:#FFFDF4;">
+		  <font style="color:#999;line-height:25px;font-size:14px;">
+		  <{$ly_data['desc']}>
+		  </font>
+	  </div>
+      <div class="cardexplain">
+    <div class="window" id="windowcenter">
+          <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+          <div class="content">
+        <div id="txt"></div>
+      </div>
+        </div>
+    <div class="history">
+          <div class="history-date">
+        <ul>
+		
+		 <foreach name='mres' item='m'>
+            <li class="green bounceInDown">
+                  <h3> 
+                <!-- <img src="http://www.apiwx.com/index/images/logo100x100.jpg"> --> 
+                <{$m.name}><span><{$m.time|date='Y-m-d H:i:s',###}></span>
+                <div class="clr"></div>
+              </h3>
+                  <dl>
+                <dt class="hfinfo"><{$m.msg}></dt>
+				<div style="border:1px dashed #ccc; margin-top:5px;margin-bottom:5px;"></div>
+				<?php if(count($m["replay"])!=0){ ?>
+                 <dt class="hfinfo">回复给<{$m.name}>:</dt>
+				   <foreach name='m["replay"]' item='vo'>
+				    <dt class="hfinfo" style="color:#00f;"><{$vo.content}></dt>
+				   </foreach>
+				   <?php } ?>
+              </dl>
+                  <!--<dl class="huifu">
+								<dt>
+									<span>																														<a class="hhbt czan" date="11803" href="javascript:void(0)">回复</a>
+										<p style="display:none;" class="hhly11803">
+											<textarea name="info" class="pxtextarea hly<{$m->id}>"></textarea> 
+										<a class="hhsubmit submit" date="<{$m->id}>" href="javascript:void(0)">确定</a>
+										</p>
+									</span>
+								</dt>
+							</dl>
+							<dl class="huifu">
+								<dt><span><{$n['nc']}>回复：<{$n['msg']}></span></dt>
+							</dl>--> 
+                </li>
+          </foreach>
+              <!--<a>
+          <h2 class="first first1" style="position: relative;">请点击留言</h2>
+          </a> -->
+              <!--<li class="nob  mb"><div class="beizhu">留言审核通过后才会显示在留言墙上！</div></li>-->
+              <li class="green bounceInDown nob ly1" style="display:none">
+            <dl>
+                  <dt>
+                <input name="wxname" type="text"  class="px" id="wxname1" value="" placeholder="请输入您的昵称">
+              </dt>
+			  <dt>
+                <input name="tel" type="text" class="px" style="margin-top:10px;" id="tel" value="" maxlength="11" placeholder="请输入您的手机号">
+              </dt>
+			  <dt>
+                <input name="email" type="text" class="px" style="margin-top:10px;" id="email" value="" placeholder="请输入您的邮箱">
+              </dt>
+                  <dt>
+                <textarea name="info" class="pxtextarea" style=" height:100px;" id="info1" placeholder="请输入您的意见"></textarea>
+              </dt>
+                  <dt><a id="showcard1" class="submit" href="javascript:void(0)">发表意见</a></dt>
+                </dl>
+          </li>
+             
+              <!--<li class="green bounceInDown nob ly2" style="display:none;">
+            <dl>
+                  <dt>
+                <input name="wxname" type="text" class="px" id="wxname2" value="" placeholder="请输入您的昵称">
+              </dt>
+                  <dt>
+                <textarea name="info" class="pxtextarea" style=" height:60px;" id="info2" placeholder="请输入留言"></textarea>
+              </dt>
+                  <dt> <a id="showcard2" class="submit" href="javascript:void(0)">提交留言</a> </dt>
+                </dl>
+          </li>
+              <a>
+          <h2 class="first first2" style="position: relative;">请点击留言</h2>
+          </a>-->
+            </ul>
+      </div>
+        </div>
+  </div>
+    </div>
+</div>
+</body>
+<include file="footer" />
+</html>

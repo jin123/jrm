@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title><{$list1['name']}></title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/edu/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/edu/home-38.css" media="all" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/edu/font-awesome.css" media="all" />
+<script type="text/javascript" src="__PUBLIC__/js/j.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/edu/maivl.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/edu/swipe.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/edu/zepto.js"></script>
+<!-- Mobile Devices Support @begin -->
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<!-- Mobile Devices Support @end -->
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<script type="text/javascript"> 
+	var WIndowHeight = $(window).height();
+	$('.img-responsive').css('height', WIndowHeight);
+</script>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="body"> 
+  <!--
+	幻灯片管理
+	-->
+  <div style="-webkit-transform:translate3d(0,0,0);">
+    <div id="banner_box" class="box_swipe">
+      <ul class="mainul">
+        <li> <img src="<{$list[0]['pic1']}>" alt="1" style="width:100%;" /> </li>
+        <li> <a onclick="return false;"> <img src="<{$list[0]['pic2']}>" alt="2" class="img-responsive" /> </a> </li>
+        <li> <a onclick="return false;"> <img src="<{$list[0]['pic3']}>" alt="3" class="img-responsive" /> </a> </li>
+        <li> <a onclick="return false;"> <img src="<{$list[0]['pic4']}>" alt="4" class="img-responsive" /> </a> </li>
+        <li> <a onclick="return false;"> <img src="<{$list[0]['pic5']}>" alt="5" class="img-responsive" /> </a> </li>
+      </ul>
+      <ol id="indtagol">
+        <li class="on"></li>
+        <li ></li>
+        <li ></li>
+        <li ></li>
+        <li ></li>
+      </ol>
+    </div>
+  </div>
+  <script>
+		$(function(){			
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(index, elem){
+					var lis = $('#indtagol').children();
+					lis.removeClass("on").eq(index).addClass("on");
+				}
+			});
+			
+		});
+		
+	</script> 
+  <br/>
+  <div class="navList_boxdp">
+    <div id="navList_box" class="box_swipe">
+      <ul>
+        <li> <a href="<{:U('Education/info',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="weimob-list-item"> <span class="icon-home"></span>
+          <div>简介</div>
+          </a> <a href="<{:U('/Wap/Education/photo/',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="weimob-list-item"> <span class="icon-picture"></span>
+          <div>相册</div>
+          </a> <a href="<{:U('/Wap/Education/huxing/',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="weimob-list-item"> <span class="icon-building"></span>
+          <div>课程</div>
+          </a> <a href="<{:U('Education/addreview',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="weimob-list-item"> <span class="icon-check"></span>
+          <div>点评</div>
+          </a> </li>
+        <li> <a href="<{:U('Education/jiangshi',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="weimob-list-item" class="weimob-list-item"> <span class="icon-edit"></span>
+          <div>讲师风采</div>
+          </a> </li>
+      </ul>
+      <ol>
+        <a href="javascript:navList_box.prev();">&nbsp;</a> <a href="javascript:navList_box.next();">&nbsp;</a>
+      </ol>
+    </div>
+  </div>
+  <script>
+			$(document).ready(function(){
+				window.navList_box = new Swipe(document.getElementById('navList_box'), { auto:0});
+			});
+		</script> 
+</div>
+</body>
+</html>

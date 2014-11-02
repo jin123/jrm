@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>自定义菜单_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/diymen/tipswindown.css" type="text/css" media="all" />
+<script type="text/javascript" src="__PUBLIC__/js/j.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/diymen/tipswindown.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">自定义菜单</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">注意：1级菜单最多只能开启3个，2级子菜单最多开启5个! <a href="<{:U('Diymen/class_add')}>"><span class="button_r_1 fabu">添加菜单</span></a> </div>
+     <!-- <div class="cLineD">
+        <form enctype="multipart/form-data" action="" method="post">
+          AppId:
+          <input type="text" size="20" tabindex="1" class="input login_input_1" value="<{$diymen.appid}>" id="appid" name="appid">
+          AppSecret:
+          <input type="text" size="20" tabindex="1" class="input login_input_1" value="<{$diymen.appsecret}>" id="appsecret" name="appsecret">
+          <button class=" btnGrayS vm" value="true" name="appidsubmit" type="submit" style="padding: 6px 10px 5px;"><strong>保存</strong></button>
+          <br>
+          <span style="color:red">通过认证服务号才能得到这2个值!</span>
+        </form>
+      </div>-->
+      <table width="100%" class="new_main_liebiao">
+        <tbody>
+          <tr>
+            <th width="12%">显示顺序</th>
+            <th width="21%">主菜单名称</th>
+            <th width="">关联关键词</th>
+            <th width="15%">外链URL</th>
+            <th width="15%">操作</th>
+          </tr>
+          <volist id="class" name="class">
+            <tr>
+              <td><{$i}></td>
+              <td><{$class.title}></td>
+              <td><if condition="$class['keyword'] eq ''">无<else/><{$class.keyword}></if></td>
+              <td><span><if condition="$class.url neq ''"><a href="<{$class.url}>" target="_blank">链接地址</a><else/>无</if></span></td>
+              <td><div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                  <h3 class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                  <div class="h3_cat">
+                    <div class="h3_cat_list">
+                      <ul>
+                        <a href='<{:U('Diymen/class_edit',array('id'=>$class['id']))}>' title="修改主菜单">
+                        <li>编 辑</li>
+                        </a> <a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Diymen/class_del',array('id'=>$class['id']))}>');">
+                        <li>删 除</li>
+
+                        </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="clear"> </div></td>
+            </tr>
+            <volist id="class1" name="class['class']">
+              <tr>
+                <td><{$i}></td>
+                <td><div style="padding-left:60px;"><img src="__PUBLIC__/images/bg_repno.gif"/><{$class1.title}></div></td>
+                <td><if condition="$class1['keyword'] eq false">无<else/><{$class1.keyword}></if></td>
+            	 <td><span><if condition="$class1.url neq ''"><a href="<{$class1.url}>" target="_blank">链接地址</a><else/>无</if></span></td>
+                <td><div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                    <h3 class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                    <div class="h3_cat">
+                      <div class="h3_cat_list">
+                        <ul>
+                          <a  href='<{:U('Diymen/class_edit',array('id'=>$class1['id']))}>' title="修改主菜单">
+                          <li>编辑</li>
+                          </a> <a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Diymen/class_del',array('id'=>$class1['id']))}>');">
+                          <li>删除</li>
+                          </a>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clear"> </div></td>
+              </tr>
+            </volist>
+          </volist>
+          <tr>
+            <td colspan="3"><span class="cdul"> 注：<br>
+              (使用前提是已经拥有了自定义菜单的用户才能够使用，)<br>
+              第一步:必须先填写【AppId】【 AppSecret】！<br>
+              第二步:添加菜单，<br>
+              第三步:点击生成!<br>
+              注意：1级菜单最多只能开启3个，2级子菜单最多开启5个<br>
+              官方说明：修改后，需要重新关注，或者最迟隔天才会看到修改后的效果！<br>
+              </span></td>
+            <td colspan="2"><if condition="$class neq false"> <a class="btnGreen "  onclick="drop_confirm('自定义菜单最多勾选3个，每个菜单的子菜单最多5个，请确认!', '<{:U('Diymen/class_send')}>');" title="">生成自定义菜单</a> </if>
+              <if condition="$class neq false"> <a class="btnGrayS vm bigbtn"  onclick="drop_confirm('删除自定义菜单，请确认!', '<{:U('Diymen/class_cancel')}>');"><font color="#FF0000">删除自定义菜单</font></a> </if></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

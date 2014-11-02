@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>具体内容</title>
+<script type="text/javascript">var yyuc_jspath = "__PUBLIC__/wap/wdy/";</script>
+<script type="text/javascript" src="__PUBLIC__/wap/wdy/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/wdy/js/yyucadapter.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/wdy/style/examine.css" />
+<script type="text/javascript">
+	$(function(){
+		<if condition="$trk['type'] eq 2">
+		$('.option').click(function(){
+			if($(this).attr('sel')=='sel'){
+				$(this).find('img').eq(0).show();
+				$(this).find('img').eq(1).hide();
+				$(this).attr('sel','0');
+			}else{
+				$(this).find('img').eq(0).hide();
+				$(this).find('img').eq(1).show();
+				$(this).attr('sel','sel');
+			}			
+		});		
+		<else /> 
+		$('.option').click(function(){
+			$('.option').each(function(){
+				$(this).find('img').eq(0).show();
+				$(this).find('img').eq(1).hide();
+				$(this).attr('sel','0');
+			});
+			$(this).find('img').eq(0).hide();
+			$(this).find('img').eq(1).show();
+			$(this).attr('sel','sel');		
+		});		
+		</if>		
+	});
+</script>
+<style>
+.question .option{
+	border:4px solid rgba(0,0,0,0.1);
+	background-clip:content-box;
+	margin:0.1875em auto;
+	/*height:1.875em;*/
+	height:auto;
+	width: 95.625%;
+	border-radius:0.3125em;
+	/*background-color:#ccc;*/
+	background-image:url('__PUBLIC__/wap/wdy/images/option_bg_0.png');
+	background-size:1px 100%;
+	background-repeat:repeat-x;
+}
+.question .option .text{
+	line-height:30px;
+}
+.question .option .otext {
+    height:auto;
+    margin-left:35px;
+    max-width: 90%;
+}
+.question .option .oimg, .question .option .oimg-sel {
+    left: 10px;
+    position: absolute;
+    top: 4px;
+    width: 20px;
+}
+.title{
+	font-size:24px;
+	text-shadow:0px 0px 2px #fff;
+}
+
+</style>
+</head>
+<body style="background-color: #ffb100;">
+<div class="wrapper">
+	<img class="bg" src="__PUBLIC__/wap/wdy/images/bg.jpg">
+	<div class="question" style="overflow:hidden;">
+		<div class="title"><{$trk['question']}></div>
+		<if condition="$trk['type'] eq 2">
+		<div class="tip1">注：本题可以选择多个答案！</div>
+		<else /> 
+		<div class="tip1">注：本题最多能选择1个答案！</div>
+		</if>
+		
+		<div class="options">
+		<for start="1" end="10" comparison="elt">
+			<if condition="$trk['option'.$i] neq null">
+			<div class="option" data-value="<{$i}>">
+            		<img id="img<{$i}>" class="oimg" src="__PUBLIC__/wap/wdy/images/option_bg_c<if condition="$trk['type'] neq 2">2</if>.png">
+				<img id="img<{$i}>1" class="oimg-sel" src="__PUBLIC__/wap/wdy/images/option_bg_c<if condition="$trk['type'] neq 2">2</if>1.png">
+
+				<div class="text">
+					<div class="otext"><{$trk["option{$i}"]}></div>
+				</div>
+			</div>
+			</if>
+		</for>	
+		</div>
+		<div id="submit" onclick="gotonext()">
+			<img src="__PUBLIC__/wap/wdy/images/next_btn.png">
+			<span>下一步</span>
+		</div>
+	</div>
+ 	<p class="page-url">
+		<a href="/" target="_blank" class="page-url-link"></a>
+	</p>
+</div>
+<script type="text/javascript">
+function gotonext(){
+	var res = [];
+	$('.option[sel="sel"]').each(function(){
+		res[res.length] = $(this).attr('data-value');
+	});
+	if(res.length==0){
+		tusi('请选择答案');
+		return;
+	}else{
+		location.href = "<{:U('Wap/Survey/wdyans',array('cid'=>$trk['sid'],'token'=>$token,'wecha_id'=>$wecha_id,'oncount'=>$oncount))}>/ans/"+res.join('@');
+	}
+}
+</script>
+</body>
+</html>

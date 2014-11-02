@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>药品详情</title>
+<link href="__PUBLIC__/wap/drugs/css/style.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/wap/drugs/css/jquery.alerts.css" rel="stylesheet" type="text/css">
+<!--<link href="http://labs.abeautifulsite.net/archived/jquery-alerts/demo/jquery.alerts.css" rel="stylesheet" type="text/css" >
+-->
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.alerts.js"></script>
+
+<!--script src="http://labs.abeautifulsite.net/archived/jquery-alerts/demo/jquery.alerts.js"></script>-->
+
+<script> 
+$(function(){ 
+$(".add").click(function(){ 
+var t=$(this).parent().find('input[class*=text_box]'); 
+t.val(parseInt(t.val())+1) 
+setTotal(); 
+}) 
+$(".min").click(function(){ 
+var t=$(this).parent().find('input[class*=text_box]'); 
+t.val(parseInt(t.val())-1) 
+if(parseInt(t.val())<1){ 
+t.val(1); 
+} 
+setTotal(); 
+}) 
+function setTotal(){ 
+var s=0; 
+$("#tab td").each(function(){ 
+s+=parseInt($(this).find('input[class*=text_box]').val())*parseFloat($(this).find('span[class*=price]').text()); 
+}); 
+$("#total").html(s.toFixed(2)); 
+} 
+setTotal(); 
+
+}) 
+</script>
+</head>
+
+<body>
+<div class="box">
+<form method="post" name="form1" id="form1" action="">
+	<div class="img_tu">
+    	<img src="<if condition="$data[0]['Pic'] eq ''">/Public/wap/drugs/images/coursedisplay.gif<else /><?php  echo  C("img_url").$data[0]['Pic']; ?></if>">
+    </div>
+    <div class="xq_a">
+    		<div class="xq_b">
+         	  	<p><b>商品名称: <{$data[0]['Title']}></b>
+				<br/>商品规格: <{$data[0]['GuiGe']}>
+				<br/>商品单位: <{$data[0]['DanWei']}>
+				</p>
+                <ul>
+                	 
+   					 <i><img src="__PUBLIC__/wap/drugs/images/spxq.png" width="26" height="20"></i><br/>
+  					 <li><button type="button" id="j2" style="background:#fff;
+    border: medium none;
+    color: #f46c00;
+    float: left;
+    height: 30px;
+    width: 100%;" value="" onclick="shopping();" >购买</button></li>
+                </ul>
+            </div> 
+            <div class="xq_c">
+            	<p>价格: ￥<{$data[0].JiaGe}></p>
+                <span><!-- 价格：<i>￥<{$data[0].JiaGe}></i> --></span>
+            </div>
+            <div class="xq_center">
+            
+			<p>通用名称: <{$data[0]['Name']}></p>
+<p>英文名称: <{$name}>
+</p>
+<p>汉语拼音: <{$name}>
+</p>
+<p>批准文号: <{$data[0].PWh}></p>
+<p>【厂家】<{$data[0].YaoCompany}></p>
+<p>【作用类别】<{$data[0].fenlei}></p>
+<p>【药理作用】<{$data[0].INFO}></p>
+<p>【不良反应】有时有轻度头晕、乏力、恶心、
+上腹不适、口干、食欲缺乏和皮疹等，可自行
+恢复。</p>
+<p>【注意事项】</p>
+<p>1.服用本品期间不得饮酒或含有酒精的饮料。</p>
+<p>2.1岁以下儿童应在医师指导下使用。</p>
+<p>3.不能同时服用与本品成份相似的其他抗感冒
+药。</p>
+<p>4.肝、肾功能不全者慎用。</p>
+<p>5.如服用过量或出现严重不良反应，应立即就
+医。</p>
+<p>6.对本品过敏者禁用，过敏体质者慎用。</p>
+<p>7.本品性状发生改变时禁止使用。</p>
+<p>8.请将本品放在儿童不能接触的地方。</p>
+<p>9.儿童必须在成人监护下使用。</p>
+<p>10.如正在使用其他药品，使用本品前请咨询医
+师或药师。</p>
+<span>【贮藏】密封，在阴凉干燥</span>
+</div>
+</div>
+
+<div class="cba"></div>
+
+<div class="jiajian" style="bottom:50px;">
+<ul>
+<i>数量：</i>
+<li>
+
+<button class="min" ontouchstart=""  name="" type="button" value="+">- </button> 
+<input class="text_box" name="Sum" type="text" value="1" />  
+<button class="add" ontouchstart=""  name="" type="button" value="+">+ </button>
+</li>
+</ul>
+<ol>
+<input class="text_box" name="UnId" type="hidden" value="<{$data[0]['UnId']}>" />
+<input class="text_box" name="VipId" type="hidden" value="<{$data[0]['VipId']}>" />
+<input class="text_box" name="JiaGe" type="hidden" value="<{$data[0]['JiaGe']}>" />
+<input class="text_box" name="Name" type="hidden" value="<{$data[0]['Name']}>" />
+<input class="text_box" name="Pic" type="hidden" value="<{$data[0]['Pic']}>" />
+<li><button  type="button" id="j1" value="" onclick="addgouwuche();">加入购物车</button></li>
+<!-- <li><button type="button" id="j2" value="" onclick="shopping();" >立即购买</button></li> -->
+
+</ol>
+</div>
+
+
+<div style=" height:70px; float:left; width:100%;"></div>
+<div class="abc"></div>
+<include file="footer" />
+</form>
+</div>
+<script>
+	function addgouwuche(){
+		$.ajax({
+
+		   type: "POST",       
+		   url: "<{:U('Drugs/add_gouwuche',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>",
+		   data: $("#form1").serialize(),
+		   dataType: "json",
+		   success: function(data){
+			  if(data.error==1){
+					jAlert(data.msg,'提示',function(){
+						window.location.href="<{:U('Drugs/gouwuche',array('wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}>";
+					});
+			  }else if(data.error==0){
+					jAlert(data.msg);
+			  }
+			  else if(data.error==2){
+			  
+			      location.href=data.login_url;
+			  }
+			  else{
+			  
+			  
+			  jAlert("添加购物车失败!",'提示');
+			  return;
+			  }
+		   }
+		});
+	}	
+	
+</script>
+<script>
+	function shopping(){
+		
+		$.ajax({
+		   type: "POST",       
+		   url: "<{:U('Drugs/shopping',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>",
+		   data: $("#form1").serialize(),
+		   dataType: "json",
+		   success: function(data){
+			   //alert(data.log_url);
+			  if(data.error==1){
+					//jAlert(data.msg,'提示',function(){
+						window.location.href="<{:U('Drugs/hyzx',array('wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}>";
+					//});
+			  }else{
+         //  alert('dfdf');
+					jAlert(data.msg);
+			  }
+			   if(data.status=="-1"){
+				   
+				   
+				   location.href=data.log_url;
+			   }
+			/*  if(data.error==1){
+					jAlert(data.msg,'提示',function(){
+						window.location.href="<{:U('Drugs/shopping')}>";
+					});
+			  }else{
+					jAlert(data.msg);
+			  }*/
+		   }
+		});
+	}	
+
+	
+</script>
+</body>
+</html>

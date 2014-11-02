@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><if condition="$isDining neq 1">商品管理<else/>菜品管理</if>_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script type="text/javascript">
+	function drop_confirm(msg, url){
+		if(confirm(msg)){
+			window.location = url;
+		}
+	}
+</script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"><if condition="$isDining neq 1">商品管理<else/>菜品管理</if></span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit"><a href="<{:U('Product/index',array('dining'=>$isDining))}>"><if condition="$isDining neq 1">商品管理<else/>菜品管理</if></a><span style="float:right;padding-right:20px;" class="searchbar">
+      <form method="post" action="">
+        <input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="">
+        <input type="hidden" name="ac" value="hotels-list">
+        <input type="hidden" name="id" value="9878">
+        <input type="hidden" name="wxid" value="gh_423dwjkewad">
+        <input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+        <if condition="($parentid neq  '0') and ($parentid neq '')"><a href="<{:U('Product/cats',array('parentid'=>$parentCat['parentid']))}>" class="btnGreen" style="margin-top:-27px">返回上一级</a></if>
+      </form>
+      </span> </div>
+    <!--tab start-->
+    <div class="tab">
+      <ul>
+        <li class="tabli" id="tab0"><a href="<{:U('Product/index',array('token'=>$token,'dining'=>$isDining))}>">
+          <if condition="$isDining neq 1">商品<else/>菜品</if>管理</a></li>
+        <li class="current tabli" id="tab2"><a href="<{:U('Product/cats',array('dining'=>$isDining))}>">
+          <if condition="$isDining neq 1">商品分类<else/>菜品分类</if>管理</a></li>
+        <li class="tabli" id="tab2"><a href="<{:U('Product/orders',array('dining'=>$isDining))}>">订单管理</a></li>
+        <if condition="$isDining eq 1"><li class="tabli" id="tab2"><a href="<{:U('Product/tables',array('dining'=>1))}>">桌台管理</a></li></if>
+        <if condition="$isDining neq 1"><li class="tabli" id="tab5"><a href="<{:U('Reply_info/set',array('infotype'=>'Shop'))}>">商城回复配置</a></li><else/><li class="tabli" id="tab5"><a href="<{:U('Reply_info/set',array('infotype'=>'Dining'))}>">订餐回复配置</a></li></if>
+      </ul>
+    </div>
+    <!--tab end-->
+	<div class="new_main_tit"><a href="<{:U('Product/catAdd')}>"><span class="button_r_1 fabu mgtb10">新增分类</span></a></div>
+    <form method="post" action="" id="info">
+      <input name="delall" type="hidden" value="">
+      <input name="wxid" type="hidden" value="">
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th>名称</th>
+            <th>分类名称</th>
+            <th>简介</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr></tr>
+          <volist name="list" id="hostlist">
+            <tr>
+              <td><input type="checkbox" name="del_id[{$i}]" value="285" class="checkitem"></td>
+              <td><{$hostlist.name}></td>
+              <td><{$hostlist.des}></td>
+              <td><{$hostlist.time|date="Y-m-d H:i:s",###}></td>
+              <td class="norightborder"><a href="<{:U('Product/catSet',array('id'=>$hostlist['id'],'dining'=>$isDining))}>">修改</a> <a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Product/catDel',array('id'=>$hostlist['id'],'dining'=>$isDining))}>');">删除</a><span style="display:none">
+                <if condition="($parentid eq '0') or ($parentid eq '')">&nbsp;|&nbsp;<a href="<{:U('Product/cats',array('parentid'=>$hostlist['id']))}>">子分类</a> <a href="<{:U('Product/catAdd',array('parentid'=>$hostlist['id']))}>">添加子分类</a></span></if></td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+    </form>
+    <div class="page">
+      <ul>
+        <{$page}>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

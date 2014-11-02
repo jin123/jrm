@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户标签</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script charset="utf-8" src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+</head>
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/js/jquery.form.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+
+KindEditor.ready(function(K) {
+
+		window.editor = K.create('textarea[id="info"]');
+
+		window.editor = K.create('textarea[id="info2"]');
+
+	});	
+
+</script>
+
+<body>
+__PUBLIC__
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">签到管理</span><span class="wap_span_2">积分设置</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+    <div class="new_main_tit pt10">积分设置</div>
+      <div class="tab">
+        <ul>
+            <li class="current tabli" id="tab0"><a href="<{:U('Label/signset')}>">积分设置</a></li>
+            <li class="tabli" id="tab1"><a href="<{:U('Label/sign')}>">签到日志</a></li>
+        </ul>
+      </div>
+      </div>
+
+
+    <form method="post" >
+    	
+
+      <div class="new_main_con">
+
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+          <thead>
+
+            <tr>
+
+              <th>策略名称</th>
+
+              <th>奖励积分</th>
+
+              <th>&nbsp;</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+
+              <td>每天签到奖励</td>
+
+              <td><input type="text" name="everyday" class="px" value="<{$signset.everyday}>" style="width:60px;"></td>
+
+              <td></td>
+
+            </tr>
+
+            <tr>
+
+              <td>连续30天签到奖励</td>
+
+              <td><input type="text" name="continuation" value="<{$signset.continuation}>" class="px" style="width:60px;"></td>
+
+              <td></td>
+
+            </tr>
+
+            <!-- <tr>
+
+              <td>消费1元奖励</td>
+
+              <td><input type="text" name="reward" class="px" value="<{$signset.reward}>" style="width:60px;"></td>
+
+              <td></td>
+
+            </tr> -->
+
+            <!--
+
+                    <tr>
+
+						<td>积分有效期</td>
+
+						<td><input type="text" name="expire" class="px" value="<?php
+
+                        /*
+
+                     if(!empty($list['add_expend_time'])):
+
+                      echo date('Y-m-d',$list['add_expend_time']);
+
+                      else:
+
+                         echo date('Y-m-d',time());
+
+                      endif;
+
+                      */
+
+                   ?>" style="width:90px;" onClick="WdatePicker()"></td>
+
+						<td></td>
+
+					</tr>	
+
+                        -->
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+        <table class="userinfoArea" style=" margin-top:10px;" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+          <tbody>
+
+
+          <td valign="top">积分使用说明：</td>
+
+            <td><textarea class="px" id="info2" name="cardinfo2" style="width: 600px; height: 100px; "><{$signset.cardinfo2}></textarea>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td colspan="4" align="center">
+
+                <button type="submit" name="button" class="btnGreen">保存</button>
+
+                <a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+
+			</td>
+
+          </tr>
+
+          </tbody>
+
+        </table>
+
+    </form>
+
+  </div>
+      <div class="pagelistbox"><{$page}></div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

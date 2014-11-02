@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微调研设定_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<div class="spliter"></div>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">微调研题库设置</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">微调研题库设置<a href="<{:U('Survey/index')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <div class="alert alert-info"> <br>
+        <p><span class="bold">说明：</span>微调研的目的是获得系统客观的收集信息研究数据，为决策做准备，选项不足10项的留空即可。</p>
+        <br>
+      </div>
+      <form class="form" name="form" method="post"   action=""  enctype="multipart/form-data" >
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="16%" class="table_txt_right">微调研描述：</td>
+              <td width="84%"><textarea name="question" id="question" style="width:400px;height:102px;" maxlength="100" class="input login_input_1" value=""  ><{$vo.question}></textarea>
+                <span class="maroon">*</span> <span class="help-inline">最多只能输入500个字。</span>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项1：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option1" value="<{$vo.option1}>" name="option1" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项2：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option2" value="<{$vo.option2}>" name="option2" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项3：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option3" value="<{$vo.option3}>" name="option3" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项4：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option4" value="<{$vo.option4}>" name="option4" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项5：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option5" value="<{$vo.option5}>" name="option5" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项6：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option6" value="<{$vo.option1}>" name="option6" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项7：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option7" value="<{$vo.option7}>" name="option7" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项8：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option8" value="<{$vo.option8}>" name="option8" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项9：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option9" value="<{$vo.option9}>" name="option9" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选项10：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="option10" value="<{$vo.option10}>" name="option10" style="width:400px" ></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">题型：</td>
+              <td width="84%"><input name="type" type="radio" value="1"<eq name="vo['type']" value="1"> checked=checked </eq>/>单选 <input name="type" type="radio" value="2"<eq name="vo['type']" value="2"> checked=checked </eq>/>多选 </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+              <input name="sid" type="hidden" value="<{$sid}>"  >
+              <button class="button_r_1" type="submit" style=" width:170px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:170px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+	function test(){
+		if(document.form.name.value.lenght>30)
+		{
+			alert("最多只能输入30个字符！");
+			document.from.name.focus();
+			return false;
+		}
+		return true;
+	}
+	
+	function onlyNum()
+	{
+	if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+	//考虑小键盘上的数字键
+	event.returnvalue=false;
+	}
+
+</script>
+</body>
+</html>

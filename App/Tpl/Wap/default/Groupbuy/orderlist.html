@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="MobileOptimized" content="240">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="Keywords" content="订单列表">
+<meta name="description" content="订单列表">
+<title>订单列表</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/Groupbuy/css/buying.css">
+<link href="__PUBLIC__/wap/guo/css/bootstrap.css" rel="stylesheet">
+<link href="__PUBLIC__/wap/guo/css/wsp.css" rel="stylesheet">
+<link href="__PUBLIC__/wap/guo/css/ddlb.css" rel="stylesheet">
+<link href="__PUBLIC__/wap/guo/css/css.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/wap/guo/css/huiyuanzhongxin.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/cookiefuc.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/wsp.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/jquery_002.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/js/custom.js"></script>
+<script src="__PUBLIC__/wap/guo/js/js/jquery_003.js" type="text/javascript"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/Groupbuy/css/js/yyucadapter.js"></script>
+<script src="__PUBLIC__/wap/Groupbuy/jquery-1.6.2.min.js" type="text/javascript"></script>
+<link href="__PUBLIC__/wap/guo/css/jquery.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+<body>
+<script type="text/javascript">
+if(typeof jQuery == 'undefined'){ 
+    document.write('<script type="text/javascript" src="template/default/vip/js/jquery.js"></'+'script>');
+}
+</script> 
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/wsp_002.js"></script> 
+<style type="text/css">
+body {
+    
+  	background-image: url("__PUBLIC__/wap/guo/images/wsp/bg_body.png");
+    background-repeat: repeat;
+}
+
+.filler{
+	height: 35px;
+    width: 100%;
+}
+
+
+.fl{
+	background:url("__PUBLIC__/wap/guo/images/wsp/bg_fl.png") center no-repeat;
+	background-size:19px 15px;
+	width: 19px;
+	height: 15px;
+}
+
+.fix_top{
+	position: fixed;    top: 0px;
+    z-index: 100;
+    width: 100%;
+}
+
+</style>
+<script type="text/javascript">
+cartCookieStr = "wsp_item_cart774";
+
+$(function(){
+
+    member_get_cart_count('update',774);
+	
+});
+
+
+function updateCartNum(){
+	$("#cartCount").html(getCartItemsCount(cartCookieStr));
+}
+
+function alertCloseWsp(){
+	jAlert("非常抱歉，本店休息中。我们的营业时间：8:00—18:00","非营业时间");
+}
+
+function alertItemAllSell(){
+	jAlert("该商品售卖火爆，已经售完了，下次记得早点过来哦~","商品已售完");
+}
+</script>
+<script type="text/javascript" src="__PUBLIC__/wap/Groupbuy/jquery.alerts.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/Groupbuy/css/jquery.alerts.css">
+
+
+<script type="text/javascript">
+function info(){
+	
+	if(!truename()){
+		return false;
+	}
+	if(!tel()){
+		return false;
+	}
+	if(!check_phone_number()){
+		return false;
+	}
+	if(!address()){
+		return false;
+	}
+	$.ajax({
+	   type: "POST",
+	   url: "<{:U('Groupbuy/userinfo',array('wecha_id'=>$wecha_id,'token'=>$token))}>",
+	   data: $("#form1").serialize(),
+	   dataType: "json",
+	   success: function(data){
+	      if(data.error==0){
+		  		jAlert(data.msg);
+		  }else{
+		  		jAlert(data.msg);
+		  }
+	   }
+	});
+}
+
+</script>
+
+
+<script>
+	function check_phone_number(){
+	var tel=$("#tel").val();
+    if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(tel))){ 
+        jAlert("手机号码格式不正确");
+        return false; 
+    }else{
+        return true;
+    }
+}
+function truename(){
+	if (document.form1.truename.value.length == 0) { 
+		jAlert('请填写真实姓名');
+		document.form1.truename.focus();
+		return false; 
+		} 
+		return true;
+}
+function tel(){
+	if (document.form1.tel.value.length == 0) { 
+		jAlert('请填写手机号');
+		return false; 
+	} 
+		return true;
+}
+function address(){
+	if (document.form1.address.value.length == 0) { 
+		jAlert('请添加写地址信息');
+		document.form1.address.focus(); 
+		return false; 
+		} 
+		return true;
+}
+</script>
+<{:R('Wap/Cent/header')}>
+<div class="filler"></div>
+<!-- Custom_center_header -->
+<link href="__PUBLIC__/wap/guo/css/ddxq.css" rel="stylesheet">
+<link href="__PUBLIC__/wap/guo/css/ddlb.css" rel="stylesheet">
+<style>
+.ddxq_header{
+	width:auto;
+	margin:10px;
+	height:auto;
+	padding-left:10px;
+}
+</style>
+<link href="__PUBLIC__/wap/guo/css/foods.css" rel="stylesheet" type="text/css">
+<form class="form" name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
+  <input name="wecha_id" value="<{$wecha_id}>" type="hidden">
+  <div class="contact-info" style=" margin-top:20px;">
+    <ul>
+      <li class="title">个人信息</li>
+      <li>
+        <table style="padding: 0; margin: 0; width: 100%;">
+          <tbody>
+            <tr>
+              <td width="80px"><label for="wechaname" class="ui-input-text">微信昵称：</label></td>
+              <td><div class="ui-input-text">
+                  <input  id="wechaname" name="wechaname" value="<{$userinfo['wechaname']}>" placeholder="如：亲亲小猪" class="ui-input-text" type="text">
+                </div></td>
+            </tr>
+            <tr>
+              <td width="80px"><label for="truename" class="ui-input-text">姓名：</label></td>
+              <td><div class="ui-input-text">
+                  <input  id="truename" name="truename" onclick="truename();" value="<{$userinfo['truename']}>" placeholder="如：张先生、王小姐" class="ui-input-text" type="text">
+                </div></td>
+            </tr>
+            <tr>
+              <td width="80px"><label for="tel"  class="ui-input-text">电话：</label></td>
+              <td><div class="ui-input-text">
+                  <input id="tel"  name="tel" onblur="check_phone_number(this);" value="<{$userinfo['tel']}>" placeholder="如：18200000000" class="ui-input-text" tag="input" maxlength="11" type="tel">
+                </div></td>
+            </tr>
+            <tr id="phoneinfo-layout" style="display: none;">
+              <td width="80px"></td>
+              <td colspan="2" id="phoneinfo" class="cart-editalertinfo"></td>
+            </tr>
+            <tr>
+              <td width="80px"><label for="address" class="ui-input-text">地址：</label></td>
+              <td><textarea id="address"  name="address" onblur="address(this);" placeholder="如：XX小区5号楼318" class="ui-input-text"><{$userinfo['address']}></textarea></td>
+            </tr>
+            <tr id="addressinfo-layout">
+              <td width="80px"></td>
+              <td colspan="2" id="addressinfo" class="cart-editalertinfo"></td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </div>
+  <div class="footReturn">
+  	<input value="<{$token}>" id="token" name="token" type="hidden">
+	<input type="hidden" value="<{$wecha_id}>" name="wecha_id" id="wecha_id" />
+    <input id="showcard" class="submit" value="保存" style="width:100%" type="button" onclick="info();">
+    <div class="window" id="windowcenter">
+      <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+      <div class="content">
+        <div id="txt"></div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="filler"></div>
+<!-- Custom_center_header -->
+<link href="__PUBLIC__/wap/guo/css/ddxq.css" rel="stylesheet">
+<link href="__PUBLIC__/wap/guo/css/ddlb.css" rel="stylesheet">
+<style>
+.ddxq_header{
+	width:auto;
+	margin:10px;
+	height:auto;
+	padding-left:10px;
+}
+</style>
+<link href="__PUBLIC__/wap/guo/css/foods.css" rel="stylesheet" type="text/css">
+<style>
+.huiyuanzhongxin_wrap h3{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+}
+.huiyuanzhongxin_wrap p{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 12px;
+    color: #808080;
+}
+.ddlb_wrap{
+	border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 3px #55544F;
+	margin:10px;
+}
+
+.ddlb_wrap h3{
+	border-radius: 5px 5px 0 0;
+}
+
+.ddlb_wrap ul li {
+    border-bottom: 1px dashed #CFCFCF;
+    float: left;
+    width: 100%;
+}
+.ddlb_img{
+    border: 1px solid #CFCFCF;
+    margin: 7px;
+    padding: 5px;
+	width:40px;
+	height:40px;
+	 float: left;
+}
+.ddlb_img .box{
+	width:40px;
+	height:40px;
+	overflow:hidden;
+}
+.ddlb_img .img_box{
+	display:table-cell; 
+	width:3000px;
+	 height:40px;
+	 text-align:center; 
+	 vertical-align:middle;
+}
+.ddlb_img .img_box img{
+	width:100%;
+	height:auto;
+}
+</style>
+	<div class="fix_top" id="header">
+  <div class="wrapper">
+    <dl id="navi_main">
+      <dd class="fl"> <a href=""> </a> </dd>
+      <dd><a href="<{:U('Groupbuy/index',array('token'=>$token,'wecha_id'=>$wecha_id))}>">团购首页</a> </dd>
+      <dd><a href="<{:U('Groupbuy/orderlist',array('token'=>$token,'wecha_id'=>$wecha_id))}>">会员中心</a> </dd>
+    </dl>
+  </div>
+</div>
+
+<volist name="data" id="data" key="cart_data_key">
+  <div class="ddlb_wrap">
+    <if condition="$cart_data_key eq 1">
+      <h3 >订单列表</h3>
+    </if>
+    <ul>
+      <li> 
+        <span style="margin-left:13px;margin-top:5px;color:gray;font-size:12px;display:block;">下单日期：<{$data.ctime|date='Y-m-d H:i:s',###}></span> </li>
+      <a href="<{:U('Groupbuy/indent',array('gid'=>$data['gid'],'token'=>$token,'wecha_id'=>$wecha_id))}>"> <!-- 订单详情地址  -->
+        <li>
+          <div class="ddlb_img">
+            <div class="box">
+              <div class="img_box"> <img src="<{$data['thumb']}>" /> </div>
+            </div>
+          </div>
+          <!-- 每个物品的图片 -->
+          <span class="ddlb_h4h5">
+          <h4 style="margin-bottom:0px;height:32px;"><{$data['name']}></h4>
+          <span class="ddlb_extra"></span> </span> <span class="ddlb_h6h7">
+          <h6> ￥<{$data['jg']|sprintf="%01.2f", ###}></h6>
+          <!-- 物品单价,宽度撑到小数点后2位 -->
+          <h7>x <{$data['tgnum']}></h7>
+          <!-- 物品数量 --> 
+          </span> </li>
+        <div class="clfl"></div>
+     
+      </a>
+    </ul>
+    <div class="ddlb_hjsl">
+      <p>合计：</p>
+      <p>数量：</p>
+    </div>
+    <div  class="ddlb_number" style="margin-left:0;width:50%;">
+    	<p>￥<{$data['jg']*$data['tgnum']|sprintf="%01.2f", ###}></p>
+      	<!-- 该笔订单总价格 -->
+      	<p><{$data['tgnum']}></p>
+      	<!-- 该笔订单总货物数 --> 
+    </div>
+    <div class="ddlb_button"> <a style="color: #FFFFFF; font-family: Microsoft YaHei; font-size: 16px;"
+		<if condition="$data['fustatus'] eq 0 AND $data['pay'] eq 0 "> href="<{:U('Cft/pay',array('token'=>$token,'wecha_id'=>$wecha_id,'sn'=>$data['sn']))}>";     
+        <else />
+        href="javascript:void(0);"; </if>>
+      <button class="ddlb_buttom_zf" type="button"style="background: #cb1c41;">
+      <if condition="$data['fustatus'] eq 1 "> 已付款
+      <else />
+      <if condition="$data['pay'] eq 0 "> 支付 
+      <else />
+          到付</if>
+      </if>
+      </button>
+      </a> </div>
+    <div class="clfl"></div>
+  </div>
+  <div class="ddlb_footer" style="height:20px; background-image:url(__PUBLIC__/wap/guo/css/images/jv_bg.png); background-size:300px; margin:10px; background-position:-0px 20px; position:relative; top:-9px; "> </div>
+
+</volist>
+<!--<footer>
+	<div class="Fh_btn2 dlt_btn">
+		<i></i>
+		
+			<a class="fhbtn F_bB1" id="tuanBtn" href="javascript:history.go(-1);" style="font-size: small;">返回</a>
+			<i class="iright"></i>
+	</div>
+</footer>-->
+<div style="height:30px;margin: 0; padding: 7px; text-align: center;"> <a target="_blank" href="" style="font-size: 11px; color: #ccc;text-decoration:none;"></a> </div>
+<script>
+$(function(){
+    $('#logout').on('click',function(){
+        //清空cookie
+        deleteCookie('c_m_login');
+        $.cookie('c_m_login', '',{expires:-2, path:'/'});
+        deleteCookie('c_m_referer');
+        $.cookie('c_m_login', '',{expires:-2, path:'/'});
+        deleteCookie('c_m_total');
+        $.cookie('c_m_login', '',{expires:-2, path:'/'});
+        localStorage.removeItem("c_m_login");
+        //重定向
+        location.reload(true);
+    });
+});
+document.addEventListener('touchend', function() {}, false); 
+
+function onBridgeReady(){
+     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady()     
+{  WeixinJSBridge.call('hideToolbar');
+ });
+}
+
+if (typeof WeixinJSBridge == "undefined"){
+    if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+}else{
+    onBridgeReady();
+}
+   
+</script>
+</body>
+</html>

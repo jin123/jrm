@@ -1,0 +1,249 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telephone=no">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title><{$list1['name']}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/edu/css/vweisiteV01.css"/>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/edu/css/font-awesome.css"/>
+<link href="__PUBLIC__/wap/edu/css/index9.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/wap/edu/js/vweisiteV01.js" type="text/javascript"></script>
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="id/QyJUzfqGRiDlw78GYyz2s1vmfl29RQ+N3397p9vw=" name="csrf-token" />
+</head>
+<body>
+<div class="html">
+  <div class="stage" id="stage">
+    <section id="sec-index">
+      <div class="body">
+        <div class="mod-slider slider-ver" id="index">
+          <ul class="slider-list">
+            <li> <img alt="Big_3aece7ba5a5afffa8900a8ffa245c036" src="<{$list[0]['pic1']}>" /> </li>
+            <li> <img alt="Big_3aece7ba5a5afffa8900a8ffa245c036" src="<{$list[0]['pic2']}>" /> </li>
+            <li> <img alt="Big_3aece7ba5a5afffa8900a8ffa245c036" src="<{$list[0]['pic3']}>" /> </li>
+            <li> <img alt="Big_3aece7ba5a5afffa8900a8ffa245c036" src="<{$list[0]['pic4']}>" /> </li>
+            <li> <img alt="Big_3aece7ba5a5afffa8900a8ffa245c036" src="<{$list[0]['pic5']}>" /> </li>
+          </ul>
+        </div>
+        <div class="index" id="indexList">
+          <ul>
+            <li>
+             <a href="<{:U('/Wap/Education/info',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="box mod-index"> <i><img alt="Thumb_02c55957ee3ccd9865aa66788a10f1c8" src="http://m.vcooline.com/uploads/website_menu/pic/thumb_02c55957ee3ccd9865aa66788a10f1c8.png" /></i> <small>教育简介</small> </a> 
+             <a href="<{:U('/Wap/Education/huxing/',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="box mod-index"> <i><img alt="Thumb_50358751d671048447419bf4d0fd4dc4" src="http://m.vcooline.com/uploads/website_menu/pic/thumb_50358751d671048447419bf4d0fd4dc4.png" /></i> <small>课程设置</small> </a>
+             <a href="<{:U('/Wap/Education/photo/',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="box mod-index"> <i><img alt="Thumb_58ca1be1d18f3bbdd2712ffd445e08a3" src="http://m.vcooline.com/uploads/website_menu/pic/thumb_58ca1be1d18f3bbdd2712ffd445e08a3.png" /></i> <small>学员相册</small> </a>
+             <a href="<{:U('/Wap/Education/jiangshi',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="box mod-index"> <i><img alt="Thumb_5aa5662c59e4c202a85a53e67e337d7b" src="http://m.vcooline.com/uploads/website_menu/pic/thumb_5aa5662c59e4c202a85a53e67e337d7b.png" /></i> <small>讲师风采</small> </a>
+             <a href="<{:U('/Wap/Education/addreview',array('id'=>$list1['id'],'token'=>$list1['token']))}>" class="box mod-index"> <i><img alt="Thumb_1a41ec87f7836cd474fbb0eacbc9bb94" src="http://m.vcooline.com/uploads/website_menu/pic/thumb_1a41ec87f7836cd474fbb0eacbc9bb94.png" /></i> <small>学员点评</small> </a> 
+             <a href="http://m.vcooline.com/tzyishutuan/channel/19795#mp.weixin.qq.com" class="box mod-index"> <i><img alt="Thumb_d808ac8b1564423a24b6d2af0576a180" src="http://m.vcooline.com/uploads/website_menu/pic/thumb_d808ac8b1564423a24b6d2af0576a180.png" /></i> <small>找我玩游戏</small> </a> 
+             <a href="tel:0576-88869975" class="box mod-index"> <i><img alt="Thumb_9f8054d6a13faffce5d787f689c0bf31" src="http://m.vcooline.com/uploads/website_menu/pic/thumb_9f8054d6a13faffce5d787f689c0bf31.png" /></i> <small>联系我们</small> </a> 
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!--.stage end--> 
+</div>
+<!--.html end-->
+
+<footer>
+  <if condition="$homeInfo.copyright neq ''">版权所有 &copy <{$homeInfo.copyright}>&nbsp;</if>
+  <if condition="$daili neq ''">技术支持：<{$daili}>
+    <else/>
+    技术支持：阿里微微</if>
+</footer>
+
+<!-- tongji code --> 
+<script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u=(("https:" == document.location.protocol) ? "https" : "http") + "://tongji.weiligongshe.com/";
+          _paq.push(['setTrackerUrl', u+'piwik.php']);
+          _paq.push(['setSiteId', 764]);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+          g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
+
+      </script> 
+<!-- end tongji code --> 
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      var reg = /^(http|https):\/\/[a-zA-Z0-9].+$/;
+      var image_url = 'http://m.vcooline.com/assets/logo_vcoolline.jpg';
+      if(!reg.test(image_url)){
+          image_url = 'http://m.vcooline.comhttp://m.vcooline.com/assets/logo_vcoolline.jpg';
+      }
+      var config = {
+        link: location.href.replace("wxuid=", "origin_wxuid=").replace("openid=", "origin_openid="),
+        img_url: image_url,
+        // img_width: '200',
+        // img_height: '200',
+        title: document.title,
+		desc: '' ? '' : document.title
+      };
+
+      // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+      document.addEventListener('WeixinJSBridgeReady', function() {
+        var WJ = WeixinJSBridge;
+        // 发送给好友
+        WJ.on('menu:share:appmessage', function() {
+          WJ.invoke('sendAppMessage', config, function(res) {
+            // _report('sendAppMessage', res.err_msg);
+          });
+        });
+        // 发送到朋友圈
+        WJ.on('menu:share:timeline', function() {
+          WJ.invoke('shareTimeline', config, function(res) {
+            // _report('shareTimeline', res.err_msg);
+          });
+        });
+
+        // 发送到微博
+        WJ.on('menu:share:weibo', function() {
+          WJ.invoke('shareWeibo', config, function(res) {
+            // _report('shareWeibo', res.err_msg);
+          });
+        });
+      });
+
+    });
+  </script>
+<style type="text/css">
+        /*pop*/
+    .pop-zoom{display:none;width:100%;height:100%;color:#fff;position:fixed;left:0;top:0;background:rgba(0,0,0,0.5);z-index:10000;}
+    .pop-zoom-img{background:#000;text-align:center;overflow:hidden;}
+    .show-img{width:100%;height:100%;overflow:hidden;position:relative;}
+    .show-img img{max-width:100%;}
+    .zoom-close{position:fixed;right:5px;top:5px;display:block;z-index:99999;}
+    .zoom-close .fa{width:30px;height:30px;font-size:25px;line-height:30px;border-radius:50%;color:#fff;background:#999;}
+</style>
+<script src="http://m.vcooline.com/assets/mobile/lib/iScroll-4.2.5.js"></script> 
+<script type="text/javascript">
+    var flag = true; css_reg = /^[\w]*font-awesome\.min[\w]*/;
+    $.each($('link[type="text/css"]'), function(){
+        var arr = $(this).attr('href').split('/');
+        if(arr.length == 0){
+            return true;
+        }
+        if(css_reg.test(arr[arr.length - 1])){
+            flag = false;
+            return flag;
+        }
+    });
+    if(flag){
+        document.write('<link rel="stylesheet" href="http://m.vcooline.com/assets/font/font-awesome.min.css">')
+    }
+    var img_zoom_myscroll, img_zoom_scrollTop;
+
+    function loaded(){
+        img_zoom_myscroll = new iScroll("imgScroll",{
+            hScroll: true,
+            useTransition: true,
+            hScrollbar: false,
+            vScrollbar: false,
+            zoom: true
+        });
+        document.addEventListener("DOMContentLoaded",loaded,false);
+    }
+
+    $(function(){
+        $('body').append('<div class="pop-zoom pop-zoom-img"><div class="show-img" id="imgScroll"><div><img src=""></div></div><a href="javascript:;" class="zoom-close"><i class="fa fa-times"></i></a>')
+        $('img').click(function(){
+            if($(this).closest('a').length > 0 || $(this).closest('.mod-navLine').length > 0){
+
+            }else{
+                var $this = $(this),
+                        $src = $this.attr("src"),
+                        $img = $(".show-img img"),
+                        $pop = $(".pop-zoom-img");
+                img_zoom_scrollTop = $(document).scrollTop();
+                $(document).scrollTop(0);
+                $img.attr("src",$src);
+                $pop.show();
+                setTimeout(function(){
+                    loaded();
+                },300);
+                //console.log(scrollTop);
+            }
+        });
+        $(document).on("click",".zoom-close",function(){
+            $(document).scrollTop(img_zoom_scrollTop);
+            $(this).parents(".pop-zoom").hide();
+            img_zoom_myscroll.destroy();
+        })
+        var initTop = 0,
+                isScroll = true;
+        function fnAnimate(thisTop){
+            $("header").animate({top:thisTop},"500",function(){isScroll=true});
+        }
+        $(window).on("scroll",function(){
+            var scrollTop = $(document).scrollTop();
+            if(isScroll){
+                if(scrollTop > initTop){
+                    fnAnimate("-44px");
+                }else{
+                    fnAnimate("0");
+                }
+            }
+            initTop = scrollTop;
+            isScroll = false;
+        });
+    });
+</script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/edu/css/snower1.css"/>
+<div class="mod-snower snower1" id="snower1"> 
+  <script type="text/javascript">var urls = ["__PUBLIC__/wap/edu/css/snower2.png"]</script> 
+  <script type="text/javascript" src="__PUBLIC__/wap/edu/js/snower1.js"></script> 
+  <script>
+	$(function(){
+             snowsFn(30);
+    });
+</script> 
+</div>
+<a href="javascript:scroll(0,0)" class="btn-up btn-up-1"><i class="fa fa-arrow-up"></i></a>
+<div class="loading fixed-top"></div>
+<div class="mod-pop" id="pop-share" onclick="hidePop('#pop-share')"><span class="text-share"></span></div>
+<script type="text/javascript">
+      $(document).ready(function(){
+		indexSwipe("index", ["学员风采", "", "", "", ""]);      
+   		 divSwipe("indexList");
+
+        showBtnUp(100);
+
+        $("a.dev-prev").click(function(){
+            history.back();
+        });
+
+        $("a.dev-next").click(function(){
+          history.go(1);
+        });
+
+        $("a.dev-index").click(function(){
+          //window.open("http://m.vcooline.com/10768?id=961&amp;wxmuid=10731#mp.weixin.qq.com");
+          location.href = "http://m.vcooline.com/10768?id=961&amp;wxmuid=10731#mp.weixin.qq.com";
+        });
+
+        $("a.dev-refresh").click(function(){
+          location.reload();
+        });
+
+        $("a.dev-tel").attr("href", "tel:电话号码未设置");
+
+        $("a.dev-member").click(function(){
+          $(this).attr("href", "http://m.vcooline.com/app/vips?wxmuid=10731#mp.weixin.qq.com")
+        });
+
+        $("a.dev-location").click(function(){
+          $(this).attr("href", "http://m.vcooline.com/10768/map?id=961")
+        });
+      });
+    </script>
+</body>
+</html>

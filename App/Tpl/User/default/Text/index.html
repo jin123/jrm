@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>文本回复_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">文本自定义回复</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">文本关键词回复 <a href="<{:U('Text/add')}>"><span class="button_r_1 fabu">新增</span></a></div>
+
+    <div class="tab">
+    <ul>
+      <li class="tabli" id="tab2"><a href="<{:U('Home/set')}>">首页回复</a></li>
+      <li class="tabli" id="tab0"><a href="<{:U('Areply/index')}>">关注回复</a></li>
+      <li class="current tabli" id="tab1"><a href="<{:U('Text/index')}>">关键词回复</a></li>
+      <li class="tabli" id="tab2"><a href="<{:U('Img/index')}>">图文回复</a></li>
+    </ul>
+  </div>
+
+    <table width="100%" class="new_main_liebiao">
+      <tbody>
+        <tr>
+          <th width="8%">编号</th>
+          <th width="21%">关键词</th>
+          <th width="39%">回答</th>
+          <th width="18%">时间</th>
+          <th width="14%">操作</th>
+        </tr>
+        <volist name="info" id="vo">
+          <tr>
+            <td><{$i}></td>
+            <td><{$vo.keyword}></td>
+            <td><div class="answer_text"><{$vo.text}></div></td>
+            <td><php>echo date('Y-m-d',$vo['createtime']);</php></td>
+            <td><div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                <h3 class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                <div class="h3_cat">
+                  <div class="h3_cat_list">
+                    <ul>
+                      <a href="<{:U('Text/edit',array('id'=>$vo['id']))}>">
+                      <li>编 辑</li>
+                      </a> <a onclick="if(window.confirm('你确定要删除这篇文档吗'));" href="<{:U('Text/del',array('id'=>$vo['id']))}>">
+                      <li>删 除</li>
+                      </a>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="clear"></div></td>
+          </tr>
+        </volist>
+      </tbody>
+    </table>
+    <div class="pagelistbox">
+        <{$page}>
+    </div>
+  </div>
+</div>
+</body>
+</html>

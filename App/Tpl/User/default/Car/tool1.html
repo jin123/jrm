@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>实用工具_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wm/bootstrap_switch.css" media="all" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.switch').each(function(){
+		if($(this).attr('val')=='1'){
+			$(this).children('div').removeClass('switch-off').addClass('switch-on');
+		}else{
+			$(this).children('div').removeClass('switch-on').addClass('switch-off');
+		}
+	});
+	
+	$('.switch').click(function(){
+		var state = $(this).attr('val');
+		if($(this).find('.switch-off').size()>0){
+			$(this).find('.switch-off').removeClass('switch-off').addClass('switch-on');
+			state = '1';
+		}else if($(this).find('.switch-on').size()>0){
+			$(this).find('.switch-on').removeClass('switch-on').addClass('switch-off');
+			state = '0';
+		}
+		
+		ajax('tool.html',{ rel:$(this).attr('rel'),val:state},function(m){
+			
+		});
+	});
+});
+</script>
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun">
+   <include file="./App/Tpl/User/default/Car/menu.html"/>
+  
+  
+  </div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/welcome')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('/Index/baseinfo')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('/Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">实用工具</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">实用工具<a href="<{:U('Car/tool')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form" method="post"   action="" enctype="multipart/form-data" >
+        <table class="new_main_zhuce">
+          <tbody>
+           
+			
+          
+			 <tr>
+              <td width="16%" class="table_txt_right">保险计算：</td>
+              <td width="84%"><div class="switch switch-small has-switch" rel="baoxian" val="<{$vo.baoxian}>">
+                                                        <div class="switch-animate switch-off"><input type="hidden" name="id" value="<{$vo.id}>"><input type="checkbox" name="checkapp1" value="0" <if condition="$vo['checkapp1'] eq 1 ">checked="checked"</if>><span class="switch-left switch-small">开</span><label class="switch-small">&nbsp;</label><span class="switch-right switch-small">关</span></div>
+                                                    </div>
+              </td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right">车贷计算：</td>
+              <td width="84%">
+			<div class="switch switch-small has-switch" rel="chedai" val="{$zt->chedai}">
+                                                        <div class="switch-animate switch-off"><input type="checkbox" name="checkapp1" value="2" <if condition="$vo['checkapp1'] eq 2 ">checked="checked"</if>><span class="switch-left switch-small">开</span><label class="switch-small">&nbsp;</label><span class="switch-right switch-small">关</span></div>
+                                                    </div>
+              </td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right">全款计算：</td>
+              <td width="84%"><div class="switch switch-small has-switch" rel="quankuan" val="{$zt->quankuan}">
+                                                        <div class="switch-animate switch-off"><input type="checkbox" name="checkapp1" value="3" <if condition="$vo['checkapp1'] eq 3 ">checked="checked"</if>><span class="switch-left switch-small">开</span><label class="switch-small">&nbsp;</label><span class="switch-right switch-small">关</span></div>
+                                                    </div>
+              </td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right">车型比较：</td>
+              <td width="84%"><div class="switch switch-small has-switch" rel="chexing" val="{$zt->chexing}">
+                                                        <div class="switch-animate switch-off"><input type="checkbox" name="checkapp1" value="4" <if condition="$vo['checkapp1'] eq 4 ">checked="checked"</if>><span class="switch-left switch-small">开</span><label class="switch-small">&nbsp;</label><span class="switch-right switch-small">关</span></div>
+                                                    </div>
+              </td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right">违章查询：</td>
+              <td width="84%"> <div class="switch switch-small has-switch" rel="weizhang" val="{$zt->weizhang}">
+                                                        <div class="switch-animate switch-off"><input type="checkbox"  name="checkapp1" value="5" <if condition="$vo['checkapp1'] eq 5 ">checked="checked"</if>><span class="switch-left switch-small">开</span><label class="switch-small">&nbsp;</label><span class="switch-right switch-small">关</span></div>
+                                                    </div>
+              </td>
+            </tr>
+			
+           
+            
+			
+         
+           <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+                </td>
+            </tr>
+           
+          </tbody>
+        </table>
+      
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

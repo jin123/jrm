@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><{$tpl['wxname']}></title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta charset="utf-8">
+<link href="__PUBLIC__/wap/css/ktv/style.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/css/ktv/style01.css">
+<link rel="stylesheet" href="__PUBLIC__/wap/css/flash/css/plugmenu.css">
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/wap/js/ktv/page_context.js"></script>
+
+</head>
+<body screen_capture_injected="true">
+<div class="Cademic">
+  <div class="Cademic_bj">
+      <div class="Cademic_list">
+<foreach name="res" item="r" key="n">
+<if condition="n eq 0">
+        <div class="Cademic_list_top">
+          <h4>
+                  <img src="images/qq.png">
+                </h4>
+            <ul>
+                <h3><if condition="$r['url']">
+          <a href="<{$r.url}>">
+          <else />
+          <a href="<{:U('Index/content',array('id'=>$r['id'],'token'=>$r['token']))}>">
+          </if></h3>
+                <span><{$r.createtime|date="Y-m-d H:i:s",###}></span>
+        <p><{$r.text}></p>
+            </ul>
+          </div>
+<else/>
+<div class="Cademic_img">
+              <img src="images/xt.png" width="100%">
+            </div>
+            <div class="Cademic_list_ce">
+            <ul>
+                  <h3>货币政策与金融稳定研究中心</h3>
+                    <span>2014-04-15  14:20:15</span>
+          <p>清华大学五道口金融学院货币政策与金融稳定研究中心是从事宏观
+  政策研究的机构，为政府决策部门提供金融稳定与宏观政策方面的建议，
+  承担政府部门、监管机构委托的相关课题。中心面向海内外聘请优秀的
+  全职和兼职研究人员进行宏观金融政策等方面的研究，为金融稳定的分
+  析、预测和操作运行提供政策建议。</p>
+                </ul>
+          </div>
+</if>
+</foreach>
+        </div>
+    </div>
+     <div style="clear:both"></div>
+    <div style=" height:60px; margin-bottom:10px; background:#636466;"></div>
+    <div class="footer">
+      <ul>
+          <li><img src="__PUBLIC__/wap/css/141/s.png" width="34"></li>
+            <p><img src="__PUBLIC__/wap/css/141/f.png" width="34"></p>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

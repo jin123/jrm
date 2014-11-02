@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>充值记录</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js" type="text/jscript"></script>
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun">
+  <a href="<{:U('Index/index')}>">首页</a>
+  <a href="<{:U('Kehu/index')}>">用户管理</a>
+  <a href="<{:U('Account/index')}>">扣除记录</a>
+  <a href="<{:U('Payrecord/index')}>" class="b">充值记录</a>
+  <a href="<{:U('Pay/index')}>">账户充值</a>
+  
+  </div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div class="content1">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/index')}>">首页</a><span class="wap_span_2">充值记录</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.logindailiName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10"><{$dluser.dluser}>充值记录(<{$wxcount}>) </div>
+      <div class="new_main_tit">
+        <form method="post" action="">
+          <input size="80" value="" name="searchkey" class="px">
+          <button type="submit" name="appidsubmit" value="true" class="btnGreen vm" ><strong>查询记录</strong></button>
+        </form>
+      </div>
+    <table width="100%" class="new_main_liebiao">
+      <tr>
+        <th>充值记录号</th>
+        <th>充值记录名</th>
+		    <th>充值用户</th>
+        <th>金额</th>
+        <th>时间</th>
+        <th>状态</th>
+        <!--<th>操作</th>-->
+      </tr>
+      <volist name="wxlist" id="vo">
+        <tr>
+          <td><{$vo.indent_id}></td>
+          <td><{$vo.title}></td>
+		  <td><{$vo.agentname}></td>
+		  <td><{$vo.price}></td>
+          <td><{$vo.create_time|date='Y-m-d H:m:s',###}></td>
+          <td><if condition="$vo['status'] eq 1">未充值(未确认)<elseif condition="$vo['status'] eq 2"/>完成<else/>已充值</if></td></td>
+          <td class="norightborder">
+          <!--<a href="<{:U('Kehu/addset',array('id'=>$vo['id']))}>">编辑</a>
+          <a href="javascript:drop_confirm('您确定要删除吗?', \'<{:U('Payrecord/del',array('id'=>$vo['id']))}\>');">删除</a>--> </td>
+        </tr>
+      </volist>
+    </table>
+    <div class="page">
+      <ul>
+        <div class="pagelistbox"><{$page}></div>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

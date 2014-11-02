@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>实用工具_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/My97DatePicker/WdatePicker.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="editor_id"]');
+});					
+</script>
+<style>
+	#ex{
+		width:500px;
+		margin:0 auto;
+	}
+</style>
+</head>
+<body>
+
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">实用工具</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">实用工具 <a href="<{:U('Car/car')}>"><span class="button_r_1 fabu">返回</span></a></div>
+	  <div id="ex">
+      <form name="addcontent" id="addcontent" action="<{:U('Car/tooled')}>" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="<{$vo['id']}>"/>
+		<input type="hidden" name="uid" value="<{$uid}>"/>
+		<input type="hidden" name="token" value="<{$Think.session.token}>"/>
+	   <table class="new_main_zhuce">
+          <tbody>
+			<tr>
+            <td width="16%" class="table_txt_right">保险计算：</td>
+			<td width="14%">&nbsp;</td>
+            <td width="80%">
+				<input type="radio" class="baoxian" id="baoxian" value="1" name="baoxian" <if condition="$vo.baoxian eq 1"> checked</if>/>&nbsp; &nbsp;关闭 &nbsp; &nbsp; &nbsp;
+                <input type="radio" class="baoxian" id="baoxian" value="2" name="baoxian" <if condition="$vo.baoxian eq 2"> checked</if>/>&nbsp; &nbsp;开启&nbsp; &nbsp; &nbsp;
+			</td>
+          </tr>
+		  <tr>
+            <td width="16%" class="table_txt_right">车贷计算：</td>
+			<td width="14%">&nbsp;</td>
+            <td width="80%">
+				<input type="radio" class="chedai" id="chedai" value="1" name="chedai" <if condition="$vo.chedai eq 1"> checked</if>/>&nbsp; &nbsp;关闭 &nbsp; &nbsp; &nbsp;
+                <input type="radio" class="chedai" id="chedai" value="2" name="chedai" <if condition="$vo.chedai eq 2"> checked</if>/>&nbsp; &nbsp;开启&nbsp; &nbsp; &nbsp;
+			</td>
+          </tr>
+		   <tr>
+            <td width="16%" class="table_txt_right">全款计算：</td>
+			<td width="14%">&nbsp;</td>
+            <td width="80%">
+				<input type="radio" class="quankuan" id="quankuan" value="1" name="quankuan" <if condition="$vo.quankuan eq 1"> checked</if>/>&nbsp; &nbsp;关闭 &nbsp; &nbsp; &nbsp;
+                <input type="radio" class="quankuan" id="quankuan" value="2" name="quankuan" <if condition="$vo.quankuan eq 2"> checked</if>/>&nbsp; &nbsp;开启&nbsp; &nbsp; &nbsp;
+			</td>
+          </tr>
+		   <tr>
+            <td width="16%" class="table_txt_right">车型比较：</td>
+			<td width="14%">&nbsp;</td>
+            <td width="80%">
+				<input type="radio" class="chexing" id="chexing" value="1" name="chexing" <if condition="$vo.chexing eq 1"> checked</if>/>&nbsp; &nbsp;关闭 &nbsp; &nbsp; &nbsp;
+                <input type="radio" class="chexing" id="chexing" value="2" name="chexing" <if condition="$vo.chexing eq 2"> checked</if>/>&nbsp; &nbsp;开启&nbsp; &nbsp; &nbsp;
+			</td>
+          </tr>
+		   <tr>
+            <td width="16%" class="table_txt_right">违章查询：</td>
+			<td width="14%">&nbsp;</td>
+            <td width="80%">
+				<input type="radio" class="weizhang" id="weizhang" value="1" name="weizhang" <if condition="$vo.weizhang eq 1"> checked</if>/>&nbsp; &nbsp;关闭 &nbsp; &nbsp; &nbsp;
+                <input type="radio" class="weizhang" id="weizhang" value="2" name="weizhang" <if condition="$vo.weizhang eq 2"> checked</if>/>&nbsp; &nbsp;开启&nbsp; &nbsp; &nbsp;
+			</td>
+          </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:25px;margin-left:-40px;">修改</button></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+	  </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

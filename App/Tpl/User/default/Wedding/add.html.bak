@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>喜帖管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+<script charset="utf-8" src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">喜帖管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">新建微喜帖<a href="<{:U('Wedding/index')}>"><span class="button_r_1 fabu">返回</span></a></div>
+ 		 <form action="" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+          <table class="new_main_zhuce">
+            <tbody>
+              <tr>
+                <td width="118">喜帖标题：</td>
+                <td width="828"><input type="text" name="title" id="title" maxlength="10" class="input login_input_1" style="width:400px;" value="<{$wedding.title}>" />
+                  <strong class="input_ts_y">*喜帖标题限制在十个字以内</strong></td>
+              </tr>
+              <tr>
+                <td>触发关键词：</td>
+                <td><input type="text" name="keyword" value="<{$wedding.keyword}>" class="input login_input_1" style="width:400px;"></td>
+              </tr>
+              <tr>
+                <td>喜帖封面：</td>
+                <td><img class="thumb_img" id="suicai1_src" src="<if condition="$wedding['coverurl'] neq false"><{$wedding.coverurl}><else />__PUBLIC__/images/wedding/Tnh1ROgm93.png</if>" style="max-height: 100px;">
+                  <input id="suicai1" type="text" name="coverurl" class="px hide" onchange="changpic(this,1)" value="<if condition="$wedding['coverurl'] neq false"><{$wedding.coverurl}><else />__PUBLIC__/images/wedding/Tnh1ROgm93.png</if>" style="width:240px;"> <span class="help-inline"> <a href="javascript:void(0)" onclick="upyunPicUpload('suicai1',700,420)" class="btnGrayS vm">上传</a> <a href="###" onclick="viewImg('suicai1')" class="btnGrayS vm">预览</a> </span> <strong class="input_ts_y">*封面默认大小720*400</strong></td>
+              </tr>
+              <tr>
+                <td>开场动画：</td>
+                <td><img class="thumb_img" id="suicaipic2_src" src="<if condition="$wedding['openpic'] neq false"><{$wedding.openpic}><else />__PUBLIC__/images/wedding/jNuxaj1cAj.jpg</if>" style="width: 180px; height: 180px;">
+			<input id="suicaipic2" type="text" name="openpic" class="px hide" onchange="changpic(this,2)"  style="width:240px;" value="<if condition="$wedding['openpic'] neq false"><{$wedding.openpic}><else />__PUBLIC__/images/wedding/jNuxaj1cAj.jpg</if>">
+			<a href="javascript:void(0)" onclick="upyunPicUpload('suicaipic2',700,420)" class="btnGrayS vm">上传</a><a href="###" onclick="viewImg('suicaipic2')" class="btnGrayS vm">预览</a>
+			<br /><strong class="input_ts_y">上传400*400左右的新郎新娘合影图,用于喜帖打开时的动画中,图片大小不超过300K 
+			不想要开场动画图片地址留空即可!</strong></td>
+              </tr>
+              <tr>
+                <td>缩略图：</td>
+                <td><img class="thumb_img" id="suicai3_src" src="<if condition="$wedding['openpic'] neq false"><{$wedding.openpic}><else />__PUBLIC__/images/wedding/2cDQtFbl75.jpg</if>" style="width: 40px; height: 40px;">
+                  <input id="suicai3" type="text" name="picurl" class="px hide" onchange="changpic(this,3)" style="width:240px;" value="<if condition="$wedding['openpic'] neq false"><{$wedding.openpic}><else />__PUBLIC__/images/wedding/2cDQtFbl75.jpg</if>"> <span class="help-inline"> <a href="javascript:void(0)" onclick="upyunPicUpload('suicai3',700,420,'<{$token}>')" class="btnGrayS vm">上传</a> <a href="###" onclick="viewImg('suicai3')" class="btnGrayS vm">预览</a> </span><strong class="input_ts_y">*默认40x40,显示在喜帖主页</strong></td>
+              </tr>
+              <tr>
+                <td>相册选择：</td>
+                <td><select name="pid" class="selectoption">
+                      <option value="">请选择相册名称</option>
+                      <volist id="photo" name="photo"> <option value="<{$photo.id}>" 
+                        <if condition="$photo['id'] eq $wedding['pid']" >selected="selected"</if>><{$photo.title}>
+                        </option>
+                      </volist>
+                    </select>
+                    <span class="help-inline"> </span> <span class="help-inline"> <span class="maroon">*</span> <a target="ddd" class="btnGrayS vm" href="<{:U('Photo/add')}>">创建相册</a> 如果没有请创建 </span></td>
+              </tr>
+              <tr>
+                <td>新郎名字：</td>
+                <td><input type="text" name="man" id="man" class="input login_input_1" value="<{$wedding.man}>"/>
+                  <strong class="input_ts_y">*</strong></td>
+              </tr>
+              <tr>
+                <td>新娘名字：</td>
+                <td><input type="text" name="woman" id="woman" class="input login_input_1" value="<{$wedding.woman}>"/>
+                  <strong class="input_ts_y">*</strong></td>
+              </tr>
+              <tr>
+                <td>联系电话：</td>
+                <td><input type="text" name="phone" id="phone" class="input login_input_1" value="<{$wedding.phone}>">
+                 <strong class="input_ts_y">*如010-66664223</strong></td>
+              </tr>
+              <tr>
+                <td>婚宴日期：</td>
+                <td><input type="input" class="input login_input_1" onClick="WdatePicker()" value="<if condition="$wedding['time'] neq false"><{$wedding.time|date='Y-m-d',###}></if>" name="time"> <strong class="input_ts_y">*</strong></td>
+              </tr>
+              <tr>
+                <td>宴席地址：</td>
+                <td><input type="text" name="place" class="input login_input_1" value="<{$wedding.place}>" onchange="loadmap()" id="suggestId" /><strong class="input_ts_y">*</strong></td>
+              </tr>
+              <tr>
+                <td>经纬地址：</td>
+                <td><input type="input" class="input login_input_1" id="longitude" value="<{$wedding.lng}>"  name="lng" style="width:180px;" readonly="readonly">
+                  <input type="input" class="input login_input_1" id="latitude" value="<{$wedding.lat}>"  name="lat" style="width:180px;" readonly="readonly">
+                  <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a>
+                  <input  type="hidden"  name="city" class="input login_input_1" id="city" size="20" value="" /></td>
+              </tr>
+              <tr>
+                <td>喜帖视频：</td>
+                <td><input type="text" name="video" id="video" class="input login_input_1" style="width:480px" value="<{$wedding.video}>">
+                  <strong class="input_ts_y">支持优酷视频地址如;http://v.youku.com/v_show/id_XNjI4ODk5NDQ4.html <br>
+                    腾讯fash视频地址：如http://static.video.qq.com/TPout.swf?vid=v0119s27wd5&amp;auto=0 <br>
+                    也支持mp4和ogg 格式地址 http://www.w3school.com.cn/example/html5/mov_bbb.mp4 </strong></td>
+              </tr>
+              <tr>
+                <td>背景音乐：</td>
+                <td><input class="input login_input_1" name="mp3url" value="<{$wedding.mp3url}>" id="suicai4" style="width:470px" ><strong class="input_ts_y">支持mp3链接：http://sk.36dj.com/up/mp3/9331E67F2CAEF4A987CB5DE5EE71F73B.mp3</strong></td>
+              </tr>
+              <tr>
+                <td>密码：</td>
+                <td><input type="text" name="passowrd" id="passowrd" class="input login_input_1" value="<{$wedding.passowrd}>">
+                  <strong class="input_ts_y">*设置微信上查看来宾名单的验证密码</strong></td>
+              </tr>
+              <tr>
+                <td>想要给朋友说的话：</td>
+                <td><textarea rows="5" name="word" id="word" class="input login_input_1" style=" width:500px; height:90px;"><if condition="$wedding['word'] neq false"><{$wedding.word}><else/>亲爱的朋友，我要结婚了，希望能在我的婚礼上得到你的祝福，并祝愿你也幸福.</if>
+</textarea>	<strong class="input_ts_y">*喜帖文字限制在200字以内</strong></td>
+              </tr>
+              <tr>
+                <td>二维码图片地址：</td>
+                <td><input id="suicai6" type="text" name="qr_code" class="input login_input_1" value="<{$wedding.qr_code}>" style="width:470px;">
+                 <a href="javascript:void(0)" onclick="upyunPicUpload('suicai6',700,420)" class="btnGrayS vm">上传</a>
+				<a href="javascript:void(0)" onclick="viewImg('suicai6')" class="btnGrayS vm">预览</a> <strong class="input_ts_y"> * 默认100x100,显示在喜帖底部</strong></td>
+              </tr>
+              <tr>
+                <td>底部版权：</td>
+                <td><textarea name="copyrite" id="copyrite" class="input login_input_1" rows="5" style="width:500px;height:100px;"><{$wedding.copyrite}></textarea></td>
+              </tr>
+              <tr>
+                <th>&nbsp;</td>
+                <td><button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+                	<button type="button" class="btnGray vm">取消</button></td>
+             </tr>
+            </tbody>
+          </table>
+        </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

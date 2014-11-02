@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>优惠券管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+</head>
+<body>
+
+<div class="spliter"></div>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">优惠券管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+          <div class="new_main_tit pt10">优惠券管理<a href="<{:U('Coupon/index')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <div class="new_main_tit pt10">当前活动并未开始，尚未生成SN码，点击开始活动后，将生产SN码! 本次活动优惠券总数：<span class="redamount"><{$datacount}></span>个　已领取人数：<span class="redamount"><{$recordcount}> </span>个　　已领取奖品：<span class="redamount">0</span>个 </div>
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>优惠券号码</th>
+            <th>是否已发优惠券</th>
+            <th>奖品发送时间</th>
+            <th>微信号</th>
+            <th>手机号</th>
+            <th>优惠名称</th>
+            <th>获取时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <volist name="record" id="record">
+            <tr>
+              <td class="select"><{$i}></td>
+              <td><{$record.sn}></td>
+              <td><if condition="$record['sendstutas'] eq 0">否
+                  <else/>
+                  是</if>
+              </td>
+              <td><if condition="$record['sendtime'] eq 0">
+                  <else/>
+                  <{$record.sendtime|date='Y-m-d H:i:s',###}></if>
+              </td>
+              <td><{$record.wecha_name}></td>
+              <td><{$record.phone}></td>
+              <td><{$record.prize}></td>
+              <td><{$record.time|date='Y-m-d H:i:s',###}></td>
+              <td><if condition="$record['sendstutas'] eq 0"> <a href="<{:U('Coupon/sendprize',array('id'=>$record['id']))}>">发奖</a>
+                  <else/>
+                  <a href="<{:U('Coupon/sendnull',array('id'=>$record['id']))}>">取消发奖</a> </if>
+              </td>
+            </TR>
+          </volist>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微投票活动信息_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/vote.css" />
+</head>
+<body>
+<include file="menu"/>
+<div class="spliter"></div>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">微投票活动信息</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10"><{$vote.title}><a href="<{:U('Vote/index')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <div class="skin skin-line">
+        <div class="skin-section">
+          <div class="toupiao_shu">
+            <if condition="$vote['cknums'] eq 1"> 单选<else/>多选</if>投票，<span class="number">共有<{$count}>人参与投票</div>
+          <div class="toupiao_main">
+            <volist name="vote_item" id="li">
+            <div class="toupiao_main_q <if condition="$li['isvote'] eq 1">toupiao_main_a<else/>toupiao_main_b</if>">
+              <div class="toupiao_main_q_1"><span class="toupiao_main_1_s"><{$i}></span><{$li.item}>
+              </div>
+              <div class="toupiao_main_q_2">
+                <div class="toupiao_main_q_2_a<if condition="$i neq '' and $i lt 6"><{$i}><else />1</if>" style="width:<{$li.per|default=2}>%;"></div>
+              <div class="toupiao_main_q_2_b"><{$li.per|default=0}>%（<{$li.vcount}>）</div>
+              <if condition="$li['isvote'] eq 1">
+                <div class="toupiao_main_q_2_c">已投票</div>
+              </if>
+              <div class="clear"></div>
+            </div>
+          </div>
+          </volist>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信公众号第三方后台管理</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/left.css" />
+<script language="javascript">
+function showDIV(obj)
+{
+	document.getElementById("jichu").style.display = "none";
+	document.getElementById("weizhan").style.display = "none";
+	document.getElementById("yingxiao").style.display = "none";
+	document.getElementById("hangye").style.display = "none";
+	//document.getElementById("huiyuan").style.display = "none";
+	//document.getElementById("hudong").style.display = "none";
+	document.getElementById(obj).style.display = "block";
+	
+	document.getElementById("l_jichu").className = "tab_l_a";
+	document.getElementById("l_weizhan").className = "tab_l_a";
+	document.getElementById("l_yingxiao").className = "tab_l_a";
+	document.getElementById("l_hangye").className = "tab_l_a";
+	document.getElementById("l_" + obj).className = "tab_l_b";
+}
+</script>
+</head>
+<body>
+<div class="tab">
+  <div class="logo"><a href="<{:U('Index/welcome')}>" target="mainFrame"><img src="<{$daili.logo|default='__PUBLIC__/images/left/logo.png'}>"></a></div>
+  <div class="tab_l"> <a href="#" class="tab_l_b" id="l_jichu" onclick="showDIV('jichu')">
+    <p class="a1"></p>
+    <p>基础</p>
+    </a> <a href="#" class="tab_l_a" id="l_weizhan" onclick="showDIV('weizhan')">
+    <p class="a2"></p>
+    <p>微站</p>
+    </a> <a href="#" class="tab_l_a" id="l_yingxiao" onclick="showDIV('yingxiao')">
+    <p class="a3"></p>
+    <p>营销</p>
+    </a> <a href="#" class="tab_l_a" id="l_hangye" onclick="showDIV('hangye')">
+    <p class="a4"></p>
+    <p>行业</p>
+    </a> 
+    <!--<a href="#" onclick="showDIV('huiyuan')"><p class="a5"></p><p>会员</p></a>
+        <a href="#" onclick="showDIV('hudong')"><p class="a6"></p><p>互动</p></a>-->
+    <div class="tab_l_bot"> <a href="<{:U('Login/logout')}>" target="_top"><img src="__PUBLIC__/images/MB_0019_shut-down.png" width="20px"><br />
+      退出</a> </div>
+  </div>
+  <div class="tab_r" id="jichu" style="display:block;"> <a href="<{:U('/Index/edit/')}>" style="background:#B51C44;" target="mainFrame"><img src="__PUBLIC__/images/left/1-0.png">
+    <p>账号设置</p>
+    </a> <a href="<{:U('Areply/index')}>" style="background:#0093A8;" target="mainFrame"><img src="__PUBLIC__/images/left/1-1.png">
+    <p>关注回复</p>
+    </a> <a href="<{:U('/Text/index/')}>" style="background:#5B3AB6;" target="mainFrame"><img src="__PUBLIC__/images/left/1-2.png">
+    <p>默认回复</p>
+    </a> <a href="<{:U('/Text/index/')}>" style="background:#A300A9;" target="mainFrame"><img src="__PUBLIC__/images/left/1-3.png">
+    <p>关键词回复</p>
+    </a> 
+    <!--<a href="#" style="background:#009600;"><img src="__PUBLIC__/images/left/1-4.png"><p>语音回复</p></a>
+        <a href="#" style="background:#3498DB;"><img src="__PUBLIC__/images/left/1-5.png"><p>短信设置</p></a>
+        <a href="#" style="background:#E88A05;"><img src="__PUBLIC__/images/left/1-6.png"><p>邮箱设置</p></a>
+        <a href="#" style="background:#CE4B27;"><img src="__PUBLIC__/images/left/1-7.png"><p>LBS回复</p></a>
+        <a href="#" style="background:#A300A9;"><img src="__PUBLIC__/images/left/1-8.png"><p>支付宝</p></a>
+        <a href="#" style="background:#DC2253;"><img src="__PUBLIC__/images/left/1-9.png"><p>统计分析</p></a>
+		<a href="#" style="background:#E88A05;"><img src="__PUBLIC__/images/left/2-6.png"><p>版权设置</p></a>--> 
+    <a href="<{:U('/Diymen/index/')}>" style="background:#3498DB;" target="mainFrame"><img src="__PUBLIC__/images/left/2-3.png">
+    <p>自定义菜单</p>
+    </a>
+	 <a href="<{:U('/Member/userinfo/')}>" style="background:#B51C44;" target="mainFrame"><img src="__PUBLIC__/images/left/2-2.png">
+    <p>粉丝管理</p>
+    </a> 
+	  <a href="<{:U('/Message/index/')}>" style="background:#0093A8;" target="mainFrame"><img src="__PUBLIC__/images/left/6-2.png">
+    <p>群发管理</p>
+    </a> 
+	<a href="<{:U('/Requerydata/index')}>" style="background:#009600;" target="mainFrame"><img src="__PUBLIC__/images/left/4-0.png">
+    <p>统计日志</p>
+    </a>
+	<a href="<{:U('/Label/signset/')}>" style="background:#E88A05;" target="mainFrame"><img src="__PUBLIC__/images/left/1-3.png">
+    <p>签到管理</p>
+    </a> 
+	</div>
+  <div class="tab_r" id="weizhan" style="display:none;"> <a href="<{:U('/Company/index/')}>" style="background:#E88A05;" target="mainFrame"><img src="__PUBLIC__/images/left/2-0.png">
+    <p>门店</p>
+    </a> <a href="<{:U('/Classify/index/')}>" style="background:#B51C44;" target="mainFrame"><img src="__PUBLIC__/images/left/2-0.png">
+    <p>栏目设置</p>
+    </a> <a href="<{:U('Moban/index/')}>" style="background:#0093A8;" target="mainFrame"><img src="__PUBLIC__/images/left/2-1.png">
+    <p>模板管理</p>
+    </a> <a href="<{:U('Tu/index')}>" style="background:#5B3AB6;" target="mainFrame"><img src="__PUBLIC__/images/left/2-2.png">
+    <p>文章管理</p>
+    </a> 
+    <!--<a href="#" style="background:#3498DB;"><img src="__PUBLIC__/images/left/2-3.png"><p>DIY菜单</p></a>--> 
+    <a href="<{:U('/Flash/index/')}>" style="background:#E88A05;" target="mainFrame"><img src="__PUBLIC__/images/left/2-4.png">
+    <p>幻灯片</p>
+    </a> <a href="<{:U('/Photo/index/')}>" style="background:#CE4B27;" target="mainFrame"><img src="__PUBLIC__/images/left/2-5.png">
+    <p>微相册</p>
+    </a>
+    
+    <!--<a href="#" style="background:#A300A9;"><img src="__PUBLIC__/images/left/2-6.png"><p>快捷方式</p></a>
+        <a href="#" style="background:#0093A8;"><img src="__PUBLIC__/images/left/2-7.png"><p>在线预览</p></a>--> 
+		 
+    <a href="<{:U('/Liuyan/liuyan/')}>" style="background:#009600;" target="mainFrame"><img src="__PUBLIC__/images/left/6-2.png">
+    <p>留言板</p>
+    </a> 
+	<a href="<{:U('/Advice/advice/')}>" style="background:#5B3AB6;" target="mainFrame"><img src="__PUBLIC__/images/left/1-3.png">
+    <p>意见反馈</p>
+    </a> </div>
+  <div class="tab_r" id="yingxiao" style="display:none;"> 
+ 
+	
+	<a href="<{:U('/Lottery/index/')}>" style="background:#B51C44;" target="mainFrame"><img src="__PUBLIC__/images/left/3-0.png">
+
+    <p>大转盘</p>
+    </a> <a href="<{:U('/Coupon/index/')}>" style="background:#0093A8;" target="mainFrame"><img src="__PUBLIC__/images/left/3-1.png">
+    <p>优惠券</p>
+    </a> <a href="<{:U('/Guajiang/index/')}>" style="background:#5B3AB6;" target="mainFrame"><img src="__PUBLIC__/images/left/3-2.png">
+    <p>刮刮卡</p>
+    </a> 
+    <!--<a href="#" style="background:#3498DB;"><img src="__PUBLIC__/images/left/3-3.png"><p>欢乐答题</p></a>--> 
+    <a href="<{:U('/Vote/index/')}>" style="background:#CE4B27;" target="mainFrame"><img src="__PUBLIC__/images/left/3-5.png">
+    <p>微投票</p>
+    </a> <!--<a href="<{:U('/Shake/admin/')}>" style="background:#CE4B27;" target="mainFrame"><img src="__PUBLIC__/images/left/3-5.png">
+    <p>摇一摇</p>
+    </a> <a href="<{:U('/Wxscreen/index/')}>" style="background:#B51C44;" target="mainFrame"><img src="__PUBLIC__/images/left/2-4.png">
+    <p>微信墙</p>
+    </a>-->
+	
+	
+	
+	
+	</div>
+  <div class="tab_r" id="hangye" style="display:none;"> <a href="<{:U('/Product/index')}>" style="background:#B51C44;" target="mainFrame"><img src="__PUBLIC__/images/left/4-0.png">
+    <p>微商城</p>
+    </a> 
+	<a href="<{:U('/Order/index')}>" style="background:#CE4B27;" target="mainFrame"><img src="__PUBLIC__/images/left/2-0.png">
+    <p>医药通</p>
+    </a> 
+	<a href="<{:U('/Alipay_config/index')}>" style="background:#A300A9;" target="mainFrame"><img src="__PUBLIC__/images/left/1-8.png">
+    <p>微支付</p>
+    </a> <a href="<{:U('/Member_card/index/')}>" style="background:#009600;" target="mainFrame"><img src="__PUBLIC__/images/left/5-1.png">
+    <p>微会员</p>
+    </a> 
+    <!--<a href="<{:U('/Coupon/index/')}>" style="background:#0093A8;"><img src="__PUBLIC__/images/left/4-1.png"><p>优惠劵</p></a>--> 
+    <a href="<{:U('/Selfform/index')}>" style="background:#5B3AB6;" target="mainFrame"><img src="__PUBLIC__/images/left/4-2.png">
+    <p>微预订</p>
+    </a> 
+    <!--<a href="#" style="background:#009600;"><img src="__PUBLIC__/images/left/4-3.png"><p>通用订单</p></a>
+        <a href="<{:U('/Selfform/index')}>" style="background:#3498DB;" target="mainFrame"><img src="__PUBLIC__/images/left/4-4.png"><p>万能表单</p></a>--> 
+    <!--<a href="#" style="background:#E88A05;"><img src="__PUBLIC__/images/left/4-5.png"><p>DIY宣传</p></a>--> 
+    
+    <a href="<{:U('/Panorama/index')}>" style="background:#A300A9;" target="mainFrame"><img src="__PUBLIC__/images/left/4-6.png">
+    <p>360全景</p>
+    </a> <a href="<{:U('/Estate/index')}>" style="background:#CE4B27;" target="mainFrame"><img src="__PUBLIC__/images/left/4-6.png">
+    <p>微房产</p>
+    </a> <a href="<{:U('/Wedding/index')}>" style="background:#E88A05;" target="mainFrame"><img src="__PUBLIC__/images/left/3-4.png">
+    <p>微喜帖</p>
+    </a> <a href="<{:U('/Survey/index/')}>" style="background:#B51C44;" target="mainFrame"><img src="__PUBLIC__/images/left/2-4.png">
+    <p>微调研</p>
+    </a> <a href="<{:U('Groupbuy/index')}>" style="background:#5B3AB6;" target="mainFrame"><img src="__PUBLIC__/images/left/4-0.png">
+    <p>微团购</p>
+    </a> <!--<a href="<{:U('/Lvyou/index/')}>" style="background:#A300A9;" target="mainFrame"><img src="__PUBLIC__/images/left/2-4.png">
+    <p>微旅游</p>
+    </a>--> <a href="<{:U('/Education/index/')}>" style="background:#CE4B27;" target="mainFrame"><img src="__PUBLIC__/images/left/2-4.png">
+    <p>微教育</p>
+    </a><a href="<{:U('/Car/car/')}>" style="background:#009600;" target="mainFrame"><img src="__PUBLIC__/images/left/4-6.png">
+    <p>微汽车</p>
+    </a> <a href="<{:U('/Hospital/hospitallist/')}>" style="background:#B51C44;" target="mainFrame"><img src="__PUBLIC__/images/left/4-0.png">
+    <p>微医疗</p>
+    </a> 
+    <!--<a href="<{:U('/Car/index/')}>" style="background:#5B3AB6;" target="mainFrame"><img src="__PUBLIC__/images/left/4-6.png"><p>微汽车</p></a>
+        <a href="<{:U('/Edu/index/')}>" style="background:#CE4B27;" target="mainFrame"><img src="__PUBLIC__/images/left/4-6.png"><p>微教育</p></a>
+        <a href="<{:U('/Tour/index/')}>" style="background:#009600;" target="mainFrame"><img src="__PUBLIC__/images/left/4-6.png"><p>微旅游</p></a>--> 
+  </div>
+  <!--
+	<div class="tab_r" id="huiyuan" style="display:none;">    
+        <a href="#" style="background:#B51C44;"><img src="__PUBLIC__/images/left/5-0.png"><p>商家设置</p></a>
+        <a href="#" style="background:#0093A8;"><img src="__PUBLIC__/images/left/5-1.png"><p>会员卡</p></a>
+        <a href="#" style="background:#A300A9;"><img src="__PUBLIC__/images/left/5-2.png"><p>回复配置</p></a>
+    </div>
+	<div class="tab_r" id="hudong" style="display:none;">    
+        <a href="#" style="background:#B51C44;"><img src="__PUBLIC__/images/left/6-0.png"><p>微信墙</p></a>
+        <a href="#" style="background:#0093A8;"><img src="__PUBLIC__/images/left/6-1.png"><p>第三方</p></a>
+        <a href="#" style="background:#5B3AB6;"><img src="__PUBLIC__/images/left/6-2.png"><p>留言板</p></a>
+        <a href="#" style="background:#5B3AB6;"><img src="__PUBLIC__/images/left/6-3.png"><p>微预约</p></a>
+    </div>-->
+  <div class="clear"></div>
+</div>
+</body>
+</html>

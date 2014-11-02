@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link href="__PUBLIC__/css/bootmetro.css" rel="stylesheet" id="stylesheet">
+<link href="__PUBLIC__/css/bootmetro-tiles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"></span>一键设置</div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="metro span12">
+        <div class="new_main">
+          <div class="metro-sections">
+            <div class="metro-section" id="section1">
+              <div class="new_main_tit" style="color:#ff6600;">欢迎您使用一键快速设置站点</div>
+              <form action="" method="POST">
+                一键设置功能，适合新创建的站点，帮您快速的预览站点效果。<br />
+
+                此功能将分别为你创建 企业简介、企业动态、在线预约、微商城、优惠券、微相册、微留言、微会员、微投票 等模块及栏目。
+                <br />
+                <br />
+                正式上线前，请您检查各项测试数据的正确性。<br />
+                <font color="red">友情提示： 成熟运营中的站点请谨慎使用此功能。</font><br />
+                <br />
+                <br />
+                <button type="submit" class="button_g_1" style=" width:270px; margin-top:15px;" type="button">我已了解，确认开始一键设置</button>
+
+                <button class="button_r_1" style=" width:290px; margin-top:15px; margin-left:20px;" type="button" onclick="location.href='<{:U('Index/clearsite')}>'">了解风险，确认一键清空所有数据</button>
+
+                
+              </form>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

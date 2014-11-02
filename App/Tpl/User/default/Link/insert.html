@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>获取模块所有连接_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<style>
+#main{padding: 10px 0px 0px 10px}
+#main .new_main_liebiao a{
+  font-size: 12px;
+  border:1px solid #3d810c;
+  box-shadow:0 1px 1px #aaa;
+  -moz-box-shadow:0 1px 1px #aaa;
+  -webkit-box-shadow:0 1px 1px #aaa;
+  padding:1px 10px;
+  cursor:pointer;
+  display:inline-block;
+  text-align:center;
+  vertical-align:bottom;
+  overflow:visible;
+  border-radius:3px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  *zoom:1;
+  background-color:#5ba607;
+  background-image:linear-gradient(bottom, #4d910c 3%, #69b310 97%, #fff 100%);
+  background-image:-moz-linear-gradient(bottom, #4d910c 3%, #69b310 97%, #fff 100%);
+  background-image:-webkit-linear-gradient(bottom, #4d910c 3%, #69b310 97%, #fff 100%);
+  color:#fff; font-size:14px; line-height: 1.5;
+  margin: 1px 3px;
+}
+.red{color: red}
+</style>
+</head>
+<body>
+<div id="container" style="padding-left:3px;">
+  <div class="tab">
+    <ul>
+      <foreach name="modules" item="r" key="n">
+      <li class="tabli" id="<{$n}>"><{$r}></li>
+      </foreach>
+    </ul>
+  </div>
+  <div id="main" style="margin-top:65px;"></div>
+</div>
+<script>
+var site_url = "<{$mysite.site_url}>";
+var token = "<{$mysite.token}>";
+$('.tab li').click(function(){
+  $('.tab li').removeClass('current');$(this).addClass('current');
+  $.get("<{:U('Link/insert')}>",{type:this.id},function(result){$("#main").html(result);cl();});
+});
+
+function cl(){
+  $('.new_main_liebiao a').click(function(){getUrl($(this).attr("data"))});
+  $('.pagelistbox a').click(
+    function(){ 
+     $.ajax({type: "GET",url:$(this).attr('href'),beforeSend:function(){
+        $("#main").text("请稍等!");
+      },
+      success:function(data){ 
+        $('#main').html(data);cl();
+      }
+    });
+    return false;
+  });
+
+  $('#searchForm').submit(
+    function(){ 
+     var key=$('#msgSearchInput').attr("value");
+     var catid=$('#catid').attr("value");
+     //if(key.length<1){$('#msg').addClass('red').html('搜索词不能为空');return false;}
+     $.ajax({type: "GET",url:$(this).attr('action')+"/searchkey/"+key+"/catid/"+catid,beforeSend:function(){$("#main").text("请稍等!");},
+      success:function(data){$('#main').html(data);cl();}
+    });
+    return false;
+  });
+}
+
+$(document).ready(function(){$('#base').trigger("click")});
+
+var domid=art.dialog.data('domid');
+// 返回数据到主页面
+function getUrl(url){
+  url = site_url+'/index.php?s=/Wap/'+url+'/token/'+token;
+  var origin = artDialog.open.origin;
+  var dom = origin.document.getElementById(domid);
+  dom.value=url;
+  art.dialog.close();
+}
+</script>
+</body>
+</html>

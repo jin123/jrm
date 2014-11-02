@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>预约保养_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/My97DatePicker/WdatePicker.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="editor_id"]');
+});					
+</script>
+</head>
+<body>
+
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">预约保养</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">预约保养<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form name="addcontent" id="addcontent" action="<{:U('Car/byed')}>" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="xid" value="<{$xid}>"/>
+		<input type="hidden" name="token" value="<{$Think.session.token}>"/>
+		<input type="hidden" name="uid" value="<{$uid}>"/>
+	   <table class="new_main_zhuce">
+          <tbody>
+		  	<tr>
+              <td width="16%" class="table_txt_right">请选择品牌：</td>
+              <td width="84%">              
+              	<select name="pid" id="pid" class="selectoption" style="width:212px">
+					<option value="0">--请选择--</option>
+					<foreach name="li" item="qq">
+					<option value="<{$qq.id}>"><{$qq.name}></option>
+					</foreach>
+				</select>
+                </td>
+            </tr>
+			<tr>
+              <td width="16%" class="table_txt_right">请选择车系：</td>
+              <td width="84%">              
+              	<select name="xid" id="xid" class="selectoption" style="width:212px">
+					<option value="0">--请选择--</option>
+					<foreach name="list" item="pp">
+					<option value="<{$pp.id}>"><{$pp.name}></option>
+					</foreach>
+				</select>
+                </td>
+            </tr>
+			<tr>
+              <td width="16%" class="table_txt_right">请选择车型：</td>
+              <td width="84%">              
+              	<select name="xxid" id="xxid" class="selectoption" style="width:212px">
+					<option value="0">--请选择--</option>
+					<foreach name="x" item="xx">
+					<option value="<{$xx.id}>"><{$xx.name}></option>
+					</foreach>
+				</select>
+                </td>
+            </tr>
+			<tr style="height:60px;">
+              <td width="16%" class="table_txt_right">车牌号：</td>
+              <td><input type="text" class="input login_input_1" id="num" value="" name="num" style="width:580px;"></td>
+            </tr>
+			<tr style="height:60px;">
+              <td width="16%" class="table_txt_right">行驶里程：</td>
+              <td><input type="text" class="input login_input_1" id="mileage" value="" name="mileage" style="width:580px;">公里</td>
+            </tr>
+			<tr style="height:60px;">
+              <td width="16%" class="table_txt_right">购买年代：</td>
+              <td><input type="text" class="Wdate" id="year" value="" name="year" style="width:590px;" onClick="WdatePicker()"/></td>
+            </tr>
+		  <tr style="height:60px;">
+              <td width="16%" class="table_txt_right">预计到店时间：</td>
+              <td>
+				<input type="text" class="Wdate" id="ytime" value="" name="ytime" style="width:590px;" onClick="WdatePicker()"/>
+			  </td>
+            </tr>
+		  <tr style="height:60px;">
+              <td width="16%" class="table_txt_right">预计取车时间：</td>
+              <td>
+				<input type="text" class="Wdate" id="qtime" value="" name="qtime" style="width:590px;" onClick="WdatePicker()"/>
+			  </td>
+            </tr>
+			<tr style="height:60px;">
+              <td width="16%" class="table_txt_right">车主姓名：</td>
+              <td><input type="text" class="input login_input_1" id="name" value="" name="name" style="width:580px;"></td>
+            </tr>
+			 <tr style="height:60px;">
+              <td width="16%" class="table_txt_right">邮箱：</td>
+              <td><input type="text" class="input login_input_1" id="email" value="" name="email" style="width:580px;"></td>
+            </tr>
+			<tr style="height:60px;">
+              <td width="16%" class="table_txt_right">电话：</td>
+              <td><input type="text" class="input login_input_1" id="tel" value="" name="tel" style="width:580px;"></td>
+            </tr>
+			 <tr>
+				<td class="table_txt_right" width="16%">描述:</td>
+				<td>
+					<textarea class="input login_input_1" style="width:580px;height:80px;" name="description"></textarea>
+				</td>
+			</tr>
+			<tr>
+            <td width="16%" class="table_txt_right">维护项目：</td>
+            <td width="84%">
+				<input type="radio" class="np" value="1" name="type" checked/>
+				  外观维护 &nbsp; &nbsp; &nbsp;
+				  <input type="radio" class="np" value="2" name="type"/>
+				  机油三滤保养&nbsp; &nbsp; &nbsp;
+				<input type="radio" class="np" value="3" name="type"/>
+				  故障保养
+			</td>
+          </tr>
+            <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

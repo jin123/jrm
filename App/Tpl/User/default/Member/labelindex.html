@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>标签管理</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/js/jquery.form.js"></script>
+<script charset="utf-8" src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">粉丝管理</span><span class="wap_span_2">标签管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">标签管理 <a href="javascript:void(0)"  class='tag0' value="true" data-id="<{$o['id']}>"><span class="button_r_1 fabu mgtb10" style="width:100px; margin-top:2px;">添加</span></a>
+      </div>
+      <div class="tab">
+        <ul>
+          <!-- <li class="tabli" id="tab0"><a href="<{:U('Member/index')}>">会员管理</a></li> -->
+          <li class="  tabli" id="tab0"><a href="<{:U('Member/userinfo')}>">粉丝列表</a></li>
+		    <li class="tabli" id="tab0"><a href="<{:U('Member/group')}>">粉丝分组管理</a></li>
+            <li class="tabli" id="tab0"><a href="<{:U('Label/tag')}>">粉丝标签</a></li>
+            <li class=" current tabli" id="tab1"><a href="<{:U('Label/index')}>">标签管理</a></li>
+        </ul>
+      </div>
+    </div>
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>标签名称</th>
+            <th >操作</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <volist name="list" id="o">
+            <tr>
+              <td><{$o.id}> </td>
+              <td><a href="<{:U('Label/labelusergroup',array('id'=>$o['id']))}>" ><{$o.labelname}></a></td>
+              <td>
+              <div class="h2_cat" onmouSEOver="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+
+                  <h3  class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+
+                  <div class="h3_cat">
+
+                    <div class="h3_cat_list">
+
+                      <ul>
+
+                        <a href="javascript:void(0)" name="tag" class='tag' value="true" data-id="<{$o['id']}>">
+
+                        <li>修改</li>
+
+                        </a> <a onclick="return window.confirm('您确定要删除吗?');" href="<{:U('Label/del',array('id'=>$o['id']))}>">
+
+                        <li>删 除</li>
+
+                        </a>
+
+                      </ul>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="clear"></div>
+             </td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+      <div class="pagelistbox"><{$page}></div>
+    </div>
+  </div>
+</div>
+
+<script>
+$("#wei_group").live('change',function(){
+
+
+    var id = $(this).find("option:selected").val();
+    var wecha_id = $(this).attr('data-id');
+    var url ="<{:U('Member/edit_user_group')}>";
+    var flag ="id="+id+"&wecha_id="+wecha_id;
+    $.post(url,flag,function(json){
+    
+       var txt = $.parseJSON(json);
+       if(txt['errcode']!=0){
+           alert(txt['errmsg']);
+       
+       }
+       
+       
+       
+    });
+
+});
+function checkvotethis() {
+	var aa=document.getElementsByName('del_id[]');
+	var mnum = aa.length;
+	j=0;
+	for(i=0;i<mnum;i++){
+		if(aa[i].checked){
+		j++;
+		}
+	}
+	if(j>0) {
+		document.getElementById('info').submit();
+	} else {
+		alert('未选中任何文章或回复！')
+	}
+}
+function drop_confirm(msg, url){
+    if(confirm(msg)){
+        window.location = url;
+    }
+}
+$("#group_user").change(function(){
+   var city = $(this).find("option:selected").val();
+   var url ="<{:U('/Member/get_group_user/')}>";
+   var flag = "city="+city;
+   $.post(url,flag,function(res){
+   
+       var txt  = $.parseJSON(res);
+       var html = '';
+       var url = "<{:U('/Member/edit/')}>";
+       $.each(txt,function(i,v){
+          var del_url = "/index.php?s=/Member/del/id="+v.id;
+            html+='<TR id="del_'+v.id+'">'+
+              '<td></td>'+
+              '<td>'+v.id+'</td>'+
+              '<td>'+v.wechaname+'</td>'+
+              '<td>'+v.sex+'</td>'+
+              '<td>'+v.province+'</td>'+
+              '<td>'+v.address+'</td>'+
+              '<td><img width="50" height="50" src="'+v.headimgurl+'"></td> '+
+              '<td>'+v.subscribe_time+'</td>'+
+              '<TD class="norightborder"><a class="del_'+v.id+'"  data-id="'+v.id+'" id="del" onclick="del_user('+v.id+')" href="javascript:void(0)">删除</a> </td>'+
+            '</TR>'
+
+       });
+       $("#content").html(html);
+   });
+
+});
+
+$('.tag0').live('click',function(){
+
+	art.dialog.open("?g=User&m=Label&a=labeladd",{lock:true,title:'添加标签',width:350,height:150,yesText:'关闭',background: '#000',opacity: 0.45});
+	
+	
+});
+
+
+$('.tag').live('click',function(){
+
+	var id=$(this).attr("data-id");
+
+	//alert(id);
+
+	art.dialog.open("?g=User&m=Label&a=edit&id="+id,{lock:true,title:'修改标签',width:350,height:150,yesText:'关闭',background: '#000',opacity: 0.45});
+	
+	
+});
+
+</script>
+</body>
+</html>

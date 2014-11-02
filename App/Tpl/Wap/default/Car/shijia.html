@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html><head>
+    <title>预约试驾</title>
+	
+	<script type="text/javascript" src="__PUBLIC__/car/jquery.js"></script>
+	<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+	
+      <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/car/hotels.css" media="all">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/car/reset.css" media="all">
+         <link rel="stylesheet" type="text/css" href="__PUBLIC__/car/common2.css" media="all">
+
+        <script type="text/javascript" src="__PUBLIC__/car/swipe.js"></script>
+        <style>
+            img{ width:100%!important;}
+        </style>
+    <link href="__PUBLIC__/car/mobiscroll.css" rel="stylesheet" type="text/css"></head>
+        <body id="hotels" >
+<section class="body">
+	<div class="banner">
+	<div style="visibility: visible;" id="imgs_box" class="box_swipe">
+		<img alt="" src="__PUBLIC__/car/images/9c83044863c4b2b5c80d39f6338abf5d.png" style="width: 0px;">	
+	</div>
+	</div>
+	<div class="cardexplain">
+
+
+			<!--后台可控制是否显示-->
+			<ul class="round">
+				<li>
+					<h2>订单说明</h2>
+					<div class="text"><php>if ($list[issue]==1){echo "预约试驾";}else{ echo"预约保养";}</php></div>
+				</li>
+				<li class="tel"><span><{$list.tel}> </span></li>
+				<li class="addr"><a href="http://api.map.baidu.com/marker?location=<{$list.jd}>,<{$list.wd}>&amp;title=%E8%AF%95%E9%A9%BE%E9%A2%84%E7%BA%A6&amp;name=%E4%B8%B4%E6%B2%82%E4%B8%87%E9%98%85%E5%9F%8E&amp;content=%E4%B8%B4%E6%B2%82%E4%B8%87%E9%98%85%E5%9F%8E&amp;output=html&amp;src=weiba%7Cweiweb"><span><{$list.addr}></span></a></li>
+			</ul>
+
+
+		    <ul class="round">
+                <li>
+                    <a href="<{:U('Car/myshijia',array('token'=>$_GET['token'],'weicha_id'=>$_GET['weicha_id']))}>" >
+                        <span>我的预约试驾</span>
+                    </a>
+                </li>
+            </ul>
+			
+			<ul class="round">
+				<form action="" method="post" id="theform">
+				<li class="title mb"><span class="none">请认真填写在线订单</span></li>
+				<div class="pb_5 pl_10 pr_10 pt_10">
+						<dl class="list_book">
+							<dt><label>添加车型</label></dt>
+							<dd>
+								<div>
+		                   <select name="ppid" id="ppid" >
+								<option value="">--请选择--</option>
+								<option value="<{$pin.id}>"><{$pin.name}></option>
+								</volist>
+					      </select>
+								</div>
+							  </dd>
+							 <dd>
+							<div>
+							<span id="xidSPAN">
+								<select name="xid" id="xid" >
+								<option value="">--请选择--</option>
+								<volist name="chexi" id="che">
+								<option value="<{$che.id}>"><{$che.name}></option>
+								</volist>
+								</select>
+							</span>
+								</div>
+							  </dd>
+							 <dd>
+							<div>
+							<span id="xingidSPAN">
+								<select  name="xingid" id="xingid">
+								<option value="">--请选择--</option>
+								<volist name="chexing" id="chexing">
+								<option value="<{$chexing.id}>"><{$chexing.name}></option>
+								</volist>
+								</select>
+							</span>
+																                           
+							 </div>
+							</dd>
+						</dl>
+				</div>				
+								<li class="nob">
+					<table class="kuang" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody>
+						
+						
+						
+						   <tr>
+							<th>联系人</th>
+							<td>
+							<input type="hidden" id="token" name="token" value="<{$lists.wxid}>">
+                            <input type="hidden" id="wecha_id" name="wecha_id" value="<{$lists.wid}>" >
+							<input name="form0" id="form0" class="px" placeholder="请输入您的名字" required="required" type="text" value="<{$lists.form0}>"></td>
+						</tr>
+					</tbody></table>
+				</li>
+								<li class="nob">
+					<table class="kuang" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<th>联系电话</th>
+							<td><input name="form1" id="form1" class="px" placeholder="请输入您的电话" required="required" type="text"  value="<{$lists.form1}>"></td>
+						</tr>
+					</tbody></table>
+				</li>
+								<li class="nob">
+					<table class="kuang" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<th>预约日期</th>
+							<td><input readonly="readonly" id="form2" class="px"   onClick="WdatePicker()"   placeholder="请选择预约日期" required="required" name="form2" mdate="date"   type="text" value="<{$lists.form2}>"></td>
+						</tr>
+					</tbody></table>
+				</li>
+								<li class="nob">
+					<table class="kuang" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<th>备注</th>
+							<td><textarea name="form3" id="form3" class="pxtextarea" style="height:99px;width:96%;overflow-y:visible" placeholder="请留言" required="required"><{$lists.form3}></textarea></td>
+						</tr>
+					</tbody></table>
+				</li>       
+						
+			</ul>
+			<input type="hidden" name="issue" value="<{$lists.issue}>">
+			<!--<button type="submit" class="btn btn-large btn-primary" >订单确认</button>-->
+			</form>
+			<div class="footReturn">
+				<a id="showcard" class="submit" href="#">提交订单</a>
+				<div class="window" id="windowcenter">
+					<div id="title" class="wtitle">提示<span class="close" id="alertclose"></span></div>
+					<div class="content">
+						<div id="txt"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="plugback">
+		<a href="javascript:history.back(-1)">
+			<div class="plugbg themeStyle">
+				<span class="plugback">
+				</span>
+			</div>
+		</a>
+	</div>
+</section>
+	<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+<span class="sp2"><a href="http://www.weixinguanjia.cn/weiweb/3702/" style="color: #5e5e5e;font-size: 12px;"> 技术支持：阿里微微</a></span>
+</div>
+<div style="width: 0px;height: 0px;overflow: hidden;">
+<script src="__PUBLIC__/car/z_stat.php" language="JavaScript"></script><script src="__PUBLIC__/car/images/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1000151448" target="_blank" title="站长统计">站长统计</a>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F43da571de43e9d6228927d0883b8b8b4' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="__PUBLIC__/car/h.js" type="text/javascript"></script>
+
+</div>
+<script>
+/*
+$(function(){
+	if($('body').height()<$(window).height()){
+		$('body').height($(window).height());
+		$('#wxgjfooter').css('position','fixed').css('bottom','0px');
+	}
+});
+
+
+   
+    	$(document).ready(function(){
+    		$(function(){
+				new Swipe(document.getElementById('imgs_box'), {
+					speed:500,
+					//auto:3000,
+					callback: function(index, elem){
+						var lis = $('#imgs_box').children("ol").children();
+						lis.removeClass("on").eq(index).addClass("on");
+					}
+				}); 
+			});
+			*/
+   $("#showcard").bind("click",function() {
+    var btn = $(this);
+    var ppid    = $("#ppid").val();
+	var xid 	  = $("#xid").val();
+	var xingid    = $("#xingid").val();
+	var form0	  = $("#form0").val();
+	var form1	  = $("#form1").val();
+	var form2	  = $("#form2").val();
+	var form3	  = $("#form3").val();
+	var token 	  = $("#token").val();
+	var wxid 	  = $("#wecha_id").val();
+      //alert("123");
+	if (ppid == ''|| ppid==''|| xingid==''|| form0=='') {
+        alert("请填写完整");
+        return;
+    }
+    
+  //alert("444"); 
+	$.ajax({
+	       
+            dataType:'json',
+            url:"http://ni.com/index.php/Wap/Car/shijia",
+            type:"POST",
+			
+            data: "ppid="+ppid+"&xid="+xid+"&xingid="+xingid+"&form0="+form0+"&form1="+form1+"&form2="+form2+"&form3="+form3+"&token="+token,
+			
+            success:function(data){
+			
+                if(data.code == "1"){
+					$('#txt').text('提交成功');
+    					$('#windowcenter').slideDown();
+    					setTimeout(function(){
+    						location.href = "<{:U('Car/myshijia',array('token'=>$_GET['token'],'weicha_id'=>$_GET['weicha_id']))}>";  						
+    					},888);
+					
+                }else{
+					
+                        $('#txt').text('请勿重复提交');
+    					$('#windowcenter').slideDown();
+                     
+                }
+           
+                setTimeout(function(){
+    					$('#windowcenter').slideUp();
+    				},1000);
+            },
+			error:function(){
+				alert("连接服务器错误");
+			}
+        });
+    
+});
+
+
+
+   	</script>        		
+</body></html> 

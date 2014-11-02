@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>喜帖管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">喜帖管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+
+      <div class="new_main_tit pt10" style="margin-top:10px;">喜帖管理<a href="<{:U('Wedding/add')}>"><span class="button_r_1 fabu">新增喜帖</span></a></div>
+      
+      <form method="post" action="<{:U('Wedding/del')}>" id="info">
+        <input name="delall" type="hidden" value="del">
+        <input name="wxid" type="hidden" value="gh_423dwjkewad">
+        <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+              <th class="select">编号</th>
+              <th>喜帖标题</th>
+              <th>关键词</th>
+              <th>新郎/新娘名字</th>
+              <th>密码</th>
+              <th>相册</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <volist name="wedding" id="vo">
+              <tr>
+                <td><{$vo.id}></td>
+                <td><{$vo.title}></td>
+                <td><{$vo.keyword}></td>
+                <td><{$vo.man}>/<{$vo.woman}></td>
+                <td><{$vo.passowrd}></td>
+                <td><a class="green" href="<{:U('Photo/list_add',array('id'=>$vo['id']))}>">喜帖图片</a> </td>
+                <td><div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                    <h3 class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                    <div class="h3_cat">
+                      <div class="h3_cat_list">
+                        <ul>
+                          <a href="<{:U('Wedding/info',array('id'=>$vo['id']))}>">
+                          <li>查看名单</li>
+                          </a><a href="<{:U('Wedding/edit',array('id'=>$vo['id']))}>">
+                          <li>编辑喜帖</li>
+                          </a> <a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Wedding/del',array('id'=>$vo['id']))}>');">
+                          <li>删 除</li>
+                          </a><a href="<{:U('Wap/Wedding/index',array('token'=>$vo['token'],'id'=>$vo['id']))}>" target="_blank">
+                          <li>链 接</li>
+                          </a><a href="javascript:setPreview('<{:U('Wap/Wedding/index',array('token'=>$vo['token'],'id'=>$vo['id']))}>');" target="_blank">
+                          <li>预 览</li>
+                          </a>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clear"></div></td>
+              </tr>
+            </volist>
+          </tbody>
+        </table>
+      </form>
+      <div class="pagelistbox"><{$page}></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

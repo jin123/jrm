@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>LOGO添加_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="editor_id"]');
+});					
+</script>
+</head>
+<body>
+
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">LOGO添加</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">LOGO添加<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form name="addcontent" id="addcontent" action="<{:U('Car/logoed')}>" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="uid" value="<{$uid}>"/>
+		<input type="hidden" name="id" value="<{$list['id']}>"/>
+		<input type="hidden" name="token" value="<{$Think.session.token}>"/>
+	   <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="16%" class="table_txt_right">LOGO-1：</td>
+              <td><input class="input login_input_1" name="main_1" id="main_1" value="<{$list['main_1']}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('main_1',700,420)" class="btnGreen">选择封面</a></td>
+            </tr>
+			<tr>
+              <td width="16%" class="table_txt_right">LOGO-2：</td>
+              <td><input class="input login_input_1" name="main_2" id="main_2" value="<{$list['main_2']}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('main_2',700,420)" class="btnGreen">选择封面</a></td>
+            </tr>
+			<tr>
+              <td width="16%" class="table_txt_right">LOGO-3：</td>
+              <td><input class="input login_input_1" name="main_3" id="main_3" value="<{$list['main_3']}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('main_3',700,420)" class="btnGreen">选择封面</a></td>
+            </tr>
+	      <tr>
+              <td width="16%" class="table_txt_right">车型封面：</td>
+              <td><input class="input login_input_1" name="chexi" id="chexi" value="<{$list['chexi']}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('chexi',700,420)" class="btnGreen">选择封面</a></td>
+            </tr>
+	       <tr>
+              <td width="16%" class="table_txt_right">预约封面：</td>
+              <td><input class="input login_input_1" name="yuyue" id="yuyue" value="<{$list['yuyue']}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('yuyue',700,420)" class="btnGreen">选择封面</a></td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right">资讯封面：</td>
+              <td><input class="input login_input_1" name="zixun" id="zixun" value="<{$list['zixun']}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('zixun',700,420)" class="btnGreen">选择封面</a></td>
+            </tr>
+	      <tr>
+              <td width="16%" class="table_txt_right">关怀封面：</td>
+              <td><input class="input login_input_1" name="chezhu" id="chezhu" value="<{$list['chezhu']}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('chezhu',700,420)" class="btnGreen">选择封面</a></td>
+            </tr>
+	       <tr>
+              <td width="16%" class="table_txt_right">销售封面：</td>
+              <td><input class="input login_input_1" name="xiaoshou" id="xiaoshou" value="<{$list['xiaoshou']}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('xiaoshou',700,420)" class="btnGreen">选择封面</a></td>
+            </tr>
+			  <tr>
+              <td width="16%" class="table_txt_right">意见封面：</td>
+              <td><input class="input login_input_1" name="yijian" id="yijian" value="<{$list['yijian']}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('yijian',700,420)" class="btnGreen">选择封面</a></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

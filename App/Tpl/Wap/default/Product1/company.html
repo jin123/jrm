@@ -1,0 +1,45 @@
+<include file="Product:header"/>
+<script src="{pigcms::RES}/js/tel.js" type="text/javascript"></script>
+
+<div class="main">
+  <div class="p_place">
+    <h1><{$thisCompany.name}></h1>
+    <span style="display:none"><{$branchStoreCount}>家分店</span> </div>
+  <div class="p_mod">
+    <h2 class="p_mod_title"><{$thisCompany.name}>&nbsp;</h2>
+    <ul>
+      <li class="p_phone"> <a href="tel:<{$thisCompany.tel}>"> <strong>电话：</strong> <font><{$thisCompany.tel}>&nbsp;</font> <span class="gt"></span> </a> </li>
+     <?php $url = "http://map.wap.soso.com/x/?type=infowindow&amp;hideAdvert=hide&amp;welcomeChange=1&amp;open=1&amp;X=".$thisCompany['longitude']."&amp;Y=".$thisCompany['latitude']."&amp;name=".urlencode($thisCompany['name'])."&amp;address=".urlencode($thisCompany['address'])."&amp;icfa=1311639#wechat_webview_type=1";  ?>   
+      <li class="p_address"> <a  href="<?php echo $url; ?>"> <strong>地址：</strong> <font><{$thisCompany.address}>&nbsp;</font> <span class="gt"></span> </a> </li>
+    </ul>
+  </div>
+  <volist name="branchStores" id="s">
+    <div class="p_mod">
+      <h2 class="p_mod_title"><{$s.name}>&nbsp;</h2>
+      <ul>
+        <li class="p_phone"> <a href="tel:<{$s.tel}>"> <strong>电话：</strong> <font><{$s.tel}>&nbsp;</font> <span class="gt"></span> </a> </li>
+       <?php $url = "http://map.wap.soso.com/x/?type=infowindow&amp;hideAdvert=hide&amp;welcomeChange=1&amp;open=1&amp;X=".$s['longitude']."&amp;Y=".$s['latitude']."&amp;name=".urlencode($s['name'])."&amp;address=".urlencode($s['address'])."&amp;icfa=1311639#wechat_webview_type=1";  ?>   
+        <li class="p_address"> <a href="<?php echo $url; ?>"> <strong>地址：</strong> <font><{$s.address}>&nbsp;</font> <span class="gt"></span> </a> </li>
+    
+      </ul>
+    </div>
+  </volist>
+  <div class="p_mod p_seller_info p_tips ts2"> <a href="<{:U('Product/product',array('token'=>$_GET['token'],'id'=>$_GET['id'],'wecha_id'=>$_GET['wecha_id']))}>"> 查看商品详情 <span class="gt"></span> </a> </div>
+</div>
+<script type="text/javascript">
+window.onload = function(){
+	//价格与抢购按钮浮动
+	var f_obj = document.getElementById('p_buy');
+	var f_y = f_obj.offsetTop;
+	var f_class = f_obj.className;
+	document.onscroll = function(){
+		if(document.body.scrollTop>f_y){
+			f_obj.className += " fixed_t";
+		}else{
+			f_obj.className = f_class;
+		}
+	}
+}
+</script>
+<br>
+</body></html>

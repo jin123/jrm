@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<load href="__PUBLIC__/liuyans/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
+		<title>许愿墙</title>
+		<load href="__PUBLIC__/liuyans/Css/index.css" />
+		<load href="__PUBLIC__/liuyans/Js/jquery-1.7.2.min.js"/>
+		<load href="__PUBLIC__/liuyans/Js/index1.js" />
+	</head>
+	<body style="max-width:640px; margin:auto;">
+	<div id="ma">
+		<div id='top'>
+			<span id='send'></span>
+		</div>
+		<div id='main'>
+		<foreach name="list" item="vo">
+		<if condition="$vo['static'] eq 1">
+			<dl class='paper a<{:rand(1,5)}>'>
+				<dt>
+					<span class='title'>标题:<{$vo.title}></span>
+					<span class='num'>No.<{$vo.id}></span>
+				</dt>
+				<dd class='content'>内容:<{$vo.content}></dd>
+				<dd class='bottom'>
+					<span class='time'><{$vo.addtime|date="Y-m-d H:m:s",###}></span>
+					<a href="" class='close'></a>
+				</dd>
+			</dl>
+			<else/>
+			</if>
+		</foreach>
+		</div>
+
+		<div id='send-form'>
+			<p class='title'><span>许下你的愿望</span><a href="" id='close'></a></p>
+			<form action="<{:U('Car/handle',array('uid'=>$uid,'token'=>$token))}>" name='wish' method="post">
+				<p>
+					<label for="title">标题：</label>
+					<input type="text" name='title' id='title'/>
+				</p>
+				<p>
+					<label for="content">愿望：(您还可以输入&nbsp;<span id='font-num'>50</span>&nbsp;个字)</label>
+					<textarea name="content" id='content'></textarea>
+					<div id='phiz'>
+						<img src="__PUBLIC__/liuyans/Images/phiz/zhuakuang.gif" alt="抓狂" />
+						<img src="__PUBLIC__/liuyans/Images/phiz/baobao.gif" alt="抱抱" />
+						<img src="__PUBLIC__/liuyans/Images/phiz/haixiu.gif" alt="害羞" />
+						<img src="__PUBLIC__/liuyans/Images/phiz/ku.gif" alt="酷" />
+						<img src="__PUBLIC__/liuyans/Images/phiz/xixi.gif" alt="嘻嘻" />
+						<img src="__PUBLIC__/liuyans/Images/phiz/taikaixin.gif" alt="太开心" />
+						<img src="__PUBLIC__/liuyans/Images/phiz/touxiao.gif" alt="偷笑" />
+						<img src="__PUBLIC__/liuyans/Images/phiz/qian.gif" alt="钱" />
+						<img src="__PUBLIC__/liuyans/Images/phiz/huaxin.gif" alt="花心" />
+						<img src="__PUBLIC__/liuyans/Images/phiz/jiyan.gif" alt="挤眼" />
+					</div>
+				</p>
+				<div style="width:150px;margin:0 auto;">
+				<input type="submit" value="提交愿望"/>
+				</div>
+			</form>
+		</div>
+	<!--[if IE 6]>
+		<script type="text/javascript" src="./Js/iepng.js"></script>
+		<script type="text/javascript">
+			DD_belatedPNG.fix('#send,#close,.close','background');
+		</script>
+	<![endif]-->
+	</div>
+	</body>
+</html>

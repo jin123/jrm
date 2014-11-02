@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>订单信息</title><script type="text/javascript">var yyuc_jspath = "/@system/";</script>
+<script type="text/javascript" src="__PUBLIC__/wap/Groupbuy/css/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/Groupbuy/css/js/yyucadapter.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/Groupbuy/jquery.alerts.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/Groupbuy/css/buying.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/Groupbuy/css/jquery.alerts.css">
+<link href="__PUBLIC__/wap/guo/css/wsp.css" rel="stylesheet">
+<style>
+	.fl{
+	background:url("__PUBLIC__/wap/guo/images/wsp/bg_fl.png") center no-repeat;
+	background-size:19px 15px;
+	width: 19px;
+	height: 15px;
+}
+</style>
+<script type="text/javascript">
+	function sub(){
+		var val=document.getElementById("buyCount").value;
+		if(val>1){
+		val=parseInt(val)-1;
+		document.getElementById("buyCount").value=val;
+		document.getElementById("decreaseBtn").className = "No_y";
+		document.getElementById("increaseBtn").className = "No_t";
+		document.getElementById("increaseBtn").style.color='#b8b7b7';
+		}
+		
+	}
+	function add(){
+		var val=document.getElementById("buyCount").value;
+		val=parseInt(val)+1;
+		document.getElementById("buyCount").value=val;
+		document.getElementById("increaseBtn").className = "No_y";
+		document.getElementById("decreaseBtn").className = "No_t";
+		document.getElementById("increaseBtn").style.color='#bc8900';
+	}
+</script>
+
+</head>
+<body>
+<div class="fix_top" id="header">
+  <div class="wrapper">
+    <dl id="navi_main">
+      <dd class="fl"> <a href=""> </a> </dd>
+      <dd> <a href="<{:U('Groupbuy/index',array('token'=>$token,'wecha_id'=>$wecha_id))}>">团购首页</a> </dd>
+      <dd> <a href="<{:U('Groupbuy/orderlist',array('token'=>$token,'wecha_id'=>$wecha_id))}>">会员中心</a> </dd>
+    </dl>
+    
+ </div><div class="filler"></div>
+
+	<form id="form1" class="form" name="form" method="post"   action=""  target="_top" enctype="multipart/form-data">
+	<!--<div id="Fh_hbotno" class="Fh_hbotno"></div>-->
+		<section id="order_add" class="F_cqsmt box-shadow marg20">
+			<h2>订单信息</h2>
+			<ul>
+				<li><strong>名称:</strong><span><{$vo.name}></span></li>
+				<li><strong>单价:</strong><span id="singlePrice" class="F_red">￥<{$vo.jg}></span></li>
+				<li><strong>数量：</strong>
+					<div class="F_inpNum">
+						<a id="decreaseBtn" href="javascript:sub()" class="No_t">-</a>
+							<input id="buyCount" name="buyCount" type="number" value="1" nummax="1" nummin="1" size="4" readonly="readonly">
+						<a id="increaseBtn" href="javascript:add()" class="No_y">+</a>
+					</div>
+					<b id="buyCountTip" class="F_red2"></b>
+				</li>
+				<strong>支付方式:</strong><li>
+				<input type="radio" name="pay" value="1" checked id="py1" /><label for="py1">货到付款</label>
+				<input type="radio" name="pay" value="0" id="py2"/><label for="py2">财付通</label></li>
+			</ul>
+			
+			<h2>用户信息</h2>
+			<ul>
+	     		<li><strong>姓名:</strong><input id="usname" name="usname" type="text" class="adress_inp addr_prop" tag="input" value="<{$lists.truename}>"></li>
+	     		<li><strong>手机:</strong><input id="tel" onblur="check_phone_number(this);" name="tel" type="text"  class="adress_inp addr_prop" tag="input" maxlength="11" value="<{$lists.tel}>"></li>
+	   			<li><strong>地址:</strong><input id="addr" name="addr" type="text" class="adress_inp addr_prop" tag="input" value="<{$lists.address}>"></li>
+			</ul>
+	
+			<div class="marg20"></div>
+			<div class="btn_box">
+				<a href="javascript:history.go(-1);" ><button id="BtnBack" class="fc_btn fc_btn_o" type="button">返回</button></a>
+				<input type="hidden" value="<{$vo.id}>" name="gid" id="gid" />
+				
+				<button id="BtnOrder" class="fc_btn" type="button" onclick="lingqu();">提交订单</button>
+				<!--<button id="BtnOrder" class="fc_btn" onclick="lingqu();">提交订单</button>-->
+			</div>
+			<input value="<{$token}>" id="token" name="token" type="hidden">
+			<input type="hidden" value="<{$wecha_id}>" name="wecha_id" id="wecha_id" />
+			
+		</section>
+	<section id="tipMessage" class="Fh_qdown_apv box-shadow" style="display: none; z-index: 10000; ">
+	   <p class="F_red F_font">请输入正确的姓名，2~8个汉字</p>
+	   <span class="F_grey2">--聚团购--</span>
+	</section>
+	</form>
+<script type="text/javascript">
+function lingqu(){
+	$.ajax({
+	   type: "POST",
+	   url: "<{:U('Groupbuy/contentadd_ajax',array('wecha_id'=>$wecha_id,'token'=>$token,'gid'=>$vo['id']))}>",
+	   data: $("#form1").serialize(),
+	   dataType: "json",
+	   success: function(data){
+	      if(data.error==0){
+		  		jAlert(data.msg,'提示',function(){jump()});
+		  }else{
+		  		jAlert(data.msg);
+		  }
+	   }
+	});
+}
+function jump(){
+	window.location.href="<{:U('Groupbuy/indent',array('wecha_id'=>$wecha_id,'token'=>$token,'gid'=>$vo['id']))}>"
+}
+function check_phone_number(){
+	var tel=$("#tel").val();
+    if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(tel))){ 
+        jAlert("手机号码格式不正确");
+        return false; 
+    }else{
+        return true;
+    }
+}
+
+
+function onBridgeReady(){
+     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady()     
+{  WeixinJSBridge.call('hideToolbar');
+ });
+}
+
+if (typeof WeixinJSBridge == "undefined"){
+    if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+}else{
+    onBridgeReady();
+}
+
+</script>
+
+
+<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+<span class="sp2"><a href="http://www.weixinguanjia.cn/weiweb/3702/" style="color: #5e5e5e;font-size: 12px;"> </a></span>
+</div>
+<div style="width: 0px;height: 0px;overflow: hidden;">
+<script src="http://s22.cnzz.com/z_stat.php?id=1000151448&web_id=1000151448" language="JavaScript"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F43da571de43e9d6228927d0883b8b8b4' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</div>
+
+</body>
+</html>

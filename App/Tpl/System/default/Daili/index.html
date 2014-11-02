@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>代理商管理</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js" type="text/jscript"></script>
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun"> 
+  <a href="<{:U('Index/index')}>">首页</a> 
+  <a href="<{:U('Daili/index')}>" class='b'>代理商管理</a> 
+  <a href="<{:U('Kehu/index')}>">用户管理</a>
+  <a href="<{:U('Account/index')}>">扣除记录</a>
+  <a href="<{:U('Payrecord/index')}>">充值记录</a>
+  </div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('Index/edit')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div class="content1">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">代理商管理</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginadminName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">代理商管理(<{$dlcount}>) <a href="<{:U('Daili/dlset')}>"><span class="button_r_1 fabu">新增</span></a> </div>
+      <div class="new_main_tit">
+        <form method="post" action="">
+          <input size="80" value="" name="searchkey" class="px">
+          <button type="submit" name="appidsubmit" value="true" class="btnGreen vm" ><strong>查询代理</strong></button>
+        </form>
+      </div>
+    <table width="100%" class="new_main_liebiao">
+      <tr>
+        <th>帐号</th>
+        <th>联系人</th>
+        <th>联系电话</th>
+        <th>已开帐号</th>
+        <th>代理级别</th>
+        <th>开户时间</th>
+        <th>操作</th>
+      </tr>
+      <volist name="dllist" id="vo">
+        <tr>
+          <td><{$vo.dluser}></td>
+          <td><{$vo.dlname}></td>
+          <td><{$vo.dltel}></td>
+          <td><a href="<{:U('Kehu/index',array('dlid'=>$vo['id']))}>" style="color:#0000FF;font-weight:bold;"><{$vo.dlnums}></a></td>
+          <td><if condition="$vo.levelid eq 3">金牌代理<else/>普通代理</if></td>
+          <td><{$vo.createtime|date="Y-m-d",###}></td>
+          <td class="norightborder"><a href="<{:U('Daili/dlset',array('dlid'=>$vo['id']))}>">编辑</a> <a href="javascript:drop_confirm('您确定要删除吗?', \'<{:U('Daili/del',array('dlid'=>$vo['id']))}\>');">删除</a> </td>
+        </tr>
+      </volist>
+    </table>
+    <div class="page">
+      <ul>
+        <div class="pagelistbox"><{$page}></div>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

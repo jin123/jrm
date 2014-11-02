@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>医院简介_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/jquery.alerts.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/jquery.alerts.js"></script>
+<script>
+function indexname(){
+	if (document.form.name.value.length == 0) { 
+		jAlert('标题不能为空');
+		document.form.name.focus(); 
+		return false; 
+		} 
+		return true;
+}
+function indexgjz(){
+	if (document.form.gjz.value.length == 0) {
+		jAlert('关键词不能为空');
+		document.form.gjz.focus(); 
+		return false; 
+		} 
+		return true;
+}
+
+</script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"><a href="<{:U('Hospital/hospitallist')}>">医院信息</a></span><span class="wap_span_2">添加医院</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">医院简介<a href="<{:U('Hospital/hospital')}>"><span class="a"></span></a><a href="<{:U('Hospital/hospitallist')}>"><span class="button_r_1 fabu">医院信息</span></a></div>
+    <div class="a"> </div>
+    <form class="form" name="form" method="post" action="<{:U('Hospital/hospital')}>" enctype="multipart/form-data" >
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="26%" class="table_txt_right">医院名称：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="name" reg="^\w+$" tip="不能为空" onblur="indexname();" value="" name="name" style="width:400px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">关键词：</td>
+            <td width="84%"><input onkeydown="onlyNum();" type="input" reg="^\w+$" tip="不能为空" onblur="indexgjz();" class="input login_input_1" id="gjz" value="" name="keyword" style="width:400px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">医院封面图片：</td>
+            <td><input class="input login_input_1" name="thumb" id="thumb" value="" style="width:400px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('thumb',700,420)" class="btnGreen">选择图片</a> <a href="javascript:void(0)" onclick="viewImg('thumb')" class="btnGreen">图片预览</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">医院背景图片：</td>
+            <td><input class="input login_input_1" name="backgroundimage" id="backgroundimage" value="" style="width:400px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('backgroundimage',700,420)" class="btnGreen">选择图片</a> <a href="javascript:void(0)" onclick="viewImg('backgroundimage')" class="btnGreen">图片预览</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">医院电话：</td>
+            <td width="84%"><input type="input" class="input login_input_1" id="tel" value="" name="tel" style="width:400px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">医院简介：</td>
+            <td width="74%"><div style="margin:5px 0 10px;">
+                <textarea name="content" id="editor_id"  style="width:400px;height:100px;" maxlength="100" class="input login_input_1"></textarea>
+              </div></td>
+          </tr>
+          <tr>
+            <td width="26%" class="table_txt_right">医院详细地址：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="addr" reg="^\w+$" tip="不能为空" onblur="addr();" value="" name="address" style="width:400px" ></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">获取经纬度：</td>
+            <td width="84%"><a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">获取经纬度：</td>
+            <td width="84%"><input type="text" id="longitude"  name="jd" size="14" class="input login_input_1" value="" readonly="readonly" />
+              <input type="text"  name="wd" size="14" id="latitude" class="input login_input_1" value="" readonly="readonly"/></td>
+          </tr>
+        <td></td>
+          <td><button class="button_r_1" type="submit" style=" width:130px; margin-top:15px;">提交</button>
+            
+            <!--<button class="button_g_1" type="reset" style=" width:130px; margin-top:15px; margin-left:20px;">重填</button></td>-->
+        </tr>
+          </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+<script language="javascript">
+	function test(){
+		if(document.form.name.value.lenght>30)
+		{
+			jAlert("最多只能输入30个字符！");
+			document.from.name.focus();
+			return false;
+		}
+		return true;
+	}
+	
+	function onlyNum()
+	{
+	if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+	//考虑小键盘上的数字键
+	event.returnvalue=false;
+	}
+</script>
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script> 
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script> 
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script> 
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create("textarea[id='editor_id']");
+});	
+</script> 
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create("textarea[id='editor_id1']");
+});	
+</script>
+</body>
+</html>

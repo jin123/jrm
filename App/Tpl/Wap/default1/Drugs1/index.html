@@ -1,0 +1,94 @@
+<!doctype html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>首页</title>
+<link href="__PUBLIC__/wap/drugs/css/slick.css" rel="stylesheet" type="text/css" />
+<style>
+.contents { margin:auto; width:100%; overflow:hidden;height:170px;}
+.slick-slider { height:auto; margin:auto;}
+.slick-slide .image { height:auto; margin:auto;}
+.slick-slide img {display:block;height:100%; }
+.slick-slide img.slick-loading {border:0px;}
+
+</style>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<link href="__PUBLIC__/wap/drugs/css/style.css" rel="stylesheet" type="text/css">
+<script src="__PUBLIC__/wap/drugs/js/slick.js" type="text/jscript" ></script>
+<script>
+
+function load(obj){
+        var h = $(obj).parents('li').width();
+       $(obj).parents('li').find('img').css('height',h+"px");
+    }
+</script>
+<script>
+$(document).ready(function() {
+$('.multiple-items').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+});
+	});
+</script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="center">
+<div class="h_f">
+	<div class="contents">
+	<div class="slider multiple-items">
+	<volist name="info" id="info">
+		<div class="image">
+			<img width="100%" height="170" src="<{$info.img}>"/>
+		</div>
+	</volist>
+
+    </div>
+</div>
+</div>
+<div class="table">
+	<div class="xiangmu">
+    	<ul>
+		<foreach key="key" name="flag" item="flag">
+			
+        	<li><a 
+			href="<{:U('Drugs/lists',array('Flag'=>2,'sortid'=>$flag['id'],'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}>"><{$flag.name}></a></li>	
+			</foreach>
+            
+        </ul>
+    </div>
+    
+   <div class="search">
+    <form method="post" action="">
+    	<p><input type="text" class="search_1" name='searchkey' value="" /></p>
+       <b> <button type="submit" class="search_2" ></button></b>
+      </form>
+    </div>
+    
+   	  <div class="chanpin">
+   	  <ul>
+   	  <volist name="data['rows']" id="list">
+   	  <a  alt="<{$list.Name}>" href="<{:U('Drugs/xiangqing',array('vid'=>$list['VipId'],'unid'=>$list['UnId'],'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'name'=>$list['Name']))}>">
+        	<li>
+            	<img  onload="load(this);" src="<if condition="$list.Pic eq ''">/Public/wap/drugs/images/coursedisplay.gif<else /><?php  echo  C("img_url").$list['Pic']; ?></if>" >
+            	<span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><{$list.Name}></span>
+                <p><b style="margin-left:25%;">￥<{$list.JiaGe}></b>    </p>
+            </li></a></volist>
+        </ul>
+    </div>
+</div>
+<div class="abc"></div>
+<include file="footer" />
+</div>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="微信">
+
+<!-- Mobile Devices Support @begin -->
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+            <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+
+<title>旗舰之悦，智享驾驭-新BMW 7系高端体验活动</title><script type="text/javascript">var yyuc_jspath = "/@system/";</script><script type="text/javascript" src="__PUBLIC__/car/jquery.js"></script><script type="text/javascript" src="__PUBLIC__/car/yyucadapter.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/car/list.css">
+
+<script type="text/javascript" src="__PUBLIC__/car/3dskin.js"></script>
+<script type="text/javascript" src="__PUBLIC__/car/mu.js"></script>
+<style type="text/css">
+
+</style>
+<script type="text/javascript" src="__PUBLIC__/car/swipe.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('img[rrurl]').click(function(){
+		location.href = $(this).attr('rrurl');
+	});
+	$('table').attr("cellpadding","0").attr("cellspacing","0");
+	$('[fixed="fixed"]').css('position','fixed');
+	resize();
+	$(window).resize(function(){
+		resize();
+	});
+	$('.add_qq_more').each(function(){
+		var tourl = $.trim($(this).attr('toto'));
+		if(tourl ==''){
+			tourl = 'javascript:;'
+		}
+		if(tourl.indexOf(':')==-1){
+			tourl = tourl+'.html';
+		}
+		if(tourl !=''){
+			if(tourl.indexOf('tel')!==0){
+				if(tourl.indexOf('?')>0){
+					tourl = tourl + '&wxid=oz2DgjpppnbTjs1zMIouDYuEGLr0#mp.weixin.qq.com';
+				}else{
+					tourl = tourl + '#mp.weixin.qq.com';
+				}
+				
+			}
+			if($(this).is('a')){
+				$(this).attr('href',tourl);
+			}else if($(this).find('a').size()>0){
+				$(this).find('a').each(function(){
+					if($.trim($(this).attr('href')).indexOf('http')==-1){
+						$(this).attr('href',tourl);
+					}
+				});
+			}else{
+				$(this).wrap('<a href="'+tourl+'"></a>');
+			}			
+		}
+	});
+	if($('.mainpicarea').is('div')){
+		var tplth = $('.mainpicarea').find('td').length;
+		$('#ppoool').append('<li class="on" style="margin-left:5px;"></li>');
+		for(var i=1;i<tplth;i++){
+			$('#ppoool').append('<li style="margin-left:5px;"></li>');
+		}
+		$('.mainpicarea').qswipe({ stime:3600});
+		$('.mainpicarea').on('dragok',function(e,msg){
+			if((msg+'').indexOf('.')>0){
+				msg = 0;
+			}
+			$('#ppoool').find('li').removeClass('on');
+			$('#ppoool').find('li').eq(msg).addClass('on');
+		});
+		
+	}
+	
+
+});
+function resize(){
+	var ww = $(window).width();
+	$('.picshowtop,.mainpicshow').css('width',ww+'px');
+	$('#tpdhtr').children('td').css('width',ww+'px');
+	$('#tpdhtr').children('td').find('img').css('width',ww+'px');
+	$('img').each(function(){
+		var pw = $(this).parent().width();
+		var ppw = $(this).parent().parent().width();
+		if($(this).width()>ppw){
+			$(this).width(ppw);
+		}
+	});
+}
+</script>
+ <script type="text/javascript">
+			
+				
+ 	        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {  
+            "imgUrl": "http://www.weixinguanjia.cn", 
+            /* "timeLineLink": "http://www.weixinguanjia.cn/weiweb/3702",
+            "sendFriendLink": "http://www.weixinguanjia.cn/weiweb/3702",
+            "weiboLink": "http://www.weixinguanjia.cn/weiweb/3702", */
+            "timeLineLink": location.href,
+            "sendFriendLink": location.href,
+            "weiboLink": location.href,
+            "tTitle": "旗舰之悦，智享驾驭-新BMW 7系高端体验活动",
+            "tContent": "",
+            "fTitle": "旗舰之悦，智享驾驭-新BMW 7系高端体验活动",
+            "fContent": "",
+            "wContent": "" 
+        };
+        // 发送给好友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.fContent,
+                "title": window.shareData.fTitle
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+
+        // 分享到微博
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.wContent,
+                "url": window.shareData.weiboLink,
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)
+       
+    </script> 
+<style type="text/css">
+
+.mainpicshow{
+height: 0px;
+overflow: hidden;
+}
+.mainpicarea{
+height: 0px;
+}
+.mainpicarea table,.mainpicarea tr,.mainpicarea td{
+border: none;
+border-image-width:0px;
+}
+.mainpicarea img{
+height: 0px;
+}
+#ppoool{
+    height:20px;
+    position: relative;
+    z-index:10;
+    margin-top:0px;
+    text-align:right;
+    padding-right:15px;
+    background-color:rgba(0,0,0,0.3);
+}
+#ppoool>li{
+    display:inline-block;
+    margin:5px 0;
+    width:8px;
+    height:8px;
+    background-color:#757575;
+    border-radius: 8px;
+}
+#ppoool>li.on{
+    background-color:#ffffff;
+}
+#playbox{
+    display:inline-block;
+    width:35px;
+    height:35px;
+    background:url('data:image/png;base64') no-repeat center center;
+    background-size:100% auto;
+    position:fixed;
+    z-index:100;
+    left:15px;
+    top:20px;
+    z-index:9999999;
+}
+#playbox.on{
+    background-image:url('data:image/png;base64');
+}
+</style>
+  <script type="text/javascript">
+        window.addEventListener("DOMContentLoaded", function(){
+        	playbox.init("playbox");
+        }, false);
+ </script>
+</head>
+<body>
+<div class="mainshowtop">
+<div class="msg_page">        
+    <div class="msg_list">
+        <div class="msg_list_bd"> 
+            <div id="WXAPPMSG13229" class="msg_wrapper add_qq_more" msgid="13229">
+                <div class="msg_inner_wrapper default_box news_box">
+                    <a class="msg_item news" href="javascript:;#mp.weixin.qq.com">
+                        <div class="msg_item_hd"><h4 class="msg_title m_text"></h4></div>
+                        <div class="msg_item_bd">
+                            <div class="msg_cover"><img src="<{$list.pic}>" width="395" height="297";class="m_pic"></div>
+                            <div class="msg_desc m_txt"><p style="margin-top:0px;margin-bottom:0px;white-space:normal;outline:0px;padding:0px;font-size:14px;font-family:Helvetica, Arial, sans-serif;line-height:22px;">
+	<{$list.ms}>
+</p></div>
+                        </div>
+                        <!-- <div class="msg_item_ft">阅读原文<span class="add_on_icon arrow"></span></div> -->
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+ <link rel="stylesheet" type="text/css" href="__PUBLIC__/car/weimob-ui-1-1.css" media="all">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/car/common.css" media="all">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/car/home-0.css" media="all">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/font-awesome.css" media="all">
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <!-- Mobile Devices Support @begin -->
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+        <meta content="no-cache" http-equiv="pragma">
+        <meta content="0" http-equiv="expires">
+        <meta content="telephone=no, address=no" name="format-detection">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <!-- apple devices fullscreen -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <script type="text/javascript" src="__PUBLIC__/car/maivl.js"></script>
+   
+        
+        <!-- 导航菜单 后台设置的快捷菜单 -->
+        <section>
+            <div class="plug-div">
+            
+               <div id="plug-phone" class="plug-phone">
+                    <input id="plug-btn" class="plug-menu" style="background-color: rgb(183, 28, 16); outline: medium none;" type="checkbox">
+                                          	                    <div style="background-color:#B71C10;">
+                           <a href="http://www.weixinguanjia.cn/weiweb/3702/index.html" class="icon-home"></a>
+                        </div>
+	                                                            	                    <div style="background-color:#B71C10;">
+	                        <a href="tel:4006232003" class="icon-phone1"></a>
+	                    </div>
+	                                                            	                    <div style="background-color:#B71C10;">
+	                        <a href="http://api.map.baidu.com/marker?location=35.067734,118.343097&amp;title=%E4%B8%B4%E6%B2%82%E4%B8%87%E9%98%85%E5%9F%8E&amp;name=%E4%B8%B4%E6%B2%82%E4%B8%87%E9%98%85%E5%9F%8E&amp;content=%E4%B8%B4%E6%B2%82%E4%B8%87%E9%98%85%E5%9F%8E&amp;output=html&amp;src=weiba%7Cweiweb" class="icon-map-marker"></a>
+                        </div>
+	                                                            	                    <div style="background-color:#B71C10;">
+                           <a href="http://www.weixinguanjia.cn/wx/hyk-3215.html?&amp;wid=3702" class="icon-credit-card"></a>
+                        </div>
+	                                                      </div>
+            </div>
+        </section>
+        <script>
+            window.addEventListener("DOMContentLoaded",
+            function() {
+                btn = document.getElementById("plug-btn");
+                btn.onclick = function() {
+                    var divs = document.getElementById("plug-phone").querySelectorAll("div");
+                    var className = className = this.checked ? "on": "";
+                    for (i = 0; i < divs.length; i++) {
+                        divs[i].className = className;
+                    }
+                    document.getElementById("plug-wrap").style.display = "on" == className ? "block": "none";
+                }
+            },
+            false);
+        </script>
+    <div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+<span class="sp2"><a href="" style="color: #5e5e5e;font-size: 12px;"> 技术支持：阿里微微</a></span>
+</div>
+<div style="width: 0px;height: 0px;overflow: hidden;">
+<script src="__PUBLIC__/car/z_stat.php" language="JavaScript"></script><script src="__PUBLIC__/car/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1000151448" target="_blank" title="站长统计">站长统计</a>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F43da571de43e9d6228927d0883b8b8b4' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="__PUBLIC__/car/h.js" type="text/javascript"></script>
+
+</div>
+<script>
+/**
+$(function(){
+	if($('body').height()<$(window).height()){
+		$('body').height($(window).height());
+		$('#wxgjfooter').css('position','fixed').css('bottom','0px');
+	}
+});
+**/
+</script>
+
+
+<script type="text/javascript">
+</script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/mu.css" media="all">
+
+</body></html>

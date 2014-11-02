@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="description" content="微信">
+
+ <!-- Mobile Devices Support @begin -->
+ <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+ <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+ <meta content="no-cache" http-equiv="pragma">
+ <meta content="0" http-equiv="expires">
+ <meta content="telephone=no, address=no" name="format-detection">
+ <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+ <meta name="apple-mobile-web-app-capable" content="yes">
+ <!-- apple devices fullscreen -->
+ <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+ <!-- Mobile Devices Support @end -->
+
+ <title>微汽车首页</title>
+ <script type="text/javascript">var yyuc_jspath = "/@system/";</script>
+ <script type="text/javascript" src="__PUBLIC__/car/jquery.js"></script>
+ <!--<script type="text/javascript" src="__PUBLIC__/car/yyucadapter.js"></script>-->
+ <link type="text/css" rel="stylesheet" href="__PUBLIC__/car/list.css">
+ <script type="text/javascript" src="__PUBLIC__/car/3dskin.js"></script>
+ <script type="text/javascript">
+			
+				
+ 	        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {  
+            "imgUrl": "http://www.weixinguanjia.cn", 
+            /* "timeLineLink": "http://www.weixinguanjia.cn/weiweb/3702",
+            "sendFriendLink": "http://www.weixinguanjia.cn/weiweb/3702",
+            "weiboLink": "http://www.weixinguanjia.cn/weiweb/3702", */
+            "timeLineLink": location.href,
+            "sendFriendLink": location.href,
+            "weiboLink": location.href,
+            "tTitle": "微汽车首页",
+            "tContent": "",
+            "fTitle": "微汽车首页",
+            "fContent": "",
+            "wContent": "" 
+        };
+        // 发送给好友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.fContent,
+                "title": window.shareData.fTitle
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+
+        // 分享到微博
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.wContent,
+                "url": window.shareData.weiboLink,
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)
+       
+    </script>
+
+ <!---->
+
+ <script type="text/javascript">
+$(function(){
+     
+    // 图片左右滚动
+    var size = $('.slidebtn-01>ul>li').length;
+    var frist = 0;
+    var datetime;
+    $('.slidebtn-01 li').mouseover(function(){
+        frist = $('.slidebtn-01 li').index(this);
+        showpic(frist);
+    }).eq(0).mouseover();
+     
+    $('.slidebox-01').hover(function(){
+        clearInterval(datetime);
+    },function(){
+        datetime = setInterval(function(){
+            showpic(frist)
+            frist++;
+            if(frist==size){
+                frist=0;
+            }
+        },3000);
+    }).trigger('mouseleave');
+ 
+    function showpic(frist){
+        var imgheight = $('.slidebox-01').width();
+        $('.slidepic-01').stop(true,false).animate({left:-imgheight*frist},600)
+        $('.slidebtn-01 li').removeClass('current').eq(frist).addClass('current');
+    };
+     
+});
+</script>
+
+ <!---->
+ <style type="text/css">
+.mainpicshow {
+	height: 190px;
+	overflow: hidden;
+}
+.mainpicarea {
+	height: 190px;
+}
+.mainpicarea table, .mainpicarea tr, .mainpicarea td {
+	border: none;
+	border-image-width: 0px;
+}
+.mainpicarea img {
+	height: 190px;
+}
+#ppoool {
+	height: 20px;
+	position: relative;
+	z-index: 10;
+	margin-top: 0px;
+	text-align: right;
+	padding-right: 15px;
+	background-color: rgba(0,0,0,0.3);
+}
+#ppoool>li {
+	display: inline-block;
+	margin: 5px 0;
+	width: 8px;
+	height: 8px;
+	background-color: #757575;
+	border-radius: 8px;
+}
+#ppoool>li.on {
+	background-color: #ffffff;
+}
+#playbox {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background: url('data:image/png') no-repeat center center;
+	background-size: 100% auto;
+	position: fixed;
+	z-index: 100;
+	left: 15px;
+	top: 20px;
+	z-index: 9999999;
+}
+#playbox.on {
+	background-image: url('data:image/png');
+}
+</style>
+ <script type="text/javascript">
+        window.addEventListener("DOMContentLoaded", function(){
+        //	playbox.init("playbox");
+        }, false);
+ </script>
+ </head>
+ <body>
+
+<!---->
+<style type="text/css">
+ 
+/* slidepic-01 */
+.slidebox-01{width:380px;height:190px;overflow:hidden;position:relative;border:solid 1px #ddd;margin:0px auto;}
+.slidepic-01{position:absolute;width:9999em;}/* 必要元素 */
+.slidepic-01 li{height:190px;overflow:hidden;float:left;}
+.slidebtn-01{position:absolute;bottom:10px;right:10px;float:right;}
+.slidebtn-01 li{background:#fff;border:1px solid #D00000;cursor:pointer;float:left;font-family:arial;height:18px;line-height:18px;width:18px;margin:4px;text-align:center;color:#D00000;}
+.slidebtn-01 li.current{background:#FF0000;border:1px solid #D00000;height:24px;line-height:24px;width:24px;margin:0 2px;color:#fff;font-weight:800;}
+
+</style>
+<div class="slidebox-01">
+   <ul class="slidepic-01" style="left: 0px;">
+    <li><a href="#"><img width="620" height="340" alt="" src="<{$vo['main_1']}>"></a></li>
+    <li><a href="#"><img width="620" height="340" alt="" src="<{$vo['main_2']}>"></a></li>
+    <li><a href="#"><img width="620" height="340" alt="" src="<{$vo['main_3']}>"></a></li>
+  </ul>
+   <div class="slidebtn-01">
+    <ul>
+       <li class="current">1</li>
+       <li class="">2</li>
+       <li class="">3</li>
+     </ul>
+  </div>
+ </div>
+<div class="mainshowtop">
+   <div class="car_content">
+    <ul class="nav_links">
+       <li class="add_qq_more" > <a class="m_text" href="<{:U('Car/jianjie',array('token'=>$token,'wecha_id'=>$wecha_id,'uid'=>$id))}>">关于我们</a></li>
+       <li class="add_qq_more"> <a class="m_text" href="<{:U('Photo/plist',array('id'=>4,'token'=>$token,'wecha_id'=>$wecha_id,'uid'=>$id))}>">名车欣赏</a> </li>
+       <li class="add_qq_more"><a href="<{:U('Panorama/item',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id,'uid'=>$id))}>" class="m_text">360度全景看车</a></li>
+       <li class="add_qq_more"><a href="<{:U('Car/gongju',array('token'=>$token,'wecha_id'=>$wecha_id,uid=>$id))}>" class="m_text">实用小工具</a></li>
+     </ul>
+    <ul class="ofh ul_list">
+       <li class="car_list add_qq_more"> <a href="<{:U('Car/chexing',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id,'uid'=>$id))}>"> <img src="<{$vo['chexi']}>" class="m_pic">
+         <label class="m_text">车型浏览</label>
+         </a> </li>
+       <li class="car_list add_qq_more" > <a href="<{:U('Car/shijia1',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}>"> <img src="<{$vo['yuyue']}>" class="m_pic">
+         <label class="m_text">预约试驾</label>
+         </a> </li>
+       <li class="car_list add_qq_more"> <a href="<{:U('Car/zuixin',array('token'=>$token,'wecha_id'=>$wecha_id,'uid'=>$id))}>"> <img src="<{$vo['zixun']}>" class="m_pic">
+         <label class="m_text">最新资讯</label>
+         </a> </li>
+       <li class="car_list add_qq_more"> <a href="<{:U('Car/chezhu',array('token'=>$token,'issue'=>1,'wecha_id'=>$wecha_id,'uid'=>$id))}>"> <img src="<{$vo['chezhu']}>" class="m_pic">
+         <label class="m_text">车主关怀</label>
+         </a> </li>
+       <li class="car_list add_qq_more"> <a href="<{:U('Car/xiaoshou',array('token'=>$token,'wecha_id'=>$wecha_id,'uid'=>$id))}>"> <img src="<{$vo['xiaoshou']}>" class="m_pic">
+         <label class="m_text">联系销售</label>
+         </a> </li>
+       <li class="car_list add_qq_more"> <a href="<{:U('Car/liuyan',array('token'=>$token,'wecha_id'=>$wecha_id,'uid'=>$id))}>"> <img src="<{$vo['yijian']}>" class="m_pic">
+         <label class="m_text">意见反馈</label>
+         </a> </li>
+     </ul>
+    <!--    <div class="car-b add_qq_more"><a href="javascript:;#mp.weixin.qq.com"><img src="__PUBLIC__/car/images/car-b.jpg" class="m_pic"></a></div>--> 
+  </div>
+ </div>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/weimob-ui-1-1.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/home-0.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/font-awesome.css" media="all">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- Mobile Devices Support @end --> 
+<script type="text/javascript" src="__PUBLIC__/car/imgages/maivl.js"></script> 
+
+<!-- 导航菜单 后台设置的快捷菜单 -->
+<section>
+   <div class="plug-div">
+    <div id="plug-phone" class="plug-phone">
+       <input id="plug-btn" class="plug-menu" style="background-color: rgb(183, 28, 16); outline: medium none;" type="checkbox">
+       <div style="background-color:#B71C10;"> <a href="http://www.weixinguanjia.cn/weiweb/3702/index.html" class="icon-home"></a> </div>
+       <div style="background-color:#B71C10;"> <a href="tel:4006232003" class="icon-phone1"></a> </div>
+       <div style="background-color:#B71C10;"> <a href=" class="icon-map-marker"></a> </div>
+       <div style="background-color:#B71C10;"> <a href="" class="icon-credit-card"></a> </div>
+     </div>
+  </div>
+ </section>
+<script>
+            window.addEventListener("DOMContentLoaded",
+            function() {
+                btn = document.getElementById("plug-btn");
+                btn.onclick = function() {
+                    var divs = document.getElementById("plug-phone").querySelectorAll("div");
+                    var className = className = this.checked ? "on": "";
+                    for (i = 0; i < divs.length; i++) {
+                        divs[i].className = className;
+                    }
+                    document.getElementById("plug-wrap").style.display = "on" == className ? "block": "none";
+                }
+            },
+            false);
+        </script>
+<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;"> <span class="sp2"><a href="" style="color: #5e5e5e;font-size: 12px;"> 技术支持：阿里微微</a></span> </div>
+<div style="width: 0px;height: 0px;overflow: hidden;"> 
+   <script src="__PUBLIC__/car/images/z_stat.php" language="JavaScript"></script> 
+   <script src="__PUBLIC__/car/images/core.php" charset="utf-8" type="text/javascript"></script> 
+   <a href= target="_blank" title="站长统计">站长统计</a> 
+   <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="__PUBLIC__/car/h.js" type="text/javascript"></script> 
+ </div>
+<script>
+
+$(function(){
+	if($('body').height()<$(window).height()){
+		$('body').height($(window).height());
+		$('#wxgjfooter').css('position','fixed').css('bottom','0px');
+	}
+});
+
+</script> 
+<script type="text/javascript">
+</script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/images/mu.css" media="all">
+</body>
+</html>

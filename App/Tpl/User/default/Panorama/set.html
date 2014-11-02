@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>360°全景设置_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">360°全景设置</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">360°全景设置 <a href="<{:U('Panorama/index')}>"><span class="button_r_1 fabu" style="margin-bottom:10px;">返回</span></a></div>
+    <form class="form" method="post" action="" enctype="multipart/form-data">
+      <if condition="$isUpdate eq 1"><input type="hidden" name="id" value="<{$set.id}>" /></if>
+      <input type="hidden" name="discount" id="discount" value="<{$set.discount}>" />
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="10%" class="table_txt_right"><span class="red">*</span>名称：</td>
+            <td width="90%"><input type="input" class="input login_input_1" id="name" name="name" value="<{$set.name}>" style="width:560px;">
+            </td>
+          </tr>
+          <tr>
+            <td width="10%" class="table_txt_right">关键词：</td>
+            <td width="90%"><input type="input" class="input login_input_1" id="keyword" value="<{$set.keyword}>" name="keyword" style="width:560px;"></td>
+          </tr>
+          <tr>
+            <td width="10%" class="table_txt_right">顺序数字：</td>
+            <td width="90%"><input type="input" class="input login_input_1" id="taxis" value="<{$set.taxis}>" name="taxis" style="width:560px;">
+              <br />
+              <strong class="input_ts_y">由小到大排列</strong></td>
+          </tr>
+          <tr style="display:none">
+            <td width="10%" class="table_txt_right">背景音乐：</td>
+            <td width="90%"><input type="input" class="input login_input_1" id="music" value="<{$set.music}>" name="music" style="width:560px;"></td>
+          </tr>
+          <tr>
+            <td colspan="2"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="quanjing">
+                <tbody>
+                  <tr>
+                    <td align="center">前</td>
+                    <td align="center">右</td>
+                    <td align="center">后</td>
+                    <td align="center">左</td>
+                    <td align="center">顶部</td>
+                    <td align="center">底部</td>
+                  </tr>
+                  <tr>
+                    <td align="center"><img src="<{$set.frontpic}>" id="frontpic_src" style="width:145px;"></td>
+                    <td align="center"><img src="<{$set.rightpic}>" id="rightpic_src" style="width:145px;"></td>
+                    <td align="center"><img src="<{$set.backpic}>" id="backpic_src" style="width:145px;"></td>
+                    <td align="center"><img src="<{$set.leftpic}>" id="leftpic_src" style="width:145px;"></td>
+                    <td align="center"><img src="<{$set.toppic}>" id="toppic_src" style="width:145px;"></td>
+                    <td align="center"><img src="<{$set.bottompic}>" id="bottompic_src" style="width:145px;"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"><input type="input" class="px" id="frontpic" value="<{$set.frontpic}>" name="frontpic" style="width:135px;"></td>
+                    <td align="center"><input type="input" class="px" id="rightpic" value="<{$set.rightpic}>" name="rightpic" style="width:135px;"></td>
+                    <td align="center"><input type="input" class="px" id="backpic" value="<{$set.backpic}>" name="backpic" style="width:135px;"></td>
+                    <td align="center"><input type="input" class="px" id="leftpic" value="<{$set.leftpic}>" name="leftpic" style="width:135px;"></td>
+                    <td align="center"><input type="input" class="px" id="toppic" value="<{$set.toppic}>" name="toppic" style="width:135px;"></td>
+                    <td align="center"><input type="input" class="px" id="bottompic" value="<{$set.bottompic}>" name="bottompic" style="width:135px;"></td>
+                  </tr>
+                  <tr>
+                    <td align="center"><a onclick="upyunPicUpload('frontpic',700,420)" class="a_upload">上传</a> <a href="#" onclick="viewImg('frontpic')">预览</a></td>
+                    <td align="center"><a onclick="upyunPicUpload('rightpic',700,420)" class="a_upload">上传</a> <a href="#" onclick="viewImg('rightpic')">预览</a></td>
+                    <td align="center"><a onclick="upyunPicUpload('backpic',700,420)" class="a_upload">上传</a> <a href="#" onclick="viewImg('backpic')">预览</a></td>
+                    <td align="center"><a onclick="upyunPicUpload('leftpic',700,420)" class="a_upload">上传</a> <a href="#" onclick="viewImg('leftpic')">预览</a></td>
+                    <td align="center"><a onclick="upyunPicUpload('toppic',700,420)" class="a_upload">上传</a> <a href="#" onclick="viewImg('toppic')">预览</a></td>
+                    <td align="center"><a onclick="upyunPicUpload('bottompic',700,420)" class="a_upload">上传</a> <a href="#" onclick="viewImg('bottompic')">预览</a></td>
+                  </tr>
+                </tbody>
+            </table></td>
+          </tr>
+          <tr>
+            <td width="10%" class="table_txt_right">描述信息：</td>
+            <td width="90%"><textarea name="intro" class="input login_input_1" style="width:580px;height:150px;" maxlength="100"><{$set.intro}></textarea></td>
+          </tr>
+          <tr>
+            <td width="10%" class="table_txt_right">&nbsp;</td>
+            <td width="90%"><button type="submit" name="button" class="btnGreen">保存</button>
+                <a href="<{:U('Panorama/index')}>" class="btnGray vm">取消</a></td>
+          </tr>
+          <tr></tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

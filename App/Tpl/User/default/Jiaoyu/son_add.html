@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>教育机构_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="description"]');
+
+});					
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">教育机构</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">添加校区<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form" method="post" action=""  >
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>校区名称：</th>
+              <td><input type="text" id="title" name="title" value="<{$son['title']}>" class="input login_input_1" style="width:400px;">
+                <strong class="input_ts_y"><span class="maroon">*</span><span class="help-inline">尽量简单，不要超过20字</span></strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">显示顺序：</th>
+              <td><input type="text" id="sort" name="sort" value="<{$son['sort']|default=1}>" class="input login_input_1" style="width:400px;">
+                <strong class="input_ts_y"><span class="maroon">*</span><span class="help-inline">数值越大越靠前</span></strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">校区介绍：</th>
+              <td><textarea id="description" name="description" style="width:680px;height:150px" data-rule-maxlength="150" placeholder="可不填"><{$son['description']}></textarea></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">&nbsp;</th>
+              <td><if condition="$son['id'] neq ''">
+                  <input type="hidden" name="id" value="<{$son['id']}>" />
+                </if>
+                <input type="hidden" name="pid" value="<{$pid}>">
+                <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+                <button type="button" class="btnGray vm">取消</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

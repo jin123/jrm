@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加校区</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="editor_id"]');
+});					
+</script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/index')}>">首页</a><span class="wap_span_2"><a href="<{:U('Education/index')}>">教育机构</a></span><span class="wap_span_2">修改校区</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10"> 修改校区<span class="button_r_1 fabu"><a href="<{:U('Education/campus',array('id'=>$jid))}>">返回</a></span></div>
+    <form class="form" method="post" action="" enctype="multipart/form-data">
+    <input type="hidden" name="jid" value="<{$jid}>" />
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>校区名称：</td>
+            <td width="84%"><input type="text" name="name" value="<{$list['name']}>" class="input login_input_1" style="width:560px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>显示顺序：</td>
+            <td width="84%"><input type="text" name="sort" value="<{$list['sort']}>" class="input login_input_1" style="width:560px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>校区描述：</td>
+            <td width="84%"><textarea name="jianjie" id="editor_id" class="input login_input_1" style="width:680px;height:360px"><{$list['jianjie']}></textarea></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">&nbsp;</td>
+            <td width="84%"><input type="submit" class="btnGreen" value="保存">
+              <input type="reset" class="btnGray" value="取消"/>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

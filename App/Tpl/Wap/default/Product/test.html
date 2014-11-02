@@ -1,0 +1,48 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+ <title></title>
+ <style type="text/css">
+* {margin:0;padding:0;} 
+html, body {height: 100%;}
+#wrap {min-height: 100%;}
+#main {overflow:auto;
+    padding-bottom: 60px;} 
+#bottomNav {position: relative;
+    margin-top: -60px; 
+    height: 60px;
+    clear:both;
+    background:#369} 
+ 
+
+body:before {
+content:"";
+height:100%;
+float:left;
+width:0;
+margin-top:-32767px;
+}
+</style>
+</head>
+<body>
+ <div id="wrap">
+    <div id="main">
+    <form class="f_index_search clearfix" action="" method="post" id="search_form">
+  <input type="text" id="search_name" name="search_name" class="search_box" placeholder="请输入搜索关键字" />
+  <input type="submit" class="search_button" value="搜 索" />
+</form>
+    </div>
+</div>
+ 
+<header id="bottomNav" class="ts1"> 
+<a class="u_back fl" href="javascript:history.go(-1)"></a>
+   <ul class="topbar fr">
+    <li> <a class="icon_user" href="<{:U('Product/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'shop'=>2))}>"> <i></i> 我的 </a> </li>
+    <li> <a class="icon_shopping" href="<{:U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <i></i> 购物车 </a> </li>
+    <li> <a class="icon_class" href="<{:U('Product/products',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <i></i> 分类 </a> </li>
+    <li> <a class="icon_index" href="<{:U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <i></i> 主页 </a> </li>
+  </ul>
+</header>
+</body>
+</html>

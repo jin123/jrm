@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图文自定义回复_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="editor_id"]');
+});					
+</script>
+</head>
+<body>
+<include file="meun"/>
+<div class="spliter"></div>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">图文自定义回复</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">图文自定义回复<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form name="addcontent" id="addcontent" action="<{:U('Tu/insert')}>" method="post" enctype="multipart/form-data">
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="16%" class="table_txt_right"><font color="red">*</font>标题：</td>
+              <td width="84%"><input type="text" name="title" id="title" style="width:580px" class="input login_input_1" value=""></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">文章所属类别：</td>
+              <td width="84%"><select name="classid" id="classid" class="selectoption" style="width:212px">
+                  <option value="0,无分类">不选择分类</option>
+                  <volist name="info" id="vo">
+                    <option value="<{$vo.id}>,<{$vo.name}>"><{$vo.name}></option>
+                  </volist>
+                </select>
+                <a href="<{:U('Classify/add')}>">添加分类</a></td>
+            </tr>
+            <tr style="display:none;">
+              <td width="16%" class="table_txt_right">关键词：</td>
+              <td width="84%"><input type="text" name="keyword" id="keyword" style="width:200px" class="input login_input_1" value=""></td>
+            </tr>
+            <tr style="display:none;">
+              <td width="16%" class="table_txt_right">关键词类型：</td>
+              <td width="84%"><label for="radio1">
+                  <input id="radio1" class="np" type="radio" name="type" value="2" checked="checked">
+                  完全匹配  用户输入的和此关键词一样才会触发!</label>
+                <br />
+                <label for="radio2">
+                  <input class="np" id="radio2" type="radio" name="type" value="1">
+                  包含匹配 (只要用户输入的文字包含本关键词就触发!v2用户才生效)</label></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">简介：</td>
+              <td width="84%"><textarea name="text" id="Hfcontent" style="width:580px;height:100px;" maxlength="100"></textarea></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">封面图片地址：</td>
+              <td><input class="input login_input_1" name="pic" id="pic" value="" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('pic',700,420)" class="btnGreen">选择图片</a></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">详细页是否显示封面：</th>
+              <td>是
+                <input class="np" type="radio" name="showpic" value="1">
+                &nbsp;&nbsp; 否
+                <input class="np" type="radio" name="showpic" value="0" checked="checked"></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">图文详细页内容：</td>
+              <td width="84%"><textarea name="info" id="editor_id"  rows="5" style="width:680px;height:360px"   ></textarea></td>
+            </tr>
+            <tr style="height:60px;">
+              <td width="16%" class="table_txt_right">图文外链网址：</td>
+              <td><input type="input" class="input login_input_1" id="url" value="" name="url" style="width:670px;">
+                <strong class="input_ts_y">（如需跳转到其他网址，请在这里填写)</strong></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

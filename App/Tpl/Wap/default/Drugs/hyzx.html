@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>会员中心</title>
+<link href="__PUBLIC__/wap/drugs/css/style.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/wap/drugs/css/jquery.alerts.css" rel="stylesheet" type="text/css">
+
+<style>
+.top {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #d9d9d9;
+    color: #666;
+    height:35px;
+    line-height:35px;
+    margin: 15px auto 15px;
+    text-align: left;
+    width:90%;
+}
+
+ </style>
+</head>
+
+<body>
+<div class="box">
+	<div class="hyzx">
+    	<div class="hy_top">
+        	<p><img src="__PUBLIC__/wap/drugs/images/hyt.gif" alt="" ></p>
+            <ul>
+            	<li>
+                <span><?php if($userdata['headimgurl']){ ?><img src="<?php echo $userdata['headimgurl'] ?>"><?php } ?></span>
+                    <i><?php if($userdata['wechaname']){ echo $userdata['wechaname'];} ?></i>
+                </li>
+            </ul>
+        </div>
+        <div class="hy_center">
+        	<div class="hy_js">
+            <div id="Tab1">
+<div class="Menubox">
+<ul>
+<li id="one1" onMouseOver="setTab('one',1,2)" >个人资料</li>
+<li id="one2" onMouseOver="setTab('one',2,2)"  class="hover" >我的订单</li>
+</ul>
+</div>
+<div class="Contentbox">
+<div id="con_one_1" style="display:none">
+	<div class="hy_cen">
+	<form name="form1" id="form1" method="post">
+    	<div class="hy_cen_a">
+        	<ol>
+            	<li>个人信息</li>
+                <p><img style="margin-top:5px;" src="/Public/wap/drugs/images/update.png"><span class="add1" style='color:#333'>保存</span><!-- <input class="add1" id="xg" type="button" value="修改信息" id="xg"> --></p>
+            </ol>
+            <ul>
+            	 <li>
+                <i>姓名：</i>
+                <p><input value="<?php echo $userinfo['Name']; ?>" placeholder="请输入您的姓名" name="Name" id="Name" type="text" class='top' onblur="check_tel_number(this);" /></p></li>
+                
+                <li>
+                <i>手机：</i>
+                <p><input value="<?php echo $userinfo['Tel']; ?>" name="tel" id="Tel" type="text" class='top' onblur="check_tel_number(this);" /></p></li>
+                
+				<li>  
+                <i>邮箱：</i>
+                
+               <p><input id="Email" value="<?php echo $userinfo['Email']; ?>" placeholder="请输入您的邮箱" type="text"  name="email" class='top' onblur="check_email_number(this);" /></p></li>
+				<li>
+                <i>地址：</i>
+                <p><input value="<?php echo $userinfo['Address']; ?>" name="Addres" id="Addres" type="text" class='top' onblur="check_tel_number(this);" /></p></li>
+            </ul>
+        </div>
+        </form>
+
+    </div>
+</div>
+<div id="con_one_2">
+<div id="Tab2">
+<div class="Menubox1">
+ <ul>
+<li id="two1" onMouseOver="setTab('two',1,3)"  class="hover">全部</li>
+<!-- <li id="two2" onMouseOver="setTab('two',2,3)" >待付款</li> -->
+<li id="two2" onMouseOver="setTab('two',2,3)" >未发货</li>
+<li id="two3" onMouseOver="setTab('two',3,3)" >已发货</li>
+</ul>
+</div>
+<div class="Contentbox1">
+<div id="con_two_1" >
+	<div class="didang">
+        <foreach key="key" name="data['rows']" item="vo">
+        <ul <?php if($key!=0){ ?> style="border-top:1px solid #CCC;" <?php } ?> >
+        	<li>
+            	<h4><img src="<if condition="$vo.ImagePath eq ''">/Public/wap/drugs/images/coursedisplay.gif<else /><?php  echo  C("img_url").$vo['ImagePath']; ?></if>"></h4>
+            	<p><a href="<{:U('Drugs/xiangqing',array('vid'=>$vipid,'unid'=>$vo['pId'],'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'name'=>$vo['Name']))}>"><?php echo $vo['Name']; ?></a>
+<!--60粒2盒--></p>
+            </li>
+            <span>
+            	<b>￥<?php echo $vo['Money']; ?> X <?php echo $vo['Sum']; ?></b>
+                
+                  <i><?php echo $vo['Creatime']; ?></i>
+            </span>
+        </ul>
+        </foreach>
+        <ol>
+        <li>	共<a href=""><?php echo $data['records']; ?></a>件商品 实付：<b>￥<?php echo $count; ?></b></li>
+        </ol>
+<!--         <dl>
+        	<dd><input type="button" id="fk" value="查看物流"></dd>
+            <dd><input type="button" id="ck" value="立即付款"></dd>
+        </dl> -->
+    </div>
+</div>
+<!-- <div id="con_two_2" style="display:none">
+<div class="hb">
+暂无相关商品信息
+</div>
+</div> -->
+<div id="con_two_2" style="display:none">
+<div class="hb">
+<div class="didang">
+ <foreach key="key" name="data['rows']" item="vo">
+ <?php if($vo['status']==0){ ?>
+        <ul <?php if($key!=0){ ?> style="border-top:1px solid #CCC;" <?php } ?> >
+        	<li>
+            	<h4><img src="<if condition="$vo.ImagePath eq ''">/Public/wap/drugs/images/coursedisplay.gif<else /><?php  echo  C("img_url").$vo['ImagePath']; ?></if>"></h4>
+            	<p><a href="<{:U('Drugs/xiangqing',array('vid'=>$vipid,'unid'=>$vo['pId'],'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'name'=>$vo['Name']))}>"><?php echo $vo['Name']; ?></a>
+<!--60粒2盒--></p>
+            </li>
+             <span>
+            	<b>￥<?php echo $vo['Money']; ?> X <?php echo $vo['Sum']; ?></b>
+                
+                  <i><?php echo $vo['Creatime']; ?></i>
+            </span>
+        </ul>
+		<?php } ?>
+        </foreach>
+</div>		
+</div>
+</div>
+<div id="con_two_3" style="display:none">
+<div class="hb">
+<div class="didang">
+ <foreach key="key" name="data['rows']" item="vo">
+ <?php if($vo['status']==1){ ?>
+        <ul <?php if($key!=0){ ?> style="border-top:1px solid #CCC;" <?php } ?> >
+        	<li>
+            	<h4><img src="<if condition="$vo.ImagePath eq ''">/Public/wap/drugs/images/coursedisplay.gif<else /><?php  echo  C("img_url").$vo['ImagePath']; ?></if>"></h4>
+            	<p><a href="<{:U('Drugs/xiangqing',array('vid'=>$vipid,'unid'=>$vo['pId'],'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'name'=>$vo['Name']))}>"><?php echo $vo['Name']; ?></a>
+<!--60粒2盒--></p>
+            </li>
+             <span>
+            	<b>￥<?php echo $vo['Money']; ?> X <?php echo $vo['Sum']; ?></b>
+                
+                  <i><?php echo $vo['Creatime']; ?></i>
+            </span>
+        </ul>
+		<?php } ?>
+        </foreach>
+		</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+            </div>
+        </div>
+    </div>
+
+<div class="abc"></div>
+<include file="footer" />
+</div>
+</body>
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.alerts.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/tab.js"></script>
+ <script>
+ function check_tel_number(){
+		if (document.form1.tel.value=="") {
+			jAlert('请填写手机号码');
+			document.form1.tel.focus();
+			return false; 
+			} 
+			return true;
+}
+ function check_email_number(){
+		if (document.form1.email.value=="") {
+			jAlert('请填写邮箱');
+			document.form1.email.focus();
+			return false; 
+			} 
+			return true;
+}
+$(".add1").click(function(){
+	
+	var url ="/index.php?s=Wap/Public/edit_user_info/wecha_id/<?php echo $_GET['wecha_id']; ?>";
+	var flag = "Tel="+$("#Tel").val()+"&Email="+$("#Email").val()+"&Addres="+$("#Addres").val()+"&Name="+$("#Name").val();
+	$.post(url,flag,function(res){
+		if(res=="Success"){
+			
+			
+			jAlert('保存成功');
+		}
+		else{
+			
+			jAlert('保存失败');
+			
+		
+		
+		}
+		
+		
+		
+		
+		
+	});
+	
+	
+});
+ </script>
+</html>

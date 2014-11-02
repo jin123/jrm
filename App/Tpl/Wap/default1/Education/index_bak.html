@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>微教育</title>
+<link rel="stylesheet" type="text/css" href="{$CSS}mwm/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{$CSS}mwm/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{$CSS}mwm/home-38.css" media="all" />
+<script type="text/javascript" src="{$JS}mwm/maivl.js"></script>
+<script type="text/javascript" src="{$JS}mwm/swipe.js"></script>
+<script type="text/javascript" src="{$JS}mwm/zepto.js"></script>
+<!-- Mobile Devices Support @begin -->
+    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<!-- Mobile Devices Support @end -->
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <link rel="stylesheet" type="text/css" href="{$CSS}mwm/font-awesome.css" media="all" />
+
+    
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="body">
+<!-- 幻灯片管理 -->
+	<div style="-webkit-transform:translate3d(0,0,0);">
+		<div id="banner_box" class="box_swipe">
+			<ul>
+									<li>
+												<a onclick="return false;">
+																<img src="http://img.weimob.com/static/48/ac/3f/image/20131024/20131024175408_44271.jpg" alt="1" style="width:100%;" />
+								</a>
+					</li>
+									<li>
+												<a onclick="return false;">
+																<img src="http://www.weimob.com/templates/kindeditor/attached/48/ac/3f/image/20131012/20131012182245_80689.jpg" alt="2" style="width:100%;" />
+								</a>
+					</li>
+									<li>
+												<a onclick="return false;">
+																<img src="http://www.weimob.com/templates/kindeditor/attached/48/ac/3f/image/20131012/20131012182256_94374.jpg" alt="3" style="width:100%;" />
+								</a>
+					</li>
+									<li>
+												<a onclick="return false;">
+																<img src="http://www.weimob.com/templates/kindeditor/attached/48/ac/3f/image/20131012/20131012182308_15337.jpg" alt="4" style="width:100%;" />
+								</a>
+					</li>
+									<li>
+												<a onclick="return false;">
+																<img src="http://www.weimob.com/templates/kindeditor/attached/48/ac/3f/image/20131012/20131012184902_89615.jpg" alt="5" style="width:100%;" />
+								</a>
+					</li>
+							</ul>
+			<ol>
+									<li class="on"></li>
+									<li ></li>
+									<li ></li>
+									<li ></li>
+									<li ></li>
+							</ol>
+		</div>
+	</div>
+		<script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+<br/>
+		<section>
+			<div id="navList_box" class="box_swipe">
+				<ul>
+																		<li>
+																					<a href="/Webestate/Index?pid=2356&wechatid=o8ViLjqXXdEbCHRGmquQb7L19-T0&wxref=mp.weixin.qq.com" class="weimob-list-item">
+															<span class="icon-home"></span>
+								<img src="http://stc.weimob.com//img/template/lib/home-300300.jpg?v=2013-9-28-2?=2013-9-28-2" alt="楼盘简介" />
+								<div>楼盘简介</div>
+							</a>
+																																<a href="/Webestate/Picshow?pid=2356&wechatid=o8ViLjqXXdEbCHRGmquQb7L19-T0&wxref=mp.weixin.qq.com" class="weimob-list-item">
+															<span class="icon-picture"></span>
+								<img src="http://stc.weimob.com//img/template/lib/home-300300.jpg?v=2013-9-28-2?=2013-9-28-2" alt="九里画册" />
+								<div>九里画册</div>
+							</a>
+																																<a href="/Webestate/House?pid=2356&wechatid=o8ViLjqXXdEbCHRGmquQb7L19-T0&wxref=mp.weixin.qq.com" class="weimob-list-item">
+															<span class="icon-building"></span>
+								<img src="http://stc.weimob.com//img/template/lib/home-300300.jpg?v=2013-9-28-2?=2013-9-28-2" alt="户型全景" />
+								<div>户型全景</div>
+							</a>
+																																<a href="/Webestate/Review?pid=2356&wechatid=o8ViLjqXXdEbCHRGmquQb7L19-T0&wxref=mp.weixin.qq.com" class="weimob-list-item">
+															<span class="icon-check"></span>
+								<img src="http://stc.weimob.com//img/template/lib/home-300300.jpg?v=2013-9-28-2?=2013-9-28-2" alt="石梅印象" />
+								<div>石梅印象</div>
+							</a>
+													</li>
+																								<li>
+																					<a href="/weisite/list?pid=2356&bid=5231&wechatid=o8ViLjqXXdEbCHRGmquQb7L19-T0&ltid=9496&wxref=mp.weixin.qq.com" class="weimob-list-item">
+															<span class="icon-rss-sign"></span>
+								<img src="http://stc.weimob.com//img/template/lib/home-300300.jpg?v=2013-9-28-2?=2013-9-28-2" alt="新闻动态" />
+								<div>新闻动态</div>
+							</a>
+																																<a href="/webreserve/ReserveBook?rid=998&wechatid=o8ViLjqXXdEbCHRGmquQb7L19-T0" class="weimob-list-item">
+															<span class="icon-edit"></span>
+								<img src="http://stc.weimob.com//img/template/lib/home-300300.jpg?v=2013-9-28-2?=2013-9-28-2" alt="预约看房" />
+								<div>预约看房</div>
+							</a>
+																																<a href="/userinfo/index?id=444&pid=2356&bid=5231&wechatid=o8ViLjqXXdEbCHRGmquQb7L19-T0&wxref=mp.weixin.qq.com" class="weimob-list-item">
+															<span class="icon-credit-card"></span>
+								<img src="http://stc.weimob.com//img/template/lib/home-300300.jpg?v=2013-9-28-2?=2013-9-28-2" alt="会员尊享" />
+								<div>会员尊享</div>
+							</a>
+																																<a href="tel:4006305400" class="weimob-list-item">
+															<span class="icon-phone"></span>
+								<img src="http://stc.weimob.com//img/template/lib/home-300300.jpg?v=2013-9-28-2?=2013-9-28-2" alt="联系我们" />
+								<div>联系我们</div>
+							</a>
+													</li>
+															</ul>
+				<ol>
+					<a href="javascript:navList_box.prev();">&nbsp;</a>
+					<a href="javascript:navList_box.next();">&nbsp;</a>
+				</ol>
+			</div>
+		</section>
+		<script>
+			$(document).ready(function(){
+				window.navList_box = new Swipe(document.getElementById('navList_box'), { auto:0});
+			});
+		</script>
+	</div>        			<footer>
+				<div class="weimob-copyright">
+					<a href="/weisite/home?pid=2356&bid=5231&wechatid=o8ViLjqXXdEbCHRGmquQb7L19-T0&wxref=mp.weixin.qq.com">© 石梅湾九里--微盟技术支持</a>
+				</div>
+									<span class="weimob-support" style="display:none;">©微盟提供</span>
+							</footer>
+				<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+	</body>
+</html>

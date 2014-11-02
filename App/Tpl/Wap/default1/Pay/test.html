@@ -1,0 +1,40 @@
+<?php
+require('Utils.class.php');
+require('config/config.php');
+require('class/RequestHandler.class.php');
+require('class/ClientResponseHandler.class.php');
+require('class/PayHttpClient.class.php');
+
+$reqHandler = new RequestHandler();
+$resHandler = new ClientResponseHandler();
+$pay = new PayHttpClient();
+
+$reqHandler->setParameter('attach','附加信息');
+$reqHandler->setParameter('bank_type','3006');
+$reqHandler->setParameter('charset','UTF-8');
+$reqHandler->setParameter('coupon_fee','0');
+$reqHandler->setParameter('fee_type','1');
+$reqHandler->setParameter('mch_id','000101001110001');
+$reqHandler->setParameter('nonce_str','1410320361988');
+$reqHandler->setParameter('out_trade_no','222222222222');
+$reqHandler->setParameter('pay_result','0');
+$reqHandler->setParameter('result_code','0');
+$reqHandler->setParameter('sign','3EAE4CDBED2B7295B7FB72B50927CD24');
+$reqHandler->setParameter('sign_type','MD5');
+$reqHandler->setParameter('status','0');
+$reqHandler->setParameter('time_end','20140910113754');
+$reqHandler->setParameter('total_fee','1');
+$reqHandler->setParameter('trade_type','pay.weixin.scancode');
+$reqHandler->setParameter('transaction_id','001075552110006201409100021464');
+$reqHandler->setParameter('version','1.0');
+
+$data = Utils::toXml($reqHandler->getAllParameters());
+
+$pay->setReqContent('http://swiftpass.wicp.net/payInterface/request.php?method=callback',$data);
+echo "<pre>";
+var_dump($pay);
+var_dump($pay->call());
+if($pay->call()){
+    echo $pay->getResContent();
+}
+?>

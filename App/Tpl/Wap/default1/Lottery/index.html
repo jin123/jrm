@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="">
+<title><{$Dazpan.title}></title>
+<link href="__PUBLIC__/wap/guajiang/css/activity-style.css" rel="stylesheet" type="text/css">
+<style>
+.footFix {
+	width:100%;
+	text-align:center;
+	position:fixed;
+	left:0;
+	bottom:0;
+	z-index:99;
+}
+#footReturn a, #footReturn2 a {
+	display：block;
+	line-height：41px;
+	color：#fff;
+	text-shadow：1px 1px #282828;
+	font-size：14px;
+	font-weight：bold;
+}
+#footReturn, #footReturn2 {
+	z-index：89;
+	display：inline-block;
+	text-align：center;
+	text-decoration：none;
+	vertical-align：middle;
+	cursor：pointer;
+	width：100%;
+	outline：0 none;
+	overflow：visible;
+Unknown property name.-moz-box-sizing：border-box;
+	box-sizing：border-box;
+	padding：0;
+	height：41px;
+	opacity：.95;
+	border-top：1px solid #181818;
+	box-shadow：inset 0 1px 2px #b6b6b6;
+	background-color：#515151;
+Invalid property value.background-image：-ms-linear-gradient(top, #838383, #202020);
+	background-image：-webkit-linear-gradient(top, #838383, #202020);
+Invalid property value.background-image：-moz-linear-gradient(top, #838383, #202020);
+Invalid property value.background-image：-o-linear-gradient(top, #838383, #202020);
+	background-image：-webkit-gradient(linear, 0% 0, 0% 100%, from(#838383), to(#202020));
+Invalid property value.filter：progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#838383', endColorstr='#202020');
+Unknown property name.-ms-filter：progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#838383', endColorstr='#202020');
+}
+.copyright{ position:relative; top:10px; text-align:center; color:#ffffff; width:100%;}
+.copyright a{color:#FFFFFF; text-decoration:none;}
+</style>
+</head>
+<body class="activity-lottery-winning" >
+<div  class="main" >
+  <script type="text/javascript">
+if (typeof WeixinJSBridge== 'undefined'){
+    //window.location.href='/alert.html';
+}else{
+    
+}
+var loadingObj = new loading(document.getElementById('loading'),{radius:20,circleLineWidth:8});   
+    loadingObj.show();   
+</script>
+  <if condition="$Dazpan['end'] eq 1">
+    <div class="activity-lottery-end" >
+      <div  class="main" >
+        <div class="banner"><img src="__PUBLIC__/wap/guajiang/images/activity-lottery-end2.jpg" /></div>
+        <div class="content" style=" margin-top:10px">
+          <div class="boxcontent boxyellow">
+            <div class="box">
+              <div class="title-red">活动结束说明：</div>
+              <div class="Detail">
+                <p> <{$Dazpan.endinfo}> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <else/>
+    <div id="outercont" style="display:none;"  >
+      <div id="outer-cont">
+        <div id="outer"><img src="__PUBLIC__/wap/guajiang/images/activity-lottery-5.png"></div>
+      </div>
+      <div id="inner-cont">
+        <div id="inner"><img src="__PUBLIC__/wap/guajiang/images/activity-lottery-2.png"></div>
+      </div>
+    </div>
+  </if>
+  <div class="content">
+    <if condition="$Dazpan.islottery eq 0  ">
+      <div class="boxcontent boxyellow"  id="adduser" >
+        <div class="box">
+          <div class="title-orange"><span>请填写真实信息</span></div>
+          <div class="Detail">
+            <input name=""  class="px" id="wechaname" value="<{$Dazpan.usenums}>" type="text" placeholder="请输入您的姓名">
+            <input name=""  class="px" id="tel" value="<{$Dazpan.phone}>" type="text" placeholder="请输入您的手机号">
+            <input name=""  id="wechaid" value="<{$Dazpan.wecha_id}>" type="hidden">
+            <input name=""  id="lid" value="<{$Dazpan.lid}>" type="hidden">
+            <input name=""  id="winprize" value="" type="hidden">
+            <p>
+              <input class="pxbtn" name="提 交"  id="save-btn" type="button" value="我要抽奖">
+            </p>
+            <p>特别提示：为保证您能更好地兑奖，请您务必填写准确的个人信息。</p>
+          </div>
+        </div>
+      </div>
+    </if>
+    <div  class="main" >
+      <div class="content" style=" margin-top:10px; <if condition="$Dazpan.islottery eq 0  ">display:none;</if>" id="awardmsg">
+        <div class="boxcontent boxyellow">
+          <div class="box">
+            <div class="title-red">恭喜:</div>
+            <div class="Detail">
+              <p> 尊敬的：<font color='red' id="uname"><{$Dazpan.uname}></font>，您已经中了<font color='red' id="prizetype"><{$Dazpan.prize}></font> ，您的领奖序列号【<font color='red' id="sn"><{$Dazpan.sn}></font>】请您牢记！<{$Dazpan.sttxt}></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <if condition="$Dazpan['On'] eq 1">
+      <div class="boxcontent boxyellow">
+        <div class="box">
+          <div class="title-green"><span>奖项设置：</span></div>
+          <div class="Detail">
+            <p>每人最多允许抽奖次数：<{$Dazpan.canrqnums}>次
+              <if condition="$Dazpan.usenums gt 0"> - 已抽奖 <span class="red" id="usenums"><{$Dazpan.usenums}></span> 次</if>
+            </p>
+            <p>一等奖：<{$Dazpan.fist}>
+              <php>if($Dazpan['displayjpnums']){</php>
+              奖品数量：<{$Dazpan.fistnums}>
+              <php>}</php>
+            </p>
+            <if condition="$Dazpan['second'] neq ''">
+              <p>二等奖：<{$Dazpan.second}>
+                <php>if($Dazpan['displayjpnums']){</php>
+                奖品数量：<{$Dazpan.secondnums}>
+                <php>}</php>
+              </p>
+            </if>
+            <if condition="$Dazpan['third'] neq ''">
+              <p>三等奖：<{$Dazpan.third}>
+                <php>if($Dazpan['displayjpnums']){</php>
+                奖品数量：<{$Dazpan.thirdnums}>
+                <php>}</php>
+              </p>
+            </if>
+            <if condition="$Dazpan['four'] neq ''">
+              <p>四等奖：<{$Dazpan.four}>
+                <php>if($Dazpan['displayjpnums']){</php>
+                奖品数量：<{$Dazpan.fournums}>
+                <php>}</php>
+              </p>
+            </if>
+            <if condition="$Dazpan['five'] neq ''">
+              <p>五等奖：<{$Dazpan.five}>
+                <php>if($Dazpan['displayjpnums']){</php>
+                奖品数量：<{$Dazpan.fivenums}>
+                <php>}</php>
+              </p>
+            </if>
+            <if condition="$Dazpan['six'] neq ''">
+              <p>六等奖：<{$Dazpan.six}>
+                <php>if($Dazpan['displayjpnums']){</php>
+                奖品数量：<{$Dazpan.sixnums}>
+                <php>}</php>
+              </p>
+            </if>
+          </div>
+        </div>
+      </div>
+      <div class="boxcontent boxyellow">
+        <div class="box">
+          <div class="title-green">活动说明：</div>
+          <div class="Detail">
+            <p><{$Dazpan.info}></p>
+            <p>活动时间：<{$Dazpan.statdate|date="Y年m月d日",###}> 至 <{$Dazpan.enddate|date="Y年m月d日",###}></p>
+            <p><strong><{$Dazpan.txt}></strong></p>
+          </div>
+        </div>
+      </div>
+    </if>
+  </div>
+</div>
+<!--<div class="copyright"><a href="http://www.alivv.net" target="_blank">技术支持：阿里微微</a></div>-->
+<div style="height:60px;"></div>
+<!--<div class="footFix" id="footReturn"><a href="javascript:void(0)" onClick="location.href='<{:U('Wap/Index/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>';"><span>返回3G网站</span></a></div>
+-->
+<script src="__PUBLIC__/wap/guajiang/js/jquery.js" type="text/javascript"></script>
+<!--<script src="__PUBLIC__/wap/css/guajiang/js/alert.js" type="text/javascript"></script>-->
+<script src="__PUBLIC__/wap/js/jquery.alerts.js" type="text/javascript"></script>
+<link href="__PUBLIC__/wap/js/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript">
+
+$(function() {
+    window.requestAnimFrame = (function() {
+        return window.requestAnimationFrame ||
+
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+            window.setTimeout(callback, 1000 / 60)
+        }
+    })();
+
+    var totalDeg = 360 * 3 + 0;
+    var steps = []; 
+    var lostDeg = [36, 96, 156, 216, 276,336];
+    var prizeDeg = [6, 66, 126,186,246,306];
+    var prize, sncode;
+	var usenums = 0;
+    var count = 0; 
+    var now = 0;
+    var a = 0.01;
+    var outter, inner, timer, running = false;
+
+    function countSteps() {
+        var t = Math.sqrt(2 * totalDeg / a);
+        var v = a * t;
+        for (var i = 0; i < t; i++) {
+            steps.push((2 * v * i - a * i * i) / 2)
+        }
+        steps.push(totalDeg)
+    }
+     
+    function step() {
+        outter.style.webkitTransform = 'rotate(' + steps[now++] + 'deg)';
+        outter.style.MozTransform = 'rotate(' + steps[now++] + 'deg)';
+        if (now < steps.length) { 
+            running = true;
+            requestAnimFrame(step) 
+        } else { 
+            running = false;            
+             
+            setTimeout(function() {
+                if (prize != null) {  //中奖
+                    var type = "";
+                    if (prize == 1) {
+                        type = "一等奖"
+                    } else if (prize == 2) {
+                        type = "二等奖"
+                    } else if (prize == 3) {
+                        type = "三等奖"
+                    }
+                    else if (prize == 4) {
+                        type = "四等奖"
+                    }
+                    else if (prize == 5) {
+                        type = "五等奖"
+                    }
+                    else if (prize == 6) {
+                        type = "六等奖"
+                    }
+
+					var submitData = {
+						lid: '<{$Dazpan.lid}>',
+						wechaid:'<{$Dazpan.wecha_id}>',
+						sncode:sncode,
+						prizetype:type,
+						action: "addsn"
+					};		
+					$.post('index.php?g=Wap&m=Lottery&a=addsn', submitData,
+					function(data) {
+						if (data.success == true) {
+							jAlert(data.msg,"消息提醒",function(){
+								$('#inner-cont').hide();
+								$("#outercont").slideUp(600);
+							});
+							return
+						} else {}
+					},
+					"json")
+                     $("#prizetype").text(type);
+					 $('#sn').text(sncode);		
+					 $("#awardmsg").show("slow");	
+
+                    //$("#result").slideToggle(500);  
+                    
+                } else { //不中奖
+					$("#usenums").text(usenums);
+                    jAlert("Oh,亲，继续努力哦！^_^.")
+                }
+            }, 200)
+        } //if
+    } //setps()
+    
+    function start(deg) {       
+        deg = deg || lostDeg[parseInt(lostDeg.length * Math.random())];
+        running = true;
+        clearInterval(timer);
+        totalDeg = 360 * 5 + deg;
+        steps = [];
+        now = 0;
+        countSteps();
+        requestAnimFrame(step)
+    }
+    
+    window.start = start;
+    outter = document.getElementById('outer'); 
+    inner = document.getElementById('inner'); 
+    i = 10;
+    var end = 0;
+    $("#inner").click(function() {
+
+        if (running) return;
+        if (count >= <{$Dazpan.canrqnums}>) {
+            jAlert("Oh~No~您已经抽了<{$Dazpan.canrqnums}> 次奖,不能再抽了,下次再来吧!");
+            return
+        }
+
+        if (prize != null) {
+            jAlert("亲，你不能再参加本次活动了喔！下次再来吧^_^");
+            return
+        }
+
+       $.ajax({
+         url     : "index.php?g=Wap&m=Lottery&a=getajax",
+         dataType: "json",
+         type    : "POST",
+         data    : {
+            token  : "<{$Dazpan.token}>",
+            oneid  : "<{$Dazpan.wecha_id}>",
+            id     : <{$Dazpan.lid}>,
+            rid    : <{$Dazpan.rid}> 
+         },
+         beforeSend : function(){
+            running = true;
+            timer = setInterval(function() {
+                i += 5;
+                outter.style.webkitTransform = 'rotate(' + i + 'deg)';
+                outter.style.MozTransform = 'rotate(' + i + 'deg)'
+            },1)
+         },
+         success    : function(backdata){
+            if (backdata.norun == 1) {      
+                    alert(backdata.msg);
+                    count = 5; //原来是 5 
+                    clearInterval(timer);
+                    return
+            }
+            if (backdata.norun == 2) {  
+                    jAlert("您已经抽了"+backdata.canrqnums+"次奖,不能再抽了,下次再来吧!");
+                    count = backdata.canrqnums;
+                    clearInterval(timer);
+                    return
+            }
+            if (backdata.norun == 3) {
+                    jAlert("请您向公众平台发送抽奖指令，参与抽奖!");
+                    clearInterval(timer);
+                    return
+            }
+            
+            if (backdata.success) { 
+                prize = backdata.prizetype;
+                 if(prize!=''){
+                    sncode = backdata.sn;
+                    start(prizeDeg[backdata.prizetype - 1])
+                 }else{
+                    prize = null;
+					usenums=backdata.usenums;
+                    start()
+                }                    
+        
+            } else {
+
+                    prize = null;
+					usenums=backdata.usenums;
+                    start()
+            }
+            running = false;
+            count++;
+         },
+         error      : function(){
+                prize = null;
+				usenums=backdata.usenums;
+                start();
+                running = false;
+                count++;
+         },
+         complete   : function(XMLHttpRequest, textStatus){
+            //console.log('当请求完成之后调用这个函数，无论成功或失败.  请求类型:'+textStatus);  
+         },
+         timeout    : 3000       
+        
+       })//ajax
+    }) //#inner click function;
+});
+
+//提交用户资料
+$("#save-btn").bind("click",
+	function() {
+		var btn = $(this);
+		var tel = $("#tel").val();
+		var wxname  = $("#wechaname").val();
+		var wechaid = $("#wechaid").val();
+		var lid     = $("#lid").val();
+		if (tel == '') {
+			jAlert("请认真输入手机号");
+			return
+		}
+		
+		if (wxname == '') {
+			jAlert("请认真输入姓名");
+			return
+		}
+	   
+		var submitData = {
+			lid: lid,
+			tel: tel,
+			wxname: wxname,
+			wechaid:wechaid,
+			action: "adduser"
+		};
+		$.post('index.php?g=Wap&m=Lottery&a=adduser', submitData,
+		function(data) {
+			if (data.success == true) {
+				jAlert(data.msg,"消息提醒",function(){
+					$("#adduser").hide("slow",function(){
+						$('#outercont').slideDown('slow');
+					});
+				});
+				return
+			} else {}
+		},
+		"json")
+		$("#uname").text(wxname);
+});
+
+</script>
+</body>
+</html>

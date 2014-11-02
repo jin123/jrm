@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信墙管理</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="estate_desc"]');
+	window.editor = K.create('textarea[id="project_brief"]');
+	window.editor = K.create('textarea[id="traffic_desc"]');
+
+});	
+function setval(){
+
+		var sel = [];
+		$('.check_one').each(function(){
+			if($(this).attr('checked')){
+				sel[sel.length] = $(this).val();				
+			}
+		});
+		if(sel.length>0 && confirm('确定通过审核吗？')){
+			$.post('<{:U('Wxscreen/shenhe')}>',{ids:sel.join(',')},function(data){
+			alert('审核成功');
+			setTimeout('window.location.href=location.href',100);
+			
+			},'json');
+		}
+	}
+
+	function todel(ids){		
+		var sel = [];
+		if(!ids){
+			$('.check_one').each(function(){
+				if($(this).attr('checked')){
+					sel[sel.length] = $(this).val();
+				}
+			});
+			ids = sel.join(',');
+		}		
+		if($.trim(ids)!='' && confirm('确定删除吗？')){
+			$.post('<{:U('Wxscreen/shanchu')}>',{ids:ids},function(data){
+			alert('删除成功');
+			setTimeout('window.location.href=location.href',100);			
+			},'json');
+		}
+	}
+</script>
+<script type="text/javascript">
+function selectAll(){
+ var checklist = document.getElementsByName ("selected");
+   if(document.getElementById("controlAll").checked)
+   {
+   for(var i=0;i<checklist.length;i++)
+   {
+      checklist[i].checked = 1;
+   } 
+ }else{
+  for(var j=0;j<checklist.length;j++)
+  {
+     checklist[j].checked = 0;
+  }
+ }
+}
+</script>
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun"> 
+  <a href="<{:U('Index/welcome')}>">首页</a>
+  <a href="<{:U('Wxscreen/index')}>">微信墙设置</a>
+  <a href="<{:U('Wxscreen/liuyan')}>"  <if condition="ACTION_NAME eq 'liuyan'">class="b"</if>>微信墙管理</a>
+  </div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/welcome')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('/Index/baseinfo')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('/Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">微信墙管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+   <div class="new_main">
+      <div class="new_main_tit pt10">微信墙管理<span class="button_r_1 fabu" onclick="todel()">删除</span>
+	  <span class="button_r_1 fabu" onclick="setval()">审核</span></div>
+      <table width="100%" class="new_main_liebiao">
+        <tbody>
+          <tr>
+		  <th>
+		  <input onclick="selectAll()" type="checkbox"   name="controlAll" style="controlAll" id="controlAll"/>
+		  
+		  </th>
+            <th>用户名</th>
+            <th>内容</th>
+            <th>时间</th>
+			<th>状态</th>
+            <th>操作</th>
+          </tr>
+          
+          <foreach name='ly' item='z'>
+          <tr>
+			<td class="with-checkbox">
+			<input type="checkbox" class="check_one" name="selected"  value="<{$z.id}>">
+			</td>
+              <td><{$z.name}></td>
+              <td><{$z.info}></td>
+              <td><{$z.time|date='Y-m-d H:i:s',###}></td>
+              <td>
+			  <if condition="$z.isval eq '0' ">
+				未审核
+				<else />
+				已通过
+				</if>
+			 </td>
+              
+              <td><div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                  <h3 class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                  <div class="h3_cat">
+                    <div class="h3_cat_list">
+                      <ul>
+						<a onclick="if(window.confirm('你确定要通过吗?'));" href="<{:U('Wxscreen/save',array('id'=>$z['id']))}>">
+                        <li>审核</li>
+                        </a>
+                        <a onclick="if(window.confirm('你确定要删除吗?'));" href="<{:U('Wxscreen/del',array('id'=>$z['id']))}>">
+                        <li>删除</li>
+                        </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="clear"></div></td>
+            </tr>        
+            </foreach>
+
+            </tbody>
+      </table>
+        <div class="pagelistbox">
+        <{$page}>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

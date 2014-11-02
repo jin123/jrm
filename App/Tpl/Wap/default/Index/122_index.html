@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><{$homeInfo.wxname}></title>
+        <base href="." />
+        <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="format-detection" content="telephone=no" />
+		<link href="__PUBLIC__/wap/css/allcss/cate<{$tpl.tpltypeid}>_<{$tpl.color_id}>.css" rel="stylesheet" type="text/css" />
+		<link href="__PUBLIC__/wap/css/allcss/cate.css" rel="stylesheet" type="text/css" />
+		<link href="__PUBLIC__/wap/css/flash/css/plugmenu.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/css/130/wz.css" />
+        <script src="__PUBLIC__/wap/css/130/iscroll.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/css/css/reset.css?2013-9-13-2" media="all" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/css/css/font-awesome.css" media="all" />
+<link href="__PUBLIC__/wap/css/allcss/cate<{$tpl.tpltypeid}>_<{$tpl.color_id}>.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/wap/css/flash/css/iscroll.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/wap/moban/flash/css/plugmenu.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+            var myScroll;
+
+            function loaded() {
+                myScroll = new iScroll('wrapper', {
+                    snap: true,
+                    momentum: false,
+                    hScrollbar: false,
+                    onScrollEnd: function () {
+                        document.querySelector('#indicator > li.active').className = '';
+                        document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+                    }
+                });
+ 
+ 
+            }
+
+            document.addEventListener('DOMContentLoaded', loaded, false);
+        </script>
+    </head>
+
+<body id="cate4">
+	<div id="todayList">
+		<ul class="todayList" style="margin-top:10px;">
+	<volist name="info" id="vo">
+						<li class="only4"><include file="Public:Mainaction"/>
+						<a href="<if condition="$vo['url'] eq ''"><{:U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}>
+        			<else/>
+        			<{$vo.url|htmlspecialchars_decode}>
+        			</if>">
+					<div class="img">
+						<img src="<{$vo.img}>">
+					</div>
+					<h2><{$vo.name}></h2>
+					<p class="onlyheight"><{$vo.info}></p><span
+					class="icon">&nbsp;</span>
+			</a></li>
+	</volist>
+					</ul>
+	</div>
+<div class="copyright">
+  <if condition="$homeInfo.copyright neq ''">版权所有 &copy <{$homeInfo.copyright}>&nbsp;</if>
+
+</div>
+
+
+<include file="Public:footer"/></body></html>

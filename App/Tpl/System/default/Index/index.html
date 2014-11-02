@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统管理</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun">
+  <a href="<{:U('Index/index')}>" class="b">首页</a> 
+  <a href="<{:U('Daili/index')}>">代理商管理</a> 
+  <a href="<{:U('Kehu/index')}>">用户管理</a> 
+  <a href="<{:U('Account/index')}>">扣除记录</a>
+  <a href="<{:U('Payrecord/index')}>">充值记录</a>
+  <a href="<{:U('Alipay_config/index')}>">支付配置</a>
+  </div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('Index/edit')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div class="content1">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">系统管理</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <form method="post" action="<{:U('Index/insert')}>" enctype="multipart/form-data">
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right">网站名称：</td>
+            <td width="84%"><input type="text" name="websitename" id="websitename" style="width:400px;" class="input login_input_1" value="<{:C('websitename')}>"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">百度地图API：</td>
+            <td width="84%"><input name="baiduapi" type="text" id="baiduapi" value="<{:C('baiduapi')}>" style="width:400px;" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">底部版权：</td>
+            <td width="84%"><input name="copyright" type="text" value="<{:C('copyright')}>" style="width:400px;" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">网址：</td>
+            <td width="84%"><input type="text" name="site_url" id="siteurl" style="width:400px;" class="input login_input_2" value="<{:C('site_url')}>">
+              <strong class="input_ts_y" style="color:#FF0000;">(请填写正确域名，生成微信api接口)</strong></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="hidden" name="files" value="info.php" />
+              <button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">保存设置</button></td>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

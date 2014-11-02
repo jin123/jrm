@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$Think.session.sitename}>管理后台登陆</title>
+<link rel="shortcut icon" href="__PUBLIC__/images/favicon.ico" type="image/x-icon" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/login.css" />
+</head>
+<body>
+<div id="content">
+  <div id="login">
+    <div class="login_left">
+      <div id="messagetext" class="alert_info">
+        <p>抱歉，您尚未登录，无法进行此操作</p>
+      </div>
+      <form name='form1' method='POST' action="<{:U('Login/insert')}>">
+        <input type="hidden" name="fmdo" value="login">
+        <input type="hidden" name="dopost" value="login">
+        <input type="hidden" name="gourl" value="">
+        <table>
+          <tr>
+            <td width="15%"  class="table_txt_right">用户名：</td>
+            <td width="85%"><input type="text"  class="input login_input_1" name="userid"></td>
+          </tr>
+          <tr>
+            <td  class="table_txt_right">密&nbsp;&nbsp;码：</td>
+            <td><input type="password" class="input login_input_1" name="pwd"></td>
+          </tr>
+          <tr>
+            <td>验证码：</td>
+            <td><input type="text" value="" name="verify" class="input login_input_1" style="width:80px;height:22px;line-height:22px;"/>
+              <img src="__APP__/Login/verify" onClick="this.src=this.src+'&i=?'" align="top"/></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="button_r_1 denglu">登 录</button></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+</body>
+</html>

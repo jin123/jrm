@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>留言板设置_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">留言板设置</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">留言板设置(地址：<font style="font-size:12px;"><{:C('site_url')}>/index.php?s=/Wap/Liuyan/index/token/<{$ly_data['token']}>/pid/<{$ly_data['id']}></font>)</div>
+      <div class="tab">
+        <ul>
+          <li class="current tabli" id="tab0"><a href="<{:U('Liuyan/index')}>">留言板设置</a></li>
+          <li class="tabli" id="tab1"><a href="<{:U('Liuyan/liuyan')}>">留言管理</a></li>
+        </ul>
+      </div>
+      <form action="" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+        <if condition="$ly_data['id'] neq ''">
+          <input type="hidden" name="id" value="<{$ly_data['id']}>" />
+        </if>
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="16%" class="table_txt_right">显示名称：</td>
+              <td><input type="text" name="tit" id="tit" class="input login_input_1" value="<{$ly_data['tit']}>" style="width:500px;"></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">简介：</td>
+              <td width="84%"><textarea name="info" class="input login_input_1" style="width:500px;height:100px;margin:10px 0px;" maxlength="100"><{$ly_data['info']}></textarea></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">图文封面：</td>
+              <td><img class="thumb_img" id="pic_src" src="<{$ly_data['pic']|default='__PUBLIC__/wap/liuyanban/lytwfm.jpg'}>" style="max-height:100px;width:167px;"><br />
+                <input type="input" class="input login_input_1" name="pic" id="pic" style="width:500px;margin:10px 0px;" value="<{$ly_data['pic']|default='__PUBLIC__/wap/liuyanban/lytwfm.jpg'}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('pic',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a> 建议尺寸：宽720像素，高400像素 </strong>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">头部图片：</td>
+              <td><img class="thumb_img" id="headpic_src" src="<{$ly_data['headpic']|default='__PUBLIC__/wap/liuyanban/lyheadpic.jpg'}>" style="max-height:100px;width:480px;"> <br />
+                <input type="text" id="headpic" name="headpic" class="input login_input_1" style="width:500px;margin:10px 0px;" value="<{$ly_data['headpic']|default='__PUBLIC__/wap/liuyanban/lyheadpic.jpg'}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('headpic',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('headpic')">预览</a> 建议尺寸：宽720像素，高400像素 </strong>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">触发关键字：</td>
+              <td><font style="color:red;"><{$ly_data['keyword']}></font>
+                <!--<strong class="input_ts_y"><font color="red">*</font>只能设置一个关键字</strong>--></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">是否审核留言</td>
+              <td><if condition="$ly_data['issh'] eq '' ">
+                  <input type="radio" name="issh" value="1" >
+                  需要审核
+                  <input type="radio" name="issh" value="0" checked>
+                  无需审核
+                  <elseif condition="$ly_data['issh'] eq 0 "/>
+                  <input type="radio" name="issh" value="1" >
+                  需要审核
+                  <input type="radio" name="issh" value="0" checked>
+                  无需审核
+                  <else />
+                  <input type="radio" name="issh" value="1" checked>
+                  需要审核
+                  <input type="radio" name="issh" value="0" >
+                  无需审核 </if>
+            </tr>
+            <!-- <tr>
+                <td width="16%" class="table_txt_right">管理员Openid：</td>
+                <td>
+                  <input type="text" name="adminid" id="adminid" class="input login_input_1" value="<{$ly_data['adminid']}>" style="width:500px;">
+                  <strong class="input_ts_y">在留言板提交留言,然后在“留言列表”中找到自己的openid并在这里添加为管理</strong></td>
+              </tr> -->
+            <tr>
+              <td width="16%" class="table_txt_right">&nbsp;</td>
+              <td><button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

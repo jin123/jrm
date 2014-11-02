@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>标签管理</title>
+<link type="text/css" rel="stylesheet" href="/Public/css/base.css" />
+<link type="text/css" rel="stylesheet" href="/Public/css/admin.css" />
+<script>
+
+var GV = {
+    DIMAUB: "/",
+    JS_ROOT: "/Public/js/",
+    TOKEN: ""
+};
+</script>
+
+</head>
+<body>
+
+    <form id="myform"  action="<{:U('Label/addlabel_list',array('id'=>$o['id']))}>" method="post">
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <div style="margin-left:20px;line-height:30px;margin-top:30px;">
+          <volist name="data_info" id="o">
+			<input <?php if(in_array($o['unid'],$other_insert)){ echo 'disabled="disabled"';}   if(in_array($o['unid'],$insert)){ echo 'checked="checked"';} ?> class="flag_id"     type="checkbox" name="id[]" id="id" class="checkitem" value="<{$o.unid}>">&nbsp;<{$o.title}>&nbsp;&nbsp;
+              <input id="send_id" type="hidden" name="send_id" value="<{$send_id}>" />
+          </volist>
+          </div>
+          <button id="add_able" class="button_r_1" type="button" style=" width:100px; margin-top:30px;margin-left:40%;">提交</button>
+      </table>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/Public/js/jquery.js"></script>
+<script src="/Public/js/jquery.form.js"></script>
+<script src="/Public/js/validate.js"></script>
+<script src="/Public/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/Public/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/Public/js/wind.js"></script>
+<script src="/Public/js/com.js"></script>
+<script type="text/javascript">
+    $("#add_able").click(function(){		    var flag_id = '';		var url = "/index.php?s=Order/add_flag_second/";				$(".flag_id").each(function(i,v){				    if($(v).attr("checked")){						  flag_id+=","+$(v).val();						}				});		if(flag_id==""){		   alert('请勾选分类');		   return;				}     	var flag = "send_id=<?php echo $send_id;?>"+"&flag_id="+flag_id;	    $.post(url,flag,function(json){			   var txt = $.parseJSON(json);		   if(txt.status==1){		       var win = art.dialog.open.origin;//来源页面               win.location.reload();			   art.dialog.close();		   }		});		});
+</script>
+</body>
+</html>

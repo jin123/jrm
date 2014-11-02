@@ -1,0 +1,138 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>旅游海报_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/validate.css" />
+<script src="__PUBLIC__/js/easy_validator.pack.js"></script>
+<script src="__PUBLIC__/js/jquery-1.4.2.min.js"></script>
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+function postername(){
+	if (document.myform.name.value.length == 0) {  
+		alert('海报名称不能为空');
+		document.myform.name.focus(); 
+		return false; 
+		} 
+		return true;
+}
+function postergjz(){
+	if (document.myform.gjz.value.length == 0) {  
+		alert('关键词不能为空');
+		document.myform.gjz.focus();
+		return false;
+		} 
+		return true;
+}
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">旅游海报</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">旅游海报<a href="<{:U('Lvyou/index')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <div class="new_main_tit ">
+      <div class="a">
+     	
+      </div>
+      </div>
+      <div style="clear:both;"></div>
+	<form id="myform" name="myform" method="post" action=" " >
+	<input type="hidden" name="id"   value="<{$vo.id}>" /> 
+    <table class="new_main_zhuce">
+      <tbody>
+      	<tr>
+           <td width="16%" class="table_txt_right">海报名称：</td>
+           <td width="74%"><input type="input" class="input login_input_1" id="name" onBlur="postername();" value="<{$vo.name}>" name="name" style="width:300px" > 
+           <span class="red">*</span>
+		   <span class="help-inline">最多只能输入30个字符。</span>
+           </td>
+        </tr>
+        <tr>
+           <td width="16%" class="table_txt_right">关键词：</td>
+           <td width="74%"><input type="input" class="input login_input_1" id="gjz" onBlur="postergjz();" value="<{$vo.gjz}>" name="gjz" style="width:300px" > 
+           <span class="red">*</span> 
+           </td>
+        </tr>
+        <volist name="va" id="vs" key="i">
+		
+        <tr>
+           <td width="16%" class="table_txt_right">海报1：</td>
+           <td><input class="input login_input_1" name="pic6[]"  id="pic1" value="<php>echo $va[0]; </php>" style="width:300px;">
+           <a href="javascript:void(0)" onClick="upyunPicUpload('pic1',700,420)" class="btnGreen">选择图片</a>
+           <a href="javascript:void(0)" onClick="viewImg('pic1')" class="btnGreen">图片预览</a>
+           </td>
+         </tr>
+        <tr>
+            <td width="16%" class="table_txt_right">海报2：</td>
+            <td><input class="input login_input_1" name="pic6[]" id="pic2" value="<php>echo $va[1]; </php>" style="width:300px;">
+            <a href="javascript:void(0)" onClick="upyunPicUpload('pic2',700,420)" class="btnGreen">选择图片</a>
+            <a href="javascript:void(0)" onClick="viewImg('pic2')" class="btnGreen">图片预览</a>
+            </td>
+         </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">海报3：</td>
+            <td><input class="input login_input_1" name="pic6[]" id="pic3" value="<php>echo $va[2]; </php>" style="width:300px;">
+              <a href="javascript:void(0)" onClick="upyunPicUpload('pic3',700,420)" class="btnGreen">选择图片</a>
+              <a href="javascript:void(0)" onClick="viewImg('pic3')" class="btnGreen">图片预览</a>
+            </td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">海报4：</td>
+            <td><input class="input login_input_1" name="pic6[]" id="pic4" value="<php>echo $va[3]; </php>" style="width:300px;">
+              <a href="javascript:void(0)" onClick="upyunPicUpload('pic4',700,420)" class="btnGreen">选择图片</a>
+              <a href="javascript:void(0)" onClick="viewImg('pic4')" class="btnGreen">图片预览</a>
+            </td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">海报5：</td>
+            <td><input class="input login_input_1" name="pic6[]" id="pic5" value="<php>echo $va[4]; </php>" style="width:300px;">
+              <a href="javascript:void(0)" onClick="upyunPicUpload('pic5',700,420)" class="btnGreen">选择图片</a>
+              <a href="javascript:void(0)" onClick="viewImg('pic5')" class="btnGreen">图片预览</a>
+            </td>
+          </tr>
+		  <volist>
+            <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:130px; margin-top:15px;">提交</button>
+              <!--<a href="<{:U('Lvyou/poster')}>"><button class="button_r_1" type="submit" style=" width:130px; margin-top:15px;">保存</a>
+              
+                <button class="button_g_1" type="reset" style=" width:130px; margin-top:15px; margin-left:20px;">重填</button></td>
+            --></tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      
+      </form>
+
+    </div>
+  </div>
+</div>
+<script language="javascript">
+	function test(){
+		if(document.form.name.value.lenght>30)
+		{
+			alert("最多只能输入30个字符！");
+			document.from.name.focus();
+			return false;
+		}
+		return true;
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!-- saved from url=(0112)http://m.ctrip.com/webapp/myctrip/#account/login?from=%2Fwebapp%2Fmyctrip%2Findex.html%23orders%2Funuseorderlist -->
+<html class="ie"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+	<title>注册</title>
+    <meta name="viewport" content="width=320.1, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  	 <link rel="stylesheet" type="text/css" href="/Public/wap/drugs/bootstrap/css/bootstrap.min.css">
+	<link rel="Stylesheet" type="text/css" href="/Public/wap/drugs/css/main.css">
+    <link rel="Stylesheet" type="text/css" href="/Public/wap/drugs/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/Public/wap/drugs/css/myctrip.css">
+		<link href="__PUBLIC__/wap/drugs/css/jquery.alerts.css" rel="stylesheet" type="text/css">
+
+	
+    <!--[if IE]><link rel="stylesheet" href="../res/style/ie_hack.css" /><![endif]-->
+    <!--[if !IE]><!-->
+	<script>
+	function showDIV(obj1,obj2)
+	{
+		document.getElementById('li_'+obj2).className = "";
+		document.getElementById('li_'+obj1).className = "on";
+		document.getElementById(obj1).style.display = "block";
+		document.getElementById(obj2).style.display = "none";
+	}
+	</script>
+</head>
+<body onselectstart="return false" tabindex="10000" style="overflow-y:hidden;">
+	<div id="headerview" style="height: 48px; "><header style="position:relative"><h1>会员中心</h1>
+	<i id="c-ui-header-return" class="returnico i_bef"></i></header></div><div id="main" class="h100">
+	<div class="main-frame"><div class="main-viewport">
+	<div class="sub-viewport" id="id_viewport2" page-id="212052" page-url="account/login">
+	<article class="p10">
+        <ul class="query jstab">
+            <!-- <li for="login" class="on" id="li_login" onclick="showDIV('login','register')">会员登录</li> -->
+            <li for="notlogin" class="on" id="li_register">会员注册</li>
+        </ul>
+      
+        <!--注册-->
+        <form action="" method="post" name="form1" id="form1" autocomplete="off">
+        <div id="register">
+        <ul class="conlist"> 
+         	<li class="li_inputbox clear-input-box">
+                <input name="Tel" id="Tel" tabindex="1" type="tel"   maxlength="11" placeholder="请输入您的手机号码"><a class="clear-input " href="javascript:;" style="display: none; "><span></span></a>
+            </li>
+             <li class="li_inputbox clear-input-box">
+                <input  tabindex="1" type="password"  id="password" name="password"  maxlength="11" placeholder="请输入您的密码"><a class="clear-input " href="javascript:;" style="display: none; "><span></span></a>
+            </li>
+
+			<li class="li_inputbox clear-input-box">
+                <input class="li_input" maxlength="20" id="repassword" name="repassword"  type="password"  placeholder="重复密码"><span id="errorpwd" style="display:none;">两次输入密码不一致</span>
+            </li>
+            </ul>
+		  	<button  onclick="register();" id="doreg" class="mainbtn" title="" data-placement="top" data-toggle="tooltip" type="button" data-original-title="注册成功">立即注册</button>
+           <span>如有账号请<a href="/index.php?s=Wap/Public/login&token=<?php echo $_GET['token']; ?>&wecha_id=<{$wecha_id}>&return_url=<{$return_url}>">登录</a></span>
+
+				
+        </div></form>
+        <!--免登录查询-->
+        <!-- <aside class="loginlink overflow">
+            <span class="fl jsreg" style="font-size: 16px;color: #29a2f7;">免费注册</span>
+            <span class="fr js_getpass" style="font-size: 16px;color: #29a2f7;">忘记密码</span>
+       </aside>
+       <p class="reggift">注册即享1000积分和800元消费券</p> -->
+    </article></div></div><div class="main-state"></div></div></div>
+   <div class="abc"></div>
+<include file="Drugs/footer" />
+
+</body>
+<script src="/Public/js/jquery.js"></script>
+<script src="/Public/wap/drugs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.alerts.js"></script>
+<script>
+var return_rul = '<?php echo $return_url; ?>';
+var wecha_id = '<?php echo $wecha_id; ?>';
+var options = {
+    'title':'提示',
+	'trigger':'click'
+
+};
+//$("#doreg").tooltip(options);
+function register(){
+	var tel=$("#Tel").val();//手机号
+	if($.trim(tel)==""){
+
+	/* $("#doreg").attr('data-original-title','请输入手机号');
+     $("#doreg").tooltip(options);*/
+       jAlert("请输入手机号",'提示');
+	  return;
+	
+	}
+	    if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(tel))){ 
+
+            /*$("#doreg").attr('data-original-title','请输入正确的手机号');
+             $("#doreg").tooltip(options);*/
+               jAlert("请输入正确的手机号",'提示');
+
+
+	        return false; 
+	    }
+		if($.trim($("#password").val())==""){
+           jAlert("请输入密码",'提示');
+		 //  $("#doreg").attr('data-original-title','请输入密码');
+        ///   $("#doreg").tooltip(options);
+		    return;
+		
+		}
+		if($.trim($("#repassword").val())==""){
+
+		  /* $("#doreg").attr('data-original-title','请输入确认密码');
+           $("#doreg").tooltip(options);*/
+             jAlert("请输入确认密码",'提示');
+		    return;
+		
+		}
+		if($.trim($("#repassword").val())!==$.trim($("#password").val())){
+
+		/*  $("#doreg").attr('data-original-title','确认密码和密码不一致');
+            $("#doreg").tooltip(options);*/
+             jAlert("确认密码和密码不一致",'提示');
+		    return;
+		}
+	$.ajax({
+	   type: "POST",       
+	   url: "<{:U('Public/register',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>",
+	   data: $("#form1").serialize(),
+	   dataType: "json",
+	   success: function(data){
+	     if(data.error==0){
+	         //  $("#doreg").attr('data-original-title','注册成功！');
+	          jAlert("注册成功",'提示',function(){
+
+	          
+	             if(return_rul!=""){
+				      setTimeout(" window.location.href=return_rul", 1000 );
+
+				}
+				else{
+					setTimeout(" window.location.href='/index.php?s=Wap/Drugs/wecha_id'+id", 1500 );
+				}
+	          
+	          
+	          
+	          });	
+	           
+	     }
+	     else{
+	       jAlert("手机号已经存在",'提示');
+	       //  $("#doreg").attr('data-original-title','该手机号已经存在！');
+			// $("#doreg").tooltip(options);return;
+	     }	
+
+	   }
+	});
+}	
+</script>
+</html>

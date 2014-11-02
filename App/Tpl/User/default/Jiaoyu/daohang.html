@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>教育机构_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="description"]');
+
+});					
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">教育机构</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">底部导航<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form" method="post" action=""  >
+        <table class="new_main_zhuce">
+          <tbody>
+             <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>导航1：</th>
+              <td><input type="text" name="dh1" id="dh1" maxlength="10" class="input login_input_1" value="<{$daohang['dh1']|default='教育机构'}>" style="width:400px;">
+              </td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>导航2：</th>
+              <td><input type="text" name="dh2" id="dh2" maxlength="10" class="input login_input_1" value="<{$daohang['dh2']|default='教学相册'}>" style="width:400px;">
+              </td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>导航3：</th>
+              <td><input type="text" name="dh3" id="dh3" maxlength="10" class="input login_input_1" value="<{$daohang['dh3']|default='培训课程'}>" style="width:400px;">
+              </td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>导航4：</th>
+              <td><input type="text" name="dh4" id="dh4" maxlength="10" class="input login_input_1" value="<{$daohang['dh4']|default='家长点评'}>" style="width:400px;">
+              </td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>导航5：</th>
+              <td><input type="text" name="dh5" id="dh5" maxlength="10" class="input login_input_1" value="<{$daohang['dh5']|default='教育新闻'}>" style="width:400px;">
+              </td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>导航6：</th>
+              <td><input type="text" name="dh6" id="dh6" maxlength="10" class="input login_input_1" value="<{$daohang['dh6']|default='教育预约'}>" style="width:400px;">
+              </td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>导航7：</th>
+              <td><input type="text" name="dh7" id="dh7" maxlength="10" class="input login_input_1" value="<{$daohang['dh7']|default='教育会员'}>" style="width:400px;">
+              </td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>导航8：</th>
+              <td><input type="text" name="dh8" id="dh8" maxlength="10" class="input login_input_1" value="<{$daohang['dh8']|default='请输入联系电话'}>" style="width:400px;">
+              </td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">&nbsp;</th>
+              <td><if condition="$daohang['id'] neq ''">
+                  <input type="hidden" name="id" value="<{$daohang['id']}>" />
+                </if>
+                <input type="hidden" name="pid" value="<{$pid}>">
+                <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+                <button type="button" class="btnGray vm">取消</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

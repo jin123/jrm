@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>导出信息</title>
+		<style>
+			.new{
+				border:2px solid #e8e8ff;
+				width:600px;
+				height:400px;
+				margin:120px auto;
+				font-size:18px;
+				background:#e8e8ff;
+			}
+			.top{
+				font-size:32px;
+				color:#2fac11;
+				margin-top:20px;
+			}
+			.ione{
+				margin-left:80px;
+				
+				font-size:18px;
+				
+			}
+			.itwo{
+				font-size:12px;
+				color:#000000;
+			}
+			.inp1{
+				width:120px;
+				height:16px;
+				color:#be7195;
+			}
+			.inp2{
+				font-size:18px;
+				
+			}
+			.bottom{
+				width:600px;
+				height:30px;
+				background:#cbe1fc;
+				margin-top:20px;
+				padding-top:10px;
+			}
+			a{
+				text-decoration:none;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="new">
+			<center class="top"><b>导出订单信息</b></center><br />
+			<form action="__APP__/Orderinfo/derive" method="post">
+				<i class="ione">搜索:</i>&nbsp&nbsp&nbsp&nbsp<input class="inp1" type="text" name="ktime"  />&nbsp&nbsp&nbsp&nbsp&nbsp
+									<input class="inp1" type="text" name="jtime" /><i class="itwo">(格 式:2013-1-1)</i>
+				<br /><br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+				<input type="checkbox" name="hubby[]" value="id" checked="checked" />编号
+				<input type="checkbox" name="hubby[]" value="truename" checked="checked" />姓名
+				<input type="checkbox" name="hubby[]" value="tel" checked="checked" />电话
+				<input type="checkbox" name="hubby[]" value="total" checked="checked" />地址
+				<input type="checkbox" name="hubby[]" value="address" checked="checked" />数量
+				<input type="checkbox" name="hubby[]" value="price" checked="checked" />总价
+				<input type="checkbox" name="hubby[]" value="time" checked="checked" />时间<br /><br />
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<input class="inp2" type="submit" name="submit" value="开始导出" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<input class="inp2" type="reset" name="reset" value="重置选项"><br />
+				<div class="bottom">
+					<center><a href="__APP__/Product/orders">返回订单页</a></center>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

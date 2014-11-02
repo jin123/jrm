@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/estate/review.css" media="all">
+<title>专家点评</title>
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<!-- Mobile Devices Support @end -->
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<style type="text/css">
+    .review_man h3{font-size:18px;}
+    #impress a{
+        overflow:hidden;
+    }
+    .review_man h3{font-size:18px;}
+    .is_1 a[style*='flex:0'], .is_2 a[style*='flex:0']{
+        display:none;
+    }
+</style>
+<div class="wrapper"> 
+  <!-- start -->
+  <ul class="nav_top" id="navTop" style="display: -webkit-box;">
+    <!--li><a href="javascript:void(0);" onclick="iswitch_panel(0);return false;" class="current">房友印象</a></li-->
+    <li><a href="javascript:void(0);" onClick="iswitch_panel(1);return false;">专家点评</a></li>
+  </ul>
+  <!-- end -->
+  <div id="impress" style="display: none;" class="impress">
+    <h3>选择您的楼盘印象，喜欢就赞我吧</h3>
+    <volist name="impress" id="vo" >
+      <if condition="($i%2) eq 0">
+        <if condition="($i%4) eq 2"> <a href="#" id="{pigcms:$vo['id']}" onClick="getId('id',{pigcms:$vo['id']})" class="button button-circle button-caution"><span>{pigcms:$vo['title']} {pigcms:$vo['comment']}赞</span></a>
+          <else/>
+          <a href="#" id="{pigcms:$vo['id']}" onClick="getId('id',{pigcms:$vo['id']})" class="button button-circle button-action"><span>{pigcms:$vo['title']} {pigcms:$vo['comment']}赞</span></a> </if>
+        <else/>
+        <if condition="($i%3) eq 3"> <a href="" id="{pigcms:$vo['id']}" onClick="getId('id',{pigcms:$vo['id']})" class="button button-circle button-primary" ><span>{pigcms:$vo['title']} {pigcms:$vo['comment']}赞</span> </a>
+          <else/>
+          <a href="#" id="{pigcms:$vo['id']}" onClick="getId('id',{pigcms:$vo['id']})" class="button button-circle button-highlight"><span>{pigcms:$vo['title']} {pigcms:$vo['comment']}赞</span></a> </if>
+      </if>
+    </volist>
+  </div>
+  <!--专家-->
+  <div id="professional" style="display:block;">
+    <volist name="expert" id="exp">
+      <div class="review_box">
+        <div class="review_man"> <img src="<{$exp['face']}>" width="70" height="70" style="width:70px!important; height:70px!important; " alt="">
+          <h3><{$exp['name']}><em><br>
+            <{$exp['position']}></em></h3>
+          <p><{$exp['description']}></p>
+        </div>
+        <div class="review_word">
+          <h2><{$exp['title']}></h2>
+          <p><{$exp['comment']}></p>
+        </div>
+      </div>
+    </volist>
+  </div>
+</div>
+</body>
+</html>

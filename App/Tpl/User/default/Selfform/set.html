@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线预订表单管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+KindEditor.ready(function(K) {
+				window.editor = K.create('textarea[id="editor_id"]');
+				K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							imageUrl : K('#litpic').val(),
+							clickFn : function(url, title, width, height, border, align) {
+								K('#litpic').val(url);
+								if(width!='')width = ' width="' + width +'"';
+								if(title!='') title = ' title="' + title +'" alt="'+title+'"';
+								if(height!='') height = ' height="' + height +'"';
+								if(align!='') align = ' align="' + align +'"';
+								if(border!='') border = ' border="' + border +'"';
+								editor.insertHtml('<img '+title + width + height + align + 'src="'+url+'"/>');
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+	});					
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">在线预订表单管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">在线预订表单管理<a href="<{:U('Selfform/index')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form" method="post" id="form" action="">
+        <if condition="$isUpdate eq 1">
+          <input type="hidden" name="id" value="<{$set.id}>" />
+        </if>
+        <input type="hidden" name="discount" id="discount" value="<{$set.discount}>" />
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="16%" class="table_txt_right"><font color="red">*</font>预定名称：</td>
+              <td width="84%"><input type="text" name="name" id="name" style="width:580px" class="input login_input_1" value="<{$set.name}>"></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right"><font color="red">*</font>关键词：</td>
+              <td width="84%"><input type="text" name="keyword" id="keyword" style="width:580px" class="input login_input_1" value="<{$set.keyword}>"></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">简介：</td>
+              <td width="84%"><textarea name="intro" class="px" style="width:582px;height:80px;"><{$set.intro}></textarea></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right"><font color="red">*</font>图片地址：</td>
+              <td><input class="input login_input_1" name="logourl" id="logourl" value="<{$set.logourl}>" style="width:580px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('logourl',700,420)" class="btnGreen">选择图片</a> </td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">提交成功提示：</td>
+              <td width="84%"><input name="successtip" id="successtip"  value="<{$set.successtip}>" style="width:580px;" class="input login_input_1" /></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">提交失败提示：</td>
+              <td><input type="input" class="input login_input_1" id="failtip" value="<{$set.failtip}>" name="failtip" style="width:580px;"></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">图文详细页内容：</td>
+              <td width="84%"><textarea name="content" id="editor_id"  rows="5" style="width:680px;height:360px"><{$set.content}></textarea></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

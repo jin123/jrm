@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title><{$vote.title}>_微投票</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/vote/css/wap.css" />
+<script src="__PUBLIC__/wap/js/jquery.min.js"></script>
+<script type="text/javascript">
+   function cli_hide2(){
+  $("#layer_mask2").hide();
+  $('#forward2').hide();
+}
+
+function cli_zhuanfa2()
+{
+	$("#layer_mask2").show();
+	$('#forward2').show();
+}
+    </script>
+</head>
+<body style="background:#ffffff;">
+<div class="layer-mask" id="layer_mask2" style="z-index: 10002;display:none;  position: absolute;    position: fixed;    width: 100%;    height: 100%;    background-color: #1b1b1b;    opacity: 0.9;    top: 0;left: 0;" onClick="cli_hide2()"></div>
+<div class="helper forward" id="forward2"></div>
+<div class="toupiao">
+  <div class="toupiao_txt">
+    <div class="toupiao_txt_h"><{$vote.title}></div>
+    <div class="toupiao_txt_s"><{$vote.statdate|date="Y-m-d",###}></div>
+    <if condition="($vote['picurl'] neq '') AND ($vote['showpic'] eq 1) ">
+      <div class="toupiao_txt_img"> <img src="<{$vote.picurl}>"  width="100%" /> </div>
+    </if>
+    <div class="toupiao_txt_p"><?php echo html_entity_decode(htmlspecialchars_decode($vote['info'])); ?></div>
+  </div>
+  <div class="toupiao_shu"> <span>共有<{$count}>人参与投票</span> </div>
+  <div class="toupiao_main">
+    <volist name="vote_item" id="li">
+    <div class="toupiao_main_q <if condition="$li['isvote'] eq 1">toupiao_main_a
+      <else/>
+      toupiao_main_b
+      </if>
+      ">
+      <div class="toupiao_main_q_1"><span class="toupiao_main_1_s"><{$i}></span><{$li.item}>
+        <!--<if condition="($vote['isaward'] neq 1) ">
+        <a href="<if condition="$li['isvote'] eq 1"><{$li.awardurl}>&wecha_id=<{$Think.get.wecha_id}>&vote_id=<{$vote.id}>" id="toupiao_main_1_a"<else/>javascript:void(0)"</if>>（我要抽奖）</a>
+        </if>-->
+      </div>
+      <div class="toupiao_main_q_2">
+        <div class="toupiao_main_q_2_a<php>if($i<=5){echo $i;}else{$i=1;echo $i;}</php>" style="width:<{$li.per|default=2}>%;"></div>
+      <div class="toupiao_main_q_2_b"><{$li.per|default=0}>%（<{$li.vcount}>）</div>
+      <if condition="$li['isvote'] eq 1">
+        <div class="toupiao_main_q_2_c">已投票</div>
+      </if>
+      <div class="clear"></div>
+    </div>
+  </div>
+  </volist>
+  <if condition="($vote['isaward'] eq 1) ">
+    <button class="forms_jrgwc" onclick="location.href='<{$vote.awardurl}>&wecha_id=<{$Think.get.wecha_id}>&vote_id=<{$vote.id}>'">我要抽奖</button>
+  </if>
+  <button class="forms_jrgwd" onclick="cli_zhuanfa2()">分享给好友</button>
+</div>
+  <!--<div class="toupiao_shu_a"><a href="http://www.alivv.net" target="_blank">技术支持：<{$homeInfo.jszc}></a></div>-->
+</div>
+</body>
+</html>

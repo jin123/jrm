@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>分类</title>
+<link href="__PUBLIC__/wap/drugs/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+<div class="box">
+<div class="table">
+<!-- <div class="search">
+<form action="" method="post">
+    	<p><input type="text" class="search_1" name="searchkey" /></p>
+       <b> <button type="submit" class="search_2" ></button></b>
+      </form>
+    </div> -->
+<div class="fenlei_lie">
+<volist key="key" name="data" id="vo">
+	<div class="fenlei_lie1" id="c_1">
+	
+    	<p style=" color:#666;" >
+    	
+    	<{$vo.title}>
+        	
+    	</p>
+    	
+    	<ul style=" border-left:1px solid #ccc;">
+        	<volist name="vo['third']" id="id">
+        	<li><a href="<{:U('Drugs/chanpin',array('Flag'=>3,'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'sortid'=>$id['unid'],'title'=>$id['title']))}>"><{$id.title}></a></li>
+        	</volist>
+            
+        </ul>
+    </div>
+    </volist>
+
+    
+</div>
+<div style="position:fixed;bottom:55px;right:5px;z-index:999;" id='back-to-top' >
+ <a href="#top"><img src="/Public/wap/drugs/images/arrow60.png"></a>
+</div>
+<div class="abc"></div>
+
+
+<include file="footer" />
+
+</div>
+
+ </div>
+  <script type="text/javascript" src="/Public/wap/drugs/js/jquery.js"></script>
+ <script>
+$(function(){
+        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+        $(function () {
+            $(window).scroll(function(){
+                if ($(window).scrollTop()>100){
+                    $("#back-to-top").fadeIn(1500);
+                }
+                else
+                {
+                    $("#back-to-top").fadeOut(1500);
+                }
+            });
+
+            //当点击跳转链接后，回到页面顶部位置
+
+            $("#back-to-top").click(function(){
+                $('body,html').animate({scrollTop:0},1000);
+                return false;
+            });
+        });
+    });
+</script>
+</body>
+</html>
+

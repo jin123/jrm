@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信教育机构</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"><a href="<{:U('Education/index')}>">教育机构</a></span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit"> <a href="<{:U('Education/selectjg')}>"><span class="button_r_1 fabu mgtb10" style="float:left;">添加机构</span></a> <span class="searchbar">
+      <form method="post" action="">
+        <input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="">
+        <input type="hidden" name="ac" value="hotels-list">
+        <input type="hidden" name="id" value="9878">
+        <input type="hidden" name="wxid" value="gh_423dwjkewad">
+        <input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+      </form>
+      </span></div>
+    <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <thead>
+        <tr>
+          <th>关键字</th>
+          <th>机构名称</th>
+          <th>机构简介</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr></tr>
+        <volist name="list" id="hostlist">
+          <tr>
+            <td><{$hostlist.keyword}></td>
+            <td><{$hostlist.name}></td>
+            <td><{$hostlist.jianjie|strip_tags|msubstr=0,40}>……</td>
+            <td><div class="h2_cat" onmouSEOver="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                <h3  class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                <div class="h3_cat">
+                  <div class="h3_cat_list">
+                    <ul>
+                      <a href="<{:U('Education/poster',array('jid'=>$hostlist['id']))}>">
+                      <li>宣传海报</li>
+                      </a> <a href="<{:U('Education/campus',array('jid'=>$hostlist['id']))}>">
+                      <li>校 区</li>
+                      </a> <a href="<{:U('Education/course',array('jid'=>$hostlist['id']))}>">
+                      <li>培训课程</li>
+                      </a> <a href="<{:U('Education/jiangshi',array('jid'=>$hostlist['id']))}>">
+                      <li>讲师风采</li>
+                      </a> <a href="<{:U('Education/photo',array('jid'=>$hostlist['id']))}>">
+                      <li>教学相册</li>
+                      </a> <a href="<{:U('Education/effect',array('jid'=>$hostlist['id']))}>">
+                      <li>家长点评</li>
+                      </a> <a href="<{:U('/Wap/Education/index/',array('id'=>$hostlist['id'],'token'=>$hostlist['token']))}>" target="_blank">
+                      <li>链接</li>
+                      </a> <a href="javascript:setPreview('<{:U('/Wap/Education/index/',array('token'=>$hostlist['token'],'id'=>$hostlist['id'],'openid'=>'fromuserid'))}>');">
+                      <li>预览</li>
+                      </a> <a href="<{:U('Education/selectjg',array('id'=>$hostlist['id']))}>">
+                      <li>修 改</li>
+                      </a> <a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Education/del',array('id'=>$hostlist['id']))}>');">
+                      <li>删 除</li>
+                      </a>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="clear"></div></td>
+          </tr>
+        </volist>
+      </tbody>
+    </table>
+    <div class="pagelistbox"> <{$page}> </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

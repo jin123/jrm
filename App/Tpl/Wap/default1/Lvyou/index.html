@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html><head>
+        <meta charset="utf-8">
+		<!--自适应设备宽度-->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>微旅游</title><script type="text/javascript">var yyuc_jspath = "/@system/";</script><script type="text/javascript" src="%E5%BE%AE%E6%97%85%E6%B8%B8_files/jquery.js"></script><script type="text/javascript" src="%E5%BE%AE%E6%97%85%E6%B8%B8_files/yyucadapter.js"></script>
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/lvyou/css/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/lvyou/css/home-38.css" media="all">
+<script type="text/javascript" src="__PUBLIC__/wap/lvyou/js/maivl.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/lvyou/js/swipe.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/lvyou/js/zepto.js"></script>
+
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/lvyou/css/font-awesome.css" media="all">
+
+<div class="body">
+		<!--
+	幻灯片管理
+	-->
+	<div style="-webkit-transform:translate3d(0,0,0);height:80%">
+		<div style="visibility: visible;" id="banner_box" class="box_swipe">
+			<ul style="width: 100%;height:100%" class="mainul">
+			              <volist name="alls" id="poster">
+						 
+					 <li data-index="0" style="width:100%;height:100%; left: 0px; transition-duration: 500ms; transform: translateX(0px);">
+					           <img src="<{$poster}>" alt="<{$poster}>" style="width:100%;height:100%">
+					  </li>
+					     </volist>
+					
+							</ul>
+							<ol id="indtagol">
+                                <volist name="alls" id="poster" key="i">
+									<li <if condition="$i eq 1"> class="on" </if>></li>
+                                </volist>
+							</ol>
+			
+		</div>
+		
+	</div>
+		<script>
+		$(function(){			
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(index, elem){
+					var lis = $('#indtagol').children();
+					lis.removeClass("on").eq(index).addClass("on");
+				}
+			});
+			
+		});
+		
+	</script>
+	<br>
+		<div class="navList_boxdp">
+			<div style="visibility: visible;width:100%" id="navList_box" class="box_swipe">
+				<ul style="width: 2560px;">
+							<li>
+							<a href="<{:U('Index/index',array('token'=>$token,'wecha_id'=>$wecha_id))}>" class="weimob-list-item">
+							<span class="icon-rss-sign"></span>
+							<div>主页</div>
+							</a>
+							<!-- <a href="<{:U('Lvyou/lvyou_index',array('token'=>$token,'wecha_id'=>$wecha_id))}>" class="weimob-list-item">
+							<span class="icon-home" ></span>
+							<div>旅游区简介</div>
+							</a>
+							<a href="<{:U('Photo/plist',array('token'=>$token,'id'=>5,'wecha_id'=>$wecha_id))}>" class="weimob-list-item">
+							<span class="icon-picture" ></span>
+							<div>风景相册</div>
+							</a> -->
+							<a href="<{:U('Lvyou/scenery',array('token'=>$token,'wecha_id'=>$wecha_id))}>" class="weimob-list-item">
+							<span class="icon-building" ></span>
+							<div>景点</div>
+							</a>
+							<a href="<{:U('Liuyan/index',array('token'=>$token,'wecha_id'=>$wecha_id))}>" class="weimob-list-item">
+							<span class="icon-check" ></span>
+							<div>留言</div>
+							</a>
+							</li>
+							<li>
+							<a href="<{:U('Lvyou/yuyue',array('token'=>$token,'wecha_id'=>$wecha_id))}>" class="weimob-list-item">
+							<span class="icon-edit"></span>
+							<div>预约</div>
+							</a>
+							<a href="<{:U('Card/index',array('token'=>$token,'wecha_id'=>$wecha_id))}>" class="weimob-list-item">
+							<span class="icon-credit-card"></span>
+							<div>会员卡</div>
+							</a>
+							<a href="<{:U('Lvyou/comment',array('token'=>$token,'wecha_id'=>$wecha_id))}>" class="weimob-list-item">
+							<span class="icon-credit-card"></span>
+							<div>专家点评</div>
+							</a>
+							
+							</li>
+						</ul>
+				<ol>
+					<a href="javascript:navList_box.prev();">&nbsp;</a>
+					<a href="javascript:navList_box.next();">&nbsp;</a>
+				</ol>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function(){
+				window.navList_box = new Swipe(document.getElementById('navList_box'), { auto:0});
+			});
+		</script>
+	</div>
+	
+</body></html>

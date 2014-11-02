@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线开卡_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/cart/jscolor.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="Admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">发布会员相关特权</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">会员信息</div>
+    <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>微信名</th>
+          <th>真实姓名</th>
+          <th>联系电话</th>
+          <th>QQ号码</th>
+          <th>性别</th>
+          <th>年龄</th>
+          <th>生日</th>
+          <th>地址</th>
+          <th>领卡时间</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <TR>
+          <TD><{$list.id}> </TD>
+          <TD><{$list.wechaname}> </TD>
+          <TD><{$list.truename}> </TD>
+          <TD><{$list.tel}> </TD>
+          <TD><{$list.qq}> </TD>
+          <TD><if condition="$list['sex'] eq 1"> 男
+              <else/>
+              女 </if>
+          </TD>
+          <TD><{$list.age}> </TD>
+          <TD><{$list.birthday}> </TD>
+          <TD><{$list.address}> </TD>
+          <TD><{$list.getcardtime|date='Y-m-d',###}> </TD>
+          <TD><{$list.info}> </TD>
+        </TR>
+      </tbody>
+    </table>
+    <div class="page">
+      <ul>
+        <{$page}>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

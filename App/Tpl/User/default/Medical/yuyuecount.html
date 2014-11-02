@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>预约统计_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script type="text/javascript" src="__PUBLIC__/js/FusionCharts.js"></script>
+<style>
+body {
+	font-family: 微软雅黑, 宋体, Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+	padding: 0;
+	margin: 0;
+}
+.row {
+	width: 950px;
+	margin: 20px 0 30px 20px;
+	position: relative;
+}
+.area {
+	border: 1px solid #cdced0;
+	width: 700px;
+}
+#memberChart {
+	height: 250px;
+	width: 100%;
+}
+#snConsumeChart {
+	height: 250px;
+	width: 100%;
+}
+#memberRight {
+	width: 200px;
+}
+.total {
+	border-top: 1px solid #cdced0;
+	padding: 7px 0 7px 15px;
+}
+.right {
+	position: absolute;
+	top: 0;
+	right: 15px;
+	border: 1px solid #cdced0;
+	height: 286px;
+	width: 210px;
+	text-align: center;
+	background-color: #eeeff1;
+}
+.sep {
+	height: 1px;
+	background-color: #cdced0
+}
+.txt-1 {
+	padding: 15px;
+	color: #1f4171;
+}
+.txt-2 {
+	padding: 5px;
+	color: #ff7900;
+	font-weight: normal;
+}
+.txt-3 {
+	padding: 5px;
+	padding-bottom: 20px;
+	color: #beaa8f;
+	font-weight: normal;
+}
+.txt-4 {
+	position: relative;
+	top: 6px;
+	left: -20px;
+	color: #2d3645;
+}
+.count-1 {
+	padding-top: 25px;
+	color: #ff7900;
+}
+.count-2 {
+	margin-top: 20px;
+	color: #beaa8f;
+}
+.start-time {
+	margin-right: 10px;
+}
+.end-time {
+	margin-left: 10px;
+	margin-right: 5px;
+}
+.info-block {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">预约统计</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">微医疗数据统计
+    </div>
+     <div class="new_main_tit ">
+      <div class="tab">
+        <ul>
+          <li class="tabli" id="tab2"><a href="<{:U('Medical/department',array('hid'=>$hid))}>">科室设置</a></li>
+          <li class="tabli" id="tab2"><a href="<{:U('Medical/yuyueselect',array('hid'=>$hid))}>">预约查询</a></li>
+          <li class="current tabli" id="tab5"><a href="<{:U('Medical/yuyuecount',array('hid'=>$hid))}>">预约统计</a></li>
+          <li class="tabli" id="tab2"><a href="<{:U('Medically/index',array('hid'=>$hid))}>" >留言板设置</a></li>
+          <li class="tabli" id="tab2"><a href="<{:U('Medical/recovery',array('hid'=>$hid))}>">康复案例设置</a></li>
+        </ul>
+      </div>
+    </div>
+
+  
+  <div class="box-content">
+    <div class="row">
+      <div class="area">
+        <div id="memberChart"> </div>
+        <script type="text/javascript">
+									   var chart = new FusionCharts("__PUBLIC__/Charts/Line.swf", "ChartId", "700", "250", "0", "0");
+									   chart.setDataURL("<{$memberChart_xml}>");		   
+									   chart.render("memberChart");
+									</script>
+        <div class="total"> <span class="start-time"><{$beginThismonth|date='Y-m-d',###}></span> 到<span class="end-time"><{$endThismonth|date='Y-m-d',###}></span> 共新增<{$sum}>名预约 </div>
+      </div>
+      <div class="right">
+        <h4 class="txt-1">新增预约</h4>
+        <div class="sep sep1"></div>
+        <h1 class="count-1"><{$count}></h1>
+        <h4 class="txt-2">今日新增预约</h4>
+        <h1 class="count-2"><{$counts}></h1>
+        <h4 class="txt-3">昨日新增预约</h4>
+        <div class="sep sep2"></div>
+        <span class="txt-4">目前预约共计<{$sum}>人</span> </div>
+    </div>
+    <div class="row consume">
+      <div class="area">
+        <div id="snConsumeChart"> </div>
+        <script type="text/javascript">
+									   var chart = new FusionCharts("__PUBLIC__/Charts/Line.swf", "ChartId", "700", "250", "0", "0");
+									   chart.setDataURL("<{$snConsumeChart_xml}>");		   
+									   chart.render("snConsumeChart");
+									</script>
+        <div class="total"> <span class="start-time"><{$beginThismonth|date='Y-m-d',###}></span> 到<span class="end-time"><{$endThismonth|date='Y-m-d',###}></span> 共到诊<{$sums}>人 </div>
+      </div>
+      <div class="right">
+        <h4 class="txt-1">到诊人数</h4>
+        <div class="sep sep1"></div>
+        <h1 class="count-1"><{$cont}></h1>
+        <h4 class="txt-2">今日到诊人数</h4>
+        <h1 class="count-2"><{$conts}></h1>
+        <h4 class="txt-3">昨日到诊人数</h4>
+        <div class="sep sep2"></div>
+        <span class="txt-4">目前到诊共计<{$sums}>人</span> </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<include file="Product:header"/>
+<style>
+.deploy_ctype_tip {
+	z-index: 1001;
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	top: 50%;
+	margin-top: -23px;
+	left: 0;
+}
+.deploy_ctype_tip p {
+	display: inline-block;
+	padding: 13px 24px;
+	border: solid #d6d482 1px;
+	background: #f5f4c5;
+	font-size: 16px;
+	color: #8f772f;
+	line-height: 18px;
+	border-radius: 3px;
+}
+</style>
+<form method="post" action="" onsubmit="return tgSubmit()">
+  <div class="main" id="wrap">
+    <div class="p_mod o_address">
+      <h2 class="p_mod_title">请填写个人信息</h2>
+      <div id="city">
+        <ul>
+          <li><strong>姓名：</strong>
+            <input type="text" placeholder="请输入姓名" id="truename" name="truename" value="<{$thisUser.truename}>" />
+          </li>
+          <li><strong>手机：</strong>
+            <input type="text" placeholder="请输入联系人手机号" id="tel" name="tel" value="<{$thisUser.tel}>" />
+          </li>
+          <li><strong>地址：</strong>
+            <input type="text" placeholder="请输入详细地址" id="address" name="address" value="<{$thisUser.address}>" />
+          </li>
+          <li><strong>联系方式保存到用户库：</strong>
+            <input type="checkbox" value="1" name="saveinfo" style="width: 16px;" checked="true" />
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="o_btn clearfix">
+      <div>
+        <input type="submit" class="o_btn_submit ts1" value="订单确认" />
+      </div>
+      <div>
+        <input type="button" class="o_btn_back ts1" onclick="history.go(-1);" value="返回" />
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>

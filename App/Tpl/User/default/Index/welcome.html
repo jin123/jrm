@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link href="__PUBLIC__/css/bootmetro.css" rel="stylesheet" id="stylesheet">
+<link href="__PUBLIC__/css/bootmetro-tiles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"></span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="metro span12">
+        <div class="new_main">
+          <div class="metro-sections">
+            <div class="metro-section" id="section1">
+              <div class="new_main_tit pt10" style="color:#ff6600;">亲爱的<{$Think.session.loginUserName}>，欢迎回来！以下是我们能提供的服务：
+                <button class="button_r_1" style="float:right;width:170px; margin-top:15px" type="button" onclick="location.href='<{:U('Index/init')}>'">一键快速设置站点</button>
+                <div style="clear:both"></div>
+              </div>
+              <a href="<{:U('/Index/edit/')}>" class="tile app wide">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_fans.png"> </div>
+              <div class="app-label">公众号管理</div>
+              </a> <a href="<{:U('/Classify/index/')}>" class="tile app wide bg-color-greenDark">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_sales.png"> </div>
+              <div class="app-label">微网站</div>
+              </a> <a href="<{:U('/Diymen/index/')}>" class="tile app" style="background-color: #c002bb !important;">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_user.png"> </div>
+              <div class="app-label">自定义菜单</div>
+              </a> <a href="<{:U('/Selfform/index')}>" class="tile app bg-color-red">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/Calendar.png"> </div>
+              <div class="app-label">在线预订</div>
+              </a> <a href="<{:U('/Panorama/index')}>" class="tile app bg-color-blueDark">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/360.png"> </div>
+              <div class="app-label">360度全景</div>
+              </a><a href="<{:U('/Photo/index')}>" class="tile app bg-color-pink">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/xiangce.png"> </div>
+              <div class="app-label">微相册</div>
+              </a><a href="<{:U('/Product/index')}>" class="tile app bg-color-blueDark">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_store.png"> </div>
+              <div class="app-label">微商城</div>
+              </a><a href="<{:U('/Coupon/index/')}>" class="tile app wide">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_store.png"> </div>
+              <div class="app-label">优惠券</div>
+              </a> <a href="<{:U('/Lottery/index/')}>" class="tile app bg-color-green">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_store.png"> </div>
+              <div class="app-label">大转盘</div>
+              </a> <a href="<{:U('/Guajiang/index/')}>" class="tile app bg-color-greenDark">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_store.png"> </div>
+              <div class="app-label">刮刮卡</div>
+              </a> <a href="<{:U('/Vote/index/')}>" class="tile app bg-color-blueDark">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_store.png"> </div>
+              <div class="app-label">微投票</div>
+              </a><a href="<{:U('/Member_card/index/')}>" class="tile app bg-color-green">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_menu.png"> </div>
+              <div class="app-label">会员卡</div>
+              </a><a href="<{:U('/Company/index/')}>" class="tile app bg-color-huangtong">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/fjmd.png"> </div>
+              <div class="app-label">附近门店</div>
+              </a> <a href="<{:U('/Wedding/index')}>" class="tile app bg-color-red">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/Calendar.png"> </div>
+              <div class="app-label">婚庆喜帖</div>
+              </a><a href="<{:U('/Estate/index')}>" class="tile app bg-color-blueDark">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/360.png"> </div>
+              <div class="app-label">微房产</div>
+              </a><!--<a href="<{:U('/Shake/admin/')}>" class="tile app" style="background-color: #c002bb !important;">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_menu.png"> </div>
+              <div class="app-label">摇一摇</div>
+              </a><a href="<{:U('/Wxscreen/index/')}>" class="tile app bg-color-red">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_menu.png"> </div>
+              <div class="app-label">微信墙</div>
+              </a>--><a href="<{:U('/Survey/index/')}>" class="tile app bg-color-blueDark ">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/360.png"> </div>
+              <div class="app-label">微调研</div>
+              </a><a href="<{:U('/Liuyan/index/')}>" class="tile app wide">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_fans.png"> </div>
+              <div class="app-label">微留言</div>
+              </a><a href="<{:U('/Groupbuy/index')}>" class="tile app bg-color-green">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_store.png"> </div>
+              <div class="app-label">微团购</div>
+              </a><!--<a href="<{:U('/Lvyou/index')}>" class="tile app bg-color-blueDark">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_store.png"> </div>
+              <div class="app-label">微旅游</div>
+              </a>--><a href="<{:U('/Education/index')}>" class="tile app bg-color-blueDark">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_store.png"> </div>
+              <div class="app-label">微教育</div>
+              </a><a href="<{:U('/Car/car')}>" class="tile app wide">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_store.png"> </div>
+              <div class="app-label">微汽车</div>
+              </a><a href="<{:U('/Hospital/hospitallist/')}>" class="tile app bg-color-green">
+              <div class="image-wrapper"> <img src="__PUBLIC__/images/ico/icon_menu.png"> </div>
+              <div class="app-label">微医疗</div>
+              </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

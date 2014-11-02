@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>预约保养_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">预约保养</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">预约保养 <a href="<{:U('Car/byadd',array('uid'=>$uid))}>"><span class="button_r_1 fabu">新增</span></a></div>
+      <table width="100%" class="new_main_liebiao">
+        <tbody>
+          <tr>
+          	
+            <th>品牌</th>
+            <th>车系</th>
+            <th>车型</th>
+            <th>车牌号</th>
+            <th>行驶里程</th>
+            <th>购买年代</th>
+            <th>维护项目</th>
+            <th>预计到店时间</th>
+            <th>预计取车时间</th>
+            <th>操作</th>
+          </tr>
+          <volist name="list" id="vo">
+            <tr>
+              <td><{$vo.pname}></td>
+              <td><{$vo.cname}></td>
+              <td><{$vo.dname}></td>
+              <td><{$vo.num}></td>
+              <td><{$vo.mileage}></td>
+              <td><{$vo.year}></td>
+			  <td><if condition="$vo['type'] eq 1"> 维护外观
+				 <elseif condition="$vo['type'] eq 2"/>机油三滤保养
+				 <else />股指保养
+				 </if></td>
+              <td><{$vo.ytime}></td>
+              <td><{$vo.qtime}></td>
+              <td><div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                  <h3 class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                  <div class="h3_cat">
+                    <div class="h3_cat_list">
+                      <ul><a href="<{:U('Car/chuli',array('id'=>$vo['id']))}>">
+                        <li>预约者信息</li>
+                        </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="clear"></div></td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+      <div class="pagelistbox">
+          <{$page}>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

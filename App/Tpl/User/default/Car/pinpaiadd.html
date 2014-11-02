@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>编辑品牌_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">编辑品牌活动</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">编辑品牌<a href="<{:U('Car/index')}>">&nbsp;&nbsp;&nbsp;&nbsp;<span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form"  method="post"  id="regform"  action=""  enctype="multipart/form-data" >
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>品牌名称：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="name" value="<{$vo.name}>" name="name" style="width:570px" ><span class="help-inline"></span> </td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>关键词：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="keyword" value="<{$vo.keyword}>" name="keyword" style="width:570px" > <strong class="input_ts_y"><span class="help-inline"></span></td>
+            </tr>
+			<tr>
+              <td width="16%" class="table_txt_right">销售姓名：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="xiaoshou" value="<{$vo.xiaoshou}>" name="xiaoshou" style="width:570px" ></td>
+            </tr>
+			<tr>
+              <td width="16%" class="table_txt_right">销售电话：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="tel" value="<{$vo.tel}>" name="tel" style="width:570px" > </td>
+            </tr>
+			<tr>
+              <td width="16%" class="table_txt_right">销售职位：</td>
+              <td width="84%">售前服务<input type="radio"  name="zhiye"  value="1"  <if condition="$vo['zhiye'] eq 1"> checked=checked" </if>/> 售后服务<input type="radio" name="zhiye" value="2" <if condition="$vo['zhiye'] eq 2"> checked=checked" </if>> 不选择<input type="radio" value="0" <input type="radio" name="zhiye" value="0" <if condition="$vo['zhiye'] eq 0"> checked=checked" </if>> </td>
+            </tr>
+			<tr>
+			<tr>
+              <td width="16%" class="table_txt_right"></td>
+              <td><div style="margin:3px 0 5px;"> <img id="xspic1" src="<if condition="$vo['xspic'] eq '0'">__PUBLIC__/images/wm/car2.png<else/><{$vo.xspic}></if>" width="300px" height="200px" ></div></td>
+            </tr>
+              <td width="16%" class="table_txt_right">销售人员头像：</td>
+              <td width="84%"><input class="input login_input_1" name="xspic" id="xspic" value="<if condition="$vo['xspic'] eq '0'">__PUBLIC__/images/wm/car2.png<else/><{$vo.xspic}></if>" style="width:570px;" onclick="document.getElementById('xspic1').src=this.value;">
+                 <a href="javascript:void(0)" onclick="upyunPicUpload('xspic',700,420)" class="btnGreen">选择图片</a></td>
+            </tr>
+              <td width="16%" class="table_txt_right">官方网址：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.website}>" name="website" style="width:570px" />
+                <strong class="input_ts_y">请输入品牌官方网站的完成url地址,如：http://www.mercedes-benz.com.cn</strong></td>
+            </tr>
+			
+			 <tr>
+              <td width="16%" class="table_txt_right">显示顺序：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.sort}>" name="sort" style="width:570px" />
+                <strong class="input_ts_y">数字越大越靠前</strong></td>
+            </tr>
+			
+            <tr>
+              <td width="16%" class="table_txt_right">品牌简介：</td>
+              <td width="84%"><textarea name="ms" style="width:570px;height:102px;" maxlength="100" class="input login_input_1"><{$vo.ms}></textarea>
+                <strong class="input_ts_y"></strong></td>
+            </tr>
+            
+			 <tr>
+              <td width="16%" class="table_txt_right"></td>
+              <td><div style="margin:5px 0 10px;"> <img id="pic_id"  src="<if condition="$vo['pic'] eq '0'">__PUBLIC__/images/wm/car2.png<else/><{$vo.pic}></if>" width="373px" ></div></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">LOGO标致：</td>
+              <td><input class="input login_input_1" name="pic" id="pic"  value="<if condition="$vo['pic'] eq '0'">__PUBLIC__/images/wm/car2.png<else/><{$vo.pic}></if>" style="width:570px;" onclick="document.getElementById('pic_id').src=this.value;">
+                 <a href="javascript:void(0)" onclick="upyunPicUpload('pic',700,420)" class="btnGreen">选择图片</a>&nbsp;&nbsp;建议图片尺寸420*60，不超过300K</td>
+            </tr>
+           <tr>
+              <td></td>
+              <td><button class="button_r_1"  type="button" style=" width:150px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+           
+          </tbody>
+        </table>
+      
+      </form>
+ 
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

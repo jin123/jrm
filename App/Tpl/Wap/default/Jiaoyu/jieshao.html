@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/estate/style.css" media="all">
+<script type="text/javascript" src="__PUBLIC__/wap/estate/index.js"></script>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<title>微教育</title>
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- Mobile Devices Support @end -->
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="wrapper" id="container">
+  <!-- start -->
+  <div class="act_top" id="actTop" style="">
+    <div class="act_top_show"> <img src="<{$jy_data['banner']|default='__PUBLIC__/wap/estate/estate01.jpg'}>" width="720" height="175" id="bannerPic"> </div>
+  </div>
+  <!--  end -->
+  <!-- 培训机构简介 start -->
+  <div class="box box_up">
+    <!-- 收起时加上样式box_up,展开时去掉 -->
+    <h3>培训机构简介</h3>
+    <div class="box_time"> <?php echo html_entity_decode(htmlspecialchars_decode($jy_data['jiaoyu_desc'])); ?> </div>
+    <a href="javascript:void(0);" onClick="Index.switchIndex(this);return false;" class="btn_more" style="margin-top:10px;"><span>更多</span></a> </div>
+  <!-- 培训机构简介 end -->
+  <!-- 地图 start -->
+  <div class="box">
+    <h3>地图</h3>
+    <div class="box_map"> <a  href="http://chabus.duapp.com/mapapi.php?lng=<{$jy_data['lng']}>&lat=<{$jy_data['lat']}>&title=预约&info=温馨提示：机构大概位置">
+      <div class="map_area">
+        <div style="margin-bottom:10px;"> 地址： <{$jy_data['place']}></div>
+        <img alt="" src="http://api.map.baidu.com/staticimage?width=600&height=175&center=<{$jy_data['address']}>&markers=<{$jy_data['address']}>|<{$jy_data['lng']}>,<{$jy_data['lat']}>&zoom=10&markerStyles=s,A,0xff0000" /> </div>
+      </a> </div>
+  </div>
+  <!-- 地图 end -->
+  <!-- 视频 start -->
+  <div class="box" jqmoldstyle="block" style="display: none;">
+    <h3>视频欣赏</h3>
+    <div class="box_type" style="text-align:center;" id="videoDiv"></div>
+    <p>&nbsp;</p>
+  </div>
+  <!-- 视频 end -->
+  <!-- 服务理念简介 start -->
+  <style>
+    #xmjj img{max-width:95%}
+    </style>
+  <div class="box box_up" style="display:">
+    <h3>服务理念简介</h3>
+    <div class="box_info" id="xmjj"> <?php echo html_entity_decode(htmlspecialchars_decode($jy_data['project_brief'])); ?> </div>
+    <a href="javascript:void(0);" onClick="Index.switchIndex(this);return false;" class="btn_more" style="margin-top:10px;"><span>更多</span></a> </div>
+  <!-- 服务理念简介 end -->
+  <!-- 服务配套简介 start -->
+  <div class="box box_up" style="display:">
+    <h3>服务配套简介</h3>
+    <div class="box_info"> <?php echo html_entity_decode(htmlspecialchars_decode($jy_data['traffic_desc'])); ?> </div>
+    <a href="javascript:void(0);" onClick="Index.switchIndex(this);return false;" class="btn_more" style="margin-top:10px;"><span>更多</span></a> </div>
+  <!-- 服务配套简介 end -->
+</div>
+<script type="text/template" id="template">
+    <!-- start -->
+        <div class="act_top" id="actTop" style="">
+            <div class="act_top_show">
+                <img id="bannerPic" style="width:100%;max-height:175px;" src="<{$jy_data['banner']|default='__PUBLIC__/wap/estate/estate01.jpg'}>" alt="loading...">
+            </div>
+        </div>
+    <!--  end -->
+    <!-- 培训机构简介 start -->
+        <div class="box box_up"><!-- 收起时加上样式box_up,展开时去掉 -->
+            <h3>培训机构简介</h3>
+            <div class="box_time">
+                <ul><%
+                    var sellInfo=data.sellInfo;
+                    for(var i=0,il=sellInfo.length;i<il;i++){
+                        %>
+                        <li><%=sellInfo[i]%></li>
+                    <% } /* end of sellInfo loop */ %>
+                </ul>
+            </div>
+            <a href="javascript:void(0);" onclick="Index.switchIndex(this);return false;" class="btn_more"><span>更多</span></a>
+        </div>
+    <!-- 培训机构简介 end -->
+    <!-- 地图 start -->
+        <div class="box">
+            <h3>地图</h3>
+            <div class="box_map">
+                <div class="map_area"><%var murl=data.map.pic,w = document.documentElement.clientWidth - 30;murl=murl.replace(/\d+(\*\d+)/i,720+"$1");%>
+                    <img id="mapImg" title="<{$jy_data['place']}>"
+                         alt="<{$jy_data['place']}>" onclick="Index.goMap(<%=data.id%>);return false;"
+                         src="http://st.map.soso.com/api?size=720*75&center=<{$jy_data['lng']}>,<{$jy_data['lat']}>&zoom=14&markers=<{$jy_data['lng']}>,<{$jy_data['lat']}>"
+                         style="background:url(http://st.map.soso.com/api?size=720*75&center=<{$jy_data['lng']}>,<{$jy_data['lat']}>&zoom=14&markers=<{$jy_data['lng']}>,<{$jy_data['lat']}>) no-repeat center center;"
+                         width="720" height="75"/>
+                </div>
+                <p><{$jy_data['place']}></p>
+            </div>
+        </div>
+    <!-- 地图 end -->
+    <!-- 视频 start -->
+        <div class="box">
+            <h3>视频欣赏</h3>
+            <div class="box_type" style="text-align:center;" id="videoDiv"></div>
+        </div>
+    <!-- 视频 end -->
+    <!-- 服务理念简介 start -->
+    
+        <div class="box box_up" style="display:<%=(data.intro.detail.toString().length>0?'':'none') %>">
+            <h3><%=data.intro.title%></h3>
+            <div class="box_info">
+                <p><% for(var i=0,il=data.intro.detail.length;i<il;i++){%><%=data.intro.detail[i]%><br><% } %></p>
+            </div>
+            <a href="javascript:void(0);" onclick="Index.switchIndex(this);return false;" class="btn_more"><span>更多</span></a>
+        </div>
+    <!-- 服务理念简介 end -->
+    <!-- 服务配套简介 start -->
+        <div class="box box_up" style="display:<%=(data.traffic.detail.toString().length>0?'':'none') %>">
+            <h3><%=data.traffic.title%></h3>
+            <div class="box_info">
+                <p><% for(var i=0,il=data.traffic.detail.length;i<il;i++){%><%=data.traffic.detail[i]%><br><% } %></p>
+            </div>
+            <a href="javascript:void(0);" onclick="Index.switchIndex(this);return false;" class="btn_more"><span>更多</span></a>
+        </div>
+    <!-- 服务配套简介 end -->
+</script>
+</body>
+</html>

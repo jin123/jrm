@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="__PUBLIC__/Shake/js/jquery.js"></script>
+<title>登记信息</title>
+<style type="text/css">
+body{ background:#f1f1f1;}
+.px {margin: 0.5em 0;position: relative;background-color: #FFFFFF;border-radius: 5px;border: 1px solid #C6C6C6;color: #333333;text-shadow: 0 1px 0 #FFFFFF;display: block;width: 100%; padding:10px 10px;font-size: 16px;margin:0 auto;font-family:Arial, Helvetica, sans-serif;}
+.px:hover {	border: 1px solid #ff6501;}
+.px:focus {border: 1px solid #ff6501;box-shadow: 0 0 5px #ff6501;}
+.err {margin: 0.5em 0;position: relative;background-color: #FFFFFF;border-radius: 5px;border: 1px solid #ff6501;color: #ff6501;text-shadow: 0 1px 0 #FFFFFF;display: block;width: 100%; padding:10px 10px;font-size: 16px;margin:0 auto;font-family:Arial, Helvetica, sans-serif;}
+.px[type="text"] {    width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;}
+.px[type="password"] {width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;}
+.px[type="button"] {width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;}
+.pxbtn[type="button"] {width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;}
+.submit[type="button"] {width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;}
+.window {width:290px;position:absolute;display:block;margin:20px auto 0 -145px;padding:2px;top:0;left:50%;border-radius:0.6em;-webkit-border-radius:0.6em;-moz-border-radius:0.6em;background-color: #f1f1f1;-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);font:14px/1.5 Microsoft YaHei, Helvitica, Verdana, Arial, san-serif;z-index:10;bottom: auto;}
+.window .wtitle {background-color: #7e8486;line-height: 26px;padding: 5px 5px 5px 10px;color:#ffffff;font-size:16px;border-radius:0.5em 0.5em 0 0;-webkit-border-radius:0.5em 0.5em 0 0;-moz-border-radius:0.5em 0.5em 0 0;}
+.window .content {overflow:auto;padding:10px;	color: #222222;	text-shadow: 0 1px 0 #FFFFFF;}
+.window #txt {min-height:30px;font-size:14px;line-height:20px;}
+.window .content p {margin:10px 0 0 0;}
+.window .txtbtn {color: #666666;font-weight: bold;text-shadow: 0 1px 0 #FFFFFF;display: block;width: 100%;text-overflow: ellipsis;white-space: nowrap;cursor: pointer;text-align: windowcenter;font-weight: bold;font-size: 16px;padding:8px;margin:10px 0 0 0;background-color:#F4F4F4;border:1px solid #C6C6C6;background-image: linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);background-image: -o-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);background-image: -moz-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);background-image: -webkit-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);background-image: -ms-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);background-image: -webkit-gradient(  linear,  left bottom,  left top,  color-stop(0, #E1E1E1),  color-stop(1, #ffffff)  );-webkit-box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 #EEEEEE;-moz-box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 #EEEEEE;box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 #EEEEEE;-webkit-border-radius: 5px;-moz-border-radius: 5px;-o-border-radius: 5px;border-radius: 5px;}
+</style>
+<head>
+<script>
+$(function(){
+	var nickname,tel,openid;
+	openid ="<{$wecha_id}>";
+	var token="<{$token}>";
+	$('#button').click(function(){
+		//nickname = $('#nickname').val();
+		tel = $('#tel').val();
+		/*if (nickname == ""){
+			alert("请输入您的姓名！");
+			return false;
+		}*/
+		if (tel == ""){
+			alert("请输入您的电话！");
+			return false;
+		}
+		$.post("<{:U('Shake/register')}>",{tel:tel,openid:openid,token:token},function(data){
+			if (data.success == 1){
+				window.location.href="<{:U('Shake/index',array('wecha_id'=>$wecha_id,'token'=>$token))}>"
+			}else{
+			 	alert("提交失败！")
+			}
+		},'json');
+	});
+})
+</script>
+</head>
+<body>
+<div class="window">
+  <div id="title" class="wtitle">登记信息</div>
+  <div class="content">
+    <div id="txt">请填写完个人信息后等待活动开始！</div>
+    <!--<p>
+      <input name="nickname" value="" class="px" id="nickname" type="text" placeholder="请输入您的姓名">
+    </p>-->
+    <p>
+      <input name="tel" class="px" id="tel" value="" type="text" placeholder="请输入您的电话">
+	  
+    </p>
+    <input type="button" value="确 定" name="确 定" class="txtbtn" id="button">
+  </div>
+</div>
+</body>
+</html>

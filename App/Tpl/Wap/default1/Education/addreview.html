@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>微留言</title>
+	<meta content="" name="Keywords">
+	<meta content="" name="Description">
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/edu/msg.css" media="all"/>
+	<script type="text/javascript" src="__PUBLIC__/js/j.js"></script>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+	<meta content="eric.wu" name="author">
+	<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+	<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+	<meta content="no-cache" http-equiv="pragma">
+	<meta content="0" http-equiv="expires">
+	<meta content="telephone=no, address=no" name="format-detection">
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	<script type="text/javascript">
+
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call('hideToolbar');
+});
+        </script>
+	<script type="text/javascript"> 
+		$(document).ready(function () { 
+			$("#showcard1").click(function () { 
+				var btn = $(this);
+				var wxname = $("#wxname1").val();
+				if (wxname  == '') {
+					alert("请输入昵称");
+					return;
+				} 
+				var info = $("#info1").val();
+					if (info == '') {
+					alert("请输入内容");
+					return;
+				}
+				
+				$.post('<{:U('Liuyan/add')}>',{msg:info,pid:'<{$pid}>',name:wxname},
+					function(data) {
+						alert('留言审核通过后才会显示在留言墙上！');
+						setTimeout('window.location.href=location.href',1000);
+						return;
+
+				});
+			}); 
+			//
+			$("#showcard2").click(function () { 
+				var btn = $(this);
+				var wxname = $("#wxname2").val();
+					if (wxname  == '') {
+					alert("请输入昵称");
+					return;
+				} 
+				var info = $("#info2").val();
+					if (info == '') {
+					alert("请输入内容");
+					return;
+				}
+				$.post('<{:U('Liuyan/add')}>',{msg:info,name:'<{$name}>'},
+					function(data) {
+						alert('留言审核通过后才会显示在留言墙上！');
+						setTimeout('window.location.href=location.href',1000);
+						return;
+
+				});
+			});  
+			//
+			$(".hhsubmit").click(function () { 
+				var objid = $(this).attr("date");
+				var info = $(".hly"+objid).val();
+					if (info == '') {
+					alert("请输入内容");
+					return;
+				}
+				var submitData = {
+					nc:'{h $nc}',
+					pid:objid,
+					msg: info
+				};
+				$.post('lyadd.html', submitData,
+						function(data) {
+							if (data == 'ok') {
+								alert('留言审核通过后才会显示在留言墙上！');
+								setTimeout('window.location.href=location.href',1000);
+							return;
+						} else {}
+				});
+			});  
+			//
+			$(".hfinfo").click(function () { 
+				var objid = $(this).attr("date");
+				$(".hhly"+objid).slideToggle();
+			}); 
+			//
+			$(".hhbt").click(function () { 
+				var objid = $(this).attr("date");
+				$(".hhly"+objid).slideToggle();
+			});
+			//
+			$("#windowclosebutton").click(function () { 
+				$("#windowcenter").slideUp(500);
+			});
+			//
+			$("#alertclose").click(function () { 
+				$("#windowcenter").slideUp(500);
+			});
+		}); 
+		//
+		function alert(title){ 
+			window.scrollTo(0, -1);
+			$("#windowcenter").slideToggle("slow"); 
+			$("#txt").html(title);
+			setTimeout(function(){ $("#windowcenter").slideUp(500);},4000);
+		}
+		//
+		$(document).ready(function(){
+			$(".first1").click(function(){
+				$(".ly1").slideToggle();
+			});
+			$(".first2").click(function(){
+				$(".ly2").slideToggle();
+			});
+		});
+	</script>
+	</head>
+	<body id="message" onselectstart="return true;" ondragstart="return false;">
+<div class="container">
+      <div class="qiandaobanner"> <a href="javascript:history.go(-1);"> <img src="<{$ly_data['headpic']}>" style="width:100%;" /> </a> </div>
+      <div class="cardexplain">
+    <div class="window" id="windowcenter">
+          <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+          <div class="content">
+        <div id="txt"></div>
+      </div>
+
+        </div>
+    <div class="history">
+          <div class="history-date">
+        <ul>
+              <a>
+          <h2 class="first first1" style="position: relative;">请点击点评</h2>
+          </a> 
+              <!--<li class="nob  mb"><div class="beizhu">留言审核通过后才会显示在留言墙上！</div></li>-->
+              <li class="green bounceInDown nob ly1" style="display:none">
+			  
+            <dl>
+				<form action="<{:U('Education/add')}>" method="post">
+				<input type="hidden" name="id" value="<{$id}>" />
+				<input type="hidden" name="token" value="<{$token}>" />
+              <dt>
+                <input name="name" type="text" class="px" id="wxname1" value="" placeholder="请输入您的昵称">
+              </dt>
+                  <dt>
+                <textarea name="content" class="pxtextarea" style=" height:60px;" id="info1" placeholder="请留下你的点评"></textarea>
+              </dt>
+                  <dt>
+				  <input type="submit" id="info1" value="提交点评" style="width:100%;height:50px;background:#39b800;font-size:20px;color:#fff;border-radius:10px;" />
+				  </dt>
+				</form>
+            </dl>
+			  
+          </li>
+              <foreach name='mres' item='m'>
+            <li class="green bounceInDown">
+                  <h3> 
+                <!-- <img src="http://www.apiwx.com/index/images/logo100x100.jpg"> --> 
+                <{$m.name}><span><{$m.time|date='Y-m-d H:i:s',###}></span>
+                <div class="clr"></div>
+              </h3>
+                  <dl>
+                <dt class="hfinfo"><{$m.msg}></dt>
+              </dl>
+							<!--<dl class="huifu">
+								<dt>
+									<span>																														<a class="hhbt czan" date="11803" href="javascript:void(0)">回复</a>
+										<p style="display:none;" class="hhly11803">
+											<textarea name="info" class="pxtextarea hly<{$m->id}>"></textarea> 
+										<a class="hhsubmit submit" date="<{$m->id}>" href="javascript:void(0)">确定</a>
+										</p>
+									</span>
+								</dt>
+							</dl>
+							<dl class="huifu">
+								<dt><span><{$n['nc']}>回复：<{$n['msg']}></span></dt>
+							</dl>-->
+                </li>
+          </foreach>
+          </ul>
+      </div>
+        </div>
+  </div>
+    </div>
+</div>
+</body>
+</html>

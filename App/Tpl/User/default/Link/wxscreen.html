@@ -1,0 +1,29 @@
+<div class="cLineD">
+    <form method="get" action="<{:U('Link/shake')}>" id="searchForm">
+        <input type="text" id="msgSearchInput" class="px" placeholder="输入关键词搜索" name="searchkey" value="<{$searchkey}>">
+        <button type="submit" name="appidsubmit" value="true" class="btnGreen vm"><strong>搜索</strong></button>
+        <span id="msg"></span>
+    </form>
+</div>
+<table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <thead>
+    <tr>
+      <th width="26%">名称</th>
+          <th width="28%">关键词</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+<if condition="infos">
+<foreach name="infos" item="r" key="n">
+<tr>
+<td><{$r.tit}></td>
+<td><{$r.gjz}></td>
+<td><a data="shake/index/id/<{$r.id}>">选择</a></td></tr>
+</foreach>
+<else/>
+<tr><td colspan="3">没有内容</td></tr>
+</if>
+  </tbody>
+</table>
+<div class="pagelistbox"><{$page}></div>

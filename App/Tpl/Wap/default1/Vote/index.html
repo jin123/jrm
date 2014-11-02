@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title><{$vote.title}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/vote/css/wap.css" />
+<script src="__PUBLIC__/wap/js/jquery.min.js"></script>
+<script src="__PUBLIC__/wap/js/jquery.alerts.js" type="text/javascript"></script>
+<link href="__PUBLIC__/wap/js/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+<script>
+$(function(){
+	$('.toupiao_main>ul>li').click(function(){
+		$('.iradio_flat').removeClass('checked');
+		$(this).find('span.iradio_flat').addClass('checked');
+		$(this).find('span>input').attr("checked",true);
+	});
+})
+function checkForm(){
+	var idval=$('input:radio[name="id"]:checked').val();
+	if(idval==null){
+		jAlert("请选择您的投票！");
+		return false;
+	}
+
+    var self = $(this);
+
+    var chk = document.getElementsByName('vid');
+
+    var objarray = chk.length;
+
+
+    var wecha_id = "<if condition="$Think.get.wecha_id neq '' "><{$Think.get.wecha_id}><else/><{$Think.session.wecha_id}></if>";
+
+    var token  = "<{$Think.get.token}>";
+
+    var tid = "<{$Think.get.id}>";   
+
+        var submitData={
+
+            wecha_id : wecha_id,
+
+            tid      : tid,
+
+            chid     : idval,
+
+            token    : token,
+
+            action   : "add_vote"
+        };
+
+       $.post('index.php?g=Wap&m=Vote&a=add_vote&token=<{$Think.get.token}>&wecha_id=<if condition="$Think.get.wecha_id neq '' "><{$Think.get.wecha_id}><else/><{$Think.session.wecha_id}></if>', submitData, function(bakcdata) {
+
+          var obj=eval('('+bakcdata+')');
+
+          if(obj.success == 1){
+
+			  jAlert('投票成功，查看结果',"投票成功",function() {
+						location.href='index.php?g=Wap&m=Vote&a=show&token=<{$Think.get.token}>&wecha_id=<if condition="$Think.get.wecha_id neq '' "><{$Think.get.wecha_id}><else/><{$Think.session.wecha_id}></if>&id=<{$Think.get.id}>&chid='+obj.chid;
+						});
+			 return false;
+
+          }else{
+
+            jAlert('您已经投票过了',"投票失败",function() {
+						location.href='index.php?g=Wap&m=Vote&a=show&token=<{$Think.get.token}>&wecha_id=<if condition="$Think.get.wecha_id neq '' "><{$Think.get.wecha_id}><else/><{$Think.session.wecha_id}></if>&id=<{$Think.get.id}>&chid='+obj.chid;
+						});
+         	return false;
+
+          }
+       });  
+
+}
+   function cli_hide2(){
+  $("#layer_mask2").hide();
+  $('#forward2').hide();
+}
+
+function cli_zhuanfa2()
+{
+	$("#layer_mask2").show();
+	$('#forward2').show();
+}
+</script>
+</head>
+<body style="background:#ffffff;">
+<div class="layer-mask" id="layer_mask2" style="z-index: 10002;display:none;  position: absolute;    position: fixed;    width: 100%;    height: 100%;    background-color: #1b1b1b;    opacity: 0.9;    top: 0;left: 0;" onClick="cli_hide2()"></div>
+<div class="helper forward" id="forward2"></div>
+<div class="toupiao">
+  <div class="toupiao_txt">
+    <div class="toupiao_txt_h"><{$vote.title}></div>
+    <div class="toupiao_txt_s"><{$vote.statdate|date="Y-m-d",###}></div>
+    <if condition="($vote['picurl'] neq '') AND ($vote['showpic'] eq 1) ">
+      <div class="toupiao_txt_img"> <img src="<{$vote.picurl}>"  width="100%" /> </div>
+    </if>
+    <div class="toupiao_txt_p"><?php echo html_entity_decode(htmlspecialchars_decode($vote['info'])); ?></div>
+  </div>
+  <div class="toupiao_main">
+    <ul>
+      <volist name="vote_item" id="li">
+        <li class="toupiao_main_<php>if($i<=5){echo $i;}else{$i=1;echo $i;}</php>"> <span class="iradio_flat">
+          <input  name="id" value="<{$li.id}>"  style="opacity: 0;" type="radio">
+          </span> <span class="toupiao_main_span"><{$li.item}></span> </li>
+      </volist>
+    </ul>
+    <input class="forms_jrgwc" type="submit" onClick="return checkForm();" value="确认提交">
+    <button class="forms_jrgwd" onclick="cli_zhuanfa2()">分享给好友</button>
+  </div>
+  <!--  </form>
+-->
+  <div class="toupiao_shu"> <span>共有<{$count}>人参与投票</span> </div>
+  <!--<div class="toupiao_shu_a"><a href="http://www.alivv.net" target="_blank">技术支持：<{$homeInfo.jszc}></a></div>-->
+</div>
+</body>
+</html>

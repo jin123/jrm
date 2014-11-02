@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+<if condition="$isDining neq 1">商品分类<else/>菜品分类</if>设置_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"><if condition="$isDining neq 1">商品分类<else/>菜品分类</if>设置</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">
+      <if condition="$isDining neq 1">商品分类<else/>菜品分类</if>设置 <a href="<{:U('Product/cats',array('parentid'=>$parentid,'dining'=>$isDining))}>"><span class="button_r_1 fabu">返回</span></a> </div>
+    <form class="form" method="post" action="" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="<{$set.id}>" />
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>名称：</td>
+            <td width="84%"><input type="text" name="name" value="<{$set.name}>" class="input login_input_1" style="width:560px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>Logo地址：</td>
+            <td width="84%"><input type="text" name="logourl" value="<{$set.logourl}>" id="logourl" class="input login_input_1" style="width:560px;" />
+              <strong class="input_ts_y">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('logourl',700,420)" class="btnGreen">选择图片</a>
+              </strong></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>简介：</td>
+            <td width="84%"><textarea name="des" class="input login_input_1" style="width:560px;height:80px;"><{$set.des}></textarea></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">&nbsp;</td>
+            <td width="84%"><if condition="$isDining neq 1">
+                <input type="hidden" value="0" name="dining" />
+                <else/>
+                <input type="hidden" value="1" name="dining" />
+              </if>
+              <input type="hidden" value="<{$parentid}>" name="parentid" />
+              <button type="submit" name="button" class="btnGreen">保存</button>
+                <a href="<{:U('Product/cats')}>" class="btnGray vm">取消</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <div class="page">
+      <ul>
+        <{$page}>
+      </ul>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+function jsbq(srt){
+document.getElementById("Hfcontent").value=document.getElementById("Hfcontent").value+"/"+srt;
+}
+</script>
+</body>
+</html>

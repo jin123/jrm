@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加/修改分组</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script>
+
+var GV = {
+    DIMAUB: "/",
+    JS_ROOT: "/Public/js/",
+    TOKEN: ""
+};
+</script>
+</head>
+<body>
+
+  <div class="new_main">
+    <form id="myform" class="form" name="form" method="post" action="<{:U('Member/ad_group')}>">
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="20%" class="table_txt_right">名称：</td>
+            <td width="50%"><input type="input" class="input login_input_1" id="name" name="name" style="width:200px" ></td>
+			
+			<td> <button class="button_r_1" type="submit" style=" width:60px; margin-left:10px;">提交</button></td>
+			</tr>
+          </tbody>
+        
+      </table>
+	    <input type="hidden" name="gid" value="<?php echo $gid; ?>">  
+    </form>
+  </div>
+</div>
+
+<script charset="utf-8" src="/Public/DatePicker/WdatePicker.js"></script>
+<script src="/Public/js/jquery.js"></script>
+<script src="/Public/js/jquery.form.js"></script>
+<script src="/Public/js/validate.js"></script>
+<script src="/Public/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/Public/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/Public/js/wind.js"></script>
+<script src="/Public/js/com.js"></script>
+</body>
+<script>
+	 Wind.use('', '', '', function () {
+	            var form = $('#myform');
+	        //表单验证开始
+	        form.validate({
+				//是否在获取焦点时验证
+				onfocusout:false,
+				//是否在敲击键盘时验证
+				onkeyup:false,
+				//当鼠标掉级时验证
+				onclick: false,
+	            //验证错误
+	            showErrors: function (errorMap, errorArr) {
+					//errorMap {'name':'错误信息'}
+					//errorArr [{'message':'错误信息',element:({})}]
+					try{
+						$(errorArr[0].element).focus();
+						art.dialog({
+							id:'error',
+							icon: 'error',
+							lock: true,
+							fixed: true,
+							background:"#CCCCCC",
+							opacity:0,
+							content: errorArr[0].message,
+							cancelVal: '确定',
+							cancel: function(){
+								$(errorArr[0].element).focus();
+							}
+						});
+					}catch(err){
+					}
+	            },
+	            //验证规则
+	            rules: {},
+	            //验证未通过提示消息
+	            messages:{},
+	            //给未通过验证的元素加效果,闪烁等
+	            highlight: false,
+	            //是否在获取焦点时验证
+	            onfocusout: false,
+	            //验证通过，提交表单
+	            submitHandler: function (forms) {
+				//alert('fdgfg');
+	                $(forms).ajaxSubmit({
+	                    url: form.attr('action'), //按钮上是否自定义提交地址(多按钮情况)
+	                    dataType: 'json',
+	                    success: function (data, statusText, xhr, $form) {
+							
+							var data = $.parseJSON(data);
+							if(data['errcode']){
+								alert(data['errmsg']);return;
+								
+								}
+					var win = art.dialog.open.origin;//来源页面
+
+                       win.location.reload();
+						
+						   art.dialog.close();
+						  //  location.reload();
+	                        if(true){
+								setCookie("refersh_time",1);
+								//添加成功
+								Wind.use("artDialog", function () {
+								    art.dialog({
+								        id: "succeed",
+								        icon: "succeed",
+								        fixed: true,
+								        lock: true,
+								        background: "#CCCCCC",
+								        opacity: 0,
+								        content: '操作成功',
+										button:[
+											{
+												name: '继续添加？',
+												callback:function(){
+													reloadPage(window);
+													return true;
+												},
+												focus: true
+											},{
+												name: '返回列表页',
+												callback:function(){
+													location='/index.php?s=/Label/tag';
+													return true;
+												}
+											}
+										]
+								    });
+								});
+							}else{
+								isalert(data.info);
+							}
+	                    }
+	                });
+	            }
+	        });
+	    });
+
+</script>
+</html>

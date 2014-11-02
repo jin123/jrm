@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>产品</title>
+<link href="__PUBLIC__/wap/drugs/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="box">
+<div class="table">
+<form action="" method="post" >
+<div class="search">
+    	<p><input type="text" class="search_1" name="searchkey" /></p>
+       <b> <button type="submit" class="search_2" ></button></b>
+      
+    </div>
+    </form>
+<div class="chanpin">
+   	  <ul>
+   	  <volist name="data['rows']" id="list">
+   	  <a  alt="<{$list.Name}>" href="<{:U('Drugs/xiangqing',array('vid'=>$list['VipId'],'unid'=>$list['UnId'],'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'name'=>$list['Name']))}>">
+        	<li>
+            	<img height="120" src="<if condition="$list.Pic eq ''">/Public/wap/drugs/images/coursedisplay.gif<else /><?php  echo  C("img_url").$list['Pic']; ?></if>" >
+            	<span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><{$list.Name}></span>
+                <p><b style="margin-left:25%;">￥<{$list.JiaGe}></b>    </p>
+            </li></a></volist>
+            <!-- <li>
+            	<a href="html/xiangqing.html"><img src="images/t1.gif"></a>
+            	<span>【品冠】维生素c 美容、素c 美容、排毒</span>
+              <p><b>￥23.30</b>     <i> ￥233</i>    </p>
+          </li>
+            
+        	<li>
+            	<a href="html/xiangqing.html"><img src="images/t2.gif"></a>
+            	<span>【品冠】维生素c 美容、素c 美容、排毒</span>
+              <p><b>￥23.30</b>     <i> ￥233</i>    </p>
+            </li>
+          <li>
+            	<a href="html/xiangqing.html"><img src="images/t3.gif"></a>
+            	<span>【品冠】维生素c 美容、素c 美容、排毒</span>
+              <p><b>￥23.30</b>     <i> ￥233</i>    </p>
+            </li> -->
+        </ul>
+    </div>
+<div class="abc"></div>
+</div>
+<include file="footer" />
+<div style="position:fixed;bottom:55px;right:5px;z-index:999;" id='back-to-top' >
+ <a href="#top"><img src="/Public/wap/drugs/images/arrow60.png"></a>
+</div>
+</div>
+ <script type="text/javascript" src="/Public/wap/drugs/js/jquery.js"></script>
+ <script>
+$(function(){
+        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+        $(function () {
+            $(window).scroll(function(){
+                if ($(window).scrollTop()>100){
+                    $("#back-to-top").fadeIn(1500);
+                }
+                else
+                {
+                    $("#back-to-top").fadeOut(1500);
+                }
+            });
+
+            //当点击跳转链接后，回到页面顶部位置
+
+            $("#back-to-top").click(function(){
+                $('body,html').animate({scrollTop:0},1000);
+                return false;
+            });
+        });
+    });
+</script>
+</body>
+</html>

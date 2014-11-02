@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商家设置_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script charset="utf-8" src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script>
+KindEditor.ready(function(K) {
+		window.editor = K.create('textarea[id="info"]');
+		window.editor = K.create('textarea[id="info2"]');
+	});	
+</script>
+</head>
+<body>
+<div id="container">
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">积分设置</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">积分设置 <span class="FAQ">设置会员卡积分策略及会员卡级别</span></div>
+    <form method="post" action="">
+      <div class="new_main_con">
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+              <th>策略名称</th>
+              <th>奖励积分</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>每天签到奖励</td>
+              <td><input type="text" name="everyday" class="px" value="<{$exchange.everyday}>" style="width:60px;"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>连续6天签到奖励</td>
+              <td><input type="text" name="continuation" value="<{$exchange.continuation}>" class="px" style="width:60px;"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>消费1元奖励</td>
+              <td><input type="text" name="reward" class="px" value="<{$exchange.reward}>" style="width:60px;"></td>
+              <td></td>
+            </tr>
+            <!--
+                    <tr>
+						<td>积分有效期</td>
+						<td><input type="text" name="expire" class="px" value="<?php
+                        /*
+                     if(!empty($list['add_expend_time'])):
+                      echo date('Y-m-d',$list['add_expend_time']);
+                      else:
+                         echo date('Y-m-d',time());
+                      endif;
+                      */
+                   ?>" style="width:90px;" onClick="WdatePicker()"></td>
+						<td></td>
+					</tr>	
+                        -->
+          </tbody>
+        </table>
+      </div>
+        <table class="userinfoArea" style=" margin-top:10px;" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tbody>
+            <tr>
+              <td valign="top">会员卡使用说明：</td>
+              <td><textarea class="px" id="info" name="cardinfo" style="width: 680px; height: 200px; display: none;"><{$exchange.cardinfo}></textarea>
+              </td>
+            </tr>
+          <td valign="top">积分规则说明：</td>
+            <td><textarea class="px" id="info2" name="cardinfo2" style="width: 680px; height: 200px; display: none;"><{$exchange.cardinfo2}></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" align="center">
+                <button type="submit" name="button" class="btnGreen">保存</button>
+                <a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+			</td>
+          </tr>
+          </tbody>
+        </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

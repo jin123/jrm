@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>编辑品牌开始内容_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">编辑销售内容</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">编辑车型内容<a href="<{:U('Car/chexi')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form" method="post"   action="" enctype="multipart/form-data" >
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>品牌名称：</td>
+              <td width="84%">  
+			      <select name="pid" class="selectoption"  style="width:212px;">
+                      <option value="">请选择品牌</option>
+                      <volist id="photo" name="va"> 
+					    <option value="<{$photo.id}>" 
+                        <if condition="$photo['id'] eq $chexi['pid']" >selected="selected"</if>><{$photo.name}>
+                        </option>
+                      </volist>
+                </select>
+             </td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>关键词：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="keyword" value="<{$vo.keyword}>" name="keyword" style="width:570px" > <strong class="input_ts_y"><span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。</strong></td>
+            </tr>
+           
+            <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>销售名称：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.name}>" name="name" style="width:570px" />
+                <strong class="input_ts_y">请添加销售的完整名称，如“奔驰A级”</strong></td>
+            </tr>
+			  <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>销售简称：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.jc}>" name="jc" style="width:570px" />
+                <strong class="input_ts_y">建议图片尺寸640*180，图片大小不超过300K</strong></td>
+            </tr>
+			
+			 <tr>
+              <td width="16%" class="table_txt_right">显示顺序：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.sort}>" name="sort" style="width:570px" />
+                <strong class="input_ts_y">数字越大越靠前</strong></td>
+
+            </tr>
+			
+            <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>销售亮点：</td>
+              <td width="84%"><textarea name="ms" style="width:570px;height:102px;" maxlength="100" class="input login_input_1"><{$vo.ld}></textarea>
+                <strong class="input_ts_y">请用简短的文字描述该销售的亮点所在,不超过200字</strong></td>
+            </tr>
+            
+			 <tr>
+              <td width="16%" class="table_txt_right"></td>
+              <td><div style="margin:5px 0 10px;"> <img id="pic" src="<if condition="$vo['pic'] eq '0'">__PUBLIC__/images/wm/car2.png<else/><{$vo.pic}></if>" width="373px" ></div></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">图片：</td>
+              <td><input class="input login_input_1" name="pic" id="pic" value="<if condition="$vo['pic'] eq '0'">__PUBLIC__/images/wm/car2.png<else/><{$vo.pic}></if>" style="width:570px;" onclick="document.getElementById('pic').src=this.value;">
+                 <a href="javascript:void(0)" onclick="upyunPicUpload('pic',700,420)" class="btnGreen">选择图片</a>&nbsp;&nbsp;建议图片尺寸420*60，不超过300K</td>
+            </tr>
+           <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+           
+          </tbody>
+        </table>
+      
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

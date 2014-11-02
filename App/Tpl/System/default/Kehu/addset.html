@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新增用户</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script charset="utf-8" src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun"> <a href="<{:U('Index/index')}>">首页</a> <a href="<{:U('Daili/index')}>">代理商管理</a> <a href="<{:U('Kehu/index')}>" class="b">用户管理</a> </div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('Index/edit')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div class="content1">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">用户管理</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginadminName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">新增用户<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+    <form class="form" method="post" target="_top" enctype="multipart/form-data" >
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right">登录帐号：</td>
+            <td width="84%"><input type="text" id="dluser" name="username"  value="<{$wxdata.username}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">登录密码：</td>
+            <td width="84%"><input type="text" id="password" name="password"  value=""  style="width:200px" class="input login_input_1"></td>
+          </tr><!--
+          <tr>
+            <td width="16%" class="table_txt_right">会员卡数量：</td>
+            <td width="84%"><input type="text" id="allcardnum" name="allcardnum"  value="<{$wxdata.allcardnum}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>-->
+		  <tr>
+            <td width="16%" class="table_txt_right">常用邮箱：</td>
+            <td width="84%"><input type="text" id="email" name="email"  value="<{$wxdata.email}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+		  <tr>
+            <td width="16%" class="table_txt_right">联系QQ：</td>
+            <td width="84%"><input type="text" id="qq" name="qq"  value="<{$wxdata.qq}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+		  <tr>
+            <td width="16%" class="table_txt_right">手机号码：</td>
+            <td width="84%"><input type="text" id="telephone" name="telephone"  value="<{$wxdata.telephone}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+		  <tr>
+            <td width="16%" class="table_txt_right">备注别名：</td>
+            <td width="84%"><input type="text" id="remark" name="remark"  value="<{$wxdata.remark}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">有效期限：</td>
+            <td width="84%">
+<input type="input" class="px Wdate" id="starttime" value="<if condition="$wxdata['starttime']"><{$wxdata.starttime|date="Y-m-d",###}></if>" onClick="WdatePicker()" name="starttime" style="width:185px;"> 到
+<input type="input" class="px Wdate" id="endtime" name="endtime" value="<if condition="$wxdata['endtime']"><{$wxdata.endtime|date="Y-m-d",###}></if>" onClick="WdatePicker()"  style="width:185px;"></td>
+          </tr>
+		  <tr>
+            <td width="16%" class="table_txt_right">设置药品id：</td>
+            <td width="84%"><input type="text" id="vipid" name="vipid"  value="<{$wxdata.vipid}>"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+              <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

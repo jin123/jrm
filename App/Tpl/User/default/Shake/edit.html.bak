@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>摇一摇</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="description"]');
+
+});					
+</script>
+<style>
+
+</style>
+</head>
+<body><code></code>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun">
+    <div class="sitebar_meun"><a href="<{:U('Index/welcome')}>">首页</a><a href="<{:U('Shake/admin')}>" class="b">摇一摇</a></div>
+  </div>
+  <div class="sitebar_guan"><a href="<{:U('Index/welcome')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('/Index/baseinfo')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('/Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a>  </div>
+</div>
+<div class="spliter"></div>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">摇一摇</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <!--<div class="new_main_tit">摇一摇</div>-->
+    <div class="new_main_tit ">
+      <!--<div class="tab">
+        <ul>
+          <li class="tabli current" id="tab0"><a href="<{:U('Shake/admin')}>">摇一摇</a></li>
+          <!--<li class="tabli" id="tab2"><a href="<{:U('Reply_info/set',array('infotype'=>'panorama'))}>">回复配置</a></li>
+        </ul>
+      </div>-->
+      <a href="<{:U('Shake/admin')}>"><span class="button_r_1 fabu mgtb10" style="width:140px;">返回</span></a></div>
+	 <div class="new_main_tit pt10">摇一摇</div>
+  		<form class="form" method="post" action="" <a href="<{:U('Index/welcome')}>"> >	
+           <table class="new_main_zhuce">
+            <tbody>
+			 <tr>
+                <th width="16%" class="table_txt_right">关键词：</th>
+                <td>
+                  <input type="text" id="keyword" name="keyword"  value="<{$list.keyword}>" class="input login_input_1" style="width:400px;">
+                  <strong class="input_ts_y"><span class="red">*</span><span class="help-inline">当微信端输入该关键词时会触发摇一摇活动</span></strong></td>
+              </tr>
+              <tr>
+                <th width="16%" class="table_txt_right">摇一摇名称：</th>
+                <td>
+                  <input type="text" id="name" name="name"  value="<{$list.name}>" class="input login_input_1" style="width:400px;">
+                  <strong class="input_ts_y"><span class="red">*</span><span class="help-inline">尽量简单，不要超过20字</span></strong></td>
+              </tr>
+             <tr>
+                <th width="16%" class="table_txt_right">摇一摇限制：</th>
+                <td>
+                 <input type="text" name="duration" value="<{$list.duration}>" id="duration" class="input login_input_1"  style="width:400px;">
+                  <strong class="input_ts_y"><span class="red">*</span>填写摇一摇最大摇动次数，当有人先摇到该次数时，本次活动将会结束</strong></td>
+              </tr>
+			    
+              <tr>
+                <th width="16%" class="table_txt_right">开始时间：</th>
+                <td><input type="input" class="input login_input_1" id="start_time" onclick="WdatePicker()" name="start_time" 
+                <if condition="$list.start_time eq ''" > value="" <else /> value="<{$list.start_time|date="Y-m-d H:i:s",###}>" </if>style="width:400px;"><strong class="input_ts_y"><span class="red">*</span>请选择当前时间以后的时间以便活动能正常开始</strong></td>
+              </tr>  
+			  <tr>
+                <th width="16%" class="table_txt_right">延迟时间：</th>
+                <td>
+                 <input type="text" name="delay" value="<{$list.delay}>" id="delay" class="input login_input_1"  style="width:400px;">
+                  <strong class="input_ts_y"><span class="red">*</span>填写活动开始后延迟多长时间（单位：秒）</strong></td>
+              </tr> 
+				<tr>
+                <th width="16%" class="table_txt_right">活动简介：</th>
+                <td>
+				<textarea name="info" id="info" style="width:400px;height:102px;" maxlength="100" class="input login_input_1"><{$list['info']}></textarea>
+				</td>
+              </tr>
+			  <tr>
+                <th width="16%" class="table_txt_right">活动封面：</th>
+                <td>
+                  
+    			  <input type="input" class="input login_input_1" name="cover" id="cover" style="width:400px;" value="<{$list['pic']|default=''}>">
+		          <strong class="input_ts_y">
+               <a href="###" onclick="upyunPicUpload('cover',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('cover')">预览</a>
+              建议尺寸：宽720像素，高400像素
+ 		         </strong>
+				 </td>
+              </tr>
+			  <tr>
+			  <th width="16%" class="table_txt_right"></th>
+			  <td><img class="thumb_img" id="cover_src" src="<{$list['pic']|default=''}>" style="max-height:100px;width:167px;"></td>
+			  </tr>
+              <tr>
+                <th width="16%" class="table_txt_right">&nbsp;</th>
+                <td>
+                    <input type="hidden" name="id" value="<{$list['id']}>" />
+					
+  		            <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+                	<button type="reset" class="btnGray vm">重填</button></td>
+             </tr>
+            </tbody>
+          </table>
+        </form>
+   
+  </div>
+</div>
+</body>
+</html>

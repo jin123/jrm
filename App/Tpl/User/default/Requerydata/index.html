@@ -1,0 +1,117 @@
+<script src="/Public/js/jquery.js"></script>
+<script src="/Public/js/common.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+
+ <script src="__PUBLIC__/js/flash/FusionCharts.js" type="text/javascript"></script>
+ <script src="__PUBLIC__/js/flash/MSLine.swf" language="javascript" type="text/javascript"></script>      
+
+<div class="content">
+        	<!--<h4 class="cLineB">选择年份<select class="selectoption" name="year" id="year" onchange="doit($('#period').val())"><?php echo $yearOption; ?></select> 选择月份&nbsp;&nbsp;<select class="selectoption" name="period" id="period" onchange="doit(this.value)">
+                
+            <option value="1" <if condition="$month eq 1">selected</if>>1月</option>
+            <option value="2" <if condition="$month eq 2">selected</if>>2月</option>
+            <option value="3" <if condition="$month eq 3">selected</if>>3月</option>
+            <option value="4" <if condition="$month eq 4">selected</if>>4月</option>
+            <option value="5" <if condition="$month eq 5">selected</if>>5月</option>
+            <option value="6" <if condition="$month eq 6">selected</if>>6月</option>
+            <option value="7" <if condition="$month eq 7">selected</if>>7月</option>
+            <option value="8" <if condition="$month eq 8">selected</if>>8月</option>
+            <option value="9" <if condition="$month eq 9">selected</if>>9月</option>
+            <option value="10" <if condition="$month eq 10">selected</if>>10月</option>
+            <option value="11" <if condition="$month eq 11">selected</if>>11月</option>
+            <option value="12" <if condition="$month eq 12">selected</if>>12月</option>
+            </select></h4>-->
+			 <ul style="margin-left:150px; margin-top:50px;" class="new_main_zhuce">
+        <tbody>
+        <tr>
+            <td width="16%" class="table_txt_right">选择年份：</td>
+            <td width="84%"><select class="selectoption" name="year" id="year" onchange="doit($('#period').val())"><?php echo $yearOption; ?></select>
+			  </td>
+
+          </tr>
+        <tr>
+            <td width="16%" class="table_txt_right">选择月份：</td>
+            <td width="84%">
+			<select class="selectoption" name="period" id="period" onchange="doit(this.value)">
+            <option value="1" <if condition="$month eq 1">selected</if>>1月</option>
+            <option value="2" <if condition="$month eq 2">selected</if>>2月</option>
+            <option value="3" <if condition="$month eq 3">selected</if>>3月</option>
+            <option value="4" <if condition="$month eq 4">selected</if>>4月</option>
+            <option value="5" <if condition="$month eq 5">selected</if>>5月</option>
+            <option value="6" <if condition="$month eq 6">selected</if>>6月</option>
+            <option value="7" <if condition="$month eq 7">selected</if>>7月</option>
+            <option value="8" <if condition="$month eq 8">selected</if>>8月</option>
+            <option value="9" <if condition="$month eq 9">selected</if>>9月</option>
+            <option value="10" <if condition="$month eq 10">selected</if>>10月</option>
+            <option value="11" <if condition="$month eq 11">selected</if>>11月</option>
+            <option value="12" <if condition="$month eq 12">selected</if>>12月</option>
+            </select>
+			  </td>
+          </tr>
+        </tbody>
+      </ul>
+
+<div class="msgWrap">
+       <table width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:20px 0; ">
+ 		<tbody>
+ 			<tr>
+ 				<td align="center" bgcolor="#f9f9f9">
+					<div id="chartdiv1" align="center">
+					</div>
+					<script type="text/javascript">
+						var chart = new FusionCharts("/Public/js/flash/MSLine.swf", "ChartId", "996", "400", "0", "1");
+						//chart.setTransparent("false");
+						chart.setDataXML('{pigcms:<{$xml}>}');
+						//chart.setDataURL("data.html");
+						chart.render("chartdiv1");
+					</script>
+ 				</td>
+			</tr>
+                <tr>
+ 				<td align="center" bgcolor="#f9f9f9">
+                  <div id="chartdiv2" align="center"></div>
+
+ 				</td>
+				</tr>
+ 			</tbody>
+ 		</table>
+            
+          </div>
+          <div class="msgWrap">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="ListProduct">
+ 		<thead>
+ 			<tr>
+				<th>日期</th>
+ 			  <!--	<th style="display:none">3G网站浏览量</th>
+              <th>文本请求数</th>
+ 				<th>图文请求数</th>
+				<th>语音请求数</th>
+				<th>营销/电商请求</th>
+				-->
+				<th>关注人数</th>				
+				<th>取消关注人数</th> 
+				<!--<th>总请求数/日</th>-->
+ 				</tr>
+ 			</thead>
+
+             <volist id="list" name="list"> 
+		
+				<tr>
+					<td align="center"><?php echo date("Y-m-d",$list['time']); ?></td>
+							
+					<td align="center"><?php echo $list['follownum']; ?></td>
+					<td align="center"><?php echo $list['unfollownum']; ?></td>	 
+
+				</tr>
+			</volist>
+			
+ 		</table>            
+          </div>  
+        </div>
+		<script>
+		function doit(month){
+          location.href= '/index.php?g=User&m=Requerydata&a=index&token=<?php echo session('token'); ?>&month='+month+'&year='+$('#year').val();
+         }
+		</script>

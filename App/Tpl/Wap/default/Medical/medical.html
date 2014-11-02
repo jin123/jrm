@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>微医疗</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/swipe.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/Medical/css/sldc.css" />
+<link href="__PUBLIC__/wap/css/142/css.css"rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/Medical/css/font-awesome.css" media="all" />
+</head>
+<body>
+<div class="wap">
+<div style="-webkit-transform:translate3d(0,0,0);">
+<div id="banner_box" class="box_swipe">
+<ul>
+  <li> 
+	  <a onclick="return false;"> 
+	  	<img src="__ROOT__<{$config['homeimage']}>" style="width:100%;" /> 
+	  </a> 
+  </li>
+ </ul>
+</div>
+</div>
+<script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script> 
+
+<ul class="list_ul">
+
+	<volist name="vo" id="data">
+	<li> <a href="<{:U('Medical/index',array('hid'=>$data['id'],'token'=>$token,'wecha_id'=>$wecha_id))}>"  class="main_1">
+      <figure>
+      	<div style="background-image:url(__ROOT__<{$data.thumb}>);">&nbsp;</div>
+        <!--<div><img src="<{$data.thumb}>"></div>-->
+        <figcaption style="height:33px; overflow:hidden;"><{$data.name}></figcaption>
+      </figure>
+      </a></li>
+	 </volist> 
+	 </ul>
+	 <div style="height:50px;">
+<div class="footer">
+    	<ul>
+        	<li><a href="<{:U('Wap/Medical/medical',array('hid'=>$hid,'token'=>$token,'wecha_id'=>$wecha_id))}>"><img src="__PUBLIC__/wap/css/142/images/s.png" width="34"></a></li>
+            <p><a href="javascript:history.go(-1);"><img src="__PUBLIC__/wap/css/142/images/f.png" width="34"></a></p>
+        </ul>
+    </div>
+	</div>
+</div>
+<script>
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	WeixinJSBridge.call('hideToolbar');
+});
+</script>
+
+</body>
+</html>

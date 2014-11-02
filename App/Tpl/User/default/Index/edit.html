@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公众号管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">公众号管理</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+  <div class="new_main_tit pt10">公众号管理</div>
+    <div class="tab">
+      <ul>
+        <li class="tabli" id="tab0"><a href="<{:U('Index/baseinfo')}>">资料修改</a></li>
+        <li class="current tabli" id="tab1"><a href="<{:U('Index/edit')}>">公众号管理</a></li>
+      </ul>
+    </div>
+    <form method="post" action="" enctype="multipart/form-data">
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right">微站名称：</td>
+            <td width="84%"><input type="text" name="sitename"  style="width:400px;" class="input login_input_1" value="<{$data.sitename}>"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">联系电话：</td>
+            <td width="84%"><input type="text" name="telephone" id="telephone" style="width:400px;" class="input login_input_1" value="<{$data.telephone}>"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">邮箱：</td>
+            <td width="84%"><input type="text" name="email"  style="width:400px;" class="input login_input_1" value="<{$data.email}>"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">公众号名称：</td>
+            <td width="84%"><input type="text" name="wxname" id="wxname" style="width:400px;" class="input login_input_1" value="<{$data.wxname}>"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">公众号原始id：</td>
+            <td width="84%"><input type="text" name="wxid" id="weixinname" style="width:400px;" class="input login_input_1" value="<{$data.wxid}>">
+              <strong class="input_ts_y">(比如：gh_423dwjkeww3)</strong></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">微信号：</td>
+            <td width="84%"><input name="weixin" type="text" id="weixin" value="<{$data.weixin}>" style="width:400px;" class="input login_input_1">
+              <strong class="input_ts_y">(比如：lentu123)</strong></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">微信二维码：</td>
+            <td width="84%"><input type="text" name="qr_img" id="qr_img" style="width:400px;" class="input login_input_1" value="<{$data.qr_img}>"><strong class="input_ts_y"><a href="javascript:void(0)" onclick="upyunPicUpload('qr_img',700,420)" class="btnGreen">选择图片</a></strong></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">微信简介：</td>
+            <td width="84%"><textarea style="width:580px;height:120px" name="wxinfo" id="wxinfo" class="input login_input_1"><{$data.wxinfo}></textarea></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">APPID：</td>
+            <td width="84%"><input type="text" name="appid" style="width:400px;" class="input login_input_1" value="<{$data.appid}>"></td>
+          </tr>
+		   <tr>
+            <td width="16%" class="table_txt_right">APPSECRET：</td>
+            <td width="84%"><input type="text" name="appsecret" style="width:400px;" class="input login_input_1" value="<{$data.appsecret}>"></td>
+          </tr>
+  
+		  <!--<tr>
+            <td width="16%" class="table_txt_right">药店id：</td>
+            <td width="84%"><input type="text" name="vipid" style="width:400px;" class="input login_input_1" value="<{$data.vipid}>"></td>
+          </tr>
+		  <tr>
+            <td width="16%" class="table_txt_right">是否包邮：</td>
+            <td width="84%"><input type="text" name="baoyou" style="width:400px;" class="input login_input_1" value="<{$data.baoyou}>"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">微站背景：</td>
+            <td width="84%"><input type="text" name="bg_img" id="bg_img" style="width:400px;" class="input login_input_1" value="<{$data.bg_img}>"><strong class="input_ts_y"><a href="javascript:void(0)" onclick="upyunPicUpload('bg_img',700,420)" class="btnGreen">选择图片</a></strong></td>
+          </tr>-->
+            <tr>
+            <td width="16%" class="table_txt_right">重量单位设置：</td>
+            <td width="84%"><input type="text" name="unit_weight" style="width:400px;" class="input login_input_1" value="<{$data.unit_weight}>"></td>
+          </tr>
+		   <tr>
+            <td width="16%" class="table_txt_right">版权设置：</td>
+            <td width="84%"><input type="text" name="copyright" style="width:400px;" class="input login_input_1" value="<{$data.copyright}>"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">头像地址（url）:</td>
+            <td width="84%"><input type="text" name="headerpic" id="fans" style="width:400px;" class="input login_input_1" value="<{$data.headerpic}>">
+              <strong class="input_ts_y"><a href="javascript:void(0)" onclick="upyunPicUpload('fans',700,420)" class="btnGreen">选择图片</a></strong></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">保存设置</button>
+              <if condition="$data.token">
+              <button class="button_g_1" style=" width:150px; margin-top:15px; margin-left:20px;" type="button" onclick="location.href='<{:U('/Index/api/')}>'">API接口</button></td>
+              </if>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

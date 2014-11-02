@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>意见反馈回复<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+</head>
+<body>
+<div class="content">
+  <div class="new_main">
+    <form id="myform" class="form" method="post" action="" enctype="multipart/form-data">
+      <table class="new_main_zhuce">
+        <tbody>           
+		<tr >
+		 <td class="table_txt_right" style="float:left;margin-left:10px;height:20px;">回复：<?php echo $list['name']; ?></td>
+		</tr>
+		<tr>
+          
+            <td><input type="text" name="content"  class="input login_input_1"style="float:left;margin-left:10px;width:350px;"></td>
+			 
+          </tr>		  <tr>
+		  
+		  <td><button   type="submit" name="button" class="btnGreen"style="float:right;margin-right:20px">提交</button></td>
+		  
+		  </tr> 
+        
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body><script>var GV = {    DIMAUB: "/",    JS_ROOT: "/Public/js/",    TOKEN: ""};</script><script src="/Public/js/jquery.js"></script><script src="/Public/js/jquery.form.js"></script><script src="/Public/js/validate.js"></script><script src="/Public/static/artDialog/jquery.artDialog.js?skin=default"></script><script src="/Public/static/artDialog/plugins/iframeTools.js"></script><script src="/Public/js/wind.js"></script><script src="/Public/js/com.js"></script><script>	 Wind.use('', '', '', function () {			//javascript	        	            //编辑器	          /*  editorcontent = new baidu.editor.ui.Editor();	            editorcontent.render( 'content' );	            try{editorcontent.sync();}catch(err){};	            //增加编辑器验证规则	            jQuery.validator.addMethod('editorcontent',function(){	                try{editorcontent.sync();}catch(err){};	                return editorcontent.hasContents();	            });*/	            var form = $('#myform');	        //ie处理placeholder提交问题	       /* if ($.browser.msie) {	            form.find('[placeholder]').each(function () {	                var input = $(this);	                if (input.val() == input.attr('placeholder')) {	                    input.val('');	                }	            });	        }*/	        //表单验证开始	        form.validate({				//是否在获取焦点时验证				onfocusout:false,				//是否在敲击键盘时验证				onkeyup:false,				//当鼠标掉级时验证				onclick: false,	            //验证错误	            showErrors: function (errorMap, errorArr) {					//errorMap {'name':'错误信息'}					//errorArr [{'message':'错误信息',element:({})}]					try{						$(errorArr[0].element).focus();						art.dialog({							id:'error',							icon: 'error',							lock: true,							fixed: true,							background:"#CCCCCC",							opacity:0,							content: errorArr[0].message,							cancelVal: '确定',							cancel: function(){								$(errorArr[0].element).focus();							}						});					}catch(err){					}	            },	            //验证规则	            rules: {},	            //验证未通过提示消息	            messages:{},	            //给未通过验证的元素加效果,闪烁等	            highlight: false,	            //是否在获取焦点时验证	            onfocusout: false,	            //验证通过，提交表单	            submitHandler: function (forms) {				//alert('fdgfg');	                $(forms).ajaxSubmit({	                    url: form.attr('action'), //按钮上是否自定义提交地址(多按钮情况)	                    dataType: 'json',	                  /*  beforeSubmit: function (arr, $form, options) {	                        	                    },*/	                    success: function (data, statusText, xhr, $form) {					var win = art.dialog.open.origin;//来源页面// 如果父页面重载或者关闭其子对话框全部会关闭win.location.reload();												   art.dialog.close();						  //  location.reload();	                        if(true){								setCookie("refersh_time",1);								//添加成功								Wind.use("artDialog", function () {								    art.dialog({								        id: "succeed",								        icon: "succeed",								        fixed: true,								        lock: true,								        background: "#CCCCCC",								        opacity: 0,								        content: '操作成功',										button:[											{												name: '继续添加？',												callback:function(){													reloadPage(window);													return true;												},												focus: true											},{												name: '返回列表页',												callback:function(){													location='/index.php?s=/Label/tag';													return true;												}											}										]								    });								});							}else{								isalert(data.info);							}	                    }	                });	            }	        });	    });	////-------------------------	</script>
+</html>

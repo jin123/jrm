@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <title>教育简介</title>
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/edu/style.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/edu/back.css" media="all" />
+        <meta name="Keywords" content="" />
+        <meta name="Description" content="" />
+        <!-- Mobile Devices Support @begin -->
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <!-- Mobile Devices Support @end -->
+    </head>
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="wrapper" id="container">
+	<!-- start -->
+	<div class="act_top" id="actTop" style="">
+		<div class="act_top_show">
+			<img src="<{$list['jgpic']}>" width="100%" height="175" id="bannerPic">
+		</div>
+	</div>
+	<!-- end -->
+
+	<!-- 地图 start -->
+	<div class="box">
+		<h3>
+			地图
+		</h3>
+		<div class="box_map">
+		<a href="http://api.map.baidu.com/marker?location=39.916042,116.403694&title=<{$list['addr']}>&content=<{$list['addr']}>&output=html&src=weiba|weiweb">
+			<div class="map_area">
+				<img id="mapImg" title="<{$list['addr']}>" alt="<{$list['addr']}>"
+				src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+				style="background:url(http://api.map.baidu.com/staticimage?center=<{$list['longitude']}>,<{$list['latitude']}>&zoom=12&markers=<{$list['longitude']}>,<{$list['latitude']}>&width=600&height=75&markerStyles=m,) no-repeat left top;"
+				width="600" height="75">
+			</div>
+			<p>
+			
+			</p>
+		</a>
+		</div>
+	</div>
+	<!-- 地图 end -->
+	<!-- 楼盘简介 start -->
+	<div class="box box_up">
+		<!-- 收起时加上样式box_up,展开时去掉 -->
+		<h3>
+			教育理念简介
+		</h3>
+		<div class="box_time">
+			<{$list['jianjie']}>
+		</div>
+		<a href="javascript:void(0);" onclick="showdetail(this);" class="btn_more">
+			<span>
+				更多
+			</span>
+		</a>
+	</div>
+	<!-- 楼盘简介 end -->
+	<!-- 视频 start -->
+	<div class="box" jqmoldstyle="block" style="display: none;">
+		<h3>
+			视频欣赏
+		</h3>
+		<div class="box_type" style="text-align:center;" id="videoDiv">
+		</div>
+		<p>&nbsp;
+			
+		</p>
+	</div>
+	<!-- 视频 end -->
+	<!-- 项目简介 start -->
+	<div class="box box_up" style="display:">
+		<h3>
+			教育机构简介
+		</h3>
+		<div class="box_info">
+			<{$list['xiangmu']}>
+		</div>
+		<a href="javascript:void(0);" onclick="showdetail(this);"
+		class="btn_more">
+			<span>
+				更多
+			</span>
+		</a>
+	</div>
+	<!-- 项目简介 end -->
+	<!-- 交通配套 start -->
+	<div class="box box_up" style="display:">
+		<h3>
+			教育配套
+		</h3>
+		<div class="box_info">
+			<{$list['jiaotong']}>
+		</div>
+		<a href="javascript:void(0);" onclick="showdetail(this);"
+		class="btn_more">
+			<span>
+				更多
+			</span>
+		</a>
+	</div>
+	
+	<div class="box box_up1" style="display:">
+		<h3>
+			机构点评
+		</h3>
+		<div class="box_info">
+			<table width="600px">
+				<volist name="list1" id="data">
+				<tr>
+					<td width="100px"><center><{$data.name}></center></td>
+					<td><center><{$data.content}></center></td>
+					<td width="140px"><{$data.time|date="Y-m-d H:i:s",###}></td>
+				</tr>
+				</volist>
+			</table>
+		</div>
+	</div>
+	
+	<!-- 交通配套 end -->
+</div>
+<p>&nbsp;</p>
+
+<div class="pop_tips" id="popTips" style="display:none;">
+	<div class="oval"></div>
+	<div class="pop_show">
+		<h4 id="tipsTitle">温馨提示</h4>
+		<div class="pop_info" id="tipsMsg">
+			<p></p>
+		</div>
+		<div class="pop_btns">
+			<a href="javascript:void(0);" id="tipsOK">确定</a>
+			<a href="javascript:void(0);" style="display:none;" id="tipsCancel">取消</a>
+		</div>
+	</div>
+</div>
+
+<a href="javascript:history.go(-1);" class="back360" style="">&nbsp;</a>
+<div mark="stat_code" style="width:0px; height:0px; display:none;">
+</div>
+<script type="text/javascript">
+function showdetail(o){
+	if($(o).parent().is('.box_up')){
+		$(o).parent().removeClass('box_up');
+		$(o).children('span').text('收起');
+	}else{
+		$(o).parent().addClass('box_up');
+		$(o).children('span').text('更多');
+	}
+}
+$(function(){
+	var bgurl = 'http://api.map.baidu.com/staticimage?center={$set->jd},{$set->wd}&zoom=12&markers={$set->jd},{$set->wd}&width=600&height=75&markerStyles=m,';
+	bgurl = bgurl.replace('width=600','width='+$('.act_top_show').width());
+	$('#mapImg').css('backgroundImage','url('+bgurl+')');
+});
+</script>
+
+</body>
+</html>

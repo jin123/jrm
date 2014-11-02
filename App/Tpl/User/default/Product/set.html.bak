@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+<if condition="$isDining neq 1">商品<else/>菜品</if>设置_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="editor_id"]');
+});					
+</script>
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun"><a href="<{:u('Index/index')}>">首页</a><a href="<{:U('Product/index',array('token'=>$token))}>" <if condition="MODULE_NAME eq 'Product'">class="b"</if> target="_blank">微信商城系统</a></div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/welcome')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('/Index/baseinfo')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('/Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">
+      <if condition="$isDining neq 1">商品<else/>菜品</if>设置</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">
+      <if condition="$isDining neq 1">商品<else/>菜品</if>设置 <span class="button_r_1 fabu"><a href="<{:U('Product/index',array('dining'=>$isDining))}>">返回</a></span></div>
+    <form class="form" method="post" action="" enctype="multipart/form-data">
+      <if condition="$isUpdate eq 1">
+        <input type="hidden" name="id" value="<{$set.id}>" />
+      </if>
+      <input type="hidden" name="discount" id="discount" value="<{$set.discount}>" />
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>名称：</td>
+            <td width="84%"><input type="text" name="name" value="<{$set.name}>" class="input login_input_1" style="width:560px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>类别：</td>
+            <td width="84%"><select id="catid" name="catid" class="selectoption" style="width:212px;">
+                <option value="0">请选择分类...</option>
+                <{$catsOptions}>
+              </select></td>
+          </tr>
+          <tr style="display:none">
+            <td width="16%" class="table_txt_right"><span class="red">*</span>店铺：</td>
+            <td width="84%"><input type="text" name="storeid" value="1" class="input login_input_1" style="width:560px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>价格：</td>
+            <td width="84%"><input type="text" name="price" value="<{$set.price}>" class="input login_input_1" style="width:560px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>原价：</td>
+            <td width="84%"><input type="text" name="oprice" value="<{$set.oprice}>" class="input login_input_1" style="width:560px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>关键词：</td>
+            <td width="84%"><input type="text" name="keyword" value="<{$set.keyword}>" class="input login_input_1" style="width:560px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">Logo地址：</td>
+            <td><input class="input login_input_1" name="logourl" id="logourl" value="" style="width:560px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('logourl',700,420)" class="btnGreen">选择图片</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>图文详细页内容：</td>
+            <td width="84%"><textarea name="intro" id="editor_id" class="input login_input_1" style="width:680px;height:360px"><{$set.intro}></textarea></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">&nbsp;</td>
+            <td width="84%"><if condition="$isDining neq 1">
+                <input type="hidden" value="0" name="dining" />
+                <else/>
+                <input type="hidden" value="1" name="dining" />
+              </if>
+              <button type="submit" name="button" class="btnGreen">保存</button>
+              <a href="<{:U('Product/cats')}>" class="btnGray vm">取消</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

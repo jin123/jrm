@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$shakeInfo.name}></title>
+<link href="__PUBLIC__/Shake/css/style.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/Shake/css/bootstrap.css">
+<script type="text/javascript" src="__PUBLIC__/Shake/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Shake/js/bootstrap.js"></script>
+
+<style>
+
+</style>
+<script type="text/javascript">
+
+$(function(){
+	var hoko;
+	var start_time=<{$shakeInfo.start_time}>;
+	var nTime=<{$nTime}>*1000;
+	var duration=<{$shakeInfo.duration}>*1000;
+	//alert(duration);return;
+	//if (start_time)<{duration=start_time*1000+duration-nTime;}>
+	var prize='<{$shakeInfo.prize}>'.split("|$|");
+	if(duration>0){
+	function refresh() {
+		$.get("<{:U('Shake/getTop',array('shakeid'=>$shakeid))}>", function(data){
+			var html = '';
+			var progress, num = 1;
+			var tel,phone;
+			var datainfo=data.info;
+			var datalog =data.log;
+			/*if(datainfo==""||datainfo==null){
+				for(j=1;j<=10;j++)
+			   {
+					html += '<div class="clear_conter"><div class="clear_conter1">';
+					html += '</div></div>';	
+			   } 
+			}*/
+			for (i in datainfo) {
+				tel = datainfo[i].tel;
+				phone = tel.replace(tel.substr(3,4),"****");
+				progress = parseInt(datainfo[i].strength)/datalog*100;
+				html += '<div class="clear_conter"><div class="clear_conter1">';
+				if(num==1){
+					html += '<p><img src="__PUBLIC__/Shake/images/h.gif" /></p>';
+				}else if(num==2){
+					html += '<p><img src="__PUBLIC__/Shake/images/y.gif" /></p>';
+				}else if(num==3){
+					html += '<p><img src="__PUBLIC__/Shake/images/t.gif" /></p>';
+				}else{
+					html += '<p style="text-align:center;width:61px;color:#fff;">'+num+'</p>';
+				}
+
+				html += '<span ><img src="'+datainfo[i].headimgurl+'" style="height:50px;width:50px;"/></span>';
+				html += '<ul><li>'+datainfo[i].city+' '+datainfo[i].nickname+' </li><li>'+phone+'</li></ul>';
+				if(num==1){
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;background-color: #DFA614;"></div></div>';
+				}else if(num==2){
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;background-color: #B3B0AB;"></div></div>';
+				}else if(num==3){
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;background-color: #E98369;"></div></div>';
+				}else{
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;"></div></div>';
+				}
+				
+				html += '</div></div>';			
+				num = num + 1;
+			}
+			$('.list_right').html(html);
+			hoko = setTimeout(function(){
+				refresh();
+			}, 1000);
+		}, 'json');
+	}
+	refresh();
+	
+	setTimeout(function(){		
+		clearTimeout(hoko);
+		$.get("<{:U('Shake/getTop',array('shakeid'=>$shakeid))}>", function(data){
+			var html = '';
+			var progress, num = 1;
+			var tel,phone;
+			var datainfo=data.info;
+			var datalog =data.log;
+			/*if(datainfo==""||datainfo==null){
+				for(j=1;j<=10;j++)
+			   {
+					html += '<div class="clear_conter"><div class="clear_conter1">';
+					html += '</div></div>';	
+			   } 	
+			}*/
+			for (i in datainfo) {
+				tel = datainfo[i].tel;
+				phone = tel.replace(tel.substr(3,4),"****");
+				progress = parseInt(datainfo[i].strength)/datalog*100;
+				html += '<div class="clear_conter"><div class="clear_conter1">';
+				if(num==1){
+					html += '<p><img src="__PUBLIC__/Shake/images/h.gif" /></p>';
+				}else if(num==2){
+					html += '<p><img src="__PUBLIC__/Shake/images/y.gif" /></p>';
+				}else if(num==3){
+					html += '<p><img src="__PUBLIC__/Shake/images/t.gif" /></p>';
+				}else{
+					html += '<p style="text-align:center;width:61px;color:#fff;">'+num+'</p>';
+				}
+				html += '<span ><img src="'+datainfo[i].headimgurl+'" style="height:50px;width:50px;"/></span>';
+				html += '<ul><li>'+datainfo[i].city+' '+datainfo[i].nickname+' </li><li>'+phone+'</li></ul>';
+				if(num==1){
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;background-color: #DFA614;"></div></div>';
+				}else if(num==2){
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;background-color: #B3B0AB;"></div></div>';
+				}else if(num==3){
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;background-color: #E98369;"></div></div>';
+				}else{
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;"></div></div>';
+				}
+				html += '</div></div>';			
+				num = num + 1;
+			}
+			$('.list_right').html(html);
+		}, 'json');
+	},duration);
+	
+	}else if(duration<0){
+		$.get("<{:U('Shake/getTop',array('shakeid'=>$shakeid))}>", function(data){
+			var html = '';
+			var progress, num = 1;
+			var tel,phone;
+			//alert(data);return;
+			var datainfo=data.info;
+			var datalog =data.log;
+			/*if(datainfo==""||datainfo==null){
+				for(j=1;j<=10;j++)
+			   {
+					html += '<div class="clear_conter"><div class="clear_conter1">';
+					html += '</div></div>';	
+			   }   
+				
+			}*/
+			for (i in datainfo) {
+				tel = datainfo[i].tel;
+				phone = tel.replace(tel.substr(3,4),"****");
+				progress = parseInt(datainfo[i].strength)/datalog*100;
+				html += '<div class="clear_conter"><div class="clear_conter1">';
+				if(num==1){
+					html += '<p><img src="__PUBLIC__/Shake/images/h.gif" /></p>';
+				}else if(num==2){
+					html += '<p><img src="__PUBLIC__/Shake/images/y.gif" /></p>';
+				}else if(num==3){
+					html += '<p><img src="__PUBLIC__/Shake/images/t.gif" /></p>';
+				}else{
+					html += '<p style="text-align:center;width:61px;color:#fff;">'+num+'</p>';
+				}
+				html += '<span ><img src="'+datainfo[i].headimgurl+'" style="height:50px;width:50px;"/></span>';
+				html += '<ul><li>'+datainfo[i].city+' '+datainfo[i].nickname+' </li><li>'+phone+'</li></ul>';
+			if(num==1){
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;background-color: #DFA614;"></div></div>';
+				}else if(num==2){
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;background-color: #B3B0AB;"></div></div>';
+				}else if(num==3){
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;background-color: #E98369;"></div></div>';
+				}else{
+					html += '<div class="progress progress-striped active" style="width:500px;margin-top:15px;margin-left:10px;"><div class="bar" style="width: '+progress+'%;"></div></div>';
+				}
+				html += '</div></div>';			
+				num = num + 1;
+			}
+			$('.list_right').html(html);
+		}, 'json');	
+	}
+	
+});
+</script>
+</head>
+
+<body>
+<div id="boxlist">
+<div class="list_left">
+<p><img src="__PUBLIC__/Shake/images/logo.png" /></p>
+<span><img src="__PUBLIC__/Shake/images/er.png" /></span>
+</div>
+<div class="list_right">
+<!--
+<div class="clear_conter">
+	<div class="clear_conter1">
+    	<p><img src="__PUBLIC__/Shake/images/h.gif" /></p>
+        <span><img src="__PUBLIC__/Shake/images/m1.gif" /></span>
+        <ul>
+        	<li>黄晓明</li>
+            <li>1311 1111 2222</li>
+        </ul>
+        <h6><img src="__PUBLIC__/Shake/images/w.gif" /></h6>
+    </div>
+</div>
+-->
+</div>
+</div>
+</div>
+</body>
+</html>

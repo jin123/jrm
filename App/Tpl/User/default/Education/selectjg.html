@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信教育</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="editor_id1"]');
+	window.editor = K.create('textarea[id="editor_id2"]');
+	window.editor = K.create('textarea[id="editor_id3"]');
+});					
+</script>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/index')}>">首页</a><span class="wap_span_2"> 教育机构</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">培训机构<a href="<{:U('Education/index')}>"><span class="button_r_1 fabu">查看机构</span></a></div>
+    <form class="form" method="post" action="" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="<{$list['id']}>" />
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>图文消息触发关键字：</td>
+            <td width="84%"><input type="text" name="keyword" value="<{$list['keyword']}>" class="input login_input_1" style="width:300px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>培训机构名称：</td>
+            <td width="84%"><input type="text" name="name" value="<{$list['name']}>" class="input login_input_1" style="width:300px;" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>培训机构图片：</td>
+            <td><input class="input login_input_1" name="pic" id="logourl2" value="<{$list['pic']}>" style="width:300px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('logourl2',700,420)" class="btnGreen">选择图片</a></td>
+          </tr>
+          <tr>
+            <th width="16%" class="table_txt_right"><span class="red">*</span>经纬度：
+              </td>
+            <td>经度
+              <input type="text" id="longitude"  name="longitude" size="14" class="input login_input_1" value="<{$list['longitude']}>" readonly="readonly" />
+              纬度
+              <input type="text"  name="latitude" size="14" id="latitude" class="input login_input_1" value="<{$list['latitude']}>" readonly="readonly"/>
+              <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>服务理念简介：</td>
+            <td width="84%"><textarea name="jianjie" id="editor_id1" class="input login_input_1" style="width:400px;height:200px"><{$list['jianjie']}></textarea></td>
+          </tr>
+          <tr></tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>教育机构简介：</td>
+            <td width="84%"><textarea name="xiangmu" id="editor_id2" class="input login_input_1" style="width:400px;height:200px"><{$list['xiangmu']}></textarea></td>
+          </tr>
+          <tr></tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>服务配套：</td>
+            <td width="84%"><textarea name="jiaotong" id="editor_id3" class="input login_input_1" style="width:400px;height:200px"><{$list['jiaotong']}></textarea></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">&nbsp;</td>
+            <td width="84%"><input type="submit" class="btnGreen" value="保存">
+              <input type="reset" class="btnGray" value="取消"/>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

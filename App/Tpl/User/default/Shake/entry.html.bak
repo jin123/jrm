@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$shakeInfo.name}></title>
+<link href="__PUBLIC__/Shake/css/css.css"rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Shake/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+
+	var countdown = 5;
+	function start() {
+		//alert("123");return;
+		if(countdown==5){
+			$("#body").css("background","url(__PUBLIC__/Shake/images/bff.jpg)");
+		}
+		$('#result').empty();
+		$('#list').css('display','none');
+		$('#img').css('display','');
+		$('#new').css('display','');
+		$('#new').html(countdown);
+		//return;
+		if (countdown <= 0) {
+			//更新摇一摇状态
+			var shakeid="<{$shakeid}>";
+			$.post("<{:U('Shake/startShake')}>",{shakeid: shakeid},function(data){
+				if (data.success == 1){
+					window.location.href = "<{:U('Shake/process',array('shakeid'=>$shakeid)）}>";
+				}else{
+					alert("提交失败,请检查设置！")
+				}
+			},'json');
+			return false;
+		} else {
+			setTimeout(function(){
+				countdown--;
+				start();
+			}, 1000);
+		}
+	}
+
+</script>
+<style>
+.cateimg { position:relative;}
+.cateimg .cateimg_small{ z-index:-999;padding:2px;border:1px solid #CCCCCC;}
+.cateimg:hover .cateimg_big{ display:block;z-index:10; }
+.cateimg .cateimg_big{ position:absolute; width:306px; height:329px;left:300px;top:-300px; display:none; padding:2px;border:1px solid #CCCCCC;}
+.list ul li {
+line-height: 60px;
+width: 800px;
+font-size: 30px;
+color: #FFF;
+}
+</style>
+</head>
+
+<body id="body">
+<div id="box" >
+<div class="logo" id="description">
+
+	<img src='__PUBLIC__/Shake/images/sft.png' style="display:none;height: 300px;margin-top:-200px;margin-left:-100px;" id="img" />
+
+	<div id="new" style="margin-top: -307px; height: 80px; font-size: 300px; width: 300px; text-align: center;margin-left:-100px;display:none;font-color:#FFF;color:#FFF;"></div>
+	<span id="result"><a href="#" onclick="start()"><img src="__PUBLIC__/Shake/images/t.png" /></a></span>
+</div>
+<div class="list" id="list">
+<div class="cateimg">
+	<img src="__PUBLIC__/Shake/images/q.gif" width="153" height="163" class="cateimg_small"  />
+	<img src="__PUBLIC__/Shake/images/q.gif" width="619" height="604" class="cateimg_big"/>
+	
+</div>
+    <ul>
+    	<li>大家请在微信上搜索公众号“正道佳业“或（alivv_cn）</li>
+        <li>并关注再发送文字“摇一摇”即可参与活动</li>
+    </ul>
+</div>
+</div>
+</body>
+</html>

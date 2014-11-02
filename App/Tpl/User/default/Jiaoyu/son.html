@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>教育机构_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">教育机构</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">教育机构校区<span class="FAQ">使用方法：功能勾选，设置好信息后，输入关键词即可看到效果。</span><a href="<{:U('Jiaoyu/son_add',array('pid'=>$pid))}>" class="btnGrayS vm bigbtn mkr2"><img src="__PUBLIC__/images/pic.png" class="vm">添加校区</a></div>
+      <div class="new_main_tit">
+        <div class="alert">
+          <p><span class="bold">使用方法：</span>如果您的教育机构由多个校区组成，请在此添加，如果没有可以不添加。</p>
+        </div>
+      </div>
+      <form method="post" action="" id="info">
+        <input name="delall" type="hidden" value="del">
+        <input name="wxid" type="hidden" value="gh_423dwjkewad">
+        <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+              <th>校区名称</th>
+              <th>显示顺序</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <if condition="$son_data eq ''">
+              <tr>
+                <td colspan="4" style="text-align:center; height:30px;"><strong>没有任何校区信息.</strong> 如果您的教育机构由多个校区组成，请在此添加，如果没有可以不添加。</td>
+              </tr>
+              <else/>
+              <volist name="son_data" id="list">
+                <tr>
+                  <td style=""><{$list['title']}></td>
+                  <td style=""><{$list['sort']}></td>
+                  <td><div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                      <h3 class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                      <div class="h3_cat">
+                        <div class="h3_cat_list">
+                          <ul>
+                            <a href="<{:U('Jiaoyu/son_add',array('id'=>$list['id'],'pid'=>$list['pid']))}>" class="btn">
+                            <li>编 辑</li>
+                            </a> <a href="<{:U('Jiaoyu/son_del',array('id'=>$list['id'],'pid'=>$list['pid']))}>" onclick="return(confirm('确定要删除吗？'))">
+                            <li>删 除</li>
+                            </a></a>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clear"></div></td>
+                </tr>
+              </volist>
+            </if>
+          </tbody>
+        </table>
+      </form>
+      <div class="pagelistbox"><{$page}></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

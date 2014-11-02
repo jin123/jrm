@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="MobileOptimized" content="240">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="Keywords" content="物流详情">
+<meta name="description" content="物流详情">
+<title>物流详情</title>
+<link href="__PUBLIC__/wap/guo/css/bootstrap.css" rel="stylesheet">
+<link href="__PUBLIC__/wap/guo/css/wsp.css" rel="stylesheet">
+<link href="__PUBLIC__/wap/guo/css/ddxq.css" rel="stylesheet">
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/cookiefuc.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/wsp_002.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/jquery_002.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/custom.js"></script>
+<script src="__PUBLIC__/wap/guo/js/jquery_003.js" type="text/javascript"></script>
+<link href="__PUBLIC__/wap/guo/css/jquery.css" rel="stylesheet" type="text/css" media="screen">
+<style type="text/css">
+</style>
+</head>
+<body id="ddxq">
+<script type="text/javascript">
+if(typeof jQuery == 'undefined'){ 
+    document.write('<script type="text/javascript" src="template/default/vip/js/jquery.js"></'+'script>');
+}
+function onBridgeReady(){
+     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady()     
+{  WeixinJSBridge.call('hideToolbar');
+ });
+}
+
+if (typeof WeixinJSBridge == "undefined"){
+    if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+}else{
+    onBridgeReady();
+}
+
+</script>
+
+<script type="text/javascript" src="__PUBLIC__/wap/guo/js/wsp.js"></script>
+<script type="text/javascript">
+cartCookieStr = "wsp_item_cart774";
+</script>
+<style type="text/css">
+body {
+    
+  	background-image: url("__PUBLIC__/wap/guo/images/wsp/bg_body.png");
+    background-repeat: repeat;
+}
+
+.filler{
+	height: 35px;
+    width: 100%;
+}
+
+
+.fl{
+	background:url("__PUBLIC__/wap/guo/images/wsp/bg_fl.png") center no-repeat;
+	background-size:19px 15px;
+	width: 19px;
+	height: 15px;
+}
+
+.fix_top{
+	position: fixed;    top: 0px;
+    z-index: 100;
+    width: 100%;
+}
+
+</style>
+	<div class="fix_top" id="header">
+  <div class="wrapper">
+    <dl id="navi_main">
+      <dd class="fl"> <a href=""> </a> </dd>
+      <dd> <a href="<{:U('Groupbuy/index',array('token'=>$token,'wecha_id'=>$wecha_id))}>">团购首页</a> </dd>
+      <dd> <a href="<{:U('Groupbuy/orderlist',array('token'=>$token,'wecha_id'=>$wecha_id))}>">会员中心</a> </dd>
+    </dl>
+  </div>
+</div>
+</div><{:R('Wap/Cent/header')}>
+<div class="filler"></div>
+<div class="ddxq_top">
+&nbsp; 
+</div>
+
+    <div class="ddxq_content" style="margin-bottom:80px;">
+       <div class="ddxq_content_top">
+       </div> 
+       <div class="ddxq_content_content">
+      
+          <div class="ddlb_hjsl">
+          	<p>物流公司：<span style="color:green;"><{$data['logisticgs']}></span></p>
+			<p>物流单号：<span style="color:green;"><{$data['logisticsn']}></span></p>
+            <p>物流详情：</p>
+            <p style="color:green;"><{$kuaidi}></p>
+            <div class="clfl"></div>
+          </div>
+          
+          
+          
+       </div>
+       <div class="ddxq_content_footer" style="margin-bottom:40px;">
+       </div> 
+    </div>
+<div style="height:30px;margin: 0; padding: 7px; text-align: center;">
+		<a target="_blank" href="" style="font-size: 11px; color: #ccc;text-decoration:none;"></a>
+	</div>
+</body></html>

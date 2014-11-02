@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商品设置_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+function  getarea(p,c){
+       var html = '<select class="selectoption" style="width:7%" name="province" id="province"><option>请选择</option></select>'+
+				'<select class="selectoption" id="area" name="city" style="width:7%"><option value=0>请选择</option></select>';
+	   document.write(html);
+       $.post("<{:U('Wap/Product/getArea')}>",{},function(json){
+       var data = $.parseJSON(json);
+       var first_mid = '<option value=0>请选择</option>';
+       var two_mid = '<option value=0>请选择</option>';
+       var first_selected = '';
+       var two_selected = '';
+           $.each(data,function(i,v){
+                 if(v['topno']==0){//省份
+                       if(p==v['areaname']){
+                         first_selected = "selected='selected'";
+                       }
+                       first_mid+='<option data-id="'+v.no+'" '+first_selected+'  value="'+v["areaname"]+'">'+v["areaname"]+'</option>';
+                       first_selected = '';
+                    }
+                    else{
+                           if(c==v['areaname']){
+                            two_selected = "selected='selected'";
+                           }
+                        two_mid+='<option '+two_selected+'  value="'+v["areaname"]+'">'+v["areaname"]+'</option>';
+                        two_selected = '';
+                    }
+            
+          });
+          $("#province").html(first_mid);
+          $("#area").html(two_mid);
+       });
+    
+  
+}
+ $("#province").live('change',function(){
+
+    var url = "<{:U('Wap/Product/getArea')}>";
+    var flag = 'id='+$(this).find("option:selected").data('id');
+    $.post(url,flag,function(json){
+    
+           var data = $.parseJSON(json);
+           var header = '<select name="city" style="width:5%">';
+            var mid = '';
+          $.each(data,function(i,v){
+            mid+='<option data-id="'+v.no+'" value="'+v.areaname+'">'+v.areaname+'</option>';
+          });
+           var end = "</selected>";
+           var html = header+'<option value="">请选择</option>'+mid+end;
+          $("#area").html(mid);
+        
+    
+    });
+   
+
+  });
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="editor_id"]');
+});					
+</script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">商品运费设置</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">商品运费设置 <span class="button_r_1 fabu"><a href="<{:U('Product/transportation')}>">返回</a></span></div>
+    <form class="form" method="post" action="" enctype="multipart/form-data">
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>地址：</td>
+            <td width="84%">
+           <!-- <input type="text" name="province" value="<{$set.province}>" class="input login_input_1" style="width:560px;" />-->
+            <script>getarea("<?php echo $set['province']  ?>","<?php echo $set['city']  ?>");</script>
+            
+            
+            
+            </td>
+          </tr>
+          <tr>
+
+            <td width="16%" class="table_txt_right"><span class="red">*</span>首重运费</td>
+
+            <td width="84%"><input type="text" name="first_freight" value="<{$set.first_freight}>" class="input login_input_1" style="width:560px;" /></td>
+
+          </tr>
+		   <tr>
+
+            <td width="16%" class="table_txt_right"><span class="red">*</span>续重运费</td>
+
+            <td width="84%"><input type="text" name="two_freight" value="<{$set.two_freight}>" class="input login_input_1" style="width:560px;" /></td>
+
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">&nbsp;</td>
+            <td width="84%">
+            <!--  <button type="submit" name="button" class="btnGreen">保存</button>-->
+			<input type="submit" class="btnGreen" value="保存" >
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

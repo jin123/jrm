@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商家设置_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">商家设置</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit">商家设置<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form action="" method="post">
+        <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tbody>
+            <tr>
+              <td width="500px" rowspan="4" valign="top">商家简介：<br>
+                <textarea class="px" id="info" name="info" style="width: 450px; height: 230px; "><{$info.info}></textarea>
+              </td>
+              <td valign="top">商家logo外链地址(图片尺寸100x100)<br>
+                <input type="input" class="px" id="logo" name="logo" value="<{$info.logo}>" style="width:250px;" onblur="document.getElementById('logo_src').src=document.getElementById('logo').value;">
+                <a href="###" onclick="upyunPicUpload('logo',200,200)" class="a_upload">上传</a> <a href="###" onclick="viewImg('logo')">预览</a> </td>
+              <td rowspan="4" valign="top">&nbsp;</td>
+              <td rowspan="4" valign="top"><img id="logo_src" class="logo" src="<{$info.logo}>" width="100px" height="100px"></td>
+            </tr>
+            <tr>
+              <td valign="top">选择分类：<br>
+                <label for="select"></label>
+                <select name="class" id="select" class="pt">
+                  <option value="1">美食餐饮</option>
+                  <option value="2">休闲娱乐</option>
+                  <option value="3">生活服务</option>
+                  <option value="4">其他</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">会员卡优惠简短描述：（12个字以内）<br>
+                <input name="description" type="input"  class="px" id="logo2" style="width:250px;" onblur="document.getElementById('cardlogo').src=document.getElementById('logo').value;" value="<{$info.description}>"></td>
+            </tr>
+            <tr>
+              <td valign="top">消费确认密码：<br>
+                <input type="input" class="px" id="title" value="<{$info.password}>" name="password" style="width:150px;">
+                <br>
+                商家用来确认用户代金券，优惠券和礼品券使用的密码</td>
+            </tr>
+          <tbody>
+            <tr>
+              <td colspan="5" class="norightborder"><button type="submit" name="batchsubmit" value="true" class="btnGreen vm"><strong>保存</strong></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

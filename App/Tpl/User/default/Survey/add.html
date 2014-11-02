@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微调研设置_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">微调研设置</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">微调研设置<a href="<{:U('Survey/index')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <div class="alert alert-info"> <br>
+        <p><span class="bold">注意：</span>微调研的目的是获得系统客观的收集信息研究数据，为决策做准备。。</p>
+        <br>
+      </div>
+      <form class="form" name="form" method="post"   action=""  enctype="multipart/form-data" >
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="16%" class="table_txt_right">微调研名称：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="name"  value="<{$vo.name}>" name="name" style="width:400px" >
+                <span class="maroon">*</span> <span class="help-inline">最多只能输入30个字符。</span></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">微调研关键字：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="keyword" value="<{$vo.keyword}>" name="keyword" style="width:400px" >
+                <span class="maroon">*</span> <span class="help-inline">最多只能输入20个字符。</span></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">微调研开始时间：</td>
+              <td><input type="input" class="px" id="kssj" value="<if condition="$vo['kssj'] neq ''"><{$vo.kssj|date="Y-m-d ",###}></if>" onClick="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="kssj" style="width:180px;"> </td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">微调研结束时间：</td>
+              <td><input type="input" class="px" id="jssj" value="<if condition="$vo['jssj'] neq ''"><{$vo.jssj|date="Y-m-d ",###}>
+                </if>" name="jssj" onClick="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})" style="width:180px;"></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">微调研展示图片：</td>
+              <td><input class="input login_input_1" name="pic" id="pic" value="<{$vo.pic}>" style="width:400px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('pic',700,420)" class="btnGreen">选择图片</a> <a href="javascript:void(0)" onclick="viewImg('pic')" class="btnGreen">图片预览</a></td>
+            </tr>
+              </tr>
+            
+            <tr>
+              <td width="16%" class="table_txt_right">微调研描述：</td>
+              <td width="84%"><textarea name="ms" id="ms" style="width:400px;height:102px;" maxlength="100" class="input login_input_1" value=""  ><{$vo.ms}></textarea>
+                <br>
+                <span class="maroon">*</span><span class="help-inline">最多为500个字符。</span> <strong class="input_ts_y">换行请输入&lt;br&gt;</strong></td>
+              <br>
+              <br>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:130px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:130px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+	function test(){
+		if(document.form.name.value.lenght>30)
+		{
+			alert("最多只能输入30个字符！");
+			document.from.name.focus();
+			return false;
+		}
+		return true;
+	}
+	
+	function onlyNum()
+	{
+	if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+	//考虑小键盘上的数字键
+	event.returnvalue=false;
+	}
+
+
+
+</script>
+</body>
+</html>

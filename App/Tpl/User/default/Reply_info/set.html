@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+<if condition="$isDining neq 1">商品<else/>菜品</if>设置_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">
+      <if condition="$isDining neq 1">商品<else/>菜品</if>设置</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10"><{$infoType.name}>回复配置<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+    <form class="form" method="post" action="" enctype="multipart/form-data">
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>关键词：</td>
+            <td width="84%"><span class="red"><{$infoType.keyword}> —— 当用户输入该关键词时，将会触发此回复。</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>回复标题：</td>
+            <td width="84%"><input type="text" name="title" class="input login_input_1" style="width:560px;" value="<{$set.title}>" /></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>内容介绍：</td>
+            <td width="84%"><textarea style="width:560px;height:75px" name="info" id="info" class="input login_input_1"><{$set.info}></textarea>
+              <br />
+              <strong class="input_ts_y">最多填写120个字</strong></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">回复图片：</td>
+            <td><input class="input login_input_1" name="picurl" id="picurl" value="<{$set.picurl}>" style="width:560px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('picurl',700,420)" class="btnGreen">选择图片</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right"><span class="red">*</span>第三方接口：</td>
+            <td width="84%"><input type="text" name="apiurl" value="<{$set.apiurl}>" class="input login_input_1" style="width:560px;" /></td>
+          </tr>
+          <if condition="$set and ($infoType.type eq 'Dining')">
+            <tr>
+              <td width="16%" class="table_txt_right">订购方式开关：</td>
+              <td width="84%"><label><input type="checkbox" name="diningyuding" value="1"<if condition="$set.diningyuding eq 1">checked</if>/> 开启预定</label>
+                <label><input type="checkbox" name="diningwaimai" value="1"<if condition="$set.diningwaimai eq 1">checked</if>/> 开启外卖</label></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">订购时限：</td>
+              <td width="84%"><input type="text" id="yudingdays" name="yudingdays" value="<{$config.yudingdays}>" class="px" style="width:100px;" />
+                天（可以订购多少天）</td>
+            </tr>
+          </if>
+          <tr>
+            <td width="16%" class="table_txt_right">&nbsp;</td>
+            <td width="84%"><input type="hidden" name="keyword" value="<{$infoType.keyword}>" />
+              <input type="hidden" name="infotype" value="<{$infoType.type}>" />
+              <button type="submit" name="button" class="btnGreen">保存</button>
+              <a href="<{:U('Product/cats')}>" class="btnGray vm">取消</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

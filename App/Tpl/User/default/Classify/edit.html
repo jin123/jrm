@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微站栏目_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">微站栏目</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">微站栏目<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+    <form class="form" method="post" action="<{:U('Classify/upsave')}>" enctype="multipart/form-data" >
+      <input type="hidden" name="id" value="<{$info.id}>"/>
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right">栏目名称：</td>
+            <td width="84%"><input type="text" value="<{$info.name}>" name="name"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">栏目图片：</td>
+            <td width="84%"><input type="text"  id="img" name="img" value="<{$info.img}>" class="input login_input_1" style="width:400px">
+              <strong class="input_ts_y">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('img',700,420)" class="btnGreen">选择图片</a>
+              </strong> </td>
+          </tr>
+          <if condition="$info.img neq null">
+            <else>
+            <tr>
+              <td width="16%"></td>
+              <td><if condition="$info.img neq null"><img src="<{$info.img}>" style="border:solid 1px #e0e0e0;width:100px; height:100px;"></if></td>
+            </tr>
+          </if>
+          <tr>
+            <td width="16%" class="table_txt_right">外链URL ：</td>
+            <td><input type="input"  value="<{$info.url}>" name="url" id="url" style="width:400px" class="input login_input_1" >
+<strong class="input_ts_y">
+<a href="javascript:void(0)" onclick="getLink('url',760,420)" class="btnGreen">获取站内链接</a>
+</strong>
+            </td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">排序：</td>
+            <td><input type="input" value="<{$info.sorts}>" name="sorts"  style="width:400px" class="input login_input_1"></td>
+          </tr>
+          <tr style="display:none;">
+            <td width="16%" class="table_txt_right">栏目描述：</td>
+            <td width="84%"><textarea name="info" id="info" style="width:410px;height:120px;" maxlength="200"><{$info.info}></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">首页显示：</td>
+            <td><input type="radio" class="px" value="1" name="status"<eq name="info.status" value="1"> checked</eq>/>是 &nbsp; &nbsp; &nbsp;
+              <input type="radio" class="px" value="0" name="status"<eq name="info.status" value="0"> checked</eq>/>否 </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+              <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

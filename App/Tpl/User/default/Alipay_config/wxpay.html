@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>支付宝配置_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">支付配置</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main_tit ">
+    <div class="tab">
+      <ul>
+        <li class="tabli" id="tab0"><a href="<{:U('Alipay_config/index')}>">支付宝</a></li>
+        <li class="tabli" id="tab1"><a href="<{:U('Alipay_config/tenpay')}>">财付通</a></li>
+        <li class="tabli current" id="tab2"><a href="<{:U('Alipay_config/wxpay')}>">微信支付</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="new_main">
+    <form class="form" method="post" action="" enctype="multipart/form-data">
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right">支付开关：</td>
+            <td width="84%"><select name="open" class="selectoption">
+                <option value="0" 
+                <if condition="$config.open eq 0">selected</if>
+                >关闭支付
+                </option>
+                <option value="1" 
+                <if condition="$config.open eq 1"> selected</if>
+                >开启支付
+                </option>
+              </select>
+              <strong class="input_ts_y">开启支付后，商城等b2c功能将有支付功能</strong></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">partnerId：</td>
+            <td width="84%"><input type="text" name="pid" value="<{$config.pid}>" class="input login_input_1" style="width:550px;"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">partnerKey：</td>
+            <td width="84%"><input type="text" name="key" value="<{$config.key}>" class="input login_input_1" style="width:550px;"></td>
+          </tr>
+             <tr>
+            <td width="16%" class="table_txt_right">PaySignKey：</td>
+            <td width="84%"><input type="text" name="PaySignKey" value="<{$config.PaySignKey}>" class="input login_input_1" style="width:550px;"></td>
+          </tr>
+          <tr style="display:none;">
+            <td width="16%" class="table_txt_right"></td>
+            <td width="84%"><input type="text" name="type" value="3" class="input login_input_1" style="width:550px;"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button type="submit" name="button" class="btnGreen">保存</button>
+              <a href="javascript:history.go(-1);" class="btnGray vm">取消</a></td>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

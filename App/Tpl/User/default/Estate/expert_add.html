@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微房产_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="description"]');
+	window.editor = K.create('textarea[id="comment"]');s
+});					
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"><a href="<{:U('/Estate/index')}>">微房产</a></span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">添加点评<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form" method="post" action="" <a href="<{:U('Index/welcome')}>"> enctype="multipart/form-data">
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <th width="16%" class="table_txt_right"><span class="red">*</span>标题：</th>
+              <td><input type="text" name="title" id="title" maxlength="10" class="input login_input_1" value="<{$expert['title']}>" style="width:400px;">
+                <strong class="input_ts_y">*尽量简单，不要超过20字</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">显示顺序：</th>
+              <td><input type="text" name="sort" id="sort" maxlength="10" class="input login_input_1" value="<{$expert['sort']|default=1}>" style="width:400px;">
+                <strong class="input_ts_y">*数值越大越靠前</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">专家姓名：</th>
+              <td><input type="text" name="name" id="name" maxlength="10" class="input login_input_1" value="<{$expert['name']}>" style="width:400px;">
+                <strong class="input_ts_y">*</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">专家职位：</th>
+              <td><input type="text" id="position" name="position" value="<{$expert['position']}>" class="input login_input_1" style="width:210px;">
+                <strong class="input_ts_y">*</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">专家照片：</th>
+              <td><p> <img class="thumb_img" id="face_src" src="<{$expert['face']}>" style="max-height:100px;">
+                  <input type="input" class="px" id="face" value="<{$expert['face']}>" name="face" >
+                  <span class="help-inline"> <a href="###" onclick="upyunPicUpload('face',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('face')">预览</a> <span class="help-inline">建议尺寸：宽400像素，高400像素</span> </span> </p></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">专家介绍：</th>
+              <td><textarea id="description" name="description" placeholder='专家描述' style="width:560px;height:75px" ><{$expert['description']}></textarea>
+                <strong class="input_ts_y">*最多可150字</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">点评内容：</th>
+              <td><textarea id="comment" name="comment" placeholder='点评内容' style="width:560px;height:75px" ><{$expert['comment']}></textarea>
+                <strong class="input_ts_y">*最多可5K字</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">&nbsp;</th>
+              <td><if condition="$expert['id'] neq ''">
+                  <input type="hidden" name="id" value="<{$expert['id']}>" />
+                </if>
+                <input type="hidden" name="pid" value="<{$pid}>">
+                <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+                <button type="button" class="btnGray vm">取消</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

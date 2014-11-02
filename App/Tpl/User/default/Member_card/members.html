@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">会员管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">当前位置：<a href="<{:U('Member_card/index')}>">会员卡</a> >> <{$thisCard.cardname}>会员管理</div>
+      <div class="new_main_tit">
+        <form method="post" action="">
+          <input size="80" value="" name="searchkey" class="px">
+          <button type="submit" name="appidsubmit" value="true" class="btnGreen vm" ><strong>查询</strong></button>
+        </form>
+        <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:0 10px;font-size:12px;margin-top:5px;font-weight:normal;">注意:在每行的输入框里可以通过输入消费金额（可以填写负数）来增减会员积分</div>
+      </div>
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th>卡号</th>
+            <th>微信名</th>
+            <th>姓名</th>
+            <th>联系电话</th>
+            <th>QQ号码</th>
+            <th>领卡时间</th>
+            <th>积分</th>
+            <th>消费总额(元)</th>
+            <th>消费金额(元)</th>
+            <th>添加</th>
+            <TH >操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <volist id="list" name="members">
+            <TR>
+              <td><{$list.number}></td>
+              <td><{$list.wechaname}></td>
+              <td><{$list.truename}></td>
+              <td><{$list.tel}></td>
+              <td><{$list.qq}></td>
+              <td><if condition="$list['getcardtime'] gt 0"> <{$list.getcardtime|date='Y-m-d',###}>
+                  <else/>
+                  无时间记录 </if>
+              </td>
+              <td><{$list.total_score}></td>
+              <td><{$list.expensetotal}></td>
+              <form method="post"  action="<{:U('Member_card/memberExpense',array('id'=>$thisCard['id']))}>" >
+                <td><input type="text" name="money" value="0" class="px" style="width:40px;">
+                  <input type="hidden" name="wecha_id" value="<{$list.wecha_id}>">
+                </td>
+                <td><button type="submit" style="cursor:pointer">设置</button></td>
+              </form>
+              <TD class="norightborder"><a href="<{:U('Member_card/member',array('id'=>$thisCard['id'],'itemid'=>$list['id']))}>"><strong>消费记录</strong></a> <a href="<{:U('Member_card/signrecords',array('id'=>$thisCard['id'],'itemid'=>$list['id']))}>"><strong>签到记录</strong></a> <a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Member_card/member_del',array('id'=>$thisCard['id'],'itemid'=>$list['id']))}>');"><strong>删除</strong></a> </td>
+            </TR>
+          </volist>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>喜帖管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">喜帖管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">微喜帖信息列表</div>
+      <div class="new_main_tit pt10">
+        <div class="msgWrap form">
+          <ul id="tags">
+            <li <if condition="$type eq 1"> class="selectTag" </if>><a href="<{:U('Wedding/info',array('id'=>strip_tags($_GET['id']),'type'=>1))}>">赴宴名单</a></li>
+            <li <if condition="$type eq 2"> class="selectTag" </if>><a href="<{:U('Wedding/info',array('id'=>strip_tags($_GET['id']),'type'=>2))}>">收到祝福</a></li>
+            <div class="clr"></div>
+          </ul>
+        </div>
+      </div>
+      <form method="post" action="<{:U('Vote/del')}>" id="info">
+        <input name="delall" type="hidden" value="del">
+        <input name="wxid" type="hidden" value="gh_423dwjkewad">
+        <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+              <th> 选择</th>
+              <th>姓名</th>
+              <th>电话</th>
+              <th><if condition="$type eq 1">赴宴人数
+                  <else/>
+                  祝福内容</if></th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <volist name="wedding" id="wedding">
+              <tr>
+                <td><{$i}></td>
+                <td><{$wedding.name}></td>
+                <td><{$wedding.phone}></td>
+                <td><if condition="$type eq 1"><{$wedding.num}>
+                    <else/>
+                    <{$wedding.info}></if></td>
+                <td class="norightborder"><a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Wedding/infodel',array('id'=>$wedding['id']))}>');">删除</a></td>
+              </tr>
+            </volist>
+          </tbody>
+        </table>
+      </form>
+      <div class="pagelistbox"><{$page}></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

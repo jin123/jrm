@@ -1,0 +1,287 @@
+<!DOCTYPE >
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <!-- Mobile Devices Support @begin -->
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+<link href="__PUBLIC__/wap/css/142/css.css"rel="stylesheet" type="text/css">        
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/Medical/css/onlinebooking.css" media="all">
+<title>微医疗</title><script type="text/javascript">var yyuc_jspath = "/@system/";</script>
+<script type="text/javascript" src="__PUBLIC__/wap/Medical/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/Medical/js/yyucadapter.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/Medical/js/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/Medical/css/font-awesome.css" media="all">
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<style>
+	.masklayer{
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:2000;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.5);
+	text-align:right;
+}
+.masklayer.on{
+	display:block;
+}
+.masklayer img{
+	margin-top:10px;
+	margin-right:30px;
+	width:160px;
+}
+</style>
+<link href="__PUBLIC__/wap/Medical/css/mobiscroll.css" rel="stylesheet" type="text/css"></head>
+<body id="onlinebooking">
+<div class="qiandaobanner"> 
+		<img src="__PUBLIC__/wap/Medical/images/1958f77823fcb7149fe9895b54c1b77d.jpg">
+</div>
+<div class="cardexplain">
+	<!--普通用户登录时显示-->
+	<ul class="round">
+		<li>
+			<a href="<{:U('Medical/myorder',array('hid'=>$hid,'token'=>$token,'wecha_id'=>$wecha_id))}>"><span>我的挂号<em class="ok"><{$order.count}></em></span></a>
+		</li>
+		<li class="addr">
+			<a href="http://api.map.baidu.com/marker?location=<{$data.wd}>,<{$data.jd}>&amp;title=<{$data.address}>;content=<{$data.address}>;output=html&amp;src=weiba%7Cweiweb"><span>医院地址:<{$data.address}></span></a>
+		</li>
+		<li class="tel">
+			<a href="tel:<{$data.tel}>"><span><{$data.tel}></span></a>
+		</li>
+	</ul>
+	
+	<form action="" method="post" id="form1">
+	<ul class="round">
+		<li class="title mb"><span class="none">请认真填写表单</span></li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+				<input type="hidden" value="<{$hid}>" name="hid" />
+				<tr>
+					<th>患者姓名</th>
+					<td>
+						<input name="uname" class="px" placeholder="请输入您的名字" type="text">					  										</td>
+				</tr>
+			</tbody></table>
+		</li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody><tr>
+					<th>性别</th>
+					<td>
+						<select name="sex" id="sex" data-placeholder="请选择" class="px">
+						<option selected="selected" value="0">男</option>
+						<option value="1">女</option>
+						</select>									</td>
+				</tr>
+			</tbody></table>
+		</li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody><tr>
+					<th>年龄</th>
+					<td>
+						<input name="age" id="age" class="px" placeholder="请输入您的年龄" type="text" onkeyup="value=value.replace(/[^0-9]/g,'')" maxlength="3">					  										</td>
+				</tr>
+			</tbody></table>
+		</li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody><tr>
+					<th>联系电话</th>
+					<td>
+						<input name="phone" id="phone" class="px" placeholder="请输入您的电话" type="text"  onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="11">					  										</td>
+				</tr>
+			</tbody></table>
+		</li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody><tr>
+					<th>预定日期</th>
+					<td>
+					
+					<input type="input" readonly="readonly" name="ordertime" id="ordertime" class="px" placeholder="请输入预定日期"  value="<if condition="$vo['ordertime'] neq ''"><else/><?php echo date('Y-m-d',mktime(0, 0, 0, date("m")  , date("d"), date("Y")));?></if>" onClick="WdatePicker({ minDate:'<{$mindate}>',maxDate: '<{$maxdate}>'})" name="ordertime" />
+<!-- 						<input  name="ordertime" mdate="date" relobj="yyucmcalendar" rel="yyuc" type="text">	 -->									</td>
+				<input name="time" id="time" value="<if condition="$vo['ordertime'] neq ''"><else/><?php echo date('Ymd',mktime(0, 0, 0, date("m")  , date("d"), date("Y")));?></if>" class="px"  type="hidden" />
+				<input name="number" id="number" value="<{$number}>" class="px"  type="hidden" />
+				<input name="time" id="time" value="<{$yldepart.id}>" class="px"  type="hidden" />
+
+				
+				</tr>
+			</tbody></table>
+		</li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody><tr>
+					<th>联系地址</th>
+					<td>
+						<textarea name="addr" id="addr" class="px" placeholder="请输入联系地址"></textarea>										</td>
+				</tr>
+			</tbody></table>
+		</li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody><tr>
+					<th>预约科室</th>
+					<td>
+						<select  name="orderdepart" id="orderdepart"  class="px">
+						 <option selected="selected" value="请选择">请选择</option>
+						<volist name="list" id="v">
+							<option value="<{$v['id']}>"><{$v['name']}></option>
+						</volist>
+						</select>
+						</td>
+						
+				</tr>
+			</tbody></table>
+		</li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody><tr>
+					<th>预约专家</th>
+					<td>
+						<select name="orderexperts" id="orderexpert"class="px">
+						<option  value="请选择">请选择</option>
+						</select>
+						</td>
+				</tr>
+			</tbody></table>
+		</li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody><tr>
+					<th>预约病种</th>
+					<td>
+						<input class="px" placeholder="请输入预约病种" name="ordertype" type="text" />										</td>
+				</tr>
+			</tbody></table>
+		</li>
+				<li class="nob">
+			<table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody><tr>
+					<th>患者备注</th>
+					<td>
+						<input name="orderremarks" id="orderremarks" class="px" placeholder="" type="text">					  										</td>
+				</tr>
+			</tbody></table>
+		</li>
+		    </ul>
+	<div class="footReturn">
+		<input id="showcard" class="submit" onclick="yuyue();" value="提交订单" style="width:100%" type="button"> 
+		<div class="window" id="windowcenter">
+			<div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+			<div class="content">
+				<div id="txt"></div>
+			</div>
+		</div>
+	</div>
+	</form>
+	<div style="height:50px;">
+<div class="footer">
+    	<ul>
+        	<li><a href="<{:U('Wap/Medical/medical',array('hid'=>$hid,'token'=>$token,'wecha_id'=>$wecha_id))}>"><img src="__PUBLIC__/wap/css/142/images/s.png" width="34"></a></li>
+            <p><a href="javascript:history.go(-1);"><img src="__PUBLIC__/wap/css/142/images/f.png" width="34"></a></p>
+        </ul>
+    </div>
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/wap/Groupbuy/jquery.alerts.js"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/Groupbuy/css/jquery.alerts.css">
+<script type="text/javascript">
+function yuyue(){
+	if($("input[name='uname']").val().trim()==""){
+		jAlert("请输入您的名字");
+		return;
+	}
+	if($("input[name='age']").val().trim()==""){
+		jAlert("请输入您的年龄");
+		return;
+	}
+	var tel=$("input[name='phone']").val().trim();
+	if(tel==""){
+		jAlert("请输入您的联系电话");
+		return;
+	}
+	if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(tel))){ 
+		jAlert("联系电话格式错误");
+		return;
+	}
+	if($("input[name='ordertime']").val().trim()==""){
+		jAlert("请选择预约时间");
+		return;
+	}	
+	if($("#orderdepart").val()=='请选择'){
+		jAlert("请选择预约科室");
+		return;
+	}
+	if($("#orderexpert").val()=='请选择'){
+		jAlert("请选择预约专家");
+		return;
+	}
+	
+	$.ajax({
+	   type: "POST",
+	   url: "<{:U('Medical/yuyue_post',array('hid'=>$hid,'wecha_id'=>$wecha_id,'token'=>$token))}>",
+	   data: $("#form1").serialize(),
+	   dataType: "json",
+	   success: function(data){
+	      if(data.error==0){
+		  		jAlert(data.msg);
+		  		window.location.href=location.href;
+		  }else{
+		  		jAlert(data.msg);
+		  }
+	   }
+	});
+}
+
+$(function(){
+	var keshi=[];var fzr=[];
+	<volist name="list" id="vo">
+	keshi[<{$vo['id']}>]='<{$vo['name']}>';fzr[<{$vo['id']}>]='<{$vo['officials']}>';
+	</volist>
+
+	$("#orderdepart").change(function(){
+		var id=this.value;
+		var far_arr=fzr[id].split(",");
+		
+		
+		var html='<option  value="请选择">请选择</option>';
+		for(var i=0;i<far_arr.length;i++){
+			html+="<option  value=\""+far_arr[i]+"\">"+far_arr[i]+"</option>";
+		};
+		$('#orderexpert').html(html);
+		/*
+		$.ajax({
+			   type: "POST",
+			   url: "<{:U('Medical/partchange',array('hid'=>$hid,'wecha_id'=>$wecha_id,'token'=>$token))}>",
+			   data: 'name='+this.value,
+			   dataType: "json",
+			   success: function(data){
+				   var html='<option  value="请选择">请选择</option>';
+					for(var i=0;i<data.length;i++){
+						html+="<option  value=\""+data[i].id+","+data[i].officials+"\">"+data[i].officials+"</option>";
+					};
+					$('#orderexpert').html(html);
+			   }
+		});
+		*/
+	});
+});
+</script>
+<script>
+	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call('hideToolbar');
+});
+</script>
+</body></html>

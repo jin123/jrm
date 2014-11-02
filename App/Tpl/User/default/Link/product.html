@@ -1,0 +1,40 @@
+<div class="cLineD">
+    <form method="get" action="<{:U('Link/product')}>" id="searchForm">
+        <select class="selectoption" name="catid" id="catid">
+          <option value="">全部</option>
+          <foreach name="cats" item="r" key="n">
+          <option value="<{$r.id}>" <if condition="$r.id eq $catid"> selected</if>><{$r.name}></option>
+          </foreach>
+        </select>
+        <input type="text" id="msgSearchInput" class="px" placeholder="输入关键词搜索" name="searchkey" value="<{$searchkey}>">
+        <button type="submit" name="appidsubmit" value="true" class="btnGreen vm"><strong>搜索</strong></button>
+        <span id="msg"></span>
+    </form>
+</div>
+
+<table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <thead>
+    <tr>
+      <th>商品名称</th>
+      <th>分类</th>
+          <th>价格</th>
+          <th>关键词</th>
+          <th>创建时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+<if condition="infos">
+<foreach name="infos" item="r" key="n">
+<tr><td><{$r.name}></td>
+<td><{$cats[$r[catid]][name]}></td>
+            <td><{$r.price}>元</td>
+            <td><{$r.keyword}></td>
+            <td><{$r.time|date="Y-m-d H:i:s",###}></td><td><a data="Product/product/id/<{$r.id}>">选择</a></td></tr>
+</foreach>
+<else/>
+<tr><td colspan="5">没有内容</td></tr>
+</if>
+  </tbody>
+</table>
+<div class="pagelistbox"><{$page}></div>

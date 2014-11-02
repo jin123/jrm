@@ -1,0 +1,1975 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微信墙</title>
+
+<meta name="keywords" content="微信大屏幕,微信墙,微信上墙,签到,抽奖,对对碰,投票,短信上墙" />
+<meta name="description" content="微信大屏幕官方演示页面点击下方对应功能按钮可查看功能演示-微信大屏幕-微信墙：恭祝微信大屏幕全新官网及星空风格上线。" />
+  <link rel="stylesheet" href="__PUBLIC__/wxscreen/css/v6_common.css?v=v838" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/wxscreen/js/tooltipster-3.0.0/css/tooltipster.css" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/wxscreen/js/tooltipster-3.0.0/css/themes/tooltipster-shadow.css" type="text/css" />
+
+
+      <link rel="stylesheet" href="__PUBLIC__/wxscreen/css/v6_wishful_year.css?v=v838" type="text/css" />
+  
+
+<link rel="stylesheet" href="__PUBLIC__/wxscreen/css/emoji-weixin.css?v=v838" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/wxscreen/css/moving/falling.css?v=v838" type="text/css" />
+<link rel="stylesheet" href="__PUBLIC__/wxscreen/css/moving/animate.css?v=v838" type="text/css" />
+  <link rel="stylesheet" href="__PUBLIC__/wxscreen/css/v6_guide.css" type="text/css" />
+
+<script type="text/javascript" src="__PUBLIC__/wxscreen/js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/wxscreen/js/marquee.js"></script>
+
+<script type="text/javascript">
+var sysConfig = {
+    isAdmin: 0,
+    template: "v6_wishful_year",
+    visibleNum: 3,
+    // 10 s
+    autoTime: 5,
+    // 10 ms
+    stepTime: 25,
+    // domain
+    domain: "wxscreen",
+    siteUrl: "http://demo.wxscreen.com",
+    companyId: 101039,
+    timerColorMap: [ '#c60522', '#fb8aa7' ],
+
+    lotteryPlug:  1 ,
+    ddpPlug:  1 ,
+    votePlug:  1 ,
+    checkinPlug:  1 ,
+    smsPlug:  1 ,
+
+    showCampusLogo:  0 ,
+
+    isDemo:  1 ,
+    maxMessageNum: 9000,
+    isV6: 1,
+    messageVisibleTime: {"latest_hour":"","start_date":"2014-01-31","start_hour":"18","end_date":"","end_hour":"00","start_time":"2014-01-31 18:00:00","end_time":"2099-07-15 00:00:00"},
+    lotteryVisibleTime: {"latest_hour":"","start_date":"2014-01-31","start_hour":"00","end_date":"","end_hour":"00","start_time":"2014-01-31 00:00:00","end_time":"2099-07-15 00:00:00"},
+    ddpVisibleTime: {"latest_hour":"","start_date":"2014-01-31","start_hour":"00","end_date":"","end_hour":"00","start_time":"2014-01-31 00:00:00","end_time":"2099-07-15 00:00:00"},
+    isCycleScroll:  0 ,
+    urlSkin: '',
+
+    // 新消息插入类型：0 普通（放入队尾）， 1 优先播放
+    newMessageAddType: 0
+};
+wxscreen.init(sysConfig);
+</script>
+<style>
+element.style {
+position: relative;
+width: 910px;
+height: 555px;
+overflow: hidden;
+}
+</style>
+</head>
+
+<body>
+<div id="wrap" class="wrapbg" >
+
+  <div class="chrometips chromeTip" style="display:none;">
+    <a href="javascript:void(0);" class="btntips-close" id="chromeTipCloseBtn">×</a>
+    <div class="inner-chrometips">
+      <p class="chrm-word1">由于你正在使用非Chrome浏览器，大屏幕的体验处于不佳状态，建议您立刻更换浏览器，以获得更好的大屏幕产品用户体验</p>
+      <p class="chrm-word2"><span>安装Chrome浏览器：</span><a href="https://www.google.com/intl/zh-CN/chrome/browser/" target="_blank">chrome</a></p>
+    </div>
+  </div>
+  <script>
+    $(function(){
+      var isChrome = navigator.userAgent.indexOf('Chrome') != -1 && $.browser.webkit;
+      if(!isChrome) {
+        $('.chromeTip').show();
+      }
+      //
+      $('#chromeTipCloseBtn').click(function(){
+        $('.chromeTip').hide();
+      });
+	  //10s后自动关闭
+	  setTimeout( function(){
+		$('.chromeTip').hide();
+	  },10000);
+    });
+  </script>
+
+  <div id="whole">
+    <div id="header" class="clearfix">
+
+              <a href="#" target="_blank">
+                      <span class="logo-t left"><img class="logoScreenLeft" src="<{$list_set.toppic}>" /></span>
+                  </a>
+            <div class="word-scroll left">
+        <div class="clearfix">
+		<!--轮播消息-->
+          <div class="scrollbox left" id="news">
+            <ul class="word-list wordList">
+              <li class="themeBox"><{$list_set['text1']}></li>
+                                                          
+              <li class="themeBox" ><{$list_set['text2']}></li>
+
+              
+              
+            </ul>
+          </div>
+		<!--轮播消息end-->
+		<script type="text/javascript">
+    $(function() {
+        $('#news').marquee({
+            auto: true,
+            interval: 7000,
+            showNum: 1,
+            stepLen: 1,
+            type: 'vertical'
+        });
+    })
+</script>
+          <div class="num-t left">
+            <p><em class="messageTotal"><{$page}></em><span>条信息<input type="hidden" id="pid" name="pid" value="<{$pid}>"></span></p>
+          </div>
+        </div>
+      </div>
+      <span class="reserved right showIntroBtn">
+                  <img src="<{$list_set.headpic}>" style="max-width:126px;max-height:96px;"><!--二维码-->
+              </span>
+    </div>
+	<!--轮播消息开始#container {
+	width: 910px;
+	height: 555px;
+	/* padding-top: 15px; */
+	overflow: hidden;
+	}-->
+    <div id="container" class="wrap">
+	
+      <!--<div class="con-inner scrollBox" style="visibility: visible; overflow: hidden; position: relative;">-->
+        <ul class="user-list" id="gundonginfo" data-to="-366" style="position: relative; display: block; -webkit-transform: translate(0px, -366px);">
+		<volist name="list" id="list">
+			<li class="clearfix t-row" data-id="<{$list.id}>" data-update_time_ms="<{$list.time}>" style="display:block;">    
+			<div class="userimg left">          
+			<i class="elem"></i>      
+			<span class="elem2"></span>      
+			<a href="javascript:void(0);" class="head">
+			<img class="msgAvatar" src="<{$list.headimg}>" width="90" height="90" alt="">
+			</a>    
+			</div>        
+			<div class="cont-box left">          
+			<p class="c-word">            
+			<a href="javascript:void(0);" class="user-name msgUserName"><{$list.name}> <span class="emoji emoji1f467"></span>:</a>            
+			<span class="cont displayContent" style="font-size:35.57562367689427px;color:#000"><{$list.info}></span> </p>                  
+			</div>        
+			<div class="btn-detail messageDetailBtn" style="display: none;">          
+			<div class="btn-style">            
+			<a href="javascript:void(0);" class="icon-arrow"></a>          
+			</div>        
+			</div>      
+			</li> 
+		</volist>
+			
+		</ul>
+      <!--</div>-->
+    </div>
+<!--轮播结束-->
+<script type="text/javascript">
+    $(function() {
+        $('#container').marquee({
+            auto: true,
+            interval: 2000,
+            showNum: 3,
+            stepLen: 1,
+            type: 'vertical'
+        });
+		refresh();
+    });
+	function refresh(){
+		var pid=$("#pid").val();
+		//alert(pid);
+		$.ajax({ 
+				type: "post", 
+				url : "<{:U('Wxscreen/refresh')}>",
+				dataType:'json', 
+				data: 'id='+pid,
+				success: function(data){
+					if(data.code=="000"){
+						$('#gundonginfo').empty();
+						$('.messageTotal').val(data.count);
+						var datainfo=data.info;
+						var html='';
+						for (i in datainfo) {
+							html+='<li class="clearfix t-row" data-id="'+datainfo[i].id+'" data-update_time_ms="'+datainfo[i].time+'" style="display:block;">';
+							html+='<div class="userimg left"><i class="elem"></i><span class="elem2"></span>    <a href="javascript:void(0);" class="head">';
+							html+='<img class="msgAvatar" src="'+datainfo[i].headimg+'" width="90" height="90" alt=""></a></div>';
+							html+='<div class="cont-box left"><p class="c-word">';
+							html+='<a href="javascript:void(0);" class="user-name msgUserName">'+datainfo[i].name+'<span class="emoji emoji1f467"></span>:</a> ';
+							html+='<span class="cont displayContent" style="font-size:35.57562367689427px;color:#000">'+datainfo[i].info+'</span> </p>        </div><div class="btn-detail messageDetailBtn" style="display: none;"><div class="btn-style"><a href="javascript:void(0);" class="icon-arrow"></a></div>        </div></li> ';
+						}
+					}else if(data.code=="001"){
+						alert(data.info);
+					}
+					$('#gundonginfo').html(html);
+				},
+				error:function(){
+					alert("连接服务器错误");
+				}
+		});
+		hoko = setTimeout(refresh,1000);
+	}
+</script>
+    <div id="footer" class="clearfix">
+
+      <div class="left-bottom left">
+                  <span class="logo-b logo-sun" ><img src="<{$list_set.bottempic}>"></span>
+				  <span style="color:red;margin-left:380px"><strong> &nbsp;版权所有&nbsp; &nbsp;阿里微微&nbsp; &nbsp;</strong></span>
+              </div>
+      <div class="prodres-box">
+        <canvas id="cirProgress" width="50" height="50"></canvas>
+      </div>
+      <div class="btns right">
+
+       <!-- <a href="javascript:void(0);" class="tooltip btnNetwork btn-icon btn-wifi btn-wifi-disable" style="display:none;" title="网络已断开，请检查您的网络连接">信号</a>
+
+                              <a href="javascript:void(0);" class="tooltip btnCheckin  btn-icon btn-checkin" title="签到墙，快捷键“q”">签到墙</a>
+          
+          <a href="javascript:void(0);" class="tooltip btnSkinSel  btn-icon btn-style" title="更换风格，快捷键“f”">风格选择</a>
+        
+        <a href="javascript:void(0);" class="tooltip btnStar      btn-icon btn-tag " title="点击查看星标消息，快捷键“j”">加星消息</a>
+
+                  <a href="javascript:void(0);" class="tooltip btnLottery btn-icon btn-lottery " title="抽奖，快捷键“c”">抽奖</a>
+          <a href="javascript:void(0);" class="tooltip btnDdp     btn-icon btn-pair " title="对对碰，快捷键“d”">对对碰</a>
+          <a href="javascript:void(0);" class="tooltip btnVote    btn-icon btn-vote " title="投票，快捷键“t”">投票</a>
+        
+                <a href="javascript:void(0);" class="tooltip btnFullScreen btn-icon btn-full" title="全屏">全屏</a>
+        <a href="javascript:void(0);" class="tooltip btnOldest     btn-func btn-old" title="最旧一屏，快捷键“←”">最旧</a>
+        <a href="javascript:void(0);" class="tooltip btnPrev       btn-func btn-prev" title="上一屏，快捷键“↑”">上一条</a>
+        <a href="javascript:void(0);" class="tooltip btnPause      btn-func btn-begin" title="暂停，快捷键“空格”">暂停</a>
+        <a href="javascript:void(0);" class="tooltip btnNext       btn-func btn-next" title="下一屏，快捷键“↓”">下一条</a>
+        <a href="javascript:void(0);" class="tooltip btnNewest     btn-func btn-new" title="最新一屏，快捷键“→”">最新</a>-->
+      </div>
+    </div>
+    
+<!--单条详情-->
+  <div class="detail-box messageDetailBox hidden" style="display: none;">
+    <div class="msg-detail-list messageDetailList" data-to="-908" style="-webkit-transform: translate(-908px, 0px);">                <div class="detail-bar" style="cursor: default;" data-id="594398">          <div class="detail-top clearfix">			<div class="userimg left">			  <i class="elem"></i>			  <span class="elem2"></span>			  <a href="javascript:;" class="head messageOneAvatar"><img src="http://s8.wxscreen.com/static/upload/slave2_store2/2014/04/10/20140410100225000000_1_15085_5392.png" width="90" height="90" alt=""></a>			</div>            <p class="detail-info">              <a href="javascript:;" class="user-name-detail messageOneName">拟成风:</a>              <span class="messageDetailIntroLabel">来自微信</span>            </p>          </div>          <p class="detail-cont messageDetailContent" style="font-size:60px;">哈哈哈哈</p>          <div class="imgb-show">                      </div>        </div>        <div class="detail-bar" style="cursor: default;" data-id="594507">          <div class="detail-top clearfix">			<div class="userimg left">			  <i class="elem"></i>			  <span class="elem2"></span>			  <a href="javascript:;" class="head messageOneAvatar"><img src="http://s8.wxscreen.com/static/upload/slave2_store2/2014/04/10/20140410104358000000_1_34560_59.png" width="90" height="90" alt=""></a>			</div>            <p class="detail-info">              <a href="javascript:;" class="user-name-detail messageOneName">jenny:</a>              <span class="messageDetailIntroLabel">来自微信</span>            </p>          </div>          <p class="detail-cont messageDetailContent" style="font-size:60px;">这是/::'(莫</p>          <div class="imgb-show">                      </div>        </div></div>
+    <a href="javascript:void(0);" class="flbtn-close messageDetailCloseBtn" style="display: none;"></a>
+  </div>
+
+<!--end 详情-->
+
+  <script type="text/javascript" src="js/wxscreen/production/plug/messageDetail.min.js"></script>
+<script>
+$(function(){
+  wxscreen.messageDetail.init();
+});
+</script>  <!--抽奖-->
+<div class="fl-lottery lotteryLayer" style="display:none;">
+  <div class="fl-inner fl-bg">
+    <div class="inner-cont clearfix">
+      <div class="prize-box right">
+        <span class="props props-color"></span>
+        <div class="outer-prize">
+          <div class="wrap-prize">
+            <div class="list-top clearfix">
+              <p class="pro-num right">获奖人数<em class="winUserNum"><img src="images/loading.gif" /></em></p>
+              <span>获奖名单</span>
+            </div>
+            <div class="list-box">
+              <p class="list-tit">
+                <span>获奖序号</span>
+                <span>微信昵称</span>
+              </p>
+              <div class="priname-box">
+                <ul class="prize-list winUserList">
+                </ul>
+              </div>
+            </div><!--end .list-box-->
+            <div class="und-btn"><a href="javascript:void(0);" class="resetLotteryBtn"><span style="display:none;">重新抽奖</span><img src="images/loading.gif" /></a></div>
+          </div><!--end .wrap-prize-->
+        </div><!--end .outer-prize-->
+      </div><!--end .prize-box-->
+      <div class="lottery-box">
+        <div class="box-ltop">
+          <span class="lott-wt">现场抽奖</span>
+          <p class="lott-w"><span>参加抽奖人数</span><em class="join-num lotteryUserNum"><img src="images/loading.gif" /></em></p>
+        </div>
+        <div class="rock-box">
+          <span class="rock-head"><img data-default_src="images/v6_wishful_year/lottery-default.jpg" src="images/v6_wishful_year/lottery-default.jpg" class="lotteryImg" width="178" height="178" alt=""></span>
+          <span class="rock-name lotteryName">... ...</span>
+        </div>
+        <div class="btn-clear clearfix">
+          <div class="choose-num " id="lotteryNumBox">
+            <span>一次抽取</span>
+            <select name="" id="lotteryNumSel">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="5">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            <span>人</span>
+          </div>
+          <p class="btn-rock right"><a href="javascript:void(0);" class="btn-start startLotteryBtn"><span>正在准备...</span><img style="display:none;" src="images/loading.gif" /></a></p>
+        </div>
+        <div class="btn-clear" id="slaveScreenLotteryTip" style="display:none;">
+          <p class="sup-tips">抽奖进行中……</p>
+        </div>
+      </div><!--end .lottery-box-->
+    </div>
+  </div>
+</div><!--end 抽奖-->
+  <script type="text/javascript" src="js/wxscreen/production/plug/lottery.min.js?v=v850"></script>
+
+  <!-- 对对碰 start -->
+<div class="fl-pair" style=" display:none" id="ddp_layer">
+  <div class="fl-inner fl-bg">
+    <div class="inner-cont clearfix">
+      <div class="prize-box right">
+        <span class="props props-color"></span>
+        <div class="outer-prize">
+          <div class="wrap-prize">
+            <div class="list-top clearfix">
+              <p class="pro-num right">配对组数<em id="ddp_matchedGroupNum">0</em></p>
+              <span>配对名单</span>
+            </div>
+            <div class="list-box">
+              <p class="list-tit">
+                <span>配对序号</span>
+                <span>配对的微信昵称</span>
+              </p>
+              <div class="priname-box priname-box-pair">
+                <ul class="pair-list" id="ddp_matchedUserBox">
+                  
+                </ul>
+              </div>
+            </div><!--end .list-box-->
+            <div class="wrap-btn">
+              <a href="javascript:void(0);" class="btn-color btn-reset" id="ddp_resetBtn">
+                <span style="display:none;">重新配对</span>
+                <img src="images/loading.gif" />
+              </a>
+            </div>
+          </div><!--end .wrap-prize-->
+        </div><!--end .outer-prize-->
+      </div><!--end .prize-box-->
+      <div class="lottery-box">
+        <div class="box-ltop">
+          <span class="pair-wt">缘分对对碰</span>
+          <p class="lott-w"><span>参加配对人数</span><em class="join-num" id="ddp_userCount"><img src="images/loading.gif" /></em></p>
+        </div>
+        <div class="bubble">
+          <div class="bubble-big" id="ddp_bubble3" style="display:none;">
+            <span class="w1" style="padding-top: 28px;padding-left: 26px;">恭喜两位！</span>
+            <span class="w2">&nbsp;</span>
+          </div>
+          <span class="bubble-mini" id="ddp_bubble1" style="display:none;"></span>
+          <span class="bubble-mini2" id="ddp_bubble2" style="display:none;"></span>
+        </div>
+        <span class="icon-heart"></span>
+        <div class="rock-box clearfix" id="ddp_box">
+          <div class="pair-one">
+            <span class="rock-head"><img id="ddp_userAvatar" data-default_src="images/v6_wishful_year/pair-default.png" src="images/v6_wishful_year/pair-default.png" width="178" height="178" alt=""></span>
+            <span class="rock-name" id="ddp_userName">……</span>
+          </div>
+          <div class="pair-one">
+            <span class="rock-head"><img id="ddp_toUserAvatar" data-default_src="images/v6_wishful_year/pair-default.png" src="images/v6_wishful_year/pair-default.png" width="178" height="178" alt=""></span>
+            <span class="rock-name" id="ddp_toUserName">……</span>
+          </div>
+        </div>
+        <div class="btn-clear">
+          <p class="btn-rock">
+            <a href="javascript:void(0);" class="btn-start" id="ddp_startBtn">
+              <span>正在准备数据...</span>
+              <img style="display:none;" src="images/loading.gif" />
+            </a>
+          </p>
+        </div>
+      </div><!--end .lottery-box-->
+    </div>
+  </div>
+</div>
+<!-- 对对碰 end -->
+  <script type="text/javascript" src="js/wxscreen/production/plug/ddp.min.js?v=v850"></script>
+
+  <!--投票-->
+<div class="fl-layer" style="display:none" id="vote_layer">
+  <div class="fl-inner voteClosedBox" style="display:none;">
+    <p class="tips2" style="color:black;">正在等待投票开启…</p>
+    <p class="btn-wrap"><a href="http://demo.wxscreen.com/wxscreen/user/vote" class="btn-color" target="_blank">开启投票</a></p>
+    <p></p>
+  </div>
+  <div class="fl-inner voteOpendBox">
+    <a href="javascript:void(0);" class="flbtn-close voteCloseBtn" style="z-index: 99;"></a>
+    <div class="votewrap">
+      <h2 class="vote-tit voteTitle"></h2>
+      <p class="tips voteIntro">参与方式：<span></span></p>
+      <p class="vote-join-num">共 <em class="voteJoinNum"></em> 人参与</p>
+      <!-- one-row two-row three-row -->
+      <div class="votebox one-row clearfix voteOptionBox">
+        <div class="vote-row optionRow">
+          <ul class="vote-list">
+           
+          </ul>
+        </div>
+        <div class="vote-row  optionRow">
+          <ul class="vote-list">
+            
+          </ul>
+        </div>
+        <div class="vote-row  optionRow">
+          <ul class="vote-list">
+            
+          </ul>
+        </div>
+      </div><!--end .votebox-->
+      <div class="tipsbox clearfix">
+        <dl class="tips-list right">
+          <dt>注：</dt>
+          <dd><i class="tipfirst"></i>票数第一</dd>
+          <dd><i class="tipsecond"></i>票数第二</dd>
+          <dd><i class="tipthird"></i>票数第三</dd>
+        </dl>
+      </div>
+    </div><!--end .votewrap-->
+  </div>
+</div><!--end 投票-->
+  <script type="text/javascript" src="js/wxscreen/production/plug/vote.min.js?v=v850"></script>
+<script>
+$(function(){
+  wxscreen.vote.init({"id":"10","res_id":"101039","title":"\u4f60\u6700\u559c\u6b22\u4ee5\u53ca\u6700\u671f\u5f85\u5927\u5c4f\u5e55\u7684\u54ea\u4e2a\u529f\u80fd\uff1f","intro":"\u5fae\u4fe1\u5173\u6ce8\u201c\u4e92\u52a8\u5927\u5c4f\u5e55\u201d\uff0c\u53d1\u9001\u201c\u6295\u7968\u201d\u5373\u53ef\u53c2\u4e0e\u4e92\u52a8","desc":"\u9009\u51fa\u4f60\u6700\u559c\u6b22\u7684\u548c\u6700\u671f\u5f85\u7684\u5927\u5c4f\u5e55\u529f\u80fd~","option_type":"2","option_view_order":"1","option_show_num":"0","start_time":"2014-03-05 10:30:28","end_time":"2014-03-05 10:27:03","add_time":"2013-11-26 19:10:01","vote_type":"3","allow_vote_num":"15","allow_repeat_vote":"0","privacy":"1","is_anonymous":"0","is_need_sign_in":"0","ip":"","is_open":"1","status":"1","vote_count":"1254","join_count":"478","ext":"DjaaY","option_list":[{"id":"62","vote_id":"10","option_content":"\u62bd\u5956","option_image":"","option_count":293,"start_count":"0","rank":1,"option_count_r":"293"},{"id":"63","vote_id":"10","option_content":"\u5bf9\u5bf9\u78b0","option_image":"","option_count":133,"start_count":"0","rank":3,"option_count_r":"133"},{"id":"64","vote_id":"10","option_content":"\u6295\u7968","option_image":"","option_count":155,"start_count":"0","rank":2,"option_count_r":"155"},{"id":"65","vote_id":"10","option_content":"\u81ea\u5b9a\u4e49\u80cc\u666f","option_image":"","option_count":92,"start_count":"0","rank":8,"option_count_r":"92"},{"id":"66","vote_id":"10","option_content":"\u81ea\u5b9a\u4e49logo","option_image":"","option_count":99,"start_count":"0","rank":7,"option_count_r":"99"},{"id":"67","vote_id":"10","option_content":"\u77ed\u4fe1\u4e0a\u5899","option_image":"","option_count":112,"start_count":"0","rank":5,"option_count_r":"112"},{"id":"68","vote_id":"10","option_content":"\u81ea\u52a8\u4e0a\u5899","option_image":"","option_count":119,"start_count":"0","rank":4,"option_count_r":"119"},{"id":"69","vote_id":"10","option_content":"\u7b7e\u5230","option_image":"","option_count":102,"start_count":"0","rank":6,"option_count_r":"102"},{"id":"70","vote_id":"10","option_content":"\u6f02\u6d41\u74f6","option_image":"","option_count":73,"start_count":"0","rank":10,"option_count_r":"73"},{"id":"124","vote_id":"10","option_content":"\u85cf\u5b9d","option_image":"","option_count":76,"start_count":"0","rank":9,"option_count_r":"76"}]});
+});
+</script>
+<!--二维码弹层-->
+<div class="fl-layer floatLayer introBox" style="display:none;">
+      <div class="fl-inner">
+              <a href="javascript:void(0);" class="flbtn-close showIntroBtn"></a>
+        <p class="notice1">使用微信扫描以下任意二维码，关注后发送内容即有机会上墙</p>
+        <ul class="img-list">
+            <li class="img-b"><img src="static/upload/slave2_store2/2014/01/03/20140103185421000000_3_50455_6386.png" alt=""></li>
+            <li class="img-d"><img src="static/upload/slave2_store2/2014/01/03/20140103185421000000_2_54158_3315.png" alt=""></li>
+            <li class="img-s"><img src="static/upload/slave2_store2/2014/01/03/20140103185421000000_1_50479_7439.png" alt=""></li>
+        </ul>
+        <p class="notice2">无法扫描二维码的用户，请关注微信号:
+          <span class="js_weixinAccountName">
+            hudongdapingmu          </span>
+        </p>
+        </div>
+  </div>
+<!--end 二维码弹层-->
+<script>
+$(function(){
+
+  // 注册独占
+  wxscreen.registerState('qrLayer', {
+    on: function(){
+      $('.introBox').fadeIn('fast');
+      // 继续轮询新消息
+      wxscreen.message.pull();
+    },
+    off: function(){
+      $('.introBox').hide();
+    }
+  });
+
+  // 展示浮层
+  $('.showIntroBtn').click(function(){
+
+    // checkin
+    var state = wxscreen.getState();
+    if(state == 'checkin' && wxscreen.checkin) {
+      wxscreen.checkin.toggleQr();
+    } else {
+      if(wxscreen.getState() == 'qrLayer') {
+        wxscreen.setState('message');
+      } else {
+        wxscreen.setState('qrLayer');
+      }
+    }
+  });
+
+  // 监听按键e/2（轮换二维码）
+  wxscreen.sub('key.50.down', function(channel, e){
+    if(!$(e.target).is('input')) {
+      $('.showIntroBtn:eq(0)').trigger('click');
+    }
+  });
+
+  
+});
+</script>  <!--设置弹层-->
+<div class="fl-layer settingBox floatLayer" style="display:none;">
+  <div class="fl-inner">
+    <a href="javascript:void(0);" class="flbtn-close btnSetting"></a>
+    <div class="select-box">
+      <form action="http://demo.wxscreen.com/wxscreen/company/setting/save" method="post" id="settingForm" enctype="multipart/form-data">
+        <div class="select-one clearfix">
+            <span class="sel-w left">翻页间隔</span>
+            <div class="selectright">
+                              <label><input checked="checked" value="5" type="radio" name="auto_scroll_time">5秒</label>
+                              <label><input  value="10" type="radio" name="auto_scroll_time">10秒</label>
+                              <label><input  value="15" type="radio" name="auto_scroll_time">15秒</label>
+                              <label><input  value="30" type="radio" name="auto_scroll_time">30秒</label>
+                              <label><input  value="45" type="radio" name="auto_scroll_time">45秒</label>
+                              <label><input  value="60" type="radio" name="auto_scroll_time">60秒</label>
+                          </div>
+        </div>
+        <div class="select-one clearfix">
+            <span class="sel-w left">循环滚动</span>
+            <div class="selectright">
+              <label><input value="1" type="radio" name="is_cycle_scroll" >是</label>
+              <label><input value="0" type="radio" name="is_cycle_scroll" checked="checked">否</label>
+            </div>
+        </div>
+        <div class="select-one clearfix">
+            <span class="sel-w left">消息条数</span>
+            <div class="selectright">
+                              <label><input  value="2" name="visible_message_num" type="radio">2条</label>
+                              <label><input checked="checked" value="3" name="visible_message_num" type="radio">3条</label>
+                          </div>
+        </div>
+        <div class="select-one clearfix">
+            <span class="sel-w left">用户名称</span>
+            <div class="selectright">
+                              <label><input value="1" type="radio" name="display_name_type" >展示备注和微信名</label>
+                              <label><input value="2" type="radio" name="display_name_type" checked="checked">展示微信名</label>
+                              <label><input value="3" type="radio" name="display_name_type" >展示备注名</label>
+                          </div>
+        </div>
+        <div class="select-one clearfix">
+            <span class="sel-w left">活动主题</span>
+            <div class="selectright">
+                            <input type="text" value="微信大屏幕官方演示页面<br>点击下方对应功能按钮可查看功能演示" name="theme" style="width:300px;" />（小提示：输入“&lt;br&gt;” 可换行）
+            </div>
+        </div>
+        <div class="select-one clearfix">
+            <span class="sel-w left">消息轮播文字</span>
+            <div class="selectright">
+              <input type="text" value="" name="scroll_txt" style="width:300px;" />（小提示：输入“&lt;br&gt;” 可换行）
+            </div>
+        </div>
+
+        <div class="select-one clearfix">
+            <span class="sel-w left">轮播文字</span>
+            <div class="selectright">
+              <label><input value="1" type="radio" name="is_scroll_text_scroll" checked="checked">显示</label>
+              <label><input value="0" type="radio" name="is_scroll_text_scroll" >不显示</label>
+            </div>
+        </div>
+                  <div class="select-one clearfix">
+            <span class="sel-w left">自定义背景</span>
+            <div class="selectright">
+              <input type="file" name="bg_cover" style="width:150px;"/>&nbsp;<input type="checkbox" name="recover_bg" value="1" /> 恢复默认
+              &nbsp;<span style="color:red;">（建议尺寸：1024px*768px）</span>
+            </div>
+          </div>
+                                  
+          <div class="select-one clearfix">
+            <span class="sel-w left">签到轮播文字</span>
+            <div class="selectright">
+              <input type="text" value="关注微信号：hudongdapingmu<br>发送含有“签到”两字的内容即可签到" name="checkin_scroll_txt" style="width:300px;" />（小提示：输入“&lt;br&gt;” 可换行）
+                          </div>
+          </div>
+
+          <div class="select-one clearfix">
+            <span class="sel-w left">重复签到</span>
+            <div class="selectright">
+              <label><input value="1" type="radio" name="is_allow_repeat_checkin" checked="checked">允许</label>
+              <label><input value="0" type="radio" name="is_allow_repeat_checkin" >不允许</label>
+            </div>
+          </div>
+
+          <div class="select-one clearfix">
+            <span class="sel-w left">签到时段</span>
+            <div class="selectright">
+              <div class="select-date selectDate">
+                <input type="date" name="checkin_start_date" value="" class="date">
+                <select class="second" name="checkin_start_hour">
+                                                          <option value="00" selected="selected">00</option>
+                                                          <option value="01" >01</option>
+                                                          <option value="02" >02</option>
+                                                          <option value="03" >03</option>
+                                                          <option value="04" >04</option>
+                                                          <option value="05" >05</option>
+                                                          <option value="06" >06</option>
+                                                          <option value="07" >07</option>
+                                                          <option value="08" >08</option>
+                                                          <option value="09" >09</option>
+                                                          <option value="10" >10</option>
+                                                          <option value="11" >11</option>
+                                                          <option value="12" >12</option>
+                                                          <option value="13" >13</option>
+                                                          <option value="14" >14</option>
+                                                          <option value="15" >15</option>
+                                                          <option value="16" >16</option>
+                                                          <option value="17" >17</option>
+                                                          <option value="18" >18</option>
+                                                          <option value="19" >19</option>
+                                                          <option value="20" >20</option>
+                                                          <option value="21" >21</option>
+                                                          <option value="22" >22</option>
+                                                          <option value="23" >23</option>
+                                  </select>
+                <span>时~</span>
+                <input type="date" class="date" name="checkin_end_date" value="">
+                <select class="second" name="checkin_end_hour">
+                                                          <option value="00" selected="selected">00</option>
+                                                          <option value="01" >01</option>
+                                                          <option value="02" >02</option>
+                                                          <option value="03" >03</option>
+                                                          <option value="04" >04</option>
+                                                          <option value="05" >05</option>
+                                                          <option value="06" >06</option>
+                                                          <option value="07" >07</option>
+                                                          <option value="08" >08</option>
+                                                          <option value="09" >09</option>
+                                                          <option value="10" >10</option>
+                                                          <option value="11" >11</option>
+                                                          <option value="12" >12</option>
+                                                          <option value="13" >13</option>
+                                                          <option value="14" >14</option>
+                                                          <option value="15" >15</option>
+                                                          <option value="16" >16</option>
+                                                          <option value="17" >17</option>
+                                                          <option value="18" >18</option>
+                                                          <option value="19" >19</option>
+                                                          <option value="20" >20</option>
+                                                          <option value="21" >21</option>
+                                                          <option value="22" >22</option>
+                                                          <option value="23" >23</option>
+                                  </select>时&nbsp;<span style="color:red;">（不设置则不限制签到时间）</span>
+              </div>
+            </div>
+          </div>
+        
+                <div class="select-one clearfix">
+          <span class="sel-w left">消息时段</span>
+          <div class="selectright">
+            <div class="select-date selectDate">
+              <label><input type="radio" name="message_time_type" value="1" >最近时间内</label>
+              <span>只显示最近 </span>
+              <input type="text" class="hour" name="latest_hour" value="">
+              <span> 小时内上墙的消息</span>
+            </div>
+            <div class="select-date selectDate">
+              <label><input type="radio" name="message_time_type" value="2" checked="checked">指定时间段</label>
+              <span>只显示</span>
+              <input type="date" name="start_date" value="2014-01-31" class="date">
+              <select class="second" name="start_hour">
+                                                    <option value="00" >00</option>
+                                                    <option value="01" >01</option>
+                                                    <option value="02" >02</option>
+                                                    <option value="03" >03</option>
+                                                    <option value="04" >04</option>
+                                                    <option value="05" >05</option>
+                                                    <option value="06" >06</option>
+                                                    <option value="07" >07</option>
+                                                    <option value="08" >08</option>
+                                                    <option value="09" >09</option>
+                                                    <option value="10" >10</option>
+                                                    <option value="11" >11</option>
+                                                    <option value="12" >12</option>
+                                                    <option value="13" >13</option>
+                                                    <option value="14" >14</option>
+                                                    <option value="15" >15</option>
+                                                    <option value="16" >16</option>
+                                                    <option value="17" >17</option>
+                                                    <option value="18" selected="selected">18</option>
+                                                    <option value="19" >19</option>
+                                                    <option value="20" >20</option>
+                                                    <option value="21" >21</option>
+                                                    <option value="22" >22</option>
+                                                    <option value="23" >23</option>
+                              </select>
+              <span>~</span>
+              <input type="date" class="date" name="end_date" value="">
+              <select class="second" name="end_hour">
+                                                    <option value="00" selected="selected">00</option>
+                                                    <option value="01" >01</option>
+                                                    <option value="02" >02</option>
+                                                    <option value="03" >03</option>
+                                                    <option value="04" >04</option>
+                                                    <option value="05" >05</option>
+                                                    <option value="06" >06</option>
+                                                    <option value="07" >07</option>
+                                                    <option value="08" >08</option>
+                                                    <option value="09" >09</option>
+                                                    <option value="10" >10</option>
+                                                    <option value="11" >11</option>
+                                                    <option value="12" >12</option>
+                                                    <option value="13" >13</option>
+                                                    <option value="14" >14</option>
+                                                    <option value="15" >15</option>
+                                                    <option value="16" >16</option>
+                                                    <option value="17" >17</option>
+                                                    <option value="18" >18</option>
+                                                    <option value="19" >19</option>
+                                                    <option value="20" >20</option>
+                                                    <option value="21" >21</option>
+                                                    <option value="22" >22</option>
+                                                    <option value="23" >23</option>
+                              </select>
+              <span>内上墙的消息</span>
+            </div>
+          </div>
+        </div>
+
+                            <div class="select-one clearfix">
+            <span class="sel-w left">抽奖时段</span>
+            <div class="selectright">
+              <div class="select-date selectDate">
+                <label><input type="radio" name="lottery_time_type" value="1" >最近时间内</label>
+                <span>限制最近 </span>
+                <input type="text" class="hour" name="lottery_latest_hour" value="">
+                <span> 小时内上墙的用户参与</span>
+              </div>
+              <div class="select-date selectDate">
+                <label><input type="radio" name="lottery_time_type" value="2" checked="checked">指定时间段</label>
+                <span>限制</span>
+                <input type="date" name="lottery_start_date" value="2014-01-31" class="date">
+                <select class="second" name="lottery_start_hour">
+                                                          <option value="00" selected="selected">00</option>
+                                                          <option value="01" >01</option>
+                                                          <option value="02" >02</option>
+                                                          <option value="03" >03</option>
+                                                          <option value="04" >04</option>
+                                                          <option value="05" >05</option>
+                                                          <option value="06" >06</option>
+                                                          <option value="07" >07</option>
+                                                          <option value="08" >08</option>
+                                                          <option value="09" >09</option>
+                                                          <option value="10" >10</option>
+                                                          <option value="11" >11</option>
+                                                          <option value="12" >12</option>
+                                                          <option value="13" >13</option>
+                                                          <option value="14" >14</option>
+                                                          <option value="15" >15</option>
+                                                          <option value="16" >16</option>
+                                                          <option value="17" >17</option>
+                                                          <option value="18" >18</option>
+                                                          <option value="19" >19</option>
+                                                          <option value="20" >20</option>
+                                                          <option value="21" >21</option>
+                                                          <option value="22" >22</option>
+                                                          <option value="23" >23</option>
+                                  </select>
+                <span>~</span>
+                <input type="date" class="date" name="lottery_end_date" value="">
+                <select class="second" name="lottery_end_hour">
+                                                          <option value="00" selected="selected">00</option>
+                                                          <option value="01" >01</option>
+                                                          <option value="02" >02</option>
+                                                          <option value="03" >03</option>
+                                                          <option value="04" >04</option>
+                                                          <option value="05" >05</option>
+                                                          <option value="06" >06</option>
+                                                          <option value="07" >07</option>
+                                                          <option value="08" >08</option>
+                                                          <option value="09" >09</option>
+                                                          <option value="10" >10</option>
+                                                          <option value="11" >11</option>
+                                                          <option value="12" >12</option>
+                                                          <option value="13" >13</option>
+                                                          <option value="14" >14</option>
+                                                          <option value="15" >15</option>
+                                                          <option value="16" >16</option>
+                                                          <option value="17" >17</option>
+                                                          <option value="18" >18</option>
+                                                          <option value="19" >19</option>
+                                                          <option value="20" >20</option>
+                                                          <option value="21" >21</option>
+                                                          <option value="22" >22</option>
+                                                          <option value="23" >23</option>
+                                  </select>
+                <span>内上墙的用户参与</span>
+              </div>
+            </div>
+          </div>
+        
+
+                            <div class="select-one clearfix">
+            <span class="sel-w left">对对碰时段</span>
+            <div class="selectright">
+              <div class="select-date selectDate">
+                <label><input type="radio" name="ddp_time_type" value="1" >最近时间内</label>
+                <span>限制最近 </span>
+                <input type="text" class="hour" name="ddp_latest_hour" value="">
+                <span> 小时内上墙的用户参与</span>
+              </div>
+              <div class="select-date selectDate">
+                <label><input type="radio" name="ddp_time_type" value="2" checked="checked">指定时间段</label>
+                <span>限制</span>
+                <input type="date" name="ddp_start_date" value="2014-01-31" class="date">
+                <select class="second" name="ddp_start_hour">
+                                                          <option value="00" selected="selected">00</option>
+                                                          <option value="01" >01</option>
+                                                          <option value="02" >02</option>
+                                                          <option value="03" >03</option>
+                                                          <option value="04" >04</option>
+                                                          <option value="05" >05</option>
+                                                          <option value="06" >06</option>
+                                                          <option value="07" >07</option>
+                                                          <option value="08" >08</option>
+                                                          <option value="09" >09</option>
+                                                          <option value="10" >10</option>
+                                                          <option value="11" >11</option>
+                                                          <option value="12" >12</option>
+                                                          <option value="13" >13</option>
+                                                          <option value="14" >14</option>
+                                                          <option value="15" >15</option>
+                                                          <option value="16" >16</option>
+                                                          <option value="17" >17</option>
+                                                          <option value="18" >18</option>
+                                                          <option value="19" >19</option>
+                                                          <option value="20" >20</option>
+                                                          <option value="21" >21</option>
+                                                          <option value="22" >22</option>
+                                                          <option value="23" >23</option>
+                                  </select>
+                <span>~</span>
+                <input type="date" class="date" name="ddp_end_date" value="">
+                <select class="second" name="ddp_end_hour">
+                                                          <option value="00" selected="selected">00</option>
+                                                          <option value="01" >01</option>
+                                                          <option value="02" >02</option>
+                                                          <option value="03" >03</option>
+                                                          <option value="04" >04</option>
+                                                          <option value="05" >05</option>
+                                                          <option value="06" >06</option>
+                                                          <option value="07" >07</option>
+                                                          <option value="08" >08</option>
+                                                          <option value="09" >09</option>
+                                                          <option value="10" >10</option>
+                                                          <option value="11" >11</option>
+                                                          <option value="12" >12</option>
+                                                          <option value="13" >13</option>
+                                                          <option value="14" >14</option>
+                                                          <option value="15" >15</option>
+                                                          <option value="16" >16</option>
+                                                          <option value="17" >17</option>
+                                                          <option value="18" >18</option>
+                                                          <option value="19" >19</option>
+                                                          <option value="20" >20</option>
+                                                          <option value="21" >21</option>
+                                                          <option value="22" >22</option>
+                                                          <option value="23" >23</option>
+                                  </select>
+                <span>内上墙的用户参与</span>
+              </div>
+            </div>
+          </div>
+              </form>
+      <p class="select-one"><a href="javascript:void(0);" class="btn-save btn-color settingSaveBtn">保存</a></p>
+    </div>
+  </div>
+</div><!--end 设置弹层-->
+<script>
+
+  if($('input[name="recover_bg"]').length) {
+    $('input[name="recover_bg"]').click(function(){
+      if ($(this).attr('checked')) {
+        $('input[name="bg_cover"]').val('');
+      }
+    });
+  }
+  if($('input[name="recover_logo"]').length) {
+    $('input[name="recover_logo"]').click(function(){
+      if ($(this).attr('checked')) {
+        $('input[name="logo_cover"]').val('');
+      }
+    });
+  }
+
+  //提交表单
+  $('.settingSaveBtn').click(function(){
+    $('#settingForm').submit();
+  });
+
+  // 注册独占
+  wxscreen.registerState('settingLayer', {
+    on: function(){
+      $('.settingBox').fadeIn('fast');
+    },
+    off: function(){
+      $('.settingBox').hide();
+    }
+  });
+
+  //设置浮层
+  $('.btnSetting').click(function(){
+
+    if(wxscreen.getState() == 'settingLayer') {
+      wxscreen.setState('message');
+    } else {
+      wxscreen.setState('settingLayer');
+    }
+
+  });
+  
+  
+  
+  $('.selectDate input[type="date"], .selectDate input[type="text"], .selectDate select').click(function(){
+    $(this).closest('.selectDate').find('input[type="radio"]').attr('checked', 'checked');
+  });
+</script>
+  <!--引导-->
+<!--<div class="mayer-box guideBgLayer"></div>-->
+<!--<div class="guide-step step1">
+  <div class="inner-guide">
+    <a href="javascript:void(0);" class="guide-close gclose1 guideClose"></a>
+    <a href="javascript:void(0);" class="next-step nstep1 guideNext">下一步</a>
+  </div>
+</div>
+<div class="guide-step step2 hidden">
+  <div class="inner-guide">
+    <a href="javascript:void(0);" class="guide-close gclose2 guideClose"></a>
+    <a href="javascript:void(0);" class="next-step nstep2 guideNext">下一步</a>
+  </div>
+</div>
+<!--<div class="guide-step step3 hidden">
+  <div class="inner-guide">
+    <a href="javascript:void(0);" class="guide-close gclose3 guideClose"></a>
+    <a href="javascript:void(0);" class="next-step nstep3 guideNext">下一步</a>
+  </div>
+</div>-->
+<!--<div class="guide-step step4 hidden">
+  <div class="inner-guide">
+    <a href="javascript:void(0);" class="guide-close gclose4 guideClose"></a>
+    <a href="javascript:void(0);" class="btn-color btn-use guideExperience">马上体验</a>
+    <!--<a href="http://wxscreen.com/user/apply" class="ent-apply" target="_blank">立即申请您的大屏幕</a>-->
+   <!-- <span class="tips">请加QQ群221853879 联系客服</span>
+  </div>
+</div>-->
+<!--<script>
+$('.guideNext').click(function(){
+  var box = $(this).closest('.guide-step');
+  if (box.length) {
+    box.addClass('hidden').next('.guide-step').removeClass('hidden');
+  }
+});
+$('.guideClose, .guideExperience').click(function(){
+  $(this).closest('.guide-step').addClass('hidden');
+  $('.guideBgLayer').addClass('hidden');
+});
+</script>-->
+
+      <div class="fl-layer checkin-pop" style="visibility:hidden;" id="checkinLayer">
+
+<div class="inner-checkin checkinQr">
+  <div class="checkin-tips clearfix">
+    <span class="code-checkin left"><img src="static/upload/slave2_store2/2014/01/03/20140103185421000000_3_50455_6386.png" alt="" width="430"></span>
+    <div class="checkin-right right">
+      <span class="cki-tipsimg"><img src="images/common/icon_sao.png" alt=""></span>
+      <p class="cki-tips1">请扫描此二维码</p>
+      <p class="cki-tips2">发送含“签到”的文字审核通过后可上签到墙</p>
+    </div>
+  </div>
+</div>
+
+<div class="inner-checkin checkinContainer" style="visibility:hidden;">
+  <ul class="heads-list clearfix " id="checkinBox">
+
+  </ul>
+</div>
+</div>
+  <script type="text/javascript" src="js/wxscreen/production/plug/checkin_scroll.min.js?v=v850"></script>
+<script>
+  $(function(){
+    // 初始化签到墙
+    wxscreen.checkin.init({
+      allowRepeatCheckin:  1 ,
+      checkinVisibleTime: ""
+    });
+  });
+</script>  
+<!--风格选择-->
+<div class="fl-layer" id="skinLayer" style="display:none;">
+  <div class="fl-inner">
+    <div class="styleselect-box">
+      <div class="style-top clearfix">
+        <a href="javascript:void(0);" class="flbtn-close2" id="skinLayerCloseBtn">×</a>
+        <span class="wordtit">微信大屏幕风格选择</span>
+      </div>
+      <div class="style-center clearfix">
+        <div class="style-nav left">
+          <ul class="style-nav-list skinNavList">
+            <li class="curr" data-id="-1"><a href="javascript:void(0);">所有风格</a></li>
+                                                                                      <li data-id="5"><a href="javascript:void(0);">节日风格</a></li>
+                                                                                                    <li data-id="0"><a href="javascript:void(0);">免费风格</a></li>
+                                                                                                          </ul>
+        </div>
+        <div class="style-box left">
+          <div class="oneteam">
+                                                                                                              <ul class="style-list clearfix skinUlList" data-id="5" style="display:none;">
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/02/11/20140211103708000000_1_88017_1320.jpg"
+                        data-title="怦然心动"
+                        data-name="v6_love_heart"
+                        data-id="28"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=love_heart"
+                        data-privilege="0"
+                        data-goods_id="46"
+                        data-goods_price="99"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=46"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/02/11/20140211103708000000_1_88017_1320.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">怦然心动</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/02/11/20140211103738000000_1_114781_8951.jpg"
+                        data-title="与你相守"
+                        data-name="v6_love_you"
+                        data-id="27"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=love_you"
+                        data-privilege="0"
+                        data-goods_id="45"
+                        data-goods_price="99"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=45"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/02/11/20140211103738000000_1_114781_8951.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">与你相守</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/02/11/20140211103752000000_1_74507_9622.jpg"
+                        data-title="粉色浪漫"
+                        data-name="v6_love_romantic"
+                        data-id="26"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=love_romantic"
+                        data-privilege="0"
+                        data-goods_id="44"
+                        data-goods_price="99"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=44"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/02/11/20140211103752000000_1_74507_9622.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">粉色浪漫</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/08/20140108112151000000_1_90963_921.jpg"
+                        data-title="开门红"
+                        data-name="v6_rich_year"
+                        data-id="25"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=rich_year"
+                        data-privilege="0"
+                        data-goods_id="40"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=40"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-new"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/08/20140108112151000000_1_90963_921.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">开门红</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li class="curr"                        data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/08/20140108112216000000_1_181601_4036.jpg"
+                        data-title="小马奔腾"
+                        data-name="v6_wishful_year"
+                        data-id="23"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=wishful_year"
+                        data-privilege="0"
+                        data-goods_id="39"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=39"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-new"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/08/20140108112216000000_1_181601_4036.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">小马奔腾</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165612000000_1_110003_7438.jpg"
+                        data-title="财神到"
+                        data-name="v6_wealth"
+                        data-id="22"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=wealth"
+                        data-privilege="0"
+                        data-goods_id="31"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=31"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165612000000_1_110003_7438.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">财神到</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165648000000_1_116335_6155.jpg"
+                        data-title="土豪金"
+                        data-name="v6_gold"
+                        data-id="21"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=gold"
+                        data-privilege="0"
+                        data-goods_id="21"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=21"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165648000000_1_116335_6155.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">土豪金</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165721000000_1_157806_2643.jpg"
+                        data-title="圣诞飘雪"
+                        data-name="v6_christmas_gift"
+                        data-id="20"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=christmas_gift"
+                        data-privilege="0"
+                        data-goods_id="35"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=35"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165721000000_1_157806_2643.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">圣诞飘雪</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165738000000_1_128143_8615.jpg"
+                        data-title="Bells Red"
+                        data-name="v6_christmas_bell_red"
+                        data-id="19"
+                        data-have_privilege="0"
+                        data-demo_url="http://demo.wxscreen.com/?skin=christmas_bell_red"
+                        data-privilege="0"
+                        data-goods_id="36"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=36"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165738000000_1_128143_8615.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right"><em>100</em><span>元</span>/<span>年</span></p>
+                          <span class="style-name">Bells Red</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165815000000_1_146483_1639.jpg"
+                        data-title="Bells Green"
+                        data-name="v6_christmas_bell_blue"
+                        data-id="18"
+                        data-have_privilege="0"
+                        data-demo_url="http://demo.wxscreen.com/?skin=christmas_bell_blue"
+                        data-privilege="0"
+                        data-goods_id="32"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=32"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165815000000_1_146483_1639.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right"><em>100</em><span>元</span>/<span>年</span></p>
+                          <span class="style-name">Bells Green</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165906000000_1_163423_4521.jpg"
+                        data-title="圣诞雪橇"
+                        data-name="v6_christmas_sleigh"
+                        data-id="17"
+                        data-have_privilege="0"
+                        data-demo_url="http://demo.wxscreen.com/?skin=christmas_sleigh"
+                        data-privilege="0"
+                        data-goods_id="37"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=37"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165906000000_1_163423_4521.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right"><em>100</em><span>元</span>/<span>年</span></p>
+                          <span class="style-name">圣诞雪橇</span>
+                        </div>
+                      </li>
+                                        
+                                  </ul>
+                                                                                                    <ul class="style-list clearfix skinUlList" data-id="0" style="display:none;">
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109170022000000_1_109997_4088.jpg"
+                        data-title="星空"
+                        data-name="v6_space"
+                        data-id="15"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=space"
+                        data-privilege="1"
+                        data-goods_id=""
+                        data-goods_price="0"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id="
+                        data-goods_unit="">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-free"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109170022000000_1_109997_4088.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">免费</p>
+                          <span class="style-name">星空</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109170116000000_1_118201_7698.jpg"
+                        data-title="Single趴"
+                        data-name="v6_single"
+                        data-id="14"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=single"
+                        data-privilege="1"
+                        data-goods_id=""
+                        data-goods_price="0"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id="
+                        data-goods_unit="">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-free"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109170116000000_1_118201_7698.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">免费</p>
+                          <span class="style-name">Single趴</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109170200000000_1_98176_6211.jpg"
+                        data-title="经典蓝"
+                        data-name="v6_blue"
+                        data-id="13"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=blue"
+                        data-privilege="1"
+                        data-goods_id=""
+                        data-goods_price="0"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id="
+                        data-goods_unit="">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-free"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109170200000000_1_98176_6211.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">免费</p>
+                          <span class="style-name">经典蓝</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109170216000000_1_97469_3088.jpg"
+                        data-title="清新绿"
+                        data-name="v6_green"
+                        data-id="12"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=green"
+                        data-privilege="1"
+                        data-goods_id=""
+                        data-goods_price="0"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id="
+                        data-goods_unit="">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-free"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109170216000000_1_97469_3088.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">免费</p>
+                          <span class="style-name">清新绿</span>
+                        </div>
+                      </li>
+                                        
+                                  </ul>
+                                                                                                                                                                          <ul class="style-list clearfix skinUlList" data-id="-1" style="display:none;">
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/02/11/20140211103708000000_1_88017_1320.jpg"
+                        data-title="怦然心动"
+                        data-name="v6_love_heart"
+                        data-id="28"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=love_heart"
+                        data-privilege="0"
+                        data-goods_id="46"
+                        data-goods_price="99"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=46"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/02/11/20140211103708000000_1_88017_1320.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">怦然心动</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/02/11/20140211103738000000_1_114781_8951.jpg"
+                        data-title="与你相守"
+                        data-name="v6_love_you"
+                        data-id="27"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=love_you"
+                        data-privilege="0"
+                        data-goods_id="45"
+                        data-goods_price="99"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=45"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/02/11/20140211103738000000_1_114781_8951.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">与你相守</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/02/11/20140211103752000000_1_74507_9622.jpg"
+                        data-title="粉色浪漫"
+                        data-name="v6_love_romantic"
+                        data-id="26"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=love_romantic"
+                        data-privilege="0"
+                        data-goods_id="44"
+                        data-goods_price="99"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=44"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/02/11/20140211103752000000_1_74507_9622.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">粉色浪漫</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/08/20140108112151000000_1_90963_921.jpg"
+                        data-title="开门红"
+                        data-name="v6_rich_year"
+                        data-id="25"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=rich_year"
+                        data-privilege="0"
+                        data-goods_id="40"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=40"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-new"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/08/20140108112151000000_1_90963_921.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">开门红</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li class="curr"                        data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/08/20140108112216000000_1_181601_4036.jpg"
+                        data-title="小马奔腾"
+                        data-name="v6_wishful_year"
+                        data-id="23"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=wishful_year"
+                        data-privilege="0"
+                        data-goods_id="39"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=39"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-new"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/08/20140108112216000000_1_181601_4036.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">小马奔腾</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165612000000_1_110003_7438.jpg"
+                        data-title="财神到"
+                        data-name="v6_wealth"
+                        data-id="22"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=wealth"
+                        data-privilege="0"
+                        data-goods_id="31"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=31"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165612000000_1_110003_7438.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">财神到</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165648000000_1_116335_6155.jpg"
+                        data-title="土豪金"
+                        data-name="v6_gold"
+                        data-id="21"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=gold"
+                        data-privilege="0"
+                        data-goods_id="21"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=21"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-hot"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165648000000_1_116335_6155.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">土豪金</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165721000000_1_157806_2643.jpg"
+                        data-title="圣诞飘雪"
+                        data-name="v6_christmas_gift"
+                        data-id="20"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=christmas_gift"
+                        data-privilege="0"
+                        data-goods_id="35"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=35"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165721000000_1_157806_2643.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">已购买</p>
+                          <span class="style-name">圣诞飘雪</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165738000000_1_128143_8615.jpg"
+                        data-title="Bells Red"
+                        data-name="v6_christmas_bell_red"
+                        data-id="19"
+                        data-have_privilege="0"
+                        data-demo_url="http://demo.wxscreen.com/?skin=christmas_bell_red"
+                        data-privilege="0"
+                        data-goods_id="36"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=36"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165738000000_1_128143_8615.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right"><em>100</em><span>元</span>/<span>年</span></p>
+                          <span class="style-name">Bells Red</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165815000000_1_146483_1639.jpg"
+                        data-title="Bells Green"
+                        data-name="v6_christmas_bell_blue"
+                        data-id="18"
+                        data-have_privilege="0"
+                        data-demo_url="http://demo.wxscreen.com/?skin=christmas_bell_blue"
+                        data-privilege="0"
+                        data-goods_id="32"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=32"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165815000000_1_146483_1639.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right"><em>100</em><span>元</span>/<span>年</span></p>
+                          <span class="style-name">Bells Green</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109165906000000_1_163423_4521.jpg"
+                        data-title="圣诞雪橇"
+                        data-name="v6_christmas_sleigh"
+                        data-id="17"
+                        data-have_privilege="0"
+                        data-demo_url="http://demo.wxscreen.com/?skin=christmas_sleigh"
+                        data-privilege="0"
+                        data-goods_id="37"
+                        data-goods_price="100"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id=37"
+                        data-goods_unit="年">
+                        <div class="style-img">
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109165906000000_1_163423_4521.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right"><em>100</em><span>元</span>/<span>年</span></p>
+                          <span class="style-name">圣诞雪橇</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109170022000000_1_109997_4088.jpg"
+                        data-title="星空"
+                        data-name="v6_space"
+                        data-id="15"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=space"
+                        data-privilege="1"
+                        data-goods_id=""
+                        data-goods_price="0"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id="
+                        data-goods_unit="">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-free"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109170022000000_1_109997_4088.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">免费</p>
+                          <span class="style-name">星空</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109170116000000_1_118201_7698.jpg"
+                        data-title="Single趴"
+                        data-name="v6_single"
+                        data-id="14"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=single"
+                        data-privilege="1"
+                        data-goods_id=""
+                        data-goods_price="0"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id="
+                        data-goods_unit="">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-free"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109170116000000_1_118201_7698.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">免费</p>
+                          <span class="style-name">Single趴</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109170200000000_1_98176_6211.jpg"
+                        data-title="经典蓝"
+                        data-name="v6_blue"
+                        data-id="13"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=blue"
+                        data-privilege="1"
+                        data-goods_id=""
+                        data-goods_price="0"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id="
+                        data-goods_unit="">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-free"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109170200000000_1_98176_6211.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">免费</p>
+                          <span class="style-name">经典蓝</span>
+                        </div>
+                      </li>
+                                        
+                                    
+                                        
+                                                              <li                         data-cover="http://s8.wxscreen.com/static/upload/slave2_store2/2014/01/09/20140109170216000000_1_97469_3088.jpg"
+                        data-title="清新绿"
+                        data-name="v6_green"
+                        data-id="12"
+                        data-have_privilege="1"
+                        data-demo_url="http://demo.wxscreen.com/?skin=green"
+                        data-privilege="1"
+                        data-goods_id=""
+                        data-goods_price="0"
+                        data-buy_url="http://demo.wxscreen.com/wxscreen/goods?goods_id="
+                        data-goods_unit="">
+                        <div class="style-img">
+                                                      <i class="icon-func icon-free"></i>
+                                                    <span class="icon-select"></span>
+                          <a href="javascript:void(0);" class="style-imgwrap"><img src="static/upload/slave2_store2/2014/01/09/20140109170216000000_1_97469_3088.jpg" width="206" alt=""></a>
+                        </div>
+                        <div class="style-word clearfix">
+                          <p class="price-show right">免费</p>
+                          <span class="style-name">清新绿</span>
+                        </div>
+                      </li>
+                                        
+                                  </ul>
+                                    </div>
+        </div><!--end style-box-->
+      </div><!--end .style-center-->
+    </div><!--end .styleselect-box-->
+  </div>
+</div>
+<!--end 风格选择-->
+<!--风格选择弹层-->
+<div class="mayer-box skinDetailMayer" style="display:none;"></div>
+<div class="style-details" style="display:none;" id="skinDetailLayer">
+  <div class="sd-top clearfix">
+    <a href="javascript:void(0);" class="flbtn-close2" id="skinDetailCloseBtn">×</a>
+  </div>
+  <div>
+    <div class="style-img">
+      <img class="skinCover" src="" width="350" alt="">
+    </div>
+    <div class="style-word clearfix">
+      <p class="price-show right skinPrice"><em>100</em><span>元</span>/<span>年</span></p>
+      <span class="style-name skinTitle">星空</span>
+    </div>
+    <div class="sd-btns">
+      <a href="javascript:void(0);" class="btn-green btn-show skinDemoBtn" target="_blank">演示</a>
+      <a href="javascript:void(0);" class="btn-orange btn-now skinBuyBtn">立即购买</a>
+    </div>
+  </div>
+</div>
+<!--end 风格选择弹层-->
+
+<script>
+$(function(){
+
+  var nowSkin = "v6_wishful_year";
+  var isDemo  =  1 ;
+  var isAdmin =  0 ;
+  
+  // 去掉没有皮肤的分类
+  $.each($('.skinUlList'), function(){
+    if(!$(this).children('li').length) {
+      var id = $(this).data('id');
+      $('.skinNavList li[data-id="'+id+'"]').remove();
+    }
+  });
+
+  // 注册独占状态
+  wxscreen.registerState('skinSel', {
+    on: function(){
+      $('#skinLayer').fadeIn('fast');
+    },
+    off: function(){
+      $('#skinLayer').hide();
+    }
+  });
+
+  // 绑定快捷键
+  $('.btnSkinSel').click(function(){
+    if(wxscreen.getState() == 'skinSel') {
+      wxscreen.setState('message');
+    } else {
+      wxscreen.setState('skinSel');
+    }
+  });
+  $('#skinLayerCloseBtn').click(function(){
+    $('.btnSkinSel').trigger('click');
+  });
+
+  // f快捷键
+  wxscreen.sub('key.70.down', function(channel, e){
+    if(!$(e.target).is('input')) {
+      $('.btnSkinSel:eq(0)').trigger('click');
+    }
+  });
+
+  // tab切换
+  $('.skinNavList li').click(function(){
+    var id = $(this).data('id');
+    $('.skinUlList[data-id="'+id+'"]').show().siblings().hide();
+    $(this).addClass('curr').siblings().removeClass('curr');
+  });
+  // tab trigger
+  $('.skinNavList li:eq(0)').trigger('click');
+
+  // 显示详情
+  $('.skinUlList li').click(function(){
+    var li = $(this);
+    var skinData = {
+      cover:          li.data('cover'),
+      title:          li.data('title'),
+      name:           li.data('name'),
+      id:             li.data('id'),
+      have_privilege: li.data('have_privilege'),
+      demo_url:       li.data('demo_url'),
+      privilege:      li.data('privilege'),
+      goods_id:       li.data('goods_id'),
+      goods_price:    li.data('goods_price'),
+      buy_url:        li.data('buy_url'),
+      goods_unit:     li.data('goods_unit')
+    };
+
+    // 当前皮肤
+    if(nowSkin == skinData.name) {
+      return false;
+    }
+
+    if(isDemo && !isAdmin) {
+      window.location.href = skinData.demo_url;
+      return;
+    }
+
+    var priceTxt;
+    if(skinData.privilege == 1) {
+      priceTxt = '免费';
+    } else if (skinData.have_privilege == 1) {
+      priceTxt = '已购买';
+    } else {
+      priceTxt = skinData.goods_price + '元/' + skinData.goods_unit;
+    }
+
+    var buyTxt    = skinData.have_privilege == 1 ? "立即使用" : "立即购买";
+    var detailBox = $('#skinDetailLayer');
+
+    detailBox.find('.skinCover').attr('src', skinData.cover);
+    detailBox.find('.skinPrice').text(priceTxt);
+    detailBox.find('.skinTitle').text(skinData.title);
+    detailBox.find('.skinBuyBtn').text(buyTxt);
+    detailBox.find('.skinDemoBtn').attr('href', skinData.demo_url);
+    detailBox.data('skin_id', skinData.id);
+
+    // 购买链接
+    if(skinData.have_privilege != 1) {
+      detailBox.find('.skinBuyBtn').attr('href', skinData.buy_url).attr('target', '_blank');
+    } else {
+      detailBox.find('.skinBuyBtn').attr('href', 'javascript:void(0);');
+      detailBox.find('.skinBuyBtn')[0].removeAttribute('target');
+    }
+
+    $(".skinDetailMayer").show();
+    detailBox.show();
+  });
+
+  // skinDetailCloseBtn
+  $('#skinDetailCloseBtn').click(function(){
+    $('#skinDetailLayer').hide();
+    $(".skinDetailMayer").hide();
+  });
+
+  // 绑定立即使用
+  $('.skinBuyBtn').click(function(){
+    var href = $(this).attr('href');
+    if(href.indexOf('http') == 0) {
+      return true;
+    }
+    // 立即使用
+    var detailBox = $('#skinDetailLayer');
+    var skinId = detailBox.data('skin_id');
+    if(!skinId) return true;
+
+    // 更换皮肤
+    $.post("http://demo.wxscreen.com/wxscreen/company/setting/change_skin", { id: skinId }, function(json){
+      if(json.info == 'ok') {
+        window.location.reload();
+      } else {
+        alert(json.info);
+      }
+    }, 'json').error(function(){
+      alert("网络错误，请重试");
+    });
+
+  });
+});
+</script><!--加载消息loading-->
+<div class="fl-layer messageLoading" style="display:none;">
+  <div class="fl-inner">
+    <div class="load-message">
+      <p class="words-tips2"><span>大屏幕数据已经加载</span><em class="messageLoadProgress"></em></p>
+      <div class="progress-load">
+        <span class="progress-bar2 messageLoadBar" style="width:0%;"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end 加载消息loading-->        
+  </div>
+    </div>
+
+<!-- </body></html> -->
+<script>
+//$(function(){
+
+
+  // 开启倒计时
+  wxscreen.progress.init();
+
+  // 绑定key
+  wxscreen.btnKeys.init();
+  //用户初始化
+  wxscreen.user.init();
+  // 初始化
+  /*wxscreen.message.init(
+    // 新消息列表
+    [],
+    // 消息列表
+    [{"id":"487503","mp_message_id":"200023508","company_id":"101039","user_id":"108127","msg_type":"text","content":"\u4e0a\u4f20\u7684\u56fe\u7247\u6ca1\u770b\u5230","photo":"","is_on_wall":"1","is_presenter":"0","update_time_ms":"139269338519951201","on_wall_time":"2014-02-18 11:16:25","mp_add_time":"2014-02-18 11:16:19","message_from":"weixin","is_back_show":"1","add_time":"2014-02-18 11:16:25","avatar":"http://s8.wxscreen.com/static/upload/slave2_store2/2014/02/19/20140219140051000000_1_27030_7459.png","username":"\u6731\u96ea\u793c","come_from":"\u5317\u4eac \u671d\u9633"}],
+    // 消息总数
+    1072,
+    0  );*/
+
+  // v6主题自适应
+  wxscreen.autoSizeTheme();
+  // logo自适应
+  wxscreen.autoCenterLogo();
+  // 监听网络
+  wxscreen.initNetworkState();
+  //hashtrigger
+  wxscreen.hashTrigger();
+
+      //头部文字切换
+    $(".wordList li").soChange({
+      slideTime:500,
+      changeTime:10000
+    });
+  
+      //头部文字切换
+    $(".checkinWordList li").soChange({
+      slideTime:500,
+      changeTime:10000
+    });
+  
+  //关闭浮层
+  $('.layerCloseBtn').click(function(){
+    wxscreen.setState('message');
+  });
+//});
+</script>
+<script>
+$(function(){
+
+  // 初始化气泡提示
+  $('.tooltip').tooltipster({ theme:'tooltipster-shadow', trigger: 'hover', delay: 0, speed:200 });
+
+});
+</script>
+<script type="text/javascript">
+  var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+  document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcbc479ac4119d55c0b8a663cd1ccbdec' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

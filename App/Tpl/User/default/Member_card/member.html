@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员管理消费记录_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">会员消费记录管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">当前位置：<a href="<{:U('Member_card/index')}>">会员卡</a> >> <a href="<{:U('Member_card/members',array('token'=>$token,'id'=>$thisCard['id']))}>"><{$thisCard.cardname}>会员管理</a> >> <{$thisUser.truename}></div>
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th>卡号</th>
+            <th>微信名</th>
+            <th>姓名</th>
+            <th>联系电话</th>
+            <th>QQ号码</th>
+            <th>领卡时间</th>
+            <th>积分</th>
+            <th>消费总额(元)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <volist id="list" name="members">
+            <tr>
+              <td><{$list.number}></td>
+              <td><{$list.wechaname}></td>
+              <td><{$list.truename}></td>
+              <td><{$list.tel}></td>
+              <td><{$list.qq}></td>
+              <td><if condition="$list['getcardtime'] gt 0"> <{$list.getcardtime|date='Y-m-d',###}>
+                  <else/>
+                  无时间记录 </if>
+              </td>
+              <td><{$list.total_score}></td>
+              <td><{$list.expensetotal}></td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

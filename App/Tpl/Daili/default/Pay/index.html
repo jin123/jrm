@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>账户充值</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js" type="text/jscript"></script>
+
+<style>
+.usercontent ul li {
+border: 1px solid #DDDDDD;
+float: left;
+margin: 0 15px 15px 0;
+line-height: 22px;
+background-color: #FFF;
+-webkit-border-radius: 3px 3px;
+-moz-border-radius: 3px/3px;
+border-radius: 3px/3px;
+}
+.usercontent ul li{
+float:none;
+line-height:50px;
+padding-left:10px;
+}
+
+input[type="text"]{border: 1px solid #DDDDDD;height:30px;width:200px;margin-left:10px;}
+input[type="radio"]{border: 1px solid #DDDDDD;margin-left:10px;}
+.new-btn-login{
+    background-color: transparent;
+    background-image: url('./Public/daili/new-btn-fixed.png');
+    border: medium none;
+  border:1px solid red;
+  
+}
+.new-btn-login{
+    background-position: 0 -198px;
+    width: 82px;
+  color: #FFFFFF;
+    font-weight: bold;
+    height: 28px;
+    line-height: 28px;
+    padding: 1px 10px 0px 8px;
+  
+}
+background-color: transparent;
+background-image: url('./tpl/User/default/common/images/img/new-btn-fixed.png');
+.new-btn-login:hover{
+
+  background-position: 0 -167px;
+}
+.bottonbox{
+border: 1px solid #D74C00;
+padding: 1px;
+display: inline-block;
+}
+</style>
+<script>
+
+$(function(){
+var price=new Array();
+    <volist id="p" name="group">
+      price[{uuuyi:$p.id}]={uuuyi:$p.price};
+    </volist>
+  $('#group').change(function(){    
+    
+$('#price').val(price[$('#group').val()]*$('#num').val());
+  });
+  $('#num').change(function(){    
+    
+$('#price').val(price[$('#group').val()]*$('#num').val());
+  });
+});
+</script>
+
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun">
+  <a href="<{:U('Index/index')}>">首页</a>
+  <a href="<{:U('Kehu/index')}>">用户管理</a>
+  <a href="<{:U('Account/index')}>">扣除记录</a>
+  <a href="<{:U('Payrecord/index')}>">充值记录</a>
+  <a href="<{:U('Pay/index')}>" class="b">账户充值</a>
+ 
+  </div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div class="content1">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/index')}>">首页</a><span class="wap_span_2">账户充值</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.logindailiName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">账户充值</div>
+      <div class="new_main_tit">
+       <div class="usercontent">
+<ul>
+<form action="<{:U('Alipay/pay')}>" method="post">
+  <li> 
+    <b>充值　方式: </b>
+    <input type="radio" name="paymethod" value="alipay" size="" style="" checked >支付宝
+    <input type="radio" name="paymethod" value="tenpay" size="" style="" >财付通
+    <input type="radio" name="paymethod" value="otherpay" size="60" style="padding-left:5px;" >其他
+    </li>
+  <li> <b>充值用户名: </b><input type="text" name="uname" value="<{$Think.session.logindailiName}>" size="60" style="padding-left:5px;" > <b>充值帐号,默认即可请勿修改</b></li>
+  <li> <b>充值　金额: </b><input type="text" name="price" value="" id="price" size="60"  style="padding-left:5px;"  > <b>先择对应的充值选项,价格自动生成</b></li>
+
+  <li><span class="bottonbox"><button class="new-btn-login" type="submit" style="text-align:center;">确 认</button></span></li>
+  <!--<input type="button" class="" onclick="location.href='/index.php?g=Wap&m=Alipay&a=pay&price=<{$totalFee}>&orderName=<{$p.name}>&single_orderid=<{$thisOrder.id}>&token=<{$token}>'" value="点击这里付款" />-->
+  </form>
+</ul>
+        <div class="clr"></div>
+      </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+              <div class="pages"></div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+      </div>
+    <div class="page">
+      <ul>
+        <div class="pagelistbox"><{$page}></div>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

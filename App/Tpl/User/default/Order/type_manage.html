@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>药品分类管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+     <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">医药通</span><span class="wap_span_2">药品分类管理</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+    <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  
+  <div class="new_main">
+     
+<div class="new_main_tit pt10">
+医药分类管理
+<a href="javascript:setPreview('<{:U('/Wap/Drugs/index',array('token'=>$token))}>');">
+<span class="button_r_1 fabu">总预览</span></a></div>
+
+
+ 
+
+
+ <div class="new_main_tit "> 
+      <!--tab start-->
+      <div class="tab">
+        <ul>
+			<li class="tabli" id="tab0"><a href="<{:U('Flashshop/index',array('type'=>1))}>">幻灯片管理</a></li>
+		    <li class=" tabli" id="tab0"><a href="<{:U('Order/index')}>">订单管理</a></li>
+			 <!--<li class="tabli" id="tab0"><a href="<{:U('Order/out')}>">数据导入</a></li>-->
+			 <li class=" current tabli" id="tab0"><a href="<{:U('Order/type_manage')}>">药品分类管理</a></li>
+			<li class=" tabli" id="tab0"><a href="<{:U('Order/set')}>">商城回复配置</a></li>
+			<li class=" tabli" id="tab0"><a href="<{:U('Order/moban')}>">商城模版配置</a></li>
+        </ul>
+      </div>     
+</div>
+      <input type="hidden" name="up" value="1" />
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+           <th>选择</th>
+            <th>接口分类名称</th>
+             <th>创建分类名称</th>
+          <th>创建时间</th>
+           <!-- <th>操作</th>-->
+          </tr>
+          	<volist name="data['rows']" id="vo">
+            <tr class="type_<{$vo.unid}>">
+            <td><input <?php if($vo['name']){echo "checked='checked'"; } ?>< class="unid_all" value="<{$vo.unid}>" type="checkbox" id="chkall" name="chkall"></td>
+             <td><{$vo.title}></td>
+              <td><input style="border:2px solid #cdcdcd;" type="text" name="name" id="name" value="<?php if($vo['name']){ echo $vo['name'];}else{ echo $vo['title'];} ?>"></td>
+              <td><?php if($vo['ctime']){echo date('Y-m-d',$vo['ctime']); } ?></td>
+             <!-- <td><div class="h2_cat" onmouSEOver="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                  <h3  class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                  <div class="h3_cat">
+                    <div class="h3_cat_list">
+                      <ul>
+						<a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Order/del_drugs_type',array('id'=>$vo['id']))}>');">
+                        <li>删 除</li>
+                        </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="clear"></div></td>-->
+            </tr>
+          </volist>
+          <tr> <td><button id="add_type" type="button" name="button" class="btnGreen">保存</button></td></tr>
+      </tbody>
+      </table>
+      
+   <div class="pagelistbox"></div>
+
+  </div>
+
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+
+<script type="text/javascript">
+function add_drug_type(unid,name){
+    var url = "/index.php?s=/Order/add_new_type/";
+    if(unid=="" || name==""){
+    
+       alert('请选择你要添加的分类名称');
+       return;
+    
+    }
+    var flag="unid="+unid+"&name="+name;
+    $.post(url,flag,function(json){
+    
+       var txt = $.parseJSON(json);
+       if(txt){
+          location.reload();
+       
+       }
+       else{
+       
+          alert('操作失败！');return;
+       
+       }
+    
+    
+    });
+
+}
+$(function(){
+      $("#add_type").live('click',function(){
+      
+      
+               var flag = '';
+               $('.unid_all').each(function(i,v){
+               
+                    if($(v).attr('checked')){
+                    var unid = $(v).val();
+                    var name = $(".type_"+unid).find('#name').val();
+                      add_drug_type(unid,name);
+                   /*     
+                        if(i==0){
+                          flag+="name="+$(".type_"+unid).find('#name').val();
+                        }
+                        else{
+                          flag+="name="+$(".type_"+unid).find('#name').val();
+                        
+                        }
+                        flag+="&unid="+unid;*/
+                    
+                    }
+               
+               
+               
+               
+               });
+              
+      
+      });
+   });
+   /* $("#add").live('click',function(){
+       
+		art.dialog.open("?g=User&m=Order&a=add_drugs_type&typeid=<?php echo $wxinfo['typeid']; ?>",{lock:true,title:'添加/修改分类',width:400,height:300,yesText:'关闭',background: '#000',opacity: 0.45});
+    
+	});
+	$(".flag_id").click(function(){
+	     var url = "/index.php/?s=Order/add_second_flag/";
+	     var send_id = $(this).data('id');//二级分类
+	     var typeid = "<?php  echo $wxinfo['typeid']; ?>";
+		 art.dialog.open("?g=User&m=Order&a=add_second_flag&typeid="+typeid+"&sen_id="+send_id,{lock:true,title:'添加/修改分类',width:400,height:300,yesText:'关闭',background: '#000',opacity: 0.45});
+	     
+	});
+	$('.edit_type').click(function(){
+	        var id = $(this).data('id');
+art.dialog.open("?g=User&m=Order&a=add_drugs_type&typeid=<?php echo $wxinfo['typeid']; ?>&id="+id,{lock:true,title:'添加/修改分类',width:400,height:300,yesText:'关闭',background: '#000',opacity: 0.45});
+    			
+	
+	});
+  });
+function selectall(name) {
+
+		var checkItems=$('.cbitem');
+
+		if ($("#check_box").attr('checked')==false) {
+
+			$.each(checkItems, function(i,val){
+
+				val.checked=false;
+
+			});	
+
+		} else {
+
+			$.each(checkItems, function(i,val){
+
+				val.checked=true;
+
+			});
+
+		}
+
+	}*/
+</script>
+</body>
+</html>
+
+
+

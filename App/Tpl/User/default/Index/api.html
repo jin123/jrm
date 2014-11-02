@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信公共平台接口URL_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">会员中心公众号管理</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <table class="new_main_zhuce">
+      <tbody>
+        <tr>
+          <td width="16%" class="table_txt_right">你的接口URL是：</td>
+          <td width="84%"><font color="red"><{:C('site_url')}>/index.php?s=Api/Weixin/index/token/<{$token}></font></td>
+        </tr>
+        <tr>
+          <td width="16%" class="table_txt_right">您的token是：</td>
+          <td width="84%"><font color="red"><{$token}></font></td>
+        </tr>
+        <tr>
+          <td width="16%" class="table_txt_right"></td>
+          <td width="84%"><img src="__PUBLIC__/images/help004.jpg" width="900" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

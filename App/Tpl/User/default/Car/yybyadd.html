@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>编辑车系内容_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">编辑预约内容</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">编辑预约内容<a href="<{:U('Car/chexi')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form" method="post"   action=""  enctype="multipart/form-data" >
+        <table class="new_main_zhuce">
+          <tbody>
+             <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>预约名称：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="tit" value="<{$vo.tit}>" name="tit" style="width:570px" > </td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>关键词：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="keyword" value="<{$vo.keyword}>" name="keyword" style="width:570px" > <strong class="input_ts_y"><span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。</strong></td>
+            </tr>
+           
+            
+            <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>预约地址：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="addr" value="<{$vo.addr}>" name="addr" style="width:570px" />
+                <strong class="input_ts_y"><span class="red">*</span>如青岛市五四广场万科广场 </strong></td>
+            </tr>
+			  <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>预约电话：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="tel" value="<{$vo.tel}>" name="tel" style="width:570px" />
+                <strong class="input_ts_y">如0532-81234567 </strong></td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>预约简解：</td>
+              <td width="84%"><textarea name="des" style="width:570px;height:102px;" maxlength="100" class="input login_input_1"><{$vo.des}></textarea>
+                </td>
+            </tr>
+			<tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>显示顺序：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="sort" value="<{$vo.sort}>" name="sort" style="width:570px" />
+               <strong class="input_ts_y">数字越大越靠前</strong> </td>
+            </tr>
+			
+			  <tr>
+              <td width="16%" class="table_txt_right">获取经纬度：</td>
+               <td width="84%"> <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a></td>
+             </tr>
+			
+		    <tr>
+              <td width="16%" class="table_txt_right">获取经纬度：</td>
+              <td width="84%"><input type="text" id="longitude"  name="jd" size="14" class="input login_input_1" value="<{$set.jd}>" readonly="readonly" /><input type="text"  name="wd" size="14" id="latitude" class="input login_input_1" value="<{$set.wd}>" readonly="readonly"/>
+               <strong class="input_ts_y"></strong> </td>
+             </tr>
+			
+			
+			
+             <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>预约详情：</td>
+              <td width="84%"><textarea name="msg" style="width:570px;height:102px;" maxlength="100" class="input login_input_1"><{$vo.msg}></textarea>
+                <strong class="input_ts_y"></strong></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right"></td>
+              <td><div style="margin:5px 0 10px;"> <img id="pic2_src" src="<if condition="$vo['pic'] eq '0'">__PUBLIC__/images/wm/car2.png<else/><{$vo.pic}></if>" width="373px" ></div></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">图片：</td>
+              <td><input class="input login_input_1" name="pic" id="pic"  value="<if condition="$vo['pic'] neq false"><{$vo.pic}><else/>__PUBLIC__/images/wm/car2.png</if>" style="width:570px;" onclick="document.getElementById('pic2_src').src=this.value;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('pic',700,420)" class="btnGreen">选择图片</a>&nbsp;&nbsp;建议图片尺寸420*60，不超过300K</td>
+            </tr>
+           <tr>
+			
+			 <tr>
+              <td width="16%" class="table_txt_right">商家通知设置：</td>
+              <td width="84%">订单通知邮箱：<input type="input" class="input login_input_1" id="noticeemail" value="<{$vo.noticeemail}>" name="noticeemail" style="width:60px" /> 开启 <input type="checkbox" name='noticeemailon' value="1" <if condition="$vo['noticeemailon'] eq 1 ">checked="checked"</if>></br> 
+               
+			  订单手机通知：<input type="input" class="input login_input_1" id="noticetel" value="<{$vo.noticetel}>" name="noticetel" style="width:60px" /> 开启 <input type="checkbox" name="noticetelon" value="1" <if condition="$vo['noticetelon'] eq 1 ">checked="checked"</if>> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			  
+            </tr>
+			
+			<tr>
+              <td width="16%" class="table_txt_right">预约：</td>
+              <td width="84%">预约试驾<input type="radio" name="issue" value="1" <if condition="$vo['issue'] eq 1 ">checked="checked"</if>/>&nbsp;&nbsp;&nbsp;&nbsp;预约保养<input type="radio" name="issue" value="2" <if condition="$vo['issue'] eq 2 ">checked="checked"</if>/>
+               </td>
+            </tr>
+			
+           <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+           
+          </tbody>
+        </table>
+      
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

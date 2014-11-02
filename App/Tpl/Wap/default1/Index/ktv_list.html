@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><{$tpl['wxname']}></title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta charset="utf-8">
+<link href="__PUBLIC__/wap/css/ktv/style.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/css/ktv/style01.css">
+<link rel="stylesheet" href="__PUBLIC__/wap/css/flash/css/plugmenu.css">
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/wap/js/ktv/page_context.js"></script>
+<style>
+@-moz-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-webkit-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}embed,object{animation-duration:.001s;-ms-animation-duration:.001s;-moz-animation-duration:.001s;-webkit-animation-duration:.001s;-o-animation-duration:.001s;animation-name:nodeInserted;-ms-animation-name:nodeInserted;-moz-animation-name:nodeInserted;-webkit-animation-name:nodeInserted;-o-animation-name:nodeInserted;}
+</style>
+</head>
+<body screen_capture_injected="true"  <if condition="$homeInfo.bg_img neq ''"> style="background:url(<{$homeInfo.bg_img}>)"</if>>
+<div>
+  <ul class="mainmenu2 radius margin10">
+    <volist name="res" id="vo">
+      <li class="radius_top border-top-none">
+        <div class="menubtn">
+          <if condition="$vo['url']">
+          <a href="<{$vo.url}>">
+          <else />
+          <a href="<{:U('Index/content',array('id'=>$vo['id'],'token'=>$vo['token']))}>">
+          </if>
+          <h2 class="menutitle"><{$vo.title}></h2>
+          <p class="menudesc"><{$vo.text}></p>
+          </a> <span class="icon">&nbsp;</span> </div>
+      </li>
+    </volist>
+  </ul>
+</div>
+<div style="display:none"><{$tpl.tongji|htmlspecialchars_decode}></div>
+<if condition="$showPlugMenu">
+  <div class="plug-div">
+    <div class="plug-phone">
+      <div class="plug-menu themeStyle" style="background:<{$homeInfo.plugmenucolor}>"><span class="close"></span></div>
+      <volist name="plugmenus" id="vo">
+        <div class="themeStyle plug-btn plug-btn{pigcms:$i} close" style="background:<{$homeInfo.plugmenucolor}>"> <a  href="<{$vo.url}>"> <span style="background-image: url(__PUBLIC__/wap/css/flash/images/img/<{$vo.name}>.png);" ></span> </a> </div>
+      </volist>
+      <div class="plug-btn plug-btn5 close"></div>
+    </div>
+  </div>
+</if>
+<script src="__PUBLIC__/wap/css/flash/js/zepto.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/wap/css/flash/js/plugmenu.js" type="text/javascript"></script>
+<div class="copyright">
+  <if condition="$iscopyright eq 1"> <{$homeInfo.copyright}>
+    <else/>
+    <{$siteCopyright}> </if>
+</div>
+</body>
+<include file="footer" />
+</html>

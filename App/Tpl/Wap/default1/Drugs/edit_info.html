@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title></title>
+<style>
+*{ margin:0; padding:0;}
+ul,ol{ list-style:none;}
+a{text-decoration:none; color:#666;}
+a:hover{ text-decoration:none;}
+body{ font-size:14px; font-family:"微软雅黑"; font-weight:normal; background:#ededed;max-width:640px; margin:0 auto }
+.xiu{width:99%;}
+.hy_cen{ margin:auto; width:98%; }
+.hy_cen_a{ float:left; width:100%; border-bottom:1px solid #CCC;  background:#FFF; margin-top:10px;}
+.hy_cen_a strong{ float:left; width:100%; line-height:42px; border-top:1px solid #CCC; text-align:center;}
+#xg{ float:left; width:90%; height:32px; font-size:16px; margin-top:5px; background:url(/Public/Wap/drugs/images/bjasd.gif); border:1px solid #CCC;}
+.hy_cen_a ul{ float:left; width:100%; border-top:1px solid #CCC; padding-bottom:12px; }
+.hy_cen_a ul li{ float:left; width:100%; line-height:36px; margin-top:10px;}
+.hy_cen_a ul li i{ float:left; width:27%; text-align:right; font-style:normal;}
+.hy_cen_a ul li p{ float:left; width:60%; margin-left:5px; }
+.hy_cen_a b{ float:left; margin-left:10%; width:80%; padding-bottom:20px;}
+#tjbt{ float:left; width:100%; height:40px; background:#ff9400; border:none; font-size:16px; color:#FFF;}
+.text_boxadd{ float:left; width:100%; height:36px; border:1px solid #CCC; font-size:16px; }
+.abc{ height:80px; float:left; width:100%;}
+.cba{ height:150px; float:left; width:100%;}
+.footer{ float:left; width:100%; background:url(__PUBLIC__/wap/drugs/images/bj.gif); height:60px; left:0; bottom:0; position:fixed; z-index:111;}
+.footer ul li{ float:left; width:25%; line-height:15px; margin-top:15px; text-align:center;}
+.footer ul li a{ color:#000;}
+.footer ul li p{ float:left; padding-top:5px; text-align:center; width:100%;}
+@font-face {font-family: 'iconfont';
+	src:url(__PUBLIC__/wap/drugs/imgtu/iconfont.eot);
+    src: url(__PUBLIC__/wap/drugs/imgtu/iconfont.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+    url(__PUBLIC__/wap/drugs/imgtu/iconfont.woff) format('woff'), /* chrome、firefox */
+    url(__PUBLIC__/wap/drugs/imgtu/iconfont.ttf) format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url(__PUBLIC__/wap/drugs/imgtu/iconfont.svg#uxiconfont) format('svg'); /* iOS 4.1- */
+}
+.footer ul li .iconfont{font-family:"iconfont" !important;font-size:24px;font-style:normal;-webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale; color:#666;}
+</style>
+<link href="__PUBLIC__/wap/drugs/css/jquery.alerts.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.alerts.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/jscript"></script>
+</head>
+<script>
+
+var GV = {
+    DIMAUB: "/",
+    JS_ROOT: "/Public/js/",
+    TOKEN: ""
+};
+</script>
+<body>
+<div class="xiu">
+<div class="hy_cen_a">
+    			<strong>请填写个人信息</strong>
+				<form id="myform" method="post" action="/index.php?s=Wap/Drugs/edit_info/wecha_id/<?php echo $_GET['wecha_id'];?>">
+                <ul>
+            	<li>
+                <i>收货人姓名：</i>
+                <p><input class="text_boxadd" name="name" type="text" value="<{$userinfo.Name}>" />  </p></li>
+                <li>
+                <i>邮箱：</i>
+                <p><input class="text_boxadd" name="Email" type="text" value="<{$userinfo.Email}>" />  </p></li>
+                <li>
+                <i>收货地址：</i>
+                <p><input type="text" class="text_boxadd" name="address" type="text" value="<{$userinfo.Address}>" />  </p></li>
+				 <li>
+                <i>手机号:</i>
+                <p><input type="text" class="text_boxadd" name="Tel" type="text" value="<{$userinfo.Tel}>" />  </p></li>
+
+            </ul>
+			  <b><button id="tjbt"  type="submit">确认</button> </b>
+			</form>
+          
+        </div>
+
+</div>
+<div class="footer">
+<ul>
+	<li><a href="<{:U('Drugs/index',array('wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}>">
+    <i class="iconfont">&#xf012b;</i><br/>
+    <p>首页</p></a></li>
+   <li><a href="<{:U('Drugs/fenlei',array('Flag'=>2,'sortid'=>0,'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}>">
+    <i class="iconfont">&#xf007b;</i><br/>
+   <p>促销</p></a></li>
+   <li><a href="<{:U('Drugs/gouwuche',array('wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}>">
+    <i class="iconfont">&#xf0148;</i><br/>
+   <p>购物车</p></a></li>
+   <li><a href="<{:U('Drugs/hyzx',array('wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}>">
+    <i class="iconfont">&#xf006b;</i><br/>
+   <p>我的药箱</p></a></li>
+</ul>
+</div>
+</body>
+<script src="__PUBLIC__/js/jquery.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/jquery.form.js" type="text/javascript"></script>
+<script src="/Public/js/validate.js"></script>
+<script src="/Public/js/wind.js"></script>
+<script src="/Public/js/com.js"></script>
+<script>
+Wind.use('', '', '', function () {
+	            var form = $('#myform');
+	        //表单验证开始
+	        form.validate({
+				//是否在获取焦点时验证
+				onfocusout:false,
+				//是否在敲击键盘时验证
+				onkeyup:false,
+				//当鼠标掉级时验证
+				onclick: false,
+	            //验证错误
+	            showErrors: function (errorMap, errorArr) {
+					//errorMap {'name':'错误信息'}
+					//errorArr [{'message':'错误信息',element:({})}]
+					try{
+						$(errorArr[0].element).focus();
+						art.dialog({
+							id:'error',
+							icon: 'error',
+							lock: true,
+							fixed: true,
+							background:"#CCCCCC",
+							opacity:0,
+							content: errorArr[0].message,
+							cancelVal: '确定',
+							cancel: function(){
+								$(errorArr[0].element).focus();
+							}
+						});
+					}catch(err){
+					}
+	            },
+	            //验证规则
+	            rules: {},
+	            //验证未通过提示消息
+	            messages:{},
+	            //给未通过验证的元素加效果,闪烁等
+	            highlight: false,
+	            //是否在获取焦点时验证
+	            onfocusout: false,
+	            //验证通过，提交表单
+	            submitHandler: function (forms) {
+	                $(forms).ajaxSubmit({
+	                    url: form.attr('action'), //按钮上是否自定义提交地址(多按钮情况)
+	                    dataType: 'json',
+	                    success: function (data, statusText, xhr, $form) {
+                           //alert(data.errcode);  alert(data.errmsg);
+							if(data==1){
+							
+							 // alert('您的信息已完善，我们将尽快为您发货');
+							  jAlert("您的信息已完善，我们将会选择离您最近的店尽快为您配送，支付方式为货到付款",'提示',function(){
+			   
+			     location.href="/index.php?s=Wap/Drugs/hyzx/wecha_id/<?php echo $_GET['wecha_id']; ?>/token/<?php echo $_GET['token']; ?>";
+			   }); 
+							}
+                            else{
+							
+							  alert("信息修改失败");
+							
+							}
+	                    }
+	                });
+	            }
+	        });
+	    });
+	////-------------------------
+</script>
+</html>

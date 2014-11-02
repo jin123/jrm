@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微房产_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"><a href="<{:U('/Estate/index')}>">微房产</a></span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">微房产(<{$count}>)<a href="<{:U('Estate/estateSet')}>"><span class="button_r_1 fabu">添加</span></a></div>
+      <form method="post" action="" id="info">
+        <input name="delall" type="hidden" value="del">
+        <input name="wxid" type="hidden" value="gh_423dwjkewad">
+        <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+              <th>关键词</th>
+              <th>楼盘名称</th>
+              <th>楼盘封面</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <if condition="$estate eq ''">
+              <tr>
+                <td colspan="4" style="text-align:center; height:30px;"><strong>没有任何户型信息.</strong></td>
+              </tr>
+              <else/>
+              <volist name="estate" id="list">
+                <tr>
+                  <td><{$list['keyword']}></td>
+                  <td><span class="label"><{$list['title']|default="独立户型"}></span></td>
+                  <td><div class="cateimg"><img src="<{$list.cover}>" class="cateimg_small"  /><img src="<{$list.cover}>" class="cateimg_big" /></div></td>
+                  <td><div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                      <h3 class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                      <div class="h3_cat">
+                        <div class="h3_cat_list">
+                          <ul>
+                            <a href="<{:U('Estate/estateSet',array('id'=>$list['id']))}>">
+                            <li>编 辑</li>
+                            </a> <a onclick="if(window.confirm('你确定要删除这篇文档吗?'));" href="<{:U('Estate/del',array('id'=>$list['id']))}>">
+                            <li>删 除</li>
+                            </a> <a href="<{:U('/Wap/Estate/Index/',array('token'=>$list['token'],'pid'=>$list['id'],'openid'=>'fromuserid'))}>" target="_blank">
+                            <li>链 接</li>
+                            </a> <a href="javascript:setPreview('<{:U('/Wap/Estate/index/',array('token'=>$list['token'],'pid'=>$list['id'],'openid'=>'fromuserid'))}>');">
+                            <li>预 览</li>
+                            </a> <a href="<{:U('Estate/son',array('pid'=>$list['id']))}>">
+                            <li>子楼盘</li>
+                            </a> <a href="<{:U('Estate/housetype',array('pid'=>$list['id']))}>">
+                            <li>楼盘户型</li>
+                            </a><a href="<{:U('Estate/album',array('pid'=>$list['id']))}>">
+                            <li>楼盘相册</li>
+                            </a> <a href="<{:U('Estate/expert',array('pid'=>$list['id']))}>">
+                            <li>专家点评</li>
+                            </a>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clear"></div></td>
+                </tr>
+              </volist>
+            </if>
+          </tbody>
+        </table>
+      </form>
+      <div class="pagelistbox"><{$page}></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

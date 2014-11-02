@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微站栏目_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+</head>
+<body>
+
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">微站栏目</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">微汽车--关键字<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+    <form class="form" method="post"   action="<{:U('Car/keyadd')}>"  target="_top" enctype="multipart/form-data" >
+      <input type="hidden" name="id" value="<{$info.id}>"/>
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right">关键字：</td>
+            <td width="84%"><input type="text" id="gjz" value="" name="name"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+		  <tr>
+            <td width="16%" class="table_txt_right">标题：</td>
+            <td width="84%"><input type="text" id="name" value="" name="englishname"  style="width:200px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">图文封面：</td>
+            <td width="84%"><input type="text"  id="img" value="" name="pic" style="width:400px" class="input login_input_1" >
+              <strong class="input_ts_y">
+             <a href="javascript:void(0)" onclick="upyunPicUpload('img',700,420)" class="btnGreen">选择图片</a>
+              </strong></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">消息简介：</td>
+            <td><input type="input"  id="ms" value="" name="url" style="width:400px" class="input login_input_1" ></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">汽车首页：</td>
+            <td><input type="input" id="xwid" value="0" name="sorts" style="width:400px" class="input login_input_1"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+              <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <script>
+    	$(function(){
+    		var tplistimgs=new Array();
+    		tplistimgs[0]="<{$list_moban[$t_moban['tpllistid']]['tpllistimg']}>";
+    		<volist name="list_moban" id="list">
+    		tplistimgs[<{$list['tpllistid']}>]="<{$list['tpllistimg']}>";
+    		</volist>
+    		$("#tplistid").change(function(){
+    			var id=$(this).val();
+    			$("#tpllistimg").attr("src","__PUBLIC__/images/moban/"+tplistimgs[id]);
+    		});    		
+    		
+    		var tplcontentimgs=new Array();
+    		tplcontentimgs[0]="<{$content_moban[$t_moban['tplcontentid']]['tplcontentimg']}>";
+    		<volist name="content_moban" id="list">
+    		tplcontentimgs[<{$list['tplcontentid']}>]="<{$list['tplcontentimg']}>";
+    		</volist>
+    		$("#tplcontentid").change(function(){
+    			var id=$(this).val();
+    			$("#tplcontentimg").attr("src","__PUBLIC__/images/moban/"+tplcontentimgs[id]);
+    		});
+    	});
+    </script>
+  </div>
+</div>
+</body>
+</html>

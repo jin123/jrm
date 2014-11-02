@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线预订表单管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">在线预订表单管理</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">“<{$thisForm.name}>”信息列表 <span style="float:right;padding-right:20px;" class="searchbar">
+        <form method="post" action="">
+          <input type="text" id="msgSearchInput" class="txt"  placeholder="输入关键词搜索" name="searchkey" value="">
+          <input type="hidden" name="ac" value="hotels-list">
+          <input type="hidden" name="id" value="9878">
+          <input type="hidden" name="wxid" value="gh_423dwjkewad">
+          <input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+        </form>
+        </span> </div>
+      <table width="100%" class="new_main_liebiao">
+        <tbody>
+          <tr>
+            <th>ID</th>
+            <th>时间</th>
+            <volist name="fields" id="item">
+              <th><{$item.displayname}></th>
+            </volist>
+            <th>操作</th>
+          </tr>
+          <volist name="list" id="item">
+            <tr>
+              <volist name="item" id="citem">
+                <td><{$citem}></td>
+              </volist>
+              <td class="norightborder"><a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Selfform/infoDelete',array('id'=>$item['id']))}>');">删除</a></td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+      <div class="pagelistbox">
+          <{$page}>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微团购设置_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"><a href="<{:U('Groupbuy/index')}>">微团购</a></span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">微团购设置<a href="<{:U('Groupbuy/index')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <div class="alert alert-info"> <br>
+        <p><span class="bold">说明：</span>微团购改变了普通团购习惯。微团购最核心的优势体现在商品价格优惠上。</p>
+        <br>
+      </div>
+      <form class="form" name="form" method="post"   action="" enctype="multipart/form-data" >
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="26%" class="table_txt_right">微团购名称：</td>
+              <td width="74%"><input type="input" class="input login_input_1" id="name" onsubmit="return test()" value="<{$vo.name}>" name="name" style="width:270px" >
+                <span class="maroon">*</span> <span class="help-inline">最多只能输入30个字符。</span></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">微团购价格：</td>
+              <td width="84%"><input onkeydown="onlyNum();" type="input" class="input login_input_1" id="jg" value="<{$vo.jg}>" name="jg" style="width:270px" >
+                <span class="maroon">*</span> <span class="help-inline">请输入整数</span></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">市场价格：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="scjg" value="<{$vo.scjg}>" name="scjg" style="width:270px" >
+                <span class="maroon">*</span> <span class="help-inline">请输入整数</span></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">微团购关键字：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="gjz" value="<{$vo.gjz}>" name="gjz" style="width:270px" >
+                <span class="red">只能写一个关键词</span></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">微团购开始时间：</td>
+              <td><input type="input" class="px" id="kssj" value="<if condition="$vo['kssj'] neq ''">
+                <{$vo.kssj|date="Y-m-d ",###}>
+                </if>
+                " onClick="WdatePicker()" name="kssj" style="width:180px;"> </td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">微团购结束时间：</td>
+              <td><input type="input" class="px" id="jssj" value="<if condition="$vo['jssj'] neq ''">
+                <{$vo.jssj|date="Y-m-d ",###}>
+                </if>
+                " name="jssj" onClick="WdatePicker()" style="width:180px;"></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">上传图片：</td>
+              <td><input class="input login_input_1" name="thumb" id="thumb" value="<{$vo.thumb}>" style="width:480px;">
+                <a href="javascript:void(0)" onclick="upyunPicUpload('thumb',700,420)" class="btnGreen">选择图片</a> <a href="javascript:void(0)" onclick="viewImg('thumb')" class="btnGreen">图片预览</a></td>
+            </tr>
+              </tr>
+            
+            <tr>
+              <td width="16%" class="table_txt_right">商品描述：</td>
+              <td width="84%"><textarea name="ms" id="ms" style="width:400px;height:102px;" maxlength="100" class="input login_input_1" value=""  ><{$vo.ms}></textarea>
+                <br>
+                <span class="maroon">*</span><span class="help-inline">最多为300个字符。</span> <strong class="input_ts_y">换行请输入&lt;br&gt;</strong></td>
+              <br>
+              <br>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">特别提醒：</td>
+              <td width="84%"><textarea name="tbtx" id="tbtx" style="width:400px;height:102px;" maxlength="100" class="input login_input_1" value="" ><{$vo.tbtx}></textarea>
+                <br>
+                <span class="maroon">*</span><span class="help-inline">最多为100个字符。</span></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">商家电话：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="sjtel" value="<{$vo.sjtel}>" name="sjtel" style="width:270px" ></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:130px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:130px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+	function test(){
+		if(document.form.name.value.lenght>30)
+		{
+			alert("最多只能输入30个字符！");
+			document.from.name.focus();
+			return false;
+		}
+		return true;
+	}
+	
+	function onlyNum()
+	{
+	if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+	//考虑小键盘上的数字键
+	event.returnvalue=false;
+	}
+
+
+
+</script>
+</body>
+</html>

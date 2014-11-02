@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><{$homeInfo.wxname}></title>
+<base href="." />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<link href="__PUBLIC__/wap/css/allcss/cate<{$tpl.tpltypeid}>_<{$tpl.color_id}>.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/wap/css/allcss/cate21_0.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="cate16" <if condition="$homeInfo.bg_img neq ''"> style="background:url(<{$homeInfo.bg_img}>)"</if>>
+<div class="mainbg"><img src="<if condition="$homeInfo.homeurl neq false"><{$homeInfo.homeurl}> <else/>__PUBLIC__/wap/images/themes/bg1.jpg</if>"/> </div>
+<div id="insert1"></div>
+<div class="mainmenu">
+  <ul>
+    <volist name="info" id="vo">
+      <li>
+        <div class="menubtn"><a href="<if condition="$vo['url'] eq ''"><{:U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}><else/><{$vo.url|htmlspecialchars_decode}></if>">
+          <div class="menuimg"><img src="<{$vo.img}>"></div>
+          <div class="menutitle"><{$vo.name}></div></a> </div>
+      </li>
+    </volist>
+    <div class="clr"></div>
+  </ul>
+</div>
+<div id="insert2"></div>
+<div style="display:none"> </div>
+<div class="copyright">
+  <if condition="$homeInfo.copyright neq ''">版权所有 &copy <{$homeInfo.copyright}>&nbsp;</if>
+</div>
+</body>
+</html>

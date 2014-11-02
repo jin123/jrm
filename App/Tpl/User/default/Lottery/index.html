@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>幸运大转盘_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">幸运大转盘</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10" style="margin-top:10px;">幸运大转盘活动 (<{$count}>) 条<a href="<{:U('Lottery/add')}>"><span class="button_r_1 fabu">新增</span></a></div>
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th>选择</th>
+            <th>活动名称</th>
+            <th>关键字</th>
+            <th style="display:none">有效参与人数</th>
+            <th style="display:none">总浏览数</th>
+            <th>开始时间/结束时间</th>
+            <th>状态</th>
+            <!--<th  width="80">外链代码</th>-->
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <volist id="list" name="list">
+            <tr>
+              <td><input type="checkbox" name='del_id[]' value="842" class="checkitem"></td>
+              <td><{$list.title}></td>
+              <td><{$list.keyword}></td>
+              <td style="display:none"><{$list.joinnum}></td>
+              <td style="display:none"><{$list.click}></td>
+              <td><{$list.statdate|date='Y-m-d',###}><br />
+                <{$list.enddate|date='Y-m-d',###}></td>
+              <td><if condition="$list['status'] eq 0">未开始<else/>已经开始</if></td>
+              <td><div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                  <h3 class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                  <div class="h3_cat">
+                    <div class="h3_cat_list">
+                      <ul>
+                        <a href="<{:U('Lottery/sn',array('id'=>$list['id']))}>">SN码管理</a> <a href="<{:U('Lottery/edit',array('id'=>$list['id']))}>">
+                        <li>编 辑</li>
+                        </a> <a href="<if condition="$list['status'] lt 0"> javascript:drop_confirm('你确定要结束活动吗，结束后不可再开启本活动!'<{:U('Lottery/setdes',array('id'=>$list['id']))}>
+                        <else/>
+                        <{:U('Lottery/setinc',array('id'=>$list['id']))}>
+                        </if>
+                        ">
+                        <if condition="$list['status'] eq 0">
+                          <li>开 始</li>
+                          <else/>
+                          <li>结 束</li>
+                        </if>
+                        </a> <a href="<{:U('Lottery/del',array('id'=>$list['id']))}>">
+                        <li>删 除</li>
+                        </a><a href="<{:U('/Wap/Lottery/index/',array('token'=>$list['token'],'type'=>1,'id'=>$list['id'],'openid'=>'fromuserid'))}>" target="_blank">
+                        <li>外 链<li>
+                        </a>
+                        <a href="javascript:setPreview('<{:U('/Wap/Lottery/index/',array('token'=>$list['token'],'type'=>1,'id'=>$list['id'],'openid'=>'fromuserid'))}>');"  target="_blank">
+                          <li>预 览</li>
+                          </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="clear"></div></td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+      <div class="pagelistbox"><{$page}></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

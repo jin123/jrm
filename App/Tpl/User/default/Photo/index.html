@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微相册_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">微相册</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">修改微相册<a href="<{:U('Photo/add')}>"><span class="button_r_1 fabu">添加相册</span></a></div>
+    <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <thead>
+        <tr>
+          <th>相册名</th>
+          <th>相册封面</th>
+          <th>添加图片</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <volist name="photo" id="photo">
+          <tr>
+            <td><{$photo.title}></td>
+            <td><a title="<{$photo.title}>" class="cover" href="<{:U('Photo/list_add',array('id'=>$photo['id']))}>"> <img src="<{$photo.picurl}>" alt="<{$photo.title}>" width="194" height="103"> </a></td>
+            <td><a href="<{:U('Photo/list_add',array('id'=>$photo['id']))}>">上传图片</a>　</td>
+            <td><div class="h2_cat" onmouSEOver="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                <h3  class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                <div class="h3_cat">
+                  <div class="h3_cat_list">
+                    <ul>
+                      <a href="<{:U('Photo/edit',array('id'=>$photo['id']))}>">
+                      <li>修 改</li>
+                      </a> <a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Photo/del',array('id'=>$photo['id']))}>');">
+                      <li>删 除</li>
+                      </a><a href="<{:U('/Wap/Photo/plist/',array('token'=>$photo['token'],'id'=>$photo['id'],'openid'=>'fromuserid'))}>" target="_blank">
+                      <li>链 接</li>
+                      </a> <a href="javascript:setPreview('<{:U('/Wap/Photo/plist/',array('token'=>$photo['token'],'id'=>$photo['id'],'openid'=>'fromuserid'))}>');">
+                      <li>预 览</li>
+                      </a>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="clear"></div></td>
+          </tr>
+        </volist>
+      </tbody>
+    </table>
+    <div class="pagelistbox"> <{$page}> </div>
+  </div>
+</div>
+</body>
+</html>

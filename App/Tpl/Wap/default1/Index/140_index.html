@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title><{$homeInfo.wxname}></title>
+<script type="text/javascript" src="__PUBLIC__/wap/css/sldc/jQuery.js?2014-03-07-1"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/css/sldc/swipe.js?2014-03-07-1"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/css/sldc/sldc.css" />
+<link href="__PUBLIC__/wap/drugs/css/slick.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/css/sldc/font-awesome.css?v=2014032616" media="all" />
+</head>
+<body>
+<div class="wap"<if condition="$homeInfo.bg_img neq ''"> style="background:url(<{$homeInfo.bg_img}>)"</if>>
+<div style="-webkit-transform:translate3d(0,0,0);">
+<div id="banner_box" class="box_swipe">
+<ul>
+ <volist name="flash" id="vo">
+    <div class="image">
+    <?php if($vo['url']) {?>
+
+		      	<a href="<?php echo $vo['url']; ?>"><img width="100%"   src="<{$vo.img}>"/></a>
+
+		   <?php }else{ ?>
+
+		   	<img width="100%"   src="<{$vo.img}>"/>
+   
+		  <?php } ?>
+		  </div>
+  </volist>
+</ul>
+<ol>
+<volist name="flash" id="so"> <li <if condition="$i eq '1'">class="on"</if>></li></volist></ol>
+</div>
+</div>
+<a href="tel:<{$homeInfo.telephone}>" class="link_tel icon-phone"><{$homeInfo.telephone}></a>
+<ul class="list_ul">
+	<volist name="info" id="vo">
+    <li> <a href="<if condition="$vo['url'] eq ''"><{:U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}><else/><{$vo.url}></if>"  class="main_1">
+      <figure>
+        <div style="background-image:url(<if condition="$vo['img'] eq ''">__PUBLIC__/wap/css/sldc/images/<{$i}>.png<else/><{$vo.img}></if>);">&nbsp;</div>
+        <figcaption style="height:33px; overflow:hidden;"><{$vo.name}></figcaption>
+      </figure>
+      </a></li>
+  </volist>
+</ul>
+</div>
+<div class="copyright">
+  <if condition="$homeInfo.copyright neq ''">版权所有 &copy <{$homeInfo.copyright}>&nbsp;</if>
+</div>
+<nav class="nav_10" style="height:50px;">
+  <ul id="nav_10" class="box">
+    <li> <a href="tel:<{$homeInfo.telephone}>" >
+      <p class="icon-phone"  style="font-size:20px;"></p>
+      <label>热线电话</label>
+      </a> </li>
+   <?php if($maplist){ ?>
+      <li>
+      
+      <?php 
+          $url = "http://map.wap.soso.com/x/?type=infowindow&amp;hideAdvert=hide&amp;welcomeChange=1&amp;open=1&amp;X=".$maplist['longitude']."&amp;Y=".$maplist['latitude']."&amp;name=".urlencode($maplist['name'])."&amp;address=".urlencode($maplist['address'])."&amp;icfa=1311639#wechat_webview_type=1";     
+           
+        
+        ?> 
+     <a href="<{:U('Wap/Map/getlist',array('id'=>$maplist['id'],'token'=>$maplist['token']))}>">
+      <p class="icon-map-marker"  style="font-size:20px;"></p>
+      <label>一键导航</label>
+      </a> 
+      </li>
+      
+      <?php } ?>
+  </ul>
+</nav>
+<script>
+$("#banner_box").ready(function(){
+
+       new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+
+
+
+});
+	</script> 
+</body>
+</html>

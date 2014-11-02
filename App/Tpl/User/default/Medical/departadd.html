@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>科室设置_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<style>
+.officials_parent{
+	display: block;
+    margin-top: 10px;
+}
+</style>
+<script>
+function indexname(){
+	if (document.form.name.value.length == 0) { 
+		alert('标题不能为空');
+		document.form.name.focus(); 
+		return false; 
+		} 
+		return true;
+}
+function indexgjz(){
+	if (document.form.gjz.value.length == 0) {
+		alert('关键词不能为空');
+		document.form.gjz.focus(); 
+		return false; 
+		} 
+		return true;
+}
+function addr(){
+	if (document.form.addr.value.length == 0) {
+		alert('地理位置不能为空');
+		document.form.addr.focus(); 
+		return false; 
+		} 
+		return true;
+}
+function addofficials(obj){
+	html='<span class="officials_parent"><input type="input" class="input login_input_1" value="" name="officials[]" style="width:300px" >&nbsp;<a href="javascript:void(0)" onclick="addofficials(this)" class="btnGreen">添加</a>&nbsp;<a href="javascript:void(0)" onclick="delofficials(this)" class="btnGreen">删除</a></span>';
+	$(obj).parent().after(html);	
+}
+function delofficials(obj){
+	var _len=$("span.officials_parent").length;
+	if(_len<=1){
+		alert('最少保留一名负责人');
+		return false;
+	}
+	$(obj).parent().remove();	
+}
+</script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2"><a href="<{:U('Medical/department',array('hid'=>$hid))}>">科室设置</a></span><span class="wap_span_2">科室信息</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">科室信息<a href="<{:U('Medical/index')}>"><span class="a"></span></a><a href="<{:U('Medical/department',array('hid'=>$hid))}>"><span class="button_r_1 fabu">科室设置</span></a></div>
+    <div class="a"> </div>
+    <form class="form" name="form" method="post"   action="" enctype="multipart/form-data" >
+      <input type="hidden"   value="<{$vo.id}>" name="id" />
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="26%" class="table_txt_right">科室名称：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="name" reg="^\w+$" tip="不能为空" onblur="indexname();" value="<{$vo.name}>" name="name" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="26%" class="table_txt_right">科室负责人：</td>
+            <td width="74%">
+            <if condition="count($vo['officials']) eq 0 ">	            
+	            <span class="officials_parent">
+		            <input type="input" class="input login_input_1" name="officials[]" style="width:300px" >
+		             <a href="javascript:void(0)" onclick="addofficials(this)" class="btnGreen">添加</a>
+		             <a href="javascript:void(0)" onclick="delofficials(this)" class="btnGreen">删除</a>
+		             <span class="red">*</span>
+	             </span>
+             <else />
+             <volist name="vo['officials']" id="officials">
+				<span class="officials_parent">
+		            <input type="input" class="input login_input_1" value="<{$officials}>" name="officials[]" style="width:300px" >
+		             <a href="javascript:void(0)" onclick="addofficials(this)" class="btnGreen">添加</a>
+		             <a href="javascript:void(0)" onclick="delofficials(this)" class="btnGreen">删除</a>
+		             <span class="red">*</span>
+	             </span>
+			</volist>            
+             	
+			</if>
+             </td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">科室封面图片：</td>
+            <td><input class="input login_input_1" name="thumb" id="thumb" value="<{$vo.thumb}>" style="width:300px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('thumb',700,420)" class="btnGreen">选择图片</a> <a href="javascript:void(0)" onclick="viewImg('thumb')" class="btnGreen">图片预览</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">科室简介：</td>
+            <td width="74%"><div style="margin:5px 0 10px;">
+                <textarea name="content"  style="width:300px;height:102px;" maxlength="100" class="input login_input_1"><{$vo.content}></textarea>
+              </div></td>
+          </tr>
+        <input type="hidden" name="hid" value="<{$hid}>">
+        
+          <td></td>
+          <td><button class="button_r_1" type="submit" style=" width:130px; margin-top:15px;">提交</button>
+            
+            <!--<button class="button_g_1" type="reset" style=" width:130px; margin-top:15px; margin-left:20px;">重填</button></td>-->
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+          </tbody>
+        
+      </table>
+    </form>
+  </div>
+</div>
+<script language="javascript">
+	function test(){
+		if(document.form.name.value.lenght>30)
+		{
+			alert("最多只能输入30个字符！");
+			document.from.name.focus();
+			return false;
+		}
+		return true;
+	}
+	
+	function onlyNum()
+	{
+	if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+	//考虑小键盘上的数字键
+	event.returnvalue=false;
+	}
+
+
+
+</script>
+</body>
+</html>

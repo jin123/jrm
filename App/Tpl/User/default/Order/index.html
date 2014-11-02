@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订单管理_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+     <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">医药通</span><span class="wap_span_2">订单管理</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">
+	订单管理(<span style="font-size:12px;">预览链接：<a href="<{:C('site_url')}>/index.php?s=/Wap/Drugs/index/token/<{$token}>" target="_blank"><?php echo C('site_url'); ?>/index.php?s=/Wap/Drugs/index/token/<{$token}></a></span>)
+	<span class="searchbar">
+    <form method="post" action="">
+        <input type="text" id="msgSearchInput" class="px"  placeholder="输入药品名称" name="Name" value="">
+        <!-- <input class="px" name="searchkey" value="" size="80"> -->
+        <input type="submit" value="搜索" id="msgSearchBtn" class="btnGreen vm" title="搜索">
+      </form>
+	  </span>
+	  </div><div class="new_main_tit "> 
+      <!--tab start-->
+      <div class="tab">
+        <ul>
+			<li class="tabli" id="tab0"><a href="<{:U('Flashshop/index',array('type'=>1))}>">幻灯片管理</a></li>
+		    <li class="current tabli" id="tab0"><a href="<{:U('Order/index')}>">订单管理</a></li>
+			 <!--<li class="tabli" id="tab0"><a href="<{:U('Order/out')}>">数据导入</a></li>-->
+			 <li class=" tabli" id="tab0"><a href="<{:U('Order/type_manage')}>">药品分类管理</a></li>
+			<li class=" tabli" id="tab0"><a href="<{:U('Order/set')}>">商城回复配置</a></li>
+			<li class=" tabli" id="tab0"><a href="<{:U('Order/moban')}>">商城模版配置</a></li>
+        </ul>
+      </div>     
+</div>
+<form method="post" action="" id="info">
+      <input type="hidden" name="up" value="1" />
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+            <th><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+            <th>名称</th>
+            <th>订购人</th>
+            <th>数量</th>
+            <th>单价（元）</th>
+            <th>总价（元）</th>
+            <th>创建时间</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+          	<volist name="data['rows']" id="vo">
+            <tr id="itemContainer">
+              <td><input type="checkbox" value="<{$vo.UnId}>" class="cbitem" name="UnId_<{$i}>"></td>
+              <td><{$vo.Name}></td>
+              <td><{$vo.StoreName}></td>
+              <td><{$vo.Sum}></td>
+              <td><{$vo.Price}></td>
+              <td><?php echo $vo['Sum']*$vo['Price']; ?></td>
+              <td><{$vo.Creatime}></td>
+				<td>
+          <?php if($vo['status']==1){ ?><a style="color:#5ba607;">已发货</a><?php }else{ ?>未发货<?php } ?></td>
+              <td><div class="h2_cat" onmouSEOver="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+                  <h3  class="h2_cat_cz">操作<i class="cat_i"></i></h3>
+                  <div class="h3_cat">
+                    <div class="h3_cat_list">
+                      <ul>
+                        <a href="###" onclick="showIntroDetail(<{$vo['UnId']}>)">
+                        <li>详 细</li>
+                        </a> 
+ 						<?php if($vo['status']==0){ ?><a onclick="return window.confirm('您确定要发货吗?发货之后请通知用户！')" href="<{:U('Order/istake',array('unid'=>$vo['UnId'],'userid'=>$vo['UserId']))}>">
+                        <li>我要发货</li>
+                        </a>
+                        <?php } ?>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="clear"></div></td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+	  
+</form>
+     <div class="pagelistbox"></div>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/Public/wap/drugs/js/jPages.js"></script>
+<script type="text/javascript">
+$(function(){
+    /* initiate the plugin */
+    $("div.pagelistbox").jPages({
+		total:<?php echo $data['records']; ?>,
+      containerID  : "itemContainer",
+      perPage      : 20,
+      startPage    : 1,
+      startRange   : 1,
+     // previous: "上一页",
+   //   next: "下一页",
+      midRange     : 5,
+      endRange     : 1,
+      return_url   :'/index.php?s=/Order/index'
+    });
+  });
+	function drop_confirm(msg, url){
+		if(confirm(msg)){
+			window.location = url;
+		}
+	}
+	function showIntroDetail(UnId){
+		//alert(UnId);
+		art.dialog.open('<{:U('Order/orderInfo')}>/unid/'+UnId,{lock:false,title:'订单详情',width:500,height:300,yesText:'关闭',background: '#000',opacity: 0.87});
+	}
+function selectall(name) {
+		var checkItems=$('.cbitem');
+		if ($("#check_box").attr('checked')==false) {
+			$.each(checkItems, function(i,val){
+				val.checked=false;
+			});
+		} else {
+			$.each(checkItems, function(i,val){
+				val.checked=true;
+			});
+		}
+	}
+</script>
+</body>
+</html>

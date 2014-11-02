@@ -1,0 +1,183 @@
+<include file="Product:header"/>
+<link href="__PUBLIC__/wap/drugs/css/slick.css" rel="stylesheet" type="text/css" />
+
+<!--主体-->
+<div class="contents">
+	<div class="slider multiple-items">
+	<volist name="info" id="vo">
+		<div class="image">
+		   <?php if(isset($vo['url'])) {?>
+		      	<a href="<?php echo $vo['url']; ?>"><img width="100%" height="170" src="<{$vo.img}>"/></a>
+		   <?php }else{ ?>
+		   	<img width="100%" height="170" src="<{$vo.img}>"/>
+		  <?php } ?>
+		</div>
+	</volist>
+
+    </div>
+</div>
+<!--主体-->
+<div class="p_floatbox">
+  <div class="f_list_car p_buy clearfix" id="p_buy"> <span class="all_price">总价格：<font id="all_price">￥<{$totalProductFee}></font></span> <span>总共<font id="all_numb"><{$totalProductCount}></font>件商品</span> <a href="<{:U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>" class="p_btn_buy"><span class="ts1">进入购物车</span></a> </div>
+</div>
+<form class="f_index_search clearfix" action="" method="post" id="search_form">
+  <input type="text" id="search_name" name="search_name" class="search_box" placeholder="请输入搜索关键字" />
+  <input type="submit" class="search_button" value="搜 索" />
+</form>
+<dl class="tab_control">
+  <dd><a href="javascript:" order="time">时间排序</a></dd>
+  <dd><a href="javascript:" order="salecount">销量排序</a></dd>
+  <dd><a href="javascript:" order="price">价格排序</a></dd>
+  <dd><a href="javascript:" order="discount">折扣排序</a></dd>
+</dl>
+<section class="f_list i_list" >
+  <ul class="clearfix" id="f_list">
+    <volist name="products" id="hostlist">
+      <li>
+        <div class="f_list_l"> <a href="<{:U('Product/product',array('id'=>$hostlist['id'],'token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <img src="<{$hostlist.logourl}>" />
+          <h3><{$hostlist.name}></h3>
+          <p class="tui_price ts2" style="font-weight:normal;font-size:14px;color:#666;">规格：<{$hostlist.oprice}>&nbsp;</p>
+          </a> </div>
+        <div class="f_list_r">
+          <p class="tui_price ts2"> <strong>￥<{$hostlist.price}></strong> </p>
+          <a href="<{:U('Product/product',array('id'=>$hostlist['id'],'token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>" class="u_order_return ts1" id="in_car">去购买</a> </div>
+      </li>
+    </volist>
+  </ul>
+</section>
+<a class="more" id="show_more" page="2" href="javascript:void(0);">加载更多</a>
+
+<header style="position:relative;bottom:0;left:0" class="ts1"> 
+<a class="u_back fl" href="javascript:history.go(-1)"></a>
+   <ul class="topbar fr">
+    <li> <a class="icon_user" href="<{:U('Product/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'shop'=>2))}>"> <i></i> 我的 </a> </li>
+    <li> <a class="icon_shopping" href="<{:U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <i></i> 购物车 </a> </li>
+    <li> <a class="icon_class" href="<{:U('Product/products',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <i></i> 分类 </a> </li>
+    <li> <a class="icon_index" href="<{:U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}>"> <i></i> 主页 </a> </li>
+  </ul>
+</header>
+<input type="hidden" value="1" id="pageid" />
+<input type="hidden" id="canScroll" value="1" />
+<!--头部-->
+
+<script type="text/javascript">
+$(function() {
+	$('#search_form').submit(function() {
+		var search_name = $('#search_name').val();
+		if (search_name == '') {
+			return false;
+		}
+	});
+
+	//点击排序
+	var base_url = '<{:U('Product/index',array('token'=>$_GET['token'],'catid'=>$thisCat['id'],'wecha_id'=>$_GET['wecha_id']))}>';
+	var b_url = '<if condition="$isSearch neq 1"><{:U('Product/ajaxProducts',array('token'=>$_GET['token'],'catid'=>$thisCat['id'],'wecha_id'=>$_GET['wecha_id']))}><else/><{:U('Product/ajaxProducts',array('token'=>$_GET['token'],'keyword'=>$_GET['keyword'],'wecha_id'=>$_GET['wecha_id']))}></if>'
+		method = 'DESC',
+		_get_method = '<{$method}>',
+		order = '<{$order}>',
+		_get_order  = '';
+	if (_get_order != '') {
+		order = _get_order;
+	}
+	$('.tab_control a').removeClass('on');
+	$('.tab_control a[order="' + order + '"]').addClass('on');
+
+	if (_get_method == 'DESC')  {
+		method = 'ASC';
+	}
+	$('.tab_control a').click(function() {
+		var order = $(this).attr('order');
+		var url = base_url + '&order=' + order+'&method='+method;
+		location.href = url;
+	});
+
+	/*---------------------加载更多--------------------*/
+	var total = <{$count}>,
+		pagesize = 5,
+		pages = Math.ceil(total / pagesize);
+
+	
+
+	var label_arr = ["\u8bf7\u9009\u62e9\u6807\u7b7e","\u70ed\u5356","\u7206\u6b3e"];
+
+
+	if (pages > 1) {
+		var _page = $('#show_more').attr('page');
+		$(window).bind("scroll",function() {
+			if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
+				if (_page > pages) {
+					$('#show_more').show().html('没有更多了').delay(2300).slideUp(1600);
+					return;
+				}
+				$('#show_more').show().html('加载中...');
+				
+				if($('#canScroll').val()==0){//不要重复加载
+					return;
+				}
+				$('#canScroll').attr('value',0);
+				$.ajax({
+					type : "GET",
+					data : {'page' : _page, 'inajax' : 1},
+					url :  b_url + '&order=' + order + '&method=' + method + '&pagesize='+pagesize,
+					dataType : "json",
+					success : function(RES) {
+						$('#canScroll').attr('value',1);
+						$('#show_more').hide().html('加载更多');
+						
+						data = RES.products;
+						
+						//alert(b_url + 'order=' + order + '&method=' + method + '&pagesize='+pagesize)
+						if(data.length){
+						$('#show_more').attr('page',parseInt(_page)+1);
+						}
+						_page = $('#show_more').attr('page');
+						var html = '';
+						var header = '';
+						var end = '';
+						$.each(data, function(x, y) {
+					     var pro_url = "/index.php?s=/Wap/Product/product/id/"+y.id+"/token/<?php echo $_GET['token'] ?>/wecha_id/<?php echo $_GET[‘wecha_id’]; ?>";
+						   html+='<li>'+
+                             '<div class="f_list_l"> <a href="'+pro_url+'"> <img src="'+y.logourl+'"/>'+
+                             '<h3>'+ y.name +'</h3>'+
+                             '<p class="tui_price ts2" style="font-weight:normal;font-size:14px;color:#666;">规格：'+ y.oprice +'&nbsp;</p>'+
+                             '</a>'+
+                             '</div>'+
+                             '<div class="f_list_r">'+
+                              '<p class="tui_price ts2"> <strong>￥'+y.price+'</strong> </p>'+
+                              '<a href="'+pro_url+'" class="u_order_return ts1" id="in_car">去购买</a>'+
+                              '</div>'+
+                              '</li>';
+						
+						});
+					  $('#f_list').append(html);
+					//	alert(html);
+						
+					}
+					
+				});
+			}
+		});
+
+		
+	}
+});
+</script>
+
+<script src="__PUBLIC__/wap/drugs/js/slick.js" type="text/jscript" ></script>
+
+<script>
+$(document).ready(function() {
+$('.multiple-items').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+});
+	});
+</script>
+</body>
+
+</html>

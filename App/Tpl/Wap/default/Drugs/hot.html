@@ -1,0 +1,108 @@
+<!doctype html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>医药通</title>
+<link href="__PUBLIC__/wap/drugs/css/slick.css" rel="stylesheet" type="text/css" />
+<style>
+.contents { margin:auto; width:100%; overflow:hidden;height:170px;}
+.slick-slider { height:auto; margin:auto;}
+.slick-slide .image { height:auto; margin:auto;}
+.slick-slide img {display:block;height:100%; }
+.slick-slide img.slick-loading {border:0px;}
+
+</style>
+<link href="__PUBLIC__/wap/drugs/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.js"></script>
+<script src="__PUBLIC__/wap/drugs/js/slick.js" type="text/jscript" ></script>
+<script>
+$(document).ready(function() {
+$('.multiple-items').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+});
+	});
+</script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="center">
+
+<div class="table">
+	
+    
+   	  <div class="i_sp">
+  			<div class="i_t">
+            	<ul>
+                	<strong>热销商品</strong>
+                    <i><a href="">></a></i>
+                </ul>
+            </div>
+			
+           <!-- <div class="i_img">
+            <div class="i_icon">
+        		<img src="images/t.gif" alt="">
+				<ul>
+               		 <p>
+               			￥208.00
+               		</p>
+                    <li>
+                    	<dl>
+                        	<dd>￥245.00</dd>
+                            <dt>
+                            已售 
+                            </dt>
+                        </dl>
+                    </li>
+                </ul>
+				</div>
+             <span>介绍介绍介绍介绍介绍介绍介绍介绍</span>
+            </div>-->
+            
+            </div>
+        <div class="chanpin">
+   	  <ul>
+   	  <volist name="data['rows']" id="list">
+   	  <a  alt="<{$list.Name}>" href="<{:U('Drugs/xiangqing',array('vid'=>$list['VipId'],'unid'=>$list['UnId'],'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'name'=>$list['Name']))}>">
+        	<li>
+            	<img height="120" src="<if condition="$list.Pic eq ''">/Public/wap/drugs/images/t.gif<else /><?php  echo  C("img_url").$list['Pic']; ?></if>" >
+            	<span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><{$list.Name}></span>
+                <p><b style="margin-left:25%;">￥<{$list.JiaGe}></b>    </p>
+            </li></a></volist>
+            <!-- <li>
+            	<a href="html/xiangqing.html"><img src="images/t1.gif"></a>
+            	<span>【品冠】维生素c 美容、素c 美容、排毒</span>
+              <p><b>￥23.30</b>     <i> ￥233</i>    </p>
+          </li>
+            
+        	<li>
+            	<a href="html/xiangqing.html"><img src="images/t2.gif"></a>
+            	<span>【品冠】维生素c 美容、素c 美容、排毒</span>
+              <p><b>￥23.30</b>     <i> ￥233</i>    </p>
+            </li>
+          <li>
+            	<a href="html/xiangqing.html"><img src="images/t3.gif"></a>
+            	<span>【品冠】维生素c 美容、素c 美容、排毒</span>
+              <p><b>￥23.30</b>     <i> ￥233</i>    </p>
+            </li> -->
+        </ul>
+    </div>
+        </div>
+    </div>
+
+</div>
+<div class="abc"></div>
+<include file="footer" />
+</div>
+</body>
+</html>

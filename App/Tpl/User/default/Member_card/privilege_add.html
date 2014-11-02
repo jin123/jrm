@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新增会员相关特权_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script charset="utf-8" src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script>
+KindEditor.ready(function(K) {
+		window.editor = K.create('textarea[id="editor_id"]');
+	});					
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">新增会员相关特权</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">新增会员特权 <span class="FAQ">填写一些长期不变的会员卡优惠特权信息</span><a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form method="post" action="" enctype="multipart/form-data">
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <td width="16%" class="table_txt_right">特权名称：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" name="title" value="<{$vip.title}>" style="width:670px"></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">选择人群：</td>
+              <td width="84%">
+                <label><input name="group" type="radio" id="CheckboxGroup1_0" value="1"<if  condition="$vip['group'] eq 1">checked="checked"</if>>所有会员</label>
+                <label><input type="radio" name="group" value="2" id="CheckboxGroup1_1"<if  condition="$vip['group'] eq 2">checked="checked"</if>>普通会员</label>
+                <label><input type="radio" name="group" value="3" id="CheckboxGroup1_2" <if  condition="$vip['group'] eq 3">checked="checked"</if>>银卡会员</label>
+                <label><input type="radio" name="group" value="4" id="CheckboxGroup1_3" <if  condition="$vip['group'] eq 4">checked="checked"</if>>金卡会员</label>
+                <label><input type="radio" name="group" value="5" <if  condition="$vip['group'] eq 5">checked="checked"</if>>钻石会员</label>
+              </td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">有效期：</td>
+			  <td width="84%">
+                <label> <input name="type" type="radio" id="RadioGroup1_1" onclick="document.getElementById('cktime').style.display='none';" value="1" <if  condition="$vip['statdate'] eq false">checked="checked"</if>>无时间期限</label>
+                <label> <input name="type" type="radio" id="RadioGroup1_0"<if  condition="$vip['statdate'] neq false">checked="checked"</if>                onclick="document.getElementById('cktime').style.display='';;" value="0">选择时间期限</label>
+              </td>
+            </tr>
+            <tr id="cktime"<if  condition="$vip['statdate'] eq false">style="display:none"</if>>
+               <td></td>
+               <td><input type="input" class="px" id="statdate" value="<if condition="$vip['statdate'] neq false"><{$vip.statdate|date="Y-m-d H:i:s",###}></if>" onClick="WdatePicker()" name="statdate"> （含）到<input type="input" class="px" id="enddate" name="enddate" value="<if condition="$vip['enddate'] neq false"><{$vip.enddate|date="Y-m-d H:i:s",###}></if>" onClick="WdatePicker()">（含） </td>
+          </tr>
+          <tr>
+            <th  width="16%" class="table_txt_right">使用说明：</th>
+            <td><textarea name="info" id="editor_id" rows="5" style="width:680px;height:360px;"> <{$vip.info}>  </textarea></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+              <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+          </tbody>
+          
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

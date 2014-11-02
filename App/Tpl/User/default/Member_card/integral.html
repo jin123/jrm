@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新增会员相关特权_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/cart/jscolor.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">新增礼品券</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">会员礼品礼品券</div>
+      <div class="new_main_tit pt10"> <a href="<{:U('Member_card/privilege',array('id'=>$thisCard['id']))}>" title="查看会员特权" class="btnGrayS vm bigbtn"> <img src="__PUBLIC__/images/cart_info/power1.png" width="24px" class="vm"> 查看会员特权 </a> 　<a href="<{:U('Member_card/coupon',array('id'=>$thisCard['id']))}>" title="查看优惠券" class="btnGrayS vm bigbtn"> <img src="__PUBLIC__/images/cart_info/power2.png" width="24px" class="vm"> 查看优惠券 </a>　 <a class="btnGrayS vm bigbtn" href="<{:U('Member_card/integral_edit',array('id'=>$thisCard['id']))}>" title="新增礼品券"> <img src="__PUBLIC__/images/cart_info/power3.png" width="24px" class="vm"> 新增礼品券 </a>　 </div>
+    </div>
+    <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <thead>
+        <tr>
+            <th>选择</th>
+            <th>标题</th>
+            <th>使用次数</th>
+            <th>创建时间</th>
+            <th>过期时间</th>
+            <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+    <volist name="data_vip" id="data_vip">           
+    <tr>
+        <td>  <input type="checkbox" name="del_id[]" value="" class="checkitem"></td>
+        <td><div class="answer_text"><{$data_vip.title}></div></td>
+        <td><{$data_vip.usetime}></td>
+        <td><if condition="$data_vip['type'] eq 1">无时间限制<else/><{$data_vip.statdate|date='Y-m-d',###}></if></td>
+        <td><if condition="$data_vip['type'] eq 1">无时间限制<else/><{$data_vip.enddate|date='Y-m-d',###}></if></td>
+        <td class="norightborder">
+        <a href="<{:U('Member_card/useRecords',array('id'=>$thisCard['id'],'type'=>'integral','itemid'=>$data_vip['id']))}>">使用统计</a> 
+        <a href="<{:U('Member_card/integral_edit',array('id'=>$thisCard['id'],'itemid'=>$data_vip['id']))}>">编辑</a> <a href="<{:U('Member_card/integral_del',array('itemid'=>$data_vip['id'],'id'=>$thisCard['id']))}>">删除</a>
+        </td>
+    </tr>
+    </volist>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

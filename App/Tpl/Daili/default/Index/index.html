@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+</head>
+<body>
+<div class="sitebar">
+  <div class="sitebar_logo"><img src="__PUBLIC__/images/logo2.png"></div>
+  <div class="sitebar_meun"> 
+  <a href="<{:U('Index/index')}>" class="b">首页</a>
+  <a href="<{:U('Kehu/index')}>">用户管理</a>
+  <a href="<{:U('Account/index')}>">扣除记录</a>
+  <a href="<{:U('Payrecord/index')}>">充值记录</a>
+  <a href="<{:U('Pay/index')}>">账户充值</a>
+  
+  </div>
+  <div class="sitebar_guan"> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0023_home2.png">首页</a> <a href="<{:U('Index/index')}>"><img src="__PUBLIC__/images/MB_0024_LOCK.png">账户</a> <a href="<{:U('Login/logout')}>"><img src="__PUBLIC__/images/MB_0019_shut-down.png">退出</a> </div>
+</div>
+<div class="spliter"></div>
+<div class="content1">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/index')}>">首页</a><span class="wap_span_2">后台管理</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.logindailiName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="reg_form_zl">
+      <div style="float:right;padding-right:30px;">已经创建用户：<a href="<{:U('Kehu/index')}>" style='color:#FF0000;font-weight:bold;'><{$dinfo.dlnums}></a></div>
+      <h4>管理资料：</h4>
+    </div>
+    <table class="new_main_ziliao">
+      <tr>
+        <td width="15%" class="table_txt_right">用户姓名：</td>
+        <td width="85%"><{$Think.session.logindailiName}></td>
+      </tr>
+      <tr>
+        <td width="15%" class="table_txt_right">账户级别：</td>
+        <td width="85%"><{$dinfo['account']}>￥(元)</td>
+      </tr>
+      <tr>
+        <td width="15%" class="table_txt_right">账户余额：</td>
+        <td width="85%"><{$linfo['name']}>用户</td>
+      </tr>
+      <tr>
+        <td class="table_txt_right">登录&nbsp;&nbsp;&nbsp;IP：</td>
+        <td><{$dinfo['loginip']}></td>
+      </tr>
+      <tr>
+        <td class="table_txt_right">最后登录时间：</td>
+        <td><{$dinfo['logintime']|date='Y-m-d H:m:s',###}></td>
+      </tr>
+     </table>
+     <div class="reg_form_zl">
+      <h4>技术支持信息</h4>
+    </div>
+    <form action="<{:U('Index/edit')}>" method='post' name='form2' onsubmit="return checkSubmit();">
+      <table class="new_main_ziliao">
+        <tr>
+          <td width="15%" class="table_txt_right">技术支持</td>
+          <td width="85%"><input name="copy" type="text" value="<{$dinfo.copy}>" class="input login_input_1">
+     
+          显示文本</td>
+        </tr>
+        <tr>
+          <td width="15%" class="table_txt_right">连接地址</td>
+          <td width="85%"><input name="url" type="text" value="<{$dinfo.url}>" class="input login_input_1">
+         </td>
+        </tr>
+        <tr>
+          <td width="15%" class="table_txt_right">代理商Logo</td>
+          <td width="85%"><input name="logo" type="text" id="logo" value="<{$dinfo.logo}>" class="input login_input_1">
+           <strong class="input_ts_y">
+             <a href="javascript:void(0)" onclick="upyunPicUpload('logo',700,420)" class="btnGreen">选择图片</a>
+              </strong></td>
+        </tr>
+      </table>
+      <div class="new_main_button">
+        <input type="hidden" name="id" value="<{$dinfo['id']}>"/>
+        <button class="button_g_1" style=" width:250px; margin-top:15px;">修改资料</button>
+      </div>
+    </form>
+    <div class="reg_form_zl">
+      <h4>修改登录密码：</h4>
+    </div>
+    <form action="" method='post' name='form2' onsubmit="return checkSubmit();">
+      <table class="new_main_ziliao">
+        <tr>
+          <td width="15%" class="table_txt_right">新密码：</td>
+          <td width="85%"><input name="userpwd" type="password" id="userpwd" class="input login_input_1">
+            <strong class="input_ts_y" style="color:red;">(不修改密码请保留此项为空)</strong></td>
+        </tr>
+        <tr>
+          <td width="15%" class="table_txt_right">确认新密码：</td>
+          <td width="85%"><input name="userpwdok" type="password" id="userpwdok" class="input login_input_1">
+            <strong class="input_ts_y" style="color:red;">(不修改密码请保留此项为空)</strong></td>
+        </tr>
+        <tr>
+          <td width="15%" class="table_txt_right">原登录密码：</td>
+          <td width="85%"><input name="oldpwd" type="password" class="input login_input_1" id="oldpwd">
+            <strong class="input_ts_y" style="color:red;">*(请填入原密码修改资料)</strong></td>
+        </tr>
+      </table>
+      <div class="new_main_button">
+        <input type="hidden" name="id" value="<{$dinfo['id']}>"/>
+        <button class="button_g_1" style=" width:250px; margin-top:15px;">修改密码</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线开卡_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/cart/jscolor.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">在线开卡</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">创建会员卡号　<span style="color:red;font-size:16px;font-weight:normal;">此会员卡号,会员领取一张，这里将会少一张,当全部被领取完了,请再次开卡</span></div>
+    <div class="new_main_tit pt10">
+    <a href="<{:U('Member_card/create_add',array('id'=>$id))}>" title="创建会员卡号" class="btnGrayS vm bigbtn"> 创建会员卡号</a>&nbsp;&nbsp;
+    <a href="javascript:void (0);" onclick="if(confirm('确定删除吗')){$('#info').submit()}" class="btnGrayS vm bigbtn"> 删除 </a>
+    &nbsp;&nbsp;<span style="font-size:16px;font-weight:normal;">已经领取 <span style="color:red"><{$usecount}></span> 张，剩余<span style="color:red"> <{$ucount}> </span>张未领取，一共 <span style="color:red"> <{$count}> </span>张</span></div>
+    <form method="post" action="" id="info">
+      <input name="delall" type="hidden" value="del">
+      <input name="wxid" type="hidden" value="gh_423dwjkewad">
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th class="select"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+            <th class="category">会员卡号</th>
+            <th class="edit norightborder">状态</th>
+            <th class="category">会员资料</th>
+          </tr>
+        </thead>
+        <tbody>
+          <volist name="data_vip" id="data_vip">
+            <tr>
+              <td><input type="checkbox" value="<{$data_vip.id}>" class="cbitem" name="id_<{$i}>"></td>
+              <td><div class="answer_text"><{$data_vip.number}></div></td>
+              <td class="norightborder"><!--a href="">使用统计</a-->
+                <if condition="$data_vip['wecha_id'] eq false">空闲卡
+                  <else/>
+                  <strong>使用中</strong></if>
+              </td>
+              <td><if condition="$data_vip['wecha_id'] neq false"> <a href="<{:U('Member_card/getuserinfo',array('id'=>$data_vip['wecha_id']))}>">查看详情</a> </if>
+              </td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+    </form>
+    <div class="pagelistbox"><{$page}></div>
+  </div>
+</div>
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script> 
+</body>
+</html>

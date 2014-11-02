@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>景点设置_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/validate.css" />
+<script src="__PUBLIC__/js/easy_validator.pack.js"></script>
+<script src="__PUBLIC__/js/jquery-1.4.2.min.js"></script>
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script>
+function sceneryname(){
+	if (document.form.name.value.length == 0) {  
+		alert('景点名称不能为空');
+		document.form.name.focus(); 
+		return false; 
+		} 
+		return true;
+}
+function scenerygjz(){
+	if (document.form.gjz.value.length == 0) {  
+		alert('关键词不能为空');
+		document.form.gjz.focus(); 
+		return false; 
+		} 
+		return true;
+}
+function sceneryms(){
+	if (document.form.ms.value.length >300 ) {  
+		alert('景区介绍最多不能超过300个字。');
+		document.form.ms.focus(); 
+		return false; 
+		} 
+		return true;
+}
+</script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">景点设置</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">景点设置<a href="<{:U('/Lvyou/scenerylist/id/'.$id)}>"><span class="button_r_1 fabu">返回</span></a></div>
+    <div class="a"> </div>
+    <form class="form" name="form" method="post"   action=""  target="_top" enctype="multipart/form-data" >
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="26%" class="table_txt_right">景点名称：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="names" onblur="sceneryname();" value="<{$vo.names}>" name="names" style="width:300px" >
+              <span class="red">*</span> <span class="help-inline">最多只能输入30个字符。</span></td>
+          </tr>
+          <tr>
+            <td width="26%" class="table_txt_right">关键词：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="gjz" onblur="sceneryname();" value="<{$vo.gjz}>" name="gjz" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <!-- <tr>
+              <td width="16%" class="table_txt_right">所属景区：</td>
+              <td width="84%">
+              <select name="bid" class="selectoption"> 
+      		  	
+      		  		<option value="0">请选择所属景区</option>
+      		  		<volist name="list" id="bid">
+					 <option value="<{$bid['bid']}>">
+					 <{$bid['name']}>
+					 </option>
+				</volist> 
+				</select>
+              </td>
+            </tr> -->
+          <tr>
+            <td width="16%" class="table_txt_right">简要描述：</td>
+            <td width="84%"><input onkeydown="onlyNum();" type="input" class="input login_input_1" id="jianyaoms" value="<{$vo.jianyaoms}>" name="jianyaoms" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">景点描述：</td>
+            <td width="84%"><input onkeydown="onlyNum();" type="input" class="input login_input_1" id="ms" value="<{$vo.ms}>" name="ms" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">显示顺序：</td>
+            <td width="84%"><input onkeydown="onlyNum();" type="input" class="input login_input_1" id="sort" value="<{$vo.sort}>" name="sort" style="width:300px" >
+              <span class="red">*</span> <span class="help-inline">数值越大越靠前</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">景点介绍：</td>
+            <td width="84%"><input onkeydown="onlyNum();" type="input" class="input login_input_1" id="jieshao" value="<{$vo.jieshao}>" name="jieshao" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">景点图片：</td>
+            <td><input class="input login_input_1" name="pic" id="pic" value="<{$vo.pic}>" style="width:270px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('pic',700,420)" class="btnGreen">选择图片</a> <a href="javascript:void(0)" onclick="viewImg('pic')" class="btnGreen">图片预览</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="button_r_1" type="submit" style=" width:130px; margin-top:15px;">提交</button>
+              <button class="button_g_1" type="reset" style=" width:130px; margin-top:15px; margin-left:20px;">重填</button></td>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+<script language="javascript">
+	function test(){
+		if(document.form.name.value.lenght>30)
+		{
+			alert("最多只能输入30个字符！");
+			document.from.name.focus();
+			return false;
+		}
+		return true;
+	}
+	
+	function onlyNum()
+	{
+	if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+	//考虑小键盘上的数字键
+	event.returnvalue=false;
+	}
+
+
+
+</script>
+</body>
+</html>

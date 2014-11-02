@@ -1,0 +1,408 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>购物车</title>
+<link href="__PUBLIC__/wap/drugs/css/style.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link href="__PUBLIC__/wap/drugs/css/jquery.alerts.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/drugs/js/jquery.alerts.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/jscript"></script>
+<script>
+$(function(){
+	allch();
+})
+function ch(id){
+	if($('.yao_'+id).attr('checked')=='checked'){
+		$('#allprice').html((Number($('#allprice').html())+Number($('.price_'+id).html())*Number($('.text_box_'+id).val())).toFixed(2));
+		
+	}else{
+		$('#allprice').html((Number($('#allprice').html())-Number($('.price_'+id).html())*Number($('.text_box_'+id).val())).toFixed(2));
+		$('#CheckboxGroup1_0').attr('checked','false');
+	}
+}
+function allch(){
+	if($('#CheckboxGroup1_0').attr('checked')=='checked'){
+		$('#allprice').html(allnum());	
+	}else{
+		//$('#allprice').html('0');
+	}
+}
+function allnum(){
+	$num=0;
+	for($i=0;$i<$('.yao').length;$i++){
+		id=$('.yao').eq($i).val();
+		$num+=Number($('.price_'+id).html())*Number($('.text_box_'+id).val());
+	}
+	return $num.toFixed(2);
+}
+function main(id){
+	if($('.yao_'+id).attr('checked')=='checked'){
+		if($('.text_box_'+id).val()>1){
+			$('.text_box_'+id).val(Number($('.text_box_'+id).val())-1);
+			$('#allprice').html((Number($('#allprice').html())-Number($('.price_'+id).html())).toFixed(2));
+            var url = "/index.php?s=Wap/Drugs/add_sum/";
+		    var flag = "id="+id+"&sum="+(Number($('.text_box_'+id).val()));
+		
+		$.post(url,flag,function(res){
+
+	   });
+		}
+	}
+}
+function add(id){
+	if($('.yao_'+id).attr('checked')=='checked'){
+		$('.text_box_'+id).val(Number($('.text_box_'+id).val())+1);
+		var url = "/index.php?s=Wap/Drugs/add_sum/";
+		var flag = "id="+id+"&sum="+(Number($('.text_box_'+id).val()));
+		//alert(flag);
+		$.post(url,flag,function(res){
+
+	   });
+		$('#allprice').html((Number($('#allprice').html())+Number($('.price_'+id).html())).toFixed(2));
+	}
+}
+function up(id){
+	if($('.yao_'+id).attr('checked')=='checked'){
+		allnum();
+	}
+}
+/*
+$(function(){ 
+$('#allprice').html((Number($('.price2').html())*Number($('.text_box2').val())+Number($('.price').html())*Number($('.text_box1').val())).toFixed(2));	
+$(".add").click(function(){
+if($('.yao').attr('checked')=='checked'){
+var url = "/index.php?s=Wap/Drugs/add_sum/";
+var t=$(this).parent().find('input[class*=text_box]'); 
+var id = $(this).data("id");
+var flag = "id="+id+"&sum="+(parseInt(t.val())+1);
+$.post(url,flag,function(res){
+
+});
+t.val(parseInt(t.val())+1); 
+setTotal(); 
+}
+}) 
+$(".min").click(function(){ 
+var url = "/index.php?s=Wap/Drugs/add_sum/";
+var t=$(this).parent().find('input[class*=text_box]'); 
+if(t.val()==1){ return; }
+var id = $(this).data("id");
+var flag = "id="+id+"&sum="+(parseInt(t.val())-1);
+$.post(url,flag,function(res){
+
+});
+t.val(parseInt(t.val())-1) 
+if(parseInt(t.val())<0){ 
+t.val(0); 
+} 
+setTotal(); 
+}) 
+function setTotal(){ 
+var s=0; 
+$("#tab td").each(function(){ 
+s+=parseInt($(this).find('input[class*=text_box]').val())*parseFloat($(this).find('span[class*=price]').text());
+}); 
+$("#total").html(s.toFixed(2)); 
+} 
+setTotal(); 
+
+}) 
+*/
+</script>
+</head>
+
+<body>
+<div id="body">
+<div id="hui" style="filter:alpha(opacity=60);-moz-opacity:0.6;opacity: 0.6; width:100%; height:100%; margin:0; position: absolute;background:#000; z-index:300;display:none;"></div>
+<div class="box">
+<div class="gou_che">
+<div class="gou_center">
+<form action="" method="post" id="form1">
+<?php if($data!=Null){ ?>
+		<volist name="data" id="list">
+	    	<div id="remove_<{$list.id}>" class="gou_center_a">
+	      	  <ul>
+	        	<i><input checked="checked" onclick="ch(<{$list.id}>);" class="yao yao_<{$list.id}>" type="checkbox" id="chebox" name="id[]" id="id[]" value="<{$list.id}>"></i>
+	             <a href="<{:U('Drugs/xiangqing',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'vid'=>$list['vid'],'unid'=>$list['pid']))}>">
+	             <h4><img width="55" height="55" src="<if condition="$list.Pic eq ''">/Public/wap/drugs/images/coursedisplay.gif<else /><?php  echo  C("img_url").$list['Pic']; ?></if>"></h4>
+	             <p><{$list.Name}></p></a>
+	         </ul>
+	         <ol>
+	         	<i><b>￥</b><font class="price_<{$list.id}>"><{$list.JiaGe}></font></i>
+	         	<li>       
+				<button data-id="<{$list.id}>" class="min" onclick="main(<{$list.id}>);" ontouchstart=""  name="" type="button" value="+">- </button> 
+				<input class="text_box text_box_<{$list.id}>" name="" type="text" onchange="up(<{$list.id}>);" value="<{$list.Sum}>" />  
+				<button data-id="<{$list.id}>" class="add" onclick="add(<{$list.id}>);" ontouchstart=""  name="" type="button" value="+">+ </button>  
+               
+	         </ol>
+			 
+	        </div>
+         </volist>
+         <div class="pagelistbox" style="text-align:center;"> <{$page}></div>
+        <div class="gou_shanchu" style="position:fixed; bottom:100px;background:#fff;width:100%;">
+        	<div class="gou_sc">
+          <p> <a onclick="delgouwuche(<{$list.id}>);" id="example"><img src="__PUBLIC__/wap/drugs/images/delete.png" width="24" height="34"></a></p>
+                 
+                    <span>共<{$count}>件商品    合计：<b>￥<font id="allprice"><?php echo $count_money; ?></font></b></span>
+				
+            </div>
+        </div>
+
+		<div class="abc"></div>
+		<div class="gwctj" style="bottom:50px;">
+			<ul>
+			<li>
+			 <input class="checkAll" onclick="allch();" type="checkbox"  name="CheckboxGroup1" id="CheckboxGroup1_0">
+			 <p>全选</p>
+			</li>
+			</ul>
+			<ol>
+			
+			<p>
+			<button class="dobug" id="x1" ontouchstart=""  name="" type="button">结算 </button>
+			</p>
+     <!--  <p>
+			<a  id="x1" href="/index.php?s=Wap/Drugs/index/&token=<?php echo $_GET['token']; ?>&wecha_id=<?php echo $_GET['wecha_id']; ?>" class="dobug" id="x1" ontouchstart=""  name="" >继续购物 </a>
+			</p>-->
+			</ol>
+		</div>
+		<?php }else{ ?>
+		<div style="text-align:center;line-height:100px;font-size:16px;">您的购物车空空如也</div>
+		<?php } ?>
+
+</form>
+</div>
+    </div>
+		<include file="footer" />
+		
+		
+</div>
+</div>
+   <script>
+		$(function(){
+			var l = ($(window).width() - $('#LoginBox').width())/2;
+		var t = $(document).scrollTop() + ($(window).height() - $('#LoginBox').height()) / 2;
+		$('#LoginBox').css({top:t,left:l});
+		})
+
+		
+
+
+
+	function delgouwuche(){
+		 var id = '';
+		// var ids = 0;
+		 $(".yao").each(function(i,v){
+			 if($(v).attr('checked')){
+			 id+=","+$(v).val();
+			 }
+			 
+		 });
+		 if(id==""){
+		 
+		     jAlert('当前没有可删除的药品','提示');
+		     return;
+		 
+		 }
+	//	 window.confirm('确认删除改选项');
+		
+		 jConfirm('确认删除选中的药品',"警告",function(fun){
+		 
+		       if(fun==true){
+		       
+		         // 	var id = $(this).attr("data-id");
+		var url ="/index.php?s=/Wap/Drugs/del/id/"+id;
+		$.ajax({
+			   type: "POST",       
+			   url: url,
+			   data: $("#form1").serialize(),
+			   dataType: "json",
+			   success: function(data){
+
+				if(data.error==0){
+					location.reload();
+					//jAlert(data.msg,'提示');
+					$("#remove_"+id).remove();
+				}
+				   
+				
+			   }
+			});
+		       
+		       }
+		 
+		 });
+		 return;
+	/*	 $("#LoginBox").show();
+		 $("#example").stop().animate({
+				opacity: '0.6'
+			}, 1000);
+		 $("#hui").show();
+
+		 $("#qr").attr("data-id",id);*/
+	}	
+
+	
+</script>
+	<script type="text/javascript">
+	$("#qr").live('click',function(){
+		var id = $(this).attr("data-id");
+		var url ="/index.php?s=/Wap/Drugs/del/id/"+id;
+
+		$("#LoginBox").fadeOut("fast");
+		$("#mask").css({ display: 'none' });
+		$("#remove_"+id).remove();
+		$.ajax({
+			   type: "POST",       
+			   url: url,
+			   data: $("#form1").serialize(),
+			   dataType: "json",
+			   success: function(data){
+
+				if(data.error==0){
+					location.reload();
+					//jAlert(data.msg,'提示');
+					$("#remove_"+id).remove();
+				}
+				   
+				
+			   }
+			});
+		
+	});
+	$("#qx").live('click',function(){
+		
+		$("#LoginBox").fadeOut("fast");
+		$("#hui").css({ display: 'none' });
+		
+	});
+	$(function ($) {
+		//文本框不允许为空---按钮触发
+		$("#loginbtn").on('click', function () {
+			var txtName = $("#txtName").val();
+			var txtPwd = $("#txtPwd").val();
+			if (txtName == "" || txtName == undefined || txtName == null) {
+				if (txtPwd == "" || txtPwd == undefined || txtPwd == null) {
+					$(".warning").css({ display: 'block' });
+				}
+				else {
+					$("#warn").css({ display: 'block' });
+					$("#warn2").css({ display: 'none' });
+				}
+			}
+			else {
+				if (txtPwd == "" || txtPwd == undefined || txtPwd == null) {
+					$("#warn").css({ display: 'none' });
+					$(".warn2").css({ display: 'block' });
+				}
+				else {
+					$(".warning").css({ display: 'none' });
+				}
+			}
+		});
+		//文本框不允许为空---单个文本触发
+		$("#txtName").on('blur', function () {
+			var txtName = $("#txtName").val();
+			if (txtName == "" || txtName == undefined || txtName == null) {
+				$("#warn").css({ display: 'block' });
+			}
+			else {
+				$("#warn").css({ display: 'none' });
+			}
+		});
+		$("#txtName").on('focus', function () {
+			$("#warn").css({ display: 'none' });
+		});
+		$("#txtPwd").on('blur', function () {
+			var txtName = $("#txtPwd").val();
+			if (txtName == "" || txtName == undefined || txtName == null) {
+				$("#warn2").css({ display: 'block' });
+			}
+			else {
+				$("#warn2").css({ display: 'none' });
+			}
+		});
+		$("#txtPwd").on('focus', function () {
+			$("#warn2").css({ display: 'none' });
+		});
+		//关闭
+		$(".close_btn").live('click',function () {
+			$("#LoginBox").fadeOut("fast");
+		$("#hui").css({ display: 'none' });
+		});
+	});
+	</script>	
+<script src="/Public/js/jquery.js"></script>
+<script>
+  $(".checkAll").click(function(){
+  var id_checked = $(".checkAll").attr("checked");
+       $(".yao").each(function(i,v){
+		   if(id_checked){
+		       $(v).attr("checked",true);
+		  }
+		  else{
+		   $(v).attr("checked",false);
+		  
+		  
+		  }
+	   
+	   });
+  
+  });
+$(".dobug").click(function(){
+     var id = '';
+	 var url = "/index.php?s=Wap/Drugs/dobug&wecha_id=<?php echo $_GET['wecha_id']; ?>";
+     $(".yao").each(function(i,v){
+	 
+	      var id_checked = $(v).attr("checked");
+		  if(id_checked){
+		       
+		     id+=","+$(v).val();
+		  
+		  }
+	 
+	 });
+	 if(id==""){
+	 
+	    jAlert("请勾选你要结算的商品");
+		return;
+	 
+	 }
+	 var flag = "ids="+id;
+	 $.post(url,flag,function(json){
+	 
+	        var  txt = $.parseJSON(json);
+			if(txt['error']==1){
+			  // jAlert("购买成功，请填写个人信息",'提示',function(){
+			   
+			     location.href="/index.php?s=Wap/Drugs/edit_info/wecha_id/<?php echo $_GET['wecha_id']; ?>/token/<?php echo $_GET['token']; ?>";
+			  /// }); 
+			   
+			}
+			else{
+			
+			jAlert("购买失败",'提示',function(){
+			
+			
+			
+			});
+			return;
+			
+			}
+	 
+	 
+	 });
+
+});
+</script>
+
+</body>
+
+</html>

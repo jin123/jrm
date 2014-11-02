@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>旅游区简介_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script>
+/*function indexname(){
+	if (document.form.name.value.length == 0) {  
+		alert('标题不能为空');
+		document.form.name.focus(); 
+		return false; 
+		} 
+		return true;
+}
+function indexgjz(){
+	if (document.form.gjz.value.length == 0) {
+		alert('关键词不能为空');
+		document.form.gjz.focus(); 
+		return false; 
+		} 
+		return true;
+}
+function addr(){
+	if (document.form.addr.value.length == 0) {
+		alert('地理位置不能为空');
+		document.form.addr.focus(); 
+		return false; 
+		} 
+		return true;
+}*/
+</script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="Admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">旅游区简介</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit pt10">旅游区简介<a href="<{:U('Lvyou/index')}>"><span class="a"></span></a></div>
+    <div class="a"> </div>
+    <form class="form" name="form" method="post"   action=""  target="_top" enctype="multipart/form-data" >
+      <input type="hidden"   value="<{$vo.id}>" name="id" />
+      <input type="hidden"   value="<{$aa}>" name="lid" />
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="26%" class="table_txt_right">图文消息标题：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="name" reg="^\w+$" tip="不能为空" onblur="indexname();" value="<{$vo.name}>" name="name" style="width:300px" >
+              <span class="red">*</span> <span class="help-inline">触发关键词后返回的图文消息标题 </span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">图文消息触发关键词：</td>
+            <td width="84%"><input onkeydown="onlyNum();" type="input" reg="^\w+$" tip="不能为空" onblur="indexgjz();" class="input login_input_1" id="gjz" value="<{$vo.gjz}>" name="gjz" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">图文消息封面：</td>
+            <td><input class="input login_input_1" name="pic" id="pic" value="<{$vo.pic}>" style="width:300px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('pic',700,420)" class="btnGreen">选择图片</a> <a href="javascript:void(0)" onclick="viewImg('pic')" class="btnGreen">图片预览</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">旅游区头部图片：</td>
+            <td><input class="input login_input_1" name="headpic" id="headpic" value="<{$vo.headpic}>" style="width:300px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('headpic',700,420)" class="btnGreen">选择图片</a> <a href="javascript:void(0)" onclick="viewImg('headpic')" class="btnGreen">图片预览</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">景点头部图片：</td>
+            <td><input class="input login_input_1" name="apartpic" id="apartpic" value="<{$vo.apartpic}>" style="width:300px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('apartpic',700,420)" class="btnGreen">选择图片</a> <a href="javascript:void(0)" onclick="viewImg('apartpic')" class="btnGreen">图片预览</a></td>
+          </tr>
+          <tr>
+            <td width="26%" class="table_txt_right">地理位置：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="addr" reg="^\w+$" tip="不能为空" onblur="addr();" value="<{$vo.addr}>" name="addr" style="width:300px" ></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">获取经纬度：</td>
+            <td width="84%"><a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">获取经纬度：</td>
+            <td width="84%"><input type="text" id="longitude"  name="jd" size="14" class="input login_input_1" value="<{$vo.jd}>" readonly="readonly" />
+              <input type="text"  name="wd" size="14" id="latitude" class="input login_input_1" value="<{$vo.wd}>" readonly="readonly"/></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">服务理念简介：</td>
+            <td width="74%"><textarea name="jianjie" style="width:570px;height:102px;"  maxlength="100"  class="input login_input_1"><{$vo.jianjie}>
+               </textarea>
+              <span class="red">*</span> <span class="help-inline">最多为300个字符。</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">旅游区简介：</td>
+            <td width="74%"><textarea name="xiangmu" id="xiangmu" style="width:570px;height:102px;" maxlength="100" class="input login_input_1" ><{$vo.xiangmu}>
+             </textarea>
+              <span class="red">*</span> <span class="help-inline">最多为300个字符。</span></td>
+          </tr>
+          <tr>
+            <td width="16%" class="table_txt_right">服务配套：</td>
+            <td width="74%"><div style="margin:5px 0 10px;">
+                <textarea name="jiaotong"  style="width:570px;height:102px;" maxlength="100" class="input login_input_1"><{$vo.jiaotong}>
+			       </textarea>
+              </div></td>
+          </tr>
+          <tr>
+            <td width="26%" class="table_txt_right"> 旅游预约：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="yy_arr" onsubmit="return test()" value="<{$vo.yy_arr}>" name="yy_arr" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="26%" class="table_txt_right">旅游新闻：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="xw_arr" onsubmit="return test()" value="<{$vo.xw_arr}>" name="xw_arr" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="26%" class="table_txt_right">旅游游客：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="hy_arr" onsubmit="return test()" value="<{$vo.hy_arr}>" name="hy_arr" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="26%" class="table_txt_right">联系电话：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="tel" onsubmit="return test()" value="<{$vo.tel}>" name="tel" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <tr>
+            <td width="26%" class="table_txt_right">链接地址：</td>
+            <td width="74%"><input type="input" class="input login_input_1" id="linkurl" onsubmit="return test()" value="<{$vo.linkurl}>" name="linkurl" style="width:300px" >
+              <span class="red">*</span></td>
+          </tr>
+          <!-- <tr><td><p>行业版底部导航设置</p></td></tr>
+            <tr>
+              <td width="26%" class="table_txt_right">简介名称：</td>
+              <td width="74%"><input type="input" class="input login_input_1" id="jjname" onsubmit="return test()" value="<{$vo.jjname}>" name="jjname" style="width:300px" > 
+              <span class="red">*</span>
+		      <span class="help-inline">导航1</span>
+              </td>
+            </tr>
+            <tr>
+              <td width="26%" class="table_txt_right">相册名称：</td>
+              <td width="74%"><input type="input" class="input login_input_1" id="xcname" onsubmit="return test()" value="<{$vo.xcname}>" name="xcname" style="width:300px" > 
+              <span class="red">*</span>
+		      <span class="help-inline">导航2</span>
+              </td>
+            </tr>
+            <tr>
+              <td width="26%" class="table_txt_right">景点名称：</td>
+              <td width="74%"><input type="input" class="input login_input_1" id="hxname" onsubmit="return test()" value="<{$vo.hxname}>" name="hxname" style="width:300px" > 
+              <span class="red">*</span>
+		      <span class="help-inline">导航3</span>
+              </td>
+            </tr>
+            <tr>
+              <td width="26%" class="table_txt_right">印象名称：</td>
+              <td width="74%"><input type="input" class="input login_input_1" id="yxname" onsubmit="return test()" value="<{$vo.yxname}>" name="yxname" style="width:300px" > 
+              <span class="red">*</span>
+		      <span class="help-inline">导航4</span>
+              </td>
+            </tr>
+            <tr>
+              <td width="26%" class="table_txt_right">新闻名称：</td>
+              <td width="74%"><input type="input" class="input login_input_1" id="xwname" onsubmit="return test()" value="<{$vo.xwname}>" name="xwname" style="width:300px" > 
+              <span class="red">*</span>
+		      <span class="help-inline">导航5</span>
+              </td>
+            </tr>
+            <tr>
+              <td width="26%" class="table_txt_right">预约名称：</td>
+              <td width="74%"><input type="input" class="input login_input_1" id="yyname" onsubmit="return test()" value="<{$vo.yyname}>" name="yyname" style="width:300px" > 
+              <span class="red">*</span>
+		      <span class="help-inline">导航6</span>
+              </td>
+            </tr>
+            <tr>
+              <td width="26%" class="table_txt_right">会员系统名称：</td>
+              <td width="74%"><input type="input" class="input login_input_1" id="hyname" onsubmit="return test()" value="<{$vo.hyname}>" name="hyname" style="width:300px" > 
+              <span class="red">*</span>
+		      <span class="help-inline">导航7</span>
+              </td>
+            </tr>
+            <tr>
+              <td width="26%" class="table_txt_right">联系名称：</td>
+              <td width="74%"><input type="input" class="input login_input_1" id="lxname" onsubmit="return test()" value="<{$vo.lxname}>" name="lxname" style="width:300px" > 
+              <span class="red">*</span>
+		      <span class="help-inline">导航8</span>
+              </td>
+            </tr> -->
+          
+        <td></td>
+          <td><button class="button_r_1" type="submit" style=" width:130px; margin-top:15px;">提交</button>
+            
+            <!--<button class="button_g_1" type="reset" style=" width:130px; margin-top:15px; margin-left:20px;">重填</button></td>-->
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+          </tbody>
+        
+      </table>
+    </form>
+  </div>
+</div>
+<script language="javascript">
+	function test(){
+		if(document.form.name.value.lenght>30)
+		{
+			alert("最多只能输入30个字符！");
+			document.from.name.focus();
+			return false;
+		}
+		return true;
+	}
+	
+	function onlyNum()
+	{
+	if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+	//考虑小键盘上的数字键
+	event.returnvalue=false;
+	}
+
+
+
+</script>
+</body>
+</html>

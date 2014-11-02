@@ -1,0 +1,87 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><{$homeInfo.wxname}></title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel=stylesheet type=text/css href="__PUBLIC__/wap/css/allcss/w58.css">
+<script type=text/javascript src="__PUBLIC__/wap/css/allcss/iscroll.js"></script>
+<script type="text/javascript">
+            var myScroll;
+            function loaded() {
+                myScroll = new iScroll('wrapper', {
+                    snap: true,
+                    momentum: false,
+                    hScrollbar: false,
+                    onScrollEnd: function () {
+                        document.querySelector('#indicator > li.active').className = '';
+                        document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+                    }
+                });
+            }
+            document.addEventListener('DOMContentLoaded', loaded, false);
+</script>
+<META name=GENERATOR content="MSHTML 9.00.8112.16446">
+</HEAD>
+<BODY id='cate7'<if condition="$homeInfo.bg_img neq ''"> style="background:url(<{$homeInfo.bg_img}>)"</if>>
+<div class=banner>
+  <div style="OVERFLOW: hidden" id=wrapper>
+    <div id=scroller>
+      <ul id=thelist>
+        <volist name="flash" id="so">
+          <li style="height:50%">
+            <P><{$so.info}></P>
+            <a href="<{$so.url}>"><IMG src="<{$so.img}>"></a> </li>
+        </volist>
+      </ul>
+    </div>
+  </div>
+  <div id=nav>
+    <div id=prev onClick="myScroll.scrollToPage('prev', 0,400,<{$num-1}>);return false">← prev </div>
+    <ul id=indicator>
+      <volist name="flash" id="so">
+        <LI><{$i}></LI>
+      </volist>
+    </ul>
+    <div id=next onClick="myScroll.scrollToPage('next', 0);return false">next → </div>
+  </div>
+  <div class=clr></div>
+</div>
+<ul class=cateul>
+  <volist name="info" id="vo">
+    <LI class=li0><A href="<if condition="$vo['url'] eq ''"><{:U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}>
+      <else/>
+      <{$vo.url}>
+      </if>
+      ">
+      <div class=menubtn>
+        <div class=menuimg><img src="<{$vo.img}>"> </div>
+        <div class=menutitle><{$vo.name}></div>
+      </div>
+      </A></LI>
+  </volist>
+</ul>
+<div class="clr"></div>
+<script>
+            var count = document.getElementById("thelist").getElementsByTagName("img").length;	
+            for(i=0;i<count;i++){
+                document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:"+document.body.clientWidth+"px";
+            }
+            document.getElementById("scroller").style.cssText = " width:"+document.body.clientWidth*count+"px";
+            setInterval(function(){
+                myScroll.scrollToPage('next', 0,400,count);
+            },3500 );
+            window.onresize = function(){ 
+                for(i=0;i<count;i++){
+                    document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:"+document.body.clientWidth+"px";
+                }
+                document.getElementById("scroller").style.cssText = " width:"+document.body.clientWidth*count+"px";
+            } 
+        </script>
+<div class="copyright">
+  <if condition="$homeInfo.copyright neq ''">版权所有 &copy <{$homeInfo.copyright}>&nbsp;</if>
+</div>
+</BODY>
+</HTML>

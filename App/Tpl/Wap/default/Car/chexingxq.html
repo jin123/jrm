@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/car/common2.css" media="all">
+<title>车辆信息</title><script type="text/javascript">var yyuc_jspath = "/@system/";</script><script type="text/javascript" src="__PUBLIC__/car/jquery.js"></script><script type="text/javascript" src="__PUBLIC__/car/yyucadapter.js"></script>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta name="Keywords" content="">
+        <meta name="Description" content="">
+        <!-- Mobile Devices Support @begin -->
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <style>
+            img{ width:100%!important;}
+        </style>
+        <script type="text/javascript" src="__PUBLIC__/car/swipe.js"></script>
+    </head>
+<body onselectstart="return true;" ondragstart="return false;" class="portrait">
+	<div class="header">
+		<div class="logo">
+		此处可加logo
+		<!--	<img src="__PUBLIC__/car/images/5685c9fc0db4d7f0c3aa18b7d1d44f92.png" alt="" style="width:auto!important;max-width:213px;" height="29" width="213">
+		</div>
+		<!-- <div style="clear: both;"></div>-->
+	</div>
+	<span class="gradient_h_wbw"></span>
+	<div class="top">
+		<div id="roundabout_container" class="relative">
+			<a id="scrollLeft__7f8fc196" class="scrollLeft__7f8fc196 btn_ra_prev"></a>
+			<a id="scrollRight__7f8fc196" class="scrollRight__7f8fc196 btn_ra_next"></a>
+			<div id="roundabout__7f8fc196" class="ofh" style=" height:25px;">
+				<ul class="list_ul_top" style="margin-top:3px;">
+					<li data-start="start">	
+					  <span style="font-size:1.2em;"><{$list['name']}></span>
+					</li>
+				 
+				</ul>
+			</div>
+		</div>
+				<span class="gradient_h_wbw"></span>
+			<div class="stage_container relative" style="height:380px;margin-top:10px;">
+			<article id="indicator_36eea047" class="indicator" data-maxbullets="8">
+							<span class="ind_a"></span>
+							<span></span>
+							<span></span>
+						</article>
+				<div id="stage_36eea047" class="ofh" style="position: relative; visibility: visible;"">
+					<ul style="width: 1920px;" class="list_ul_scroll">
+						<li data-index="0" data-itemid="1" data-start="start" style="float: left; position: relative; width: 640px; left: 0px; transition-duration: 0ms; transform: translateX(0px);">
+							<img alt="" src="<{$list.pic}>" width="612"  height="383" data-touchable="touchable">
+						</li>
+						<li data-index="1" data-itemid="1" data-start="start" style="float: left; position: relative; width: 640px; left: -640px; transition-duration: 0ms; transform: translateX(640px);">
+							<img alt="" src="<{$list.pic}>" data-touchable="touchable">
+						</li>
+						<li data-index="2" data-itemid="1" data-start="start" style="float: left; position: relative; width: 640px; left: -1280px; transition-duration: 0ms; transform: translateX(-640px);">
+							<img alt="" src="<{$list.pic}>" data-touchable="touchable">
+						</li>
+					</ul>
+				</div>
+			</div>
+					</div>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					new Swipe(document.getElementById('stage_36eea047'), {
+						speed:500,
+						//auto:3000,
+						callback: function(index, elem){
+							var lis = $("#indicator_36eea047 span");
+							lis.removeClass("ind_a").eq(index).addClass("ind_a");
+						}
+					});
+				});
+			</script>
+			
+<!-------------------- 车系列表 begin ----------------------->
+<!-------------------- 车型列表 begin ----------------------->
+
+<!-------------------- 车型详情 begin ----------------------->
+
+		<div class="main" style="padding-top: 10px;">
+			<ul class="car_detail">
+							<div style="margin:5px;border: 1px solid #ccc;line-height:35px;text-indent:10px;border-radius:5px;background: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#eee));-webkit-box-shadow: 0 1px 1px #fff;">
+					<a href="<{:U('Car/item',array('id'=>$list['id'],'token'=>$token,'wecha_id'=>$wecha_id))}>" style="color:#666;display:block;">特别关注：360全景看车</a>
+				</div>
+							<table>
+					<tbody><tr>
+						<td>指导价：</td>
+						<td><php><{$list.zdj}><php></td>
+					</tr>
+					<tr>
+						<td>排量：</td>
+						<td><{$list.pl}></td>
+					</tr>
+					<tr>
+						<td>年款：</td>
+						<td><{$list.nk}></td>
+					</tr>
+					<tr>
+						<td>经销商报价：</td>
+						<td><{$list.bj}></td>
+					</tr>
+					<tr>
+						<td>档位：</td>
+						<td><{$list.dws}></td>
+					</tr>
+					<tr>
+						<td>变速箱：</td>
+						<td><{$list.bsx}></td>
+					</tr>
+									</tbody></table>
+				<li class="box group_btn">
+					<div ><a href="<{:U('Car/xiaoshou',array('token'=>$token,'wecha_id'=>$wecha_id,'uid'=>$uid))}>"  style="background-color:#fffffb">联系销售</a></div>
+					<div><a href="<{:U('Car/shijia2',array('id'=>$list['id'],'token'=>$token,'wecha_id'=>$wecha_id))}>" style="background-color:#fffffb"> 预约试驾</a></div>
+				</li>
+			</ul>
+		</div>
+<!-------------------- end ----------------------->
+		<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+<span class="sp2"><a href="" style="color: #5e5e5e;font-size: 12px;"> 技术支持：阿里微微</a></span>
+</div>
+<div style="width: 0px;height: 0px;overflow: hidden;">
+<script src="%E8%BD%A6%E8%BE%86%E4%BF%A1%E6%81%AF_files/z_stat.php" language="JavaScript"></script><script src="%E8%BD%A6%E8%BE%86%E4%BF%A1%E6%81%AF_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1000151448" target="_blank" title="站长统计">站长统计</a>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F43da571de43e9d6228927d0883b8b8b4' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="__PUBLIC__/car/h.js" type="text/javascript"></script>
+
+</div>
+<script>
+/**
+$(function(){
+	if($('body').height()<$(window).height()){
+		$('body').height($(window).height());
+		$('#wxgjfooter').css('position','fixed').css('bottom','0px');
+	}
+});
+**/
+</script>
+
+		<!-- <footer class="nav_footer">
+				<ul class="box">
+					<li><a href="javascript:history.go(-1);" >返回</a></li>
+					<li><a href="javascript:history.go(1);" >前进</a></li>
+					<li><a href="/weiweb/5890/">首页</a></li>
+					<li><a href="javascript:location.reload();" >刷新</a></li>
+				</ul>
+		</footer> -->
+	        		
+</body></html>

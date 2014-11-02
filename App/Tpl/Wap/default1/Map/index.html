@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head><title><{$map.name}>_附近门店</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<script type="text/javascript" src="__PUBLIC__/wap/map/js/jquery.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="__PUBLIC__/wap/map/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="__PUBLIC__/wap/map/css/bootstrap-theme.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=jijLth2XjpkljezGXD4XSOz3"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var lng = "<{$map.longitude}>";
+	var lat = "<{$map.latitude}>";
+	initBMap(lng,lat);
+});
+//走路检索
+var walking = function(pointA,pointB,map){	
+    var walking = new BMap.WalkingRoute(map, {renderOptions: {map: map, panel: "result", autoViewport: true}});
+    walking.search(pointA, pointB);
+};
+//驾车检索
+var driver = function(pointA,pointB,map){
+	var transit = new BMap.DrivingRoute(map, {
+         renderOptions: {
+				map: map,
+				panel: "result",
+				enableDragging : true //起终点可进行拖拽
+			},  
+ 	});
+ transit.search(pointA,pointB);
+};
+var initBMap = function(lng1,lat1){	
+	var map = new BMap.Map("map_container");
+	map.centerAndZoom(pointB,16);
+	var pointB = new BMap.Point(lng1,lat1);
+	map.centerAndZoom(pointB,16);
+
+	map.addControl(new BMap.NavigationControl());
+	
+	var pointA = new BMap.Point(<{$Think.get.lng}>,<{$Think.get.lat}>);	
+	if(map.getDistance(pointA,pointB) > 2000){//大于5公里的驾车检索
+		driver(pointA,pointB,map);
+	}else{
+		walking(pointA,pointB,map);
+	}
+};
+</script>
+
+<style type="text/css">
+#map_container{margin:0px;width:100%;height:200px;}
+#result{height:100%;width:100%;}
+.panel-body img{max-width:100%;}
+</style>
+</head>
+<body>
+
+<div id="map_container"></div>
+<div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title"><{$map.name}></h3>
+        </div>
+        <div class="panel-body">
+          	电话：<a href="tel:<{$map.mp}>"><{$map.mp}></a>
+          	<br />
+          	地址：<{$map.address}>          	<br/>
+   	        <p><{$map.intro}></p>        </div>
+</div>
+<div id="result"></div>
+</body>
+</html>

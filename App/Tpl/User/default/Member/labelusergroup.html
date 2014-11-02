@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户信息</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+
+<script charset="utf-8" src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><a href="<{:U('Label/index')}>"><span class="wap_span_2">标签管理</span></a><span class="wap_span_2">标签粉丝</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+<div class="new_main">
+      <div class="new_main_tit pt10" style="margin-left:10px;">标签 : <{$labelname.labelname}><a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+    </div>
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th>微信名</th>
+            <th>性别</th>
+            <th>省份</th>
+            <th>城市</th>
+            <th>头像</th>
+            <th>关注时间</th>
+            <th >操作</th>
+          </tr>
+        </thead>
+        <tbody id="content">
+        <?php $sex_arr = array('1'=>'男','2'=>'女'); ?>
+         <?php $follow_arr = array('1'=>'关注','0'=>'取消关注'); ?>
+          <volist id="list" name="userinfo">
+            <TR>
+              <td><{$list.wechaname}></td>
+              <td><?php echo $sex_arr[$list['sex']]; ?></td>
+             
+              <td><{$list.province}></td>
+              <td><{$list.address}></td>
+              <td><img width="50" height="50" src="<{$list.headimgurl}>"></td> 
+               <td><?php echo date('Y-m-d',$list['subscribe_time']); ?></td>
+              <TD class="norightborder"><a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('/Member/del/',array('id'=>$list['id']))}>');">删除</a> </td>
+            </TR>
+          </volist>
+          <tr style="display:none;">
+            <td colspan="11" class="norightborder"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'del_id')">
+              <label for="checkallBottom">全选</label>
+              <input type="radio"  checked="checked" name="optype" value="1">
+              删除 </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script src="__PUBLIC__/js/j.js"></script>
+<script>
+	 Wind.use('', '', '', function () {
+			//javascript
+	        
+	            //编辑器
+	          /*  editorcontent = new baidu.editor.ui.Editor();
+	            editorcontent.render( 'content' );
+	            try{editorcontent.sync();}catch(err){};
+	            //增加编辑器验证规则
+	            jQuery.validator.addMethod('editorcontent',function(){
+	                try{editorcontent.sync();}catch(err){};
+	                return editorcontent.hasContents();
+	            });*/
+	            var form = $('#myform');
+	        //ie处理placeholder提交问题
+	       /* if ($.browser.msie) {
+	            form.find('[placeholder]').each(function () {
+	                var input = $(this);
+	                if (input.val() == input.attr('placeholder')) {
+	                    input.val('');
+	                }
+	            });
+	        }*/
+	        //表单验证开始
+	        form.validate({
+				//是否在获取焦点时验证
+				onfocusout:false,
+				//是否在敲击键盘时验证
+				onkeyup:false,
+				//当鼠标掉级时验证
+				onclick: false,
+	            //验证错误
+	            showErrors: function (errorMap, errorArr) {
+					//errorMap {'name':'错误信息'}
+					//errorArr [{'message':'错误信息',element:({})}]
+					try{
+						$(errorArr[0].element).focus();
+						art.dialog({
+							id:'error',
+							icon: 'error',
+							lock: true,
+							fixed: true,
+							background:"#CCCCCC",
+							opacity:0,
+							content: errorArr[0].message,
+							cancelVal: '确定',
+							cancel: function(){
+								$(errorArr[0].element).focus();
+							}
+						});
+					}catch(err){
+					}
+	            },
+	            //验证规则
+	            rules: {},
+	            //验证未通过提示消息
+	            messages:{},
+	            //给未通过验证的元素加效果,闪烁等
+	            highlight: false,
+	            //是否在获取焦点时验证
+	            onfocusout: false,
+	            //验证通过，提交表单
+	            submitHandler: function (forms) {
+				//alert('fdgfg');
+	                $(forms).ajaxSubmit({
+	                    url: form.attr('action'), //按钮上是否自定义提交地址(多按钮情况)
+	                    dataType: 'json',
+	                  /*  beforeSubmit: function (arr, $form, options) {
+	                        
+	                    },*/
+	                    success: function (data, statusText, xhr, $form) {
+					var win = art.dialog.open.origin;//来源页面
+// 如果父页面重载或者关闭其子对话框全部会关闭
+win.location.reload();
+						
+						   art.dialog.close();
+						  //  location.reload();
+	                        if(true){
+								setCookie("refersh_time",1);
+								//添加成功
+								Wind.use("artDialog", function () {
+								    art.dialog({
+								        id: "succeed",
+								        icon: "succeed",
+								        fixed: true,
+								        lock: true,
+								        background: "#CCCCCC",
+								        opacity: 0,
+								        content: '操作成功',
+										button:[
+											{
+												name: '继续添加？',
+												callback:function(){
+													reloadPage(window);
+													return true;
+												},
+												focus: true
+											},{
+												name: '返回列表页',
+												callback:function(){
+													location='/index.php?s=/Label/tag';
+													return true;
+												}
+											}
+										]
+								    });
+								});
+							}else{
+								isalert(data.info);
+							}
+	                    }
+	                });
+	            }
+	        });
+	    });
+	 </script>
+<script>
+$("#wei_group").live('change',function(){
+
+
+    var id = $(this).find("option:selected").val();
+    var wecha_id = $(this).attr('data-id');
+    var url ="<{:U('Member/edit_user_group')}>";
+    var flag ="id="+id+"&wecha_id="+wecha_id;
+    $.post(url,flag,function(json){
+    
+       var txt = $.parseJSON(json);
+       if(txt['errcode']!=0){
+           alert(txt['errmsg']);
+       
+       }
+       
+       
+       
+    });
+
+});
+function checkvotethis() {
+	var aa=document.getElementsByName('del_id[]');
+	var mnum = aa.length;
+	j=0;
+	for(i=0;i<mnum;i++){
+		if(aa[i].checked){
+		j++;
+		}
+	}
+	if(j>0) {
+		document.getElementById('info').submit();
+	} else {
+		alert('未选中任何文章或回复！')
+	}
+}
+function drop_confirm(msg, url){
+    if(confirm(msg)){
+        window.location = url;
+    }
+}
+$("#group_user").change(function(){
+   var city = $(this).find("option:selected").val();
+   var url ="<{:U('/Member/get_group_user/')}>";
+   var flag = "city="+city;
+   $.post(url,flag,function(res){
+   
+       var txt  = $.parseJSON(res);
+       var html = '';
+       var url = "<{:U('/Member/edit/')}>";
+       $.each(txt,function(i,v){
+          var del_url = "/index.php?s=/Member/del/id="+v.id;
+            html+='<TR id="del_'+v.id+'">'+
+              '<td></td>'+
+              '<td>'+v.id+'</td>'+
+              '<td>'+v.wechaname+'</td>'+
+              '<td>'+v.sex+'</td>'+
+              '<td>'+v.province+'</td>'+
+              '<td>'+v.address+'</td>'+
+              '<td><img width="50" height="50" src="'+v.headimgurl+'"></td> '+
+              '<td>'+v.subscribe_time+'</td>'+
+              '<TD class="norightborder"><a class="del_'+v.id+'"  data-id="'+v.id+'" id="del" onclick="del_user('+v.id+')" href="javascript:void(0)">删除</a> </td>'+
+            '</TR>'
+
+       });
+       $("#content").html(html);
+   });
+
+});
+
+function del_user(id){
+    if(!window.confirm("确认删除该信息？")){  return false;}
+     var url ="/index.php?s=/Member/del/id/"+id;
+   //  alert(url);return;
+     $.get(url,function(res){
+     
+          var txt = $.parseJSON(res);
+          if(txt['status']=="1"){
+              $("#del_"+id).remove();
+          }
+          else{
+          
+          alert(txt['info']);
+          }
+     
+     });
+
+}
+
+</script>
+</body>
+</html>

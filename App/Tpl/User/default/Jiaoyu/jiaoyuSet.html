@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>教育机构_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="jiaoyu_desc"]');
+	window.editor = K.create('textarea[id="project_brief"]');
+	window.editor = K.create('textarea[id="traffic_desc"]');
+
+});					
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">教育机构</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">教育机构<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form action="" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+        <if condition="$jy_data['id'] neq ''">
+          <input type="hidden" name="id" value="<{$jy_data['id']}>" />
+        </if>
+        <table class="new_main_zhuce">
+          <tbody>
+            <tr>
+              <th width="16%" class="table_txt_right">标题：</th>
+              <td><input type="text" name="title" id="title" class="input login_input_1" value="<{$jy_data['title']}>" style="width:400px;">
+                <strong class="input_ts_y">*触发关键词后返回图文消息标题</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">触发关键词：</th>
+              <td><input type="text" name="keyword" id="keyword" class="input login_input_1" value="<{$jy_data['keyword']}>" style="width:400px;">
+                <strong class="input_ts_y">*只能设置一个关键字</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">图文消息封面：</th>
+              <td><img class="thumb_img" id="cover_src" src="<{$jy_data['cover']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>" style="max-height:100px;width:167px;">
+                <input type="input" class="input login_input_1" name="cover" id="cover" style="width:225px;" value="<{$jy_data['cover']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('cover',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('cover')">预览</a> 建议尺寸：宽720像素，高400像素 </strong>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">机构头部图片：
+                </thth>
+              <td><img class="thumb_img" id="banner_src" src="<{$jy_data['banner']|default='__PUBLIC__/wap/jiaoyu/jiaoyu01.jpg'}>" style="max-height:100px;width:167px;">
+                <input type="text" id="banner" name="banner" class="input login_input_1" style="width:225px;" value="<{$jy_data['banner']|default='__PUBLIC__/wap/jiaoyu/jiaoyu01.jpg'}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('banner',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('banner')">预览</a> 建议尺寸：宽720像素，高400像素 </strong>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">课程头部图片：</th>
+              <td><img class="thumb_img" id="house_banner_src" src="<{$jy_data['house_banner']|default='__PUBLIC__/wap/jiaoyu/jiaoyu03.jpg'}>" style="max-height:100px;width:167px;">
+                <input type="text" name="house_banner" id="house_banner" class="input login_input_1" style="width:225px;" value="<{$jy_data['house_banner']|default='__PUBLIC__/wap/jiaoyu/jiaoyu03.jpg'}>">
+                <strong class="input_ts_y"><a href="###" onclick="upyunPicUpload('house_banner',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('house_banner')">预览</a> <br />
+                *只能设置一个关键字</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">全景相册名称：</th>
+              <td><select id="panorama_id" name="panorama_id" class="input login_input_1">
+                  <option value="0">请选择360全景相册</option>
+                  <volist name="panorama" id="vo"> <option value="<{$vo['pid']}>" 
+                    <if condition="$vo['pid'] eq $jy_data['panorama_id']">selected="selected"</if>
+                    ><{$vo['name']}>
+                    </option>
+                  </volist>
+                </select>
+                <strong class="input_ts_y">如果没有，请先到 <a href="<{:U('Panorama/add')}>" class="btn"><strong><font color='red'>360°全景</strong></font></a>添加</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">教育新闻：</th>
+              <td><select id="classify_id" name="classify_id" class="input login_input_1">
+                  <option value="0">请选择教育新闻</option>
+                  <volist name="classify" id="vo"> <option value="<{$vo['cid']}>" 
+                    <if condition="$vo['cid'] eq $jy_data['classify_id']">selected="selected"</if>
+                    ><{$vo['name']}>
+                    </option>
+                  </volist>
+                </select>
+                <strong class="input_ts_y">如果没有，请先到<a href="<{:U('Classify/add')}>" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span></strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">教育预约：</th>
+              <td><select id="selfform_id" name="selfform_id" class="input login_input_1">
+                  <option value="0">请选择预约版面</option>
+                  <volist name="selfform" id="vo"> <option value="<{$vo['sid']}>" 
+                    <if condition="$vo['sid'] eq $jy_data['selfform_id']">selected="selected"</if>
+                    ><{$vo['name']}>
+                    </option>
+                  </volist>
+                </select>
+                <strong class="input_ts_y">如果没有，请先到<a href="<{:U('Selfform/index')}>" class="btn"><strong><font color='red'>预约管理</strong></font></a>添加</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">教育会员：</th>
+              <td><select id="member_id" name="member_id" class="input login_input_1">
+                  <option value="0">请选择会员卡</option>
+                  <volist name="member_card" id="vo"> <option value="<{$vo['mid']}>" 
+                    <if condition="$vo['mid'] eq $jy_data['member_id']">selected="selected"</if>
+                    ><{$vo['cardname']}>
+                    </option>
+                  </volist>
+                </select>
+                <strong class="input_ts_y">如果没有，请先到<a href="<{:U('Member_card/index')}>" class="btn"><strong><font color='red'>会员卡</strong></font></a>添加</strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">培训机构地址：</th>
+              <td><input type="text" id="suggestId" class="input login_input_1" style="width:210px;" name="place" value="<{$jy_data['place']}>">
+                </td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">地图标识：</th>
+              <td>经度
+                <input type="text" id="longitude"  name="lng" size="14" class="input login_input_1" readonly="readonly" value="<{$jy_data['lng']}>" />
+                纬度
+                <input type="text"  name="lat" size="14" id="latitude" readonly="readonly" class="input login_input_1" value="<{$jy_data['lat']}>" />
+                <strong class="input_ts_y"><a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a></strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">服务理念简介：</th>
+              <td><textarea class="input login_input_1" id="jiaoyu_desc" name="jiaoyu_desc" style="width:680px; height:150px;"><{$jy_data['jiaoyu_desc']}></textarea></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">培训机构简介：</th>
+              <td><textarea class="input login_input_1" id="project_brief" name="project_brief" style="width:680px; height:150px; "><{$jy_data['project_brief']}></textarea></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">服务配套简介：</th>
+              <td><textarea class="input login_input_1" id="traffic_desc" name="traffic_desc" style="width:680px; height:150px;"><{$jy_data['traffic_desc']}></textarea></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">&nbsp;</th>
+              <td><if condition="$jy_data['id'] neq ''">
+                  <input type="hidden" name="id" value="<{$jy_data['id']}>" />
+                </if>
+                <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+                <button type="button" class="btnGray vm">取消</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

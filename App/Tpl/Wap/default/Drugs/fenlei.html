@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>药品分类</title>
+<link href="__PUBLIC__/wap/drugs/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="box">
+<div class="table">
+<!-- <div class="search">
+    	<p><input type="text" class="search_1" /></p>
+       <b> <input type="button" class="search_2" /></b>
+      
+    </div> -->
+<!-- <div class="fenlei_lie">
+<volist name="flag['rows']" id="data">
+	<div class="fenlei_lie1" style=" border:2px solid #9e7423;">
+    	<p style=" color:#9e7423;"><{$data.title}></p>
+    	<ul style=" border-left:1px solid #9e7423;">
+        	<volist name="data['son']" id="vo">
+        	<li><a href="<{:U('Drugs/lists2',array('sencendid'=>$data['unid'],'Flag'=>3,'title'=>$data['title'],'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'sortid'=>$vo['unid']))}>"><{$vo.title}></a></li>
+        	</volist>            
+        </ul>
+    </div>
+    </volist>
+</div> -->
+<div class="xiangmu">
+    	<ul>
+        	<volist name="flag['rows']" id='flag'>
+        	<li><a id="color_<{$flag.unid}>" href="<{:U('Drugs/lists',array('Flag'=>2,'sortid'=>$flag['unid'],'wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token'],'title'=>$flag['title']))}>" id="a"><{$flag.title}></a>	</li>
+        	</volist>
+           
+        </ul>
+    </div> 
+<div class="abc"></div>
+<include file="footer" />
+</div></div>
+</body>
+</html>

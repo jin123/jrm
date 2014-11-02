@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>编辑车型_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">编辑车型</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">编辑车型<a href="<{:U('Car/chexing')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form" method="post"   action=""  enctype="multipart/form-data" >
+        <table class="new_main_zhuce">
+          <tbody>
+           <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>车型名称：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="keyword" value="<{$vo.name}>" name="name" style="width:570px" > </td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">品牌：</td>
+              <td width="84%">  
+			      <select name="ppid" class="selectoption"  style="width:212px;">
+                      <option value="">请选择品牌</option>
+                      <volist id="photo" name="va"> 
+					    <option value="<{$photo.id}>" 
+                        <if condition="$photo['id'] eq $vo['ppid']" >selected="selected"</if>><{$photo.name}>
+                        </option>
+                      </volist>
+                </select>
+             </td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">车系：</td>
+              <td width="84%">  
+			      <select name="pid" class="selectoption"  style="width:212px;">
+                      <option value="">请选择车系</option>
+                      <volist id="photo" name="car"> 
+					    <option value="<{$photo.id}>" 
+                        <if condition="$photo['id'] eq $vo['pid']" >selected="selected"</if>><{$photo.name}>
+                        </option>
+                      </volist>
+                </select>
+                </td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">年款：</td>
+              <td width="84%">  
+			      <select name="nk" class="selectoption"  style="width:212px;">
+                        <option value="">请选择</option>
+					    <option value="2014"<if condition="$vo['nk'] eq 2014" >selected="selected"</if>>2014</option>
+						<option value="2013" <if condition="$vo['nk'] eq 2013" >selected="selected"</if> >2013 </option>
+						<option value="2012" <if condition="$vo['nk'] eq 2012" >selected="selected"</if>>2012 </option>
+						<option value="2011" <if condition="$vo['nk'] eq 2011" >selected="selected"</if> >2011 </option>
+						<option value="2010" <if condition="$vo['nk'] eq 2010" >selected="selected"</if>>2010 </option>
+					    <option value="2009" <if condition="$vo['nk'] eq 2009" >selected="selected"</if>>2009 </option>
+					    <option value="2008" <if condition="$vo['nk'] eq 2008" >selected="selected"</if>>2008 </option>
+					    <option value="2007" <if condition="$vo['nk'] eq 2007" >selected="selected"</if>>2007 </option>
+					    <option value="2006" <if condition="$vo['nk'] eq 2006" >selected="selected"</if>>2006 </option>
+					    <option value="2005" <if condition="$vo['nk'] eq 2005" >selected="selected"</if>>2005 </option>
+						<option value="2004" <if condition="$vo['nk'] eq 2004" >selected="selected"</if>>2004 </option>
+                      
+                </select>
+             </td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right"><span class="red">*</span>关键词：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="keyword" value="<{$vo.keyword}>" name="keyword" style="width:570px" > <strong class="input_ts_y"><span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。</strong></td>
+            </tr>
+           
+            <tr>
+              <td width="16%" class="table_txt_right">指导价：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.zdj}>" name="zdj" style="width:570px" />
+                <strong class="input_ts_y">(万元)</strong></td>
+            </tr>
+			  <tr>
+              <td width="16%" class="table_txt_right">经销商报价：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.bj}>" name="bj" style="width:570px" />
+                <strong class="input_ts_y">(万元) 如:19.24-23.52</strong></td>
+            </tr>
+			
+			 <tr>
+              <td width="16%" class="table_txt_right">显示顺序：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.sort}>" name="sort" style="width:570px" />
+                <strong class="input_ts_y">数字越大越靠前</strong></td>
+            </tr>
+			
+			 <tr>
+              <td width="16%" class="table_txt_right">挡位个数：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.dws}>" name="dws" style="width:570px" />
+               </td>
+            </tr>
+            
+			
+             <tr>
+              <td width="16%" class="table_txt_right">排量：</td>
+              <td width="84%"><input type="input" class="input login_input_1" id="title" value="<{$vo.pl}>" name="pl" style="width:570px" />
+                <strong class="input_ts_y"> (L)</strong></td>
+            </tr>
+			 <tr>
+              <td width="16%" class="table_txt_right">变速箱：</td>
+              <td width="84%">  
+			      <select name="bsx" class="selectoption"  style="width:212px;">
+                      <option value="自动变速箱(AT)" <if condition="$vo['bsx'] eq '自动变速箱(AT)'" >selected="selected"</if>>自动变速箱(AT)</option>
+                      <option value="手动变速箱(AT)" <if condition="$vo['bsx'] eq '手动变速箱(AT)'" >selected="selected"</if>>手动变速箱(AT)</option>
+                      <option value="手自一体" <if condition="$vo['bsx'] eq '手自一体'" >selected="selected"</if>>手自一体</option>
+                      <option value="无极变速箱(CVT)" <if condition="$vo['bsx'] eq '无极变速箱(CVT)'" >selected="selected"</if>>无极变速箱(CVT)</option>
+					  <option value="无极变速(CDT)" <if condition="$vo['bsx'] eq '无极变速(CDT)'" >selected="selected"</if>>无极变速(CDT)</option>
+                      <option value="手自一体" <if condition="$vo['bsx'] eq '手自一体'" >selected="selected"</if>>手自一体</option>
+                      <option value="双离合变速箱(DCT)" <if condition="$vo['bsx'] eq '双离合变速箱(DCT)'" >selected="selected"</if>>双离合变速箱(DCT)</option>
+                      <option value="序列变速箱(AMT)" <if condition="$vo['bsx'] eq '序列变速箱(AMT)'" >selected="selected"</if>>序列变速箱(AMT)</option>
+                </select>
+             </td>
+            </tr>
+		
+			 <tr>
+              <td width="16%" class="table_txt_right"></td>
+              <td><div style="margin:5px 0 10px;"> <img  id="pic_id" src="<if condition="$vo['pic'] eq '0'">__PUBLIC__/images/wm/car2.png<else/><{$vo.pic}></if>" width="373px" ></div></td>
+            </tr>
+            <tr>
+              <td width="16%" class="table_txt_right">图片：</td>
+              <td><input class="input login_input_1" name="pic" id="pic" value="<if condition="$vo['pic'] eq '0'">__PUBLIC__/images/wm/car2.png<else/><{$vo.pic}></if>" style="width:570px;" onclick="document.getElementById('pic_id').src=this.value;">
+                 <a href="javascript:void(0)" onclick="upyunPicUpload('pic',700,420)" class="btnGreen">添加图片</a>&nbsp;&nbsp;图片大小640*320，图片大小不超过300K</td>
+            </tr>
+           <tr>
+              <td></td>
+              <td><button class="button_r_1" type="submit" style=" width:150px; margin-top:15px;">提交</button>
+                <button class="button_g_1" type="reset" style=" width:150px; margin-top:15px; margin-left:20px;">重填</button></td>
+            </tr>
+           
+          </tbody>
+        </table>
+      
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

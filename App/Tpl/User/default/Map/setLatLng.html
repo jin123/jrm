@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>设置经纬度_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+
+<style type="text/css">
+<!--
+body, html {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin:0;
+}
+#allmap {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin:0;
+}
+#l-map {
+	height:100%;
+	width:100%;
+}
+.btn-info {
+	color:#00CC00;
+}
+#ok {
+	/*color:#FF0000;*/
+}
+-->
+*{
+    margin:0px;
+    padding:0px;
+}
+body, button, input, select, textarea {
+    font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+}
+p{
+    width:603px;
+    padding-top:3px;
+    margin-top:10px;
+    overflow:hidden;
+}
+
+
+</style>
+</head>
+<body id="nv_member">
+<input type="hidden" id="longitude" value="0" />
+<input type="hidden" id="latitude" value="0" />
+<div class="ftip" style="margin:0">
+  <div style="width:600px;height:50px;float:left;">
+    <span>名称</span>
+    <input style="width:150px;height:24px;margin-top:4px;border:1px solid #CCCCCC;" type="text" id="address" placeholder="选择准确的门店地址" name="shop_addr" value="">
+    <span>经度</span>
+    <input style="height:24px;margin-top:4px;border:1px solid #CCCCCC;" type="text" id="longitude_x" name="longitude_x" value="">
+    <span>纬度</span>
+    <input style="height:24px;margin-top:4px;border:1px solid #CCCCCC;" type="text" id="latitude_y"  name="latitude_y" value="">
+    <a onclick="codeAddress()" href="javascript:void(0);" class="btn btn-info">定位</a> </div>
+    
+  <!--拖动红色图标到相应位置然后点击右侧链接->-->
+  <a id="ok" href="javascript:void(0)" class="btnGrayS vm bigbtn"> 保 存 </a></div>
+<div style="width:800px;height:540px" id="container"></div>
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=jijLth2XjpkljezGXD4XSOz3"></script>
+<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+<script src="/Public/js/j.js"></script>
+<script type="text/javascript">
+if (art.dialog.data('longitude')) {
+	document.getElementById('longitude').value = art.dialog.data('longitude');// 获取由主页面传递过来的数据
+//	alert(art.dialog.data('longitude'));
+	document.getElementById('latitude').value = art.dialog.data('latitude');
+};
+// 关闭并返回数据到主页面
+document.getElementById('ok').onclick = function () {
+	var origin = artDialog.open.origin;
+	var longitudeinput = origin.document.getElementById('longitude');
+	var latitudeinput = origin.document.getElementById('latitude');
+	//alert( $('#longitude').val());
+	longitudeinput.value = $('#longitude').attr('value');
+	latitudeinput.value = $('#latitude').attr('value');
+	art.dialog.close();
+};
+var geocoder,map,marker = null;
+var islocation = true;
+$(document).ready(function(){
+
+    $("#address").live('focus',function(){
+        $("#longitude_x").val('');
+        $("#latitude_y").val('');
+    
+    });
+     $("#longitude_x").live('focus',function(){
+       $("#address").val(''); 
+    });
+     $("#latitude_y").live('focus',function(){
+        $("#address").val('');
+    });
+ //  init($('#longitude').val(),$('#latitude').val());
+    init($('#longitude').val(),$('#latitude').val());
+});
+	
+function init(x,y){
+    if(x==0 || y==0){
+	     islocation = false;
+	    var y = 39.904989;
+	    var x = 116.405285
+	
+	}
+   var center = new qq.maps.LatLng(y,x);
+    map = new qq.maps.Map(document.getElementById('container'),{
+        center: center,
+        zoom: 15
+    });
+	 var infoWin = new qq.maps.InfoWindow({
+        map: map
+    });
+    var latlngs = [
+        new qq.maps.LatLng(y,x)
+    ];
+   if(islocation){
+    for(var i = 0;i < latlngs.length; i++) {
+        (function(n){
+            var marker = new qq.maps.Marker({
+                position: latlngs[n],
+                map: map
+            });
+            qq.maps.event.addListener(marker, 'click', function() {
+                infoWin.open();
+                infoWin.setContent('<div style="text-align:center;white-space:'+
+                'nowrap;margin:10px;">这是第 ' +
+                n + ' 个标注</div>');
+                infoWin.setPosition(latlngs[n]);
+            });
+        })(i);
+    }
+   }
+    geocoder = new qq.maps.Geocoder({
+        complete : function(result){
+		    var location = result.detail.location;
+			
+			var lat = location.lat;
+			var lng = location.lng;
+			 $('#longitude').attr('value',lng);
+	         $('#latitude').attr('value',lat);
+			 $('#longitude_x').attr('value',lng);
+	         $('#latitude_y').attr('value',lat);
+            map.setCenter(result.detail.location);
+            var marker = new qq.maps.Marker({
+                map:map,
+                position: result.detail.location
+            });
+        }
+    });
+
+}
+
+
+
+
+ function codeAddress() {
+    var address = document.getElementById("address").value;
+	if(address==""){
+	
+	    if($.trim($("#latitude_y").val())=="" || $.trim($("#longitude_x").val()=="")){
+		
+		
+		    alert("请添加搜索信息");
+		    return;
+		}
+		
+				 var center = new qq.maps.LatLng($("#latitude_y").val(),$("#longitude_x").val());
+			map = new qq.maps.Map(document.getElementById('container'),{
+				center: center,
+				zoom: 15
+			});
+			 var infoWin = new qq.maps.InfoWindow({
+				map: map
+			});
+	     var latlngs = [
+        new qq.maps.LatLng($("#latitude_y").val(),$("#longitude_x").val()),
+       ];
+    $("#latitude_y").val($("#longitude_y").val());
+	 $("#longitude").val($("#longitude_x").val());
+	
+    for(var i = 0;i < latlngs.length; i++) {
+        (function(n){
+            var marker = new qq.maps.Marker({
+                position: latlngs[n],
+                map: map
+            });
+            qq.maps.event.addListener(marker, 'click', function() {
+                infoWin.open();
+                infoWin.setContent('<div style="text-align:center;white-space:'+
+                'nowrap;margin:10px;">这是第 ' +
+                n + ' 个标注</div>');
+                infoWin.setPosition(latlngs[n]);
+            });
+        })(i);
+    }
+	
+	}else{
+	
+	 geocoder.getLocation(address);
+	
+	}
+   
+}
+
+</script>
+</body>
+</html>

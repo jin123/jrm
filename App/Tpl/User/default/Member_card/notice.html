@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员卡通知_<{$Think.session.sitename}>管理后台</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">会员卡通知</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10"><a href="<{:U('Member_card/noticeSet',array('id'=>$thisCard['id']))}>" title="添加通知" class="btnGrayS vm bigbtn"> 添加通知 </a></div>
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th>标题</th>
+            <th>截止日期</th>
+            <th>添加时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <volist id="item" name="list">
+            <tr>
+              <td><{$item.title}></td>
+              <td><{$item.endtime|date="Y-m-d",###}></td>
+              <td><{$item.time|date="Y-m-d H:i:s",###}></td>
+              <td><a href="<{:U('Member_card/noticeSet',array('id'=>$thisCard['id'],'noticeid'=>$item['id']))}>">编辑</a> <a href="javascript:drop_confirm('您确定要删除吗?', '<{:U('Member_card/noticeDelete',array('id'=>$thisCard['id'],'noticeid'=>$item['id']))}>');">删除</a></td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

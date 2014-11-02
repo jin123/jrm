@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <TITLE>家长点评</TITLE>
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/lvyou/css/reset.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/lvyou/css/review.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/lvyou/css/back.css" media="all" />
+		<script type="text/javascript" src="__PUBLIC__/wap/lvyou/js/share.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/wap/lvyou/js/common.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/wap/lvyou/js/review.js"></script>
+        <meta name="Keywords" content="" />
+        <meta name="Description" content="" />
+        <!-- Mobile Devices Support @begin -->
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <!-- Mobile Devices Support @end -->
+    </head>
+
+<div class="wrapper">
+	<!-- start -->
+		<ul class="nav_top" id="navTop">
+			<li><a>家长点评</a></li>
+		</ul>
+	<!-- end -->
+	<div id="professional">     
+	<volist name="dianping" id="dianping">
+	<div class="review_box">    
+	<div class="review_man">
+	<img src="<{$dianping.face}>" width="70" height="70" style="width:70px!important; height:70px!important; " alt="">     
+	<h3><{$dianping.name}><em><br><{$dianping.position}></em></h3>     <p><{$dianping.description}></p>    
+	</div>    
+	<div class="review_word">     
+	<h2><{$dianping.title}></h2>     
+	<{$dianping.comment}>    
+</div>   
+</div>   
+</volist>
+</div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

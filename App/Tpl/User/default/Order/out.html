@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>数据导入_<{$Think.session.sitename}>管理后台</title>
+
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+
+</head>
+
+<body>
+
+<div class="content">
+
+  <div class="new_hader">
+
+    <div class="new_hader_1"><i class="admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">医药通</span><span class="wap_span_2">数据导入</span></div>
+    <div class="new_hader_2">
+
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+
+      <div class="clear"></div>
+
+    </div></div>
+
+ <div class="new_main">
+
+    <div class="new_main_tit pt10">数据导入<span class="searchbar"></span>
+</div>
+
+    <div class="tab">
+     <ul>
+			<li class="tabli" id="tab0"><a href="<{:U('Flashshop/index',array('type'=>1))}>">幻灯片管理</a></li>
+		    <li class=" tabli" id="tab0"><a href="<{:U('Order/index')}>">订单管理</a></li>
+			 <!--<li class="current tabli" id="tab0"><a href="<{:U('Order/out')}>">数据导入</a></li>-->             <li class=" tabli" id="tab0"><a href="<{:U('Order/type_manage')}>">药品分类管理</a></li>
+			 <li class=" tabli" id="tab0"><a href="<{:U('Order/set')}>">商城回复配置</a></li>
+        </ul>
+    </div>
+    <div class="new_main_tit">
+ <form class="form" method="post" action="/index.php/?s=Phpexcel/reader/" enctype="multipart/form-data">
+      <table class="new_main_zhuce">
+        <tbody>
+          <tr>
+            <td width="16%" class="table_txt_right">上传Excel文件：</td>          
+            <td width="84%"><input type="hidden" class="input login_input_1" name="file" id="file" value="" style="width:300px;">
+              <a href="javascript:void(0)" onclick="upyunPicUpload('file',700,420)" class="btnGreen">选择文件</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button type="submit" name="button" class="btnGreen">插入数据</button>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+<script src="/Public/js/jquery.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+function  upyunPicUpload(domid,w,h){
+    art.dialog.data('width', w);
+	art.dialog.data('height', h);
+	art.dialog.data('domid', domid);
+	art.dialog.data('lastpic', $('#'+domid).val());
+	art.dialog.open('?g=User&m=Upyun&a=upload&upload_type=excel&width='+w,{lock:true,title:'上传文件',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+}
+</script>
+</html>

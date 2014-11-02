@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>内容设置_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script src="__PUBLIC__/js/j.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/common.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wap/lvyou/js/jquery.js">
+</script><script type="text/javascript" src="__PUBLIC__/wap/lvyou/js/yyucadapter.js"></script>
+<script src="http://api.map.baidu.com/api?v=1.5&ak=1b0ace7dde0245f796844a06fb112734"></script>
+</head>
+<body>
+<div class="content">
+  <div class="new_hader">
+    <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">预约管理</span></div>
+    <div class="new_hader_2">
+      <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+      <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="new_main">
+    <div class="new_main_tit">预约信息设置</div>
+    <form id="myform"  action="" method="post">
+      <table class="new_main_liebiao" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th>患者姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>电话</th>
+            <th>预约时间</th>
+            <th>地址</th>
+            <th>预约科室</th>
+            <th>预约专家</th>
+            <th>是否就诊</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <volist name="data" id="o">
+            <tr>
+              <td><{$o.uname}></td>
+              <td><if condition="$o.sex eq 0">男
+                  <else />
+                  女</if></td>
+              <td><{$o.age}></td>
+              <td><{$o.phone}></td>
+              <td><{$o.ordertime|date='Y-m-d H:i:s',###}></td>
+              <td><{$o.addr}></td>
+              <td><{$o.orderdepart}></td>
+              <td><{$o.orderexpert}></td>
+              <td><{$o.seedoctor}></td>
+              <td><div class="h2_cat" onmouSEOver="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'"> <a href="<{:U('Hospital/updateorder',array('id'=>$o['id']))}>">修 改 | </a> <a onclick="return window.confirm('您确定要删除吗?')" href="<{:U('Hospital/delorder',array('id'=>$o['id']))}>');">删 除 </a> </div></td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+    </form>
+    <div class="pagelistbox"> <{$page}> </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+function selallck(o){
+	if($(o).prop('checked')){
+		$('check_box').find('input[type="checkbox"]').prop('checked',true);
+	}else{
+		$('check_box').find('input[type="checkbox"]').prop('checked',false);
+	}
+}
+function ChkAllClick(obj){
+	var value=$(obj).attr('checked');
+	$("input[type='checkbox'][class='checkitem']").attr('checked',value);
+ }
+</script>
+</body>
+</html>

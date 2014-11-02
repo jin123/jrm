@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微投票添加</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script charset="utf-8" src="__PUBLIC__/DatePicker/WdatePicker.js"></script>
+<script charset="utf-8" src="__PUBLIC__/js/vote/common.js"></script>
+<script charset="utf-8" src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script charset="utf-8" src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+<script>
+KindEditor.ready(function(K) {
+		window.editor = K.create('textarea[id="editor_id"]');
+				var editor = K.editor({
+					allowFileManager : true
+				});
+	});	
+$(function(){
+ $("#isaward").find("input[name='isaward']").change(function(){
+    var num=$(this).val();
+	if(num == 1){
+		$("#awardurl").show();
+	}else{
+		$("#awardurl").hide();
+	}
+  });
+})					
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">微投票</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">投票设置<a href="<{:U('Vote/index')}>"><span class="button_r_1 fabu">返回</span></a></div>
+      <div class="msgWrap bgfc">
+	    <form class="form" method="post" action=""  enctype="multipart/form-data">
+          <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+              <tr>
+                <th width="120">关键词：</th>
+                <td><input type="text" name="keyword" value="<if condition="$vo['keyword'] eq ''">投票<else/><{$vo.keyword}></if>" class="px" style="width:550px;"> <span class="red">只能写一个关键词</span></td>
+              </tr>
+              <tr>
+                <th width="120">投票标题：</th>
+                <td><input type="text" name="title" value="<{$vo.title}>" class="px" style="width:550px;"></td>
+              </tr>
+              <tr>
+                <th>是否抽奖：</th>
+                <td id="isaward"><label>
+                  <input type="radio" name="isaward" value="0" checked="checked">
+                  否</label>
+                  &nbsp;&nbsp;
+                  <label>
+                  <input type="radio" name="isaward"  value="1">
+                  是</label>
+                </td>
+              </tr>
+              <tr id="awardurl" style="display:none;">
+                <th>抽奖地址：</th>
+                <td><input type="text" id="url" name="awardurl" value="" class="px" style="width:550px;">
+<strong class="input_ts_y">
+<a href="javascript:void(0)" onclick="getLink('url',760,420)" class="btnGreen">获取站内链接</a>
+</strong>
+                </td>
+              </tr>
+              <tr>
+                <th>投票图片：</th>
+                <td><img class="thumb_img" id="picurl_src" src="<{$reslist['picurl']|default='__PUBLIC__/images/vote.jpg'}>" style="max-height:100px;" align="absmiddle">
+                  <input type="text" name="picurl" value="<{$vo.picurl|default='__PUBLIC__/images/vote.jpg'}>" class="px" onclick="document.getElementById('picurl_src').src=this.value;" id="picurl" style="width:300px;">
+                  <a href="javascript:void(0)" onclick="upyunPicUpload('picurl',700,420)">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a>&nbsp;填写图片外链地址，大小为720x400</td>
+              </tr>
+              <tr>
+                <th>图片显示：</th>
+                <td><input type="radio" name="showpic" value="1" checked="checked" id="showpic2">&nbsp;显示在投票页面&nbsp;&nbsp;&nbsp;&nbsp;
+				<input name="showpic" type="radio" id="showpic1" value="0">&nbsp;不显示在投票页面</label>
+                </td>
+              </tr>
+              <tr>
+                <th>投票说明：</th>
+                <td valign="top"><textarea class="px" id="editor_id" name="info" style="width:690px;height:120px;"><?php echo html_entity_decode(htmlspecialchars_decode($vo['info'])); ?></textarea></td>
+              </tr>
+              <tr style="display:none;">
+                <th>单选/多选：</th>
+                <td><p style="width: 120px; float: left; display: block; line-height: 32px; height: 32px;">
+                    <label><input name="type" type="radio" onclick="document.getElementById('cknums').style.display='none';" id="RadioGroup1_0" value="0" checked="checked">
+                    单选&nbsp;&nbsp;</label><label> <input type="radio" <if condition="$vo['cknums'] eq 1">checked</if> name="type" onclick="document.getElementById('cknums').style.display='block';" value="1" id="RadioGroup1_1">&nbsp;多选</label></p>
+                  <p id="cknums"  style="display:none;width:200px; float: left"> <input name="cknums"<if condition="$vo['cknums'] neq 1">checked</if> class="px" size="4" type="text" value="<{$vo.cknums|default=1}>">多项最多选多少项 </p></td>
+              </tr>
+              <tr>
+                <th>截至时间：</th>
+                <td><input type="input" class="px" id="statdate" value="<if condition="$vo['statdate'] neq ''"><{$vo.statdate|date="Y-m-d",###}></if>" onClick="WdatePicker()" name="statdate" style="width:180px;">  到 <input type="input" class="px" id="enddate" value="<if condition="$vo['enddate'] neq ''"><{$vo.enddate|date="Y-m-d",###}></if>" name="enddate" onClick="WdatePicker()" style="width:180px;"></td>
+              </tr>
+              <tr style="display:none;">
+                <th>投票结果：</th>
+                <td><label> <input name="display" type="radio" checked value="1" id="RadioGroup2_1">&nbsp;投票前可见&nbsp;&nbsp;</label>
+                <label> <input name="display" type="radio"  value="0">&nbsp;投票后可见&nbsp;&nbsp;</label>
+                  <label> <input name="display" type="radio" id="RadioGroup2_2" value="2">&nbsp;投票结束可见</label>
+                </td>
+              </tr>
+              <tr>
+                <th valign="top">投票选项：</th>
+                <td valign="top"><div class="bdrcontent">
+                    <div id="div_ptype">
+                      <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                          <tr>
+                            <td width="50">序号</td>
+                            <td width="260">选项标题</td>
+                            <td width="50">排序</td>
+                            <td>链接地址</td>
+                            <td width="50">票数</td>
+                            <if condition="$vo['type'] eq 'img' OR $type eq 'img'">
+                              <td width="260">图片外链地址</td>
+                              <td width="260">图片跳转地址以http://开头</td>
+                            </if>
+                            <td class="norightborder"></td>
+                          </tr>
+                        </tbody>
+                        <tbody id="div_add_del" name="div_add_del">
+                          <tr style="display:none">
+                            <td width="50"><input type="text" name="add[id][]" readonly="readonly" disabled="disabled"  value="" style="width:50px;" ></td>
+                            <td width="200"><input type="text" name="add[item][]" value="" class="px" style="width:150px;"></td>
+                            <td><input type="text" name="add[rank][]" value="<{$ivo.rank|default=1}>" style="width:50px;" class="px"></td>
+                            <td width="150"><input type="text" name="add[awardurl][]" value="" style="width:180px;" class="px"></td>
+                            <td><input type="text" name="add[vcount][]" value="0" style="width:50px;" class="px"></td>
+                            <if condition="($vo['type'] eq 'img') OR ($type eq 'img')">
+                              <td width="80"><input type="text" name="add[startpicurl][]" value="" class="px" style="width:190px;"></td>
+                              <td width="100"><input type="text" name="add[tourl][]" value="#" class="px" style="width:100px;"></td>
+                            </if>
+                            <td width="50" class="norightborder"><a href="javascript:;" onclick="delrow(this, 'div_add_del');">删除</a></td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td colspan="5" class="norightborder"><if condition="$items eq ''">
+                              <button type="button" id="vtype" onclick="addrow('div_add_del');" class="btnGrayS vm" value="true"><strong>添加选项</strong></button>
+                              至少2项,最多15项,已经添加[<span id='aditem'></span>]项</td>
+                            <else/>
+                            <!--input type="button" readonly disabled value="添加选项"/-->
+                            </if>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <script>
+var count = 1;
+function addrow(tbody) {
+var add = false;
+var newnode;
+if($$(tbody).rows.length == 1 && $$(tbody).rows[0].style.display == 'none') {
+$$(tbody).rows[0].style.display = '';
+newnode = $$(tbody).rows[0];
+} else {
+newnode = $$(tbody).rows[0].cloneNode(true);
+add = true;
+}
+if(add) {
+$$(tbody).appendChild(newnode);
+}
+var aditem = document.getElementById('aditem');
+aditem.innerHTML=count;
+if(count==15){var vtype = document.getElementById('vtype');
+vtype.disabled="disabled";vtype.value="disabled";}count++;
+}
+function delrow(obj, tbody) {
+if($$(tbody).rows.length == 1) {
+var trobj = obj.parentNode.parentNode;
+trobj.style.display='none';
+}else{
+$$(tbody).removeChild(obj.parentNode.parentNode);
+}
+}
+</script>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td><button type="submit" name="button" class="btnGreen" style="padding: 4px 20px;">保存</button>
+                  <a href="<{:U('Vote/index')}>" class="btnGray vm">取消</a> </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

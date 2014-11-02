@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>街景展示</title>
+
+
+</head>
+<body onload="init();">
+	<div id="pano_holder" style="width:1000px;height:1000px"></div>
+	<input  type="hidden" id="longitude" value="<{$info.longitude}>">
+	<input  type="hidden" id="latitude" value="<{$info.latitude}>">
+</body>
+<script src="/Public/js/j.js"></script>
+<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=d84d6d83e0e51e481e50454ccbe8986b"></script>
+<script>
+var x = <{$info.longitude}>;
+var y = <{$info.latitude}>;
+
+var init = function() {
+
+	  var panoLatLng = new soso.maps.LatLng(y,x);//A鐐瑰潗鏍?        // 鍒涘缓琛楁櫙
+        var pano = new soso.maps.Panorama(document.getElementById('pano_holder'));
+        var pano_service = new soso.maps.PanoramaService();
+        pano_service.getPano(panoLatLng, 200, function(result){
+		 if (!result) {
+                alert( "没有街景");
+				return;
+            }
+        pano.setPano(result.svid);
+ 
+        var x2 = result.latlng.lng;
+        var y2 = result.latlng.lat;
+        var x1 =x;
+        var y1 = y;
+ 
+        var alpha = Math.acos((y1 - y2) / Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
+                if (x1 - x2 < 0) {
+                        alpha = Math.PI * 2 - alpha;
+                }
+ 
+                pano.setPov({heading : alpha/Math.PI*180, pitch : 0});
+    });
+         
+}
+</script>
+</html>
+

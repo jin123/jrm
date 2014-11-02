@@ -1,0 +1,10 @@
+<div class="sitebar_meun"> <a href="<{:U('/Index/index')}>">首页</a>
+  <a href="<{:U('Medical/colunmlist',array('hid'=>$hid))}>" <eq name="ACTION_NAME" value="colunmlist">class="b"</eq> >栏目设置</a>
+  <!--<a href="<{:U('Medical/index',array('hid'=>$hid))}>" <eq name="ACTION_NAME" value="index">class="b"</eq>>挂号设置</a>
+   <a href="<{:U('Hospital/yuyuelist')}>"  <eq name="ACTION_NAME" value="yuyuelist">class="b"</eq>>内容设置</a> -->
+  <a href="<{:U('Medical/department',array('hid'=>$hid))}>" <eq name="ACTION_NAME" value="department">class="b"</eq>>科室设置</a>
+  <a href="<{:U('Medical/yuyueselect',array('hid'=>$hid))}>" <eq name="ACTION_NAME" value="yuyueselect">class="b"</eq> >预约查询</a>
+  <a href="<{:U('Medical/yuyuecount',array('hid'=>$hid))}>" <eq name="ACTION_NAME" value="yuyuecount">class="b"</eq> >预约统计</a>
+  <a href="<{:U('Medically/index',array('hid'=>$hid))}>" >留言管理</a>
+  <a href="<{:U('Medical/recovery',array('hid'=>$hid))}>" <eq name="ACTION_NAME" value="recovery">class="b"</eq>>康复案例设置</a>
+</div>

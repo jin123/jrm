@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信墙设置</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<script charset="utf-8" src="__PUBLIC__/js/j.js"></script>
+<script src="__PUBLIC__/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="__PUBLIC__/static/artDialog/plugins/iframeTools.js"></script>
+<script src="__PUBLIC__/js/upyun.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="estate_desc"]');
+	window.editor = K.create('textarea[id="project_brief"]');
+	window.editor = K.create('textarea[id="traffic_desc"]');
+
+});					
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="<{:U('Index/welcome')}>">首页</a><span class="wap_span_2">微信墙设置</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">微信墙设置</div>
+      <form action="" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+        <if condition="$ly_data['id'] neq ''">
+          <input type="hidden" name="id" value="<{$ly_data['id']}>" />
+        </if>
+        <table class="new_main_zhuce">
+          <div class="tab">
+            <ul>
+              <li class="current tabli" id="tab0"><a href="<{:U('Wxscreen/index')}>">微信墙设置</a></li>
+              <li class="tabli" id="tab1"><a href="<{:U('Wxscreen/liuyan',array('id'=>$ly_data['id']))}>">留言管理</a></li>
+            </ul>
+          </div>
+          <tbody>
+            <tr>
+              <th width="16%" class="table_txt_right">触发关键字：</th>
+              <td><input type="text" name="gjz" id="gjz" class="input login_input_1" value="<{$ly_data['gjz']}>" style="width:400px;">
+                <strong class="input_ts_y"><font color="red">*只能设置一个关键字</font></strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">显示名称：</th>
+              <td><input type="text" name="tit" id="tit" class="input login_input_1" value="<{$ly_data['tit']}>" style="width:400px;"></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">顶部轮播文字1：</th>
+              <td><input type="text" name="text1" id="text1" class="input login_input_1" value="<{$ly_data['text1']}>" style="width:400px;">
+                <strong class="input_ts_y"><font color="red">*请控制在22个汉字以内</font></strong></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">顶部轮播文字2：</th>
+              <td><input type="text" name="text2" id="text2" class="input login_input_1" value="<{$ly_data['text2']}>" style="width:400px;">
+                <strong class="input_ts_y"><font color="red">*请控制在22个汉字以内</font></strong></td>
+            </tr>
+            <!--<tr>
+                <th width="16%" class="table_txt_right">图文封面：</th>
+				 <td>
+    			  <input type="input" class="input login_input_1" name="pic" id="pic" style="width:400px;" value="<{$ly_data['pic']|default='__PUBLIC__/wxscreen/images/wxscreen.png'}>">
+		          <strong class="input_ts_y">
+               <a href="###" onclick="upyunPicUpload('pic',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a>
+              建议尺寸：宽720像素，高400像素
+ 		         </strong>
+				 <br />
+				  <br />
+				 <img class="thumb_img" id="pic_src" src="<{$ly_data['pic']|default='__PUBLIC__/wxscreen/images/wxscreen.png'}>" style="max-height:100px;width:167px;">
+				 <br />
+				  <br />
+				 </td>
+              </tr>-->
+            <tr>
+              <th width="16%" class="table_txt_right">页面顶端二维码图片：</th>
+              <td><input type="input" class="input login_input_1" name="headpic" id="headpic" style="width:400px;" value="<{$ly_data['headpic']}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('headpic',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('headpic')">预览</a> 建议尺寸：宽720像素，高400像素 </strong> <br />
+                <br />
+                <img class="thumb_img" id="headpic_src" src="<{$ly_data['headpic']}>" style="max-height:100px;width:167px;"> <br />
+                <br /></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">页面顶端logo图片：</th>
+              <td><input type="input" class="input login_input_1" name="toppic" id="toppic" style="width:400px;" value="<{$ly_data['toppic']}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('toppic',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('toppic')">预览</a> 建议尺寸：宽720像素，高400像素 </strong> <br />
+                <br />
+                <img class="thumb_img" id="toppic_src" src="<{$ly_data['toppic']}>" style="max-height:100px;width:167px;"> <br />
+                <br /></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">页面底端logo图片：</th>
+              <td><input type="input" class="input login_input_1" name="bottempic" id="bottempic" style="width:400px;" value="<{$ly_data['bottempic']}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('bottempic',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('bottempic')">预览</a> 建议尺寸：宽720像素，高400像素 </strong> <br />
+                <br />
+                <img class="thumb_img" id="bottempic_src" src="<{$ly_data['bottempic']}>" style="max-height:100px;width:167px;"> <br />
+                <br /></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">是否通过审核</th>
+              <td><if condition="$ly_data['issh'] eq '' ">
+                  <input type="radio" name="issh" value="1" >
+                  需要审核
+                  <input type="radio" name="issh" value="0" checked>
+                  无需审核
+                  <elseif condition="$ly_data['issh'] eq 0 "/>
+                  <input type="radio" name="issh" value="1" >
+                  需要审核
+                  <input type="radio" name="issh" value="0" checked>
+                  无需审核
+                  <else />
+                  <input type="radio" name="issh" value="1" checked>
+                  需要审核
+                  <input type="radio" name="issh" value="0" >
+                  无需审核 </if>
+            </tr>
+            
+            <!-- <tr>
+                <th width="16%" class="table_txt_right">管理员Openid：</th>
+                <td>
+                  <input type="text" name="adminid" id="adminid" class="input login_input_1" value="<{$ly_data['adminid']}>" style="width:400px;">
+                  <strong class="input_ts_y">在留言板提交留言,然后在“留言列表”中找到自己的openid并在这里添加为管理</strong></td>
+              </tr> -->
+            
+            <tr>
+              <th width="16%" class="table_txt_right">微信墙外联地址：</th>
+              <td><strong class="input_ts_y"><{:C('site_url')}>/index.php?s=/Wxscreen/gundong/id/<{$ly_data['id']}></strong> 
+                
+                <!--<a href="{:U('Shake/edit',array('id'=>$o['id']))}">
+                      <li>修 改</li>
+                      </a> --><a href="<{:U('Wxscreen/gundong',array('id'=>$ly_data['id']))}>" target="_blank"> 链 接 </a><!--<a href="{:U('Shake/entry?shakeid=1')}" target="_blank">开 始</a><a href="{:U('Shake/process?shakeid=1')}" target="_blank">记 录</a><!--<a href="{:U('Shake/item/',array('token'=>$o['token'],'id'=>$o['id'],'openid'=>'fromuserid'))}" target="_blank">链 接</a> <!--<a href="javascript:setPreview('<{:U('/Wap/Panorama/item/',array('token'=>$o['token'],'id'=>$o['id'],'openid'=>'fromuserid'))}>');">
+                      <li>预 览</li>
+                      </a>--></td>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">&nbsp;</th>
+              <td><button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

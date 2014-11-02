@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>教育机构_<{:C('site_name')}></title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/base.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/admin.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+<link rel="stylesheet" href="__PUBLIC__/editor/plugins/code/prettify.css" />
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/plugins/code/prettify.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	window.editor = K.create('textarea[id="description"]');
+
+});					
+</script>
+</head>
+<body>
+<div id="container">
+  <div class="content">
+    <div class="new_hader">
+      <div class="new_hader_1"><i class="Admin_home_i"></i><a href="/">首页</a><span class="wap_span_2">教育机构</span></div>
+      <div class="new_hader_2">
+        <div class="new_hader_2_a"><span><{$Think.session.loginUserName}></span> </div>
+        <div class="new_hader_2_b"><img src="__PUBLIC__/images/user_black.jpg"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="new_main">
+      <div class="new_main_tit pt10">宣传海报<a href="javascript:history.go(-1);"><span class="button_r_1 fabu">返回</span></a></div>
+      <form class="form" method="post" action=""  >
+        <table class="new_main_zhuce">
+          <tbody>
+             <tr>
+              <th width="16%" class="table_txt_right">海报1：</th>
+              <td><img class="thumb_img" id="pic1_src" src="<{$haibao['pic1']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>" style="max-height:100px;width:167px;">
+                <input type="input" class="input login_input_1" name="pic1" id="pic1" style="width:225px;" value="<{$haibao['pic1']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('pic1',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic1')">预览</a> 建议尺寸：宽720像素，高400像素 </strong>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">海报2：</th>
+              <td><img class="thumb_img" id="pic2_src" src="<{$haibao['pic2']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>" style="max-height:100px;width:167px;">
+                <input type="input" class="input login_input_1" name="pic2" id="pic2" style="width:225px;" value="<{$haibao['pic2']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('pic2',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic2')">预览</a> 建议尺寸：宽720像素，高400像素 </strong>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">海报3：</th>
+              <td><img class="thumb_img" id="pic3_src" src="<{$haibao['pic3']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>" style="max-height:100px;width:167px;">
+                <input type="input" class="input login_input_1" name="pic3" id="pic3" style="width:225px;" value="<{$haibao['pic3']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('pic3',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic3')">预览</a> 建议尺寸：宽720像素，高400像素 </strong>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">海报4：</th>
+              <td><img class="thumb_img" id="pic4_src" src="<{$haibao['pic4']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>" style="max-height:100px;width:167px;">
+                <input type="input" class="input login_input_1" name="pic4" id="pic4" style="width:225px;" value="<{$haibao['pic4']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('pic4',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic4')">预览</a> 建议尺寸：宽720像素，高400像素 </strong>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">海报5：</th>
+              <td><img class="thumb_img" id="pic5_src" src="<{$haibao['pic5']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>" style="max-height:100px;width:167px;">
+                <input type="input" class="input login_input_1" name="pic5" id="pic5" style="width:225px;" value="<{$haibao['pic5']|default='__PUBLIC__/wap/jiaoyu/jiaoyu02.jpg'}>">
+                <strong class="input_ts_y"> <a href="###" onclick="upyunPicUpload('pic5',720,400)" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic5')">预览</a> 建议尺寸：宽720像素，高400像素 </strong>
+            </tr>
+            <tr>
+              <th width="16%" class="table_txt_right">&nbsp;</th>
+              <td><if condition="$haibao['id'] neq ''">
+                  <input type="hidden" name="id" value="<{$haibao['id']}>" />
+                </if>
+                <input type="hidden" name="pid" value="<{$pid}>">
+                <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+                <button type="button" class="btnGray vm">取消</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
